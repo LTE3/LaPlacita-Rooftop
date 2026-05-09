@@ -659,6 +659,28 @@
     }
 
     /* ----------------------------------------------------------
+       16. Newsletter form
+    ---------------------------------------------------------- */
+    function initNewsletterForm() {
+        const form = document.querySelector('#newsletter form, .newsletter-form');
+        if (!form) return;
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = form.querySelector('button');
+            if (!btn) return;
+            const original = btn.textContent;
+            btn.textContent = 'Welcome to the island!';
+            btn.style.background = 'var(--coral)';
+            if (window.showToast) window.showToast('You\'re on the list! Welcome to La Placita.', 'success');
+            setTimeout(() => {
+                btn.textContent = original;
+                btn.style.background = '';
+                form.reset();
+            }, 3000);
+        });
+    }
+
+    /* ----------------------------------------------------------
        Boot
     ---------------------------------------------------------- */
     initPreloader();
@@ -678,5 +700,6 @@
         initCursorGlow();
         initStaggerReveal();
         initKeyboardNav();
+        initNewsletterForm();
     });
 })();

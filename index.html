@@ -26,8 +26,10 @@
       "description": "Brooklyn's premier rooftop bar and restaurant with Puerto Rican-inspired cocktails and Latin cuisine.",
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "247 Wythe Avenue, 8th Floor",
         "addressLocality": "Brooklyn",
         "addressRegion": "NY",
+        "postalCode": "11211",
         "addressCountry": "US"
       },
       "servesCuisine": ["Latin American", "Puerto Rican", "Caribbean"],
@@ -1037,6 +1039,686 @@
         .reveal-delay-2 { transition-delay: 0.2s; }
         .reveal-delay-3 { transition-delay: 0.3s; }
 
+        /* ─── HERO LOGO ─── */
+        .hero-logo {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 0 auto 28px;
+            border: 3px solid var(--coral);
+            box-shadow: 0 12px 40px rgba(15, 34, 25, 0.18), 0 0 0 8px rgba(212, 114, 92, 0.08);
+            opacity: 0;
+            animation: fadeUp 1s var(--ease-smooth) 0.1s forwards;
+        }
+
+        /* ─── HAPPY HOUR BANNER ─── */
+        .happy-hour-banner {
+            background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 50%, var(--forest) 100%);
+            color: var(--cream);
+            padding: 28px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .happy-hour-banner::before,
+        .happy-hour-banner::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--coral) 0%, transparent 70%);
+            opacity: 0.2;
+            transform: translateY(-50%);
+        }
+        .happy-hour-banner::before { left: -80px; }
+        .happy-hour-banner::after { right: -80px; }
+
+        .happy-hour-tag {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            padding: 6px 14px;
+            border: 1px solid var(--gold-light);
+            border-radius: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .happy-hour-text {
+            font-family: var(--font-display);
+            font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+            font-style: italic;
+            color: var(--cream);
+            position: relative;
+            z-index: 1;
+        }
+
+        .happy-hour-text strong {
+            color: var(--coral-light);
+            font-weight: 700;
+            font-style: normal;
+            letter-spacing: 1px;
+        }
+
+        .happy-hour-divider {
+            color: var(--gold-light);
+            opacity: 0.5;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ─── TESTIMONIALS ─── */
+        .testimonials-section {
+            background: var(--cream-dark);
+            padding: 120px 40px;
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--cream);
+            padding: 44px 36px;
+            border-radius: 4px;
+            border: 1px solid rgba(15, 34, 25, 0.06);
+            position: relative;
+            transition: all 0.4s var(--ease-smooth);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 60px rgba(15, 34, 25, 0.1);
+        }
+
+        .testimonial-card::before {
+            content: '\201C';
+            position: absolute;
+            top: 10px;
+            right: 24px;
+            font-family: var(--font-display);
+            font-size: 5rem;
+            color: var(--coral-light);
+            line-height: 1;
+            opacity: 0.4;
+        }
+
+        .testimonial-stars {
+            color: var(--gold);
+            font-size: 1rem;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-quote {
+            font-family: var(--font-elegant);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--forest);
+            font-style: italic;
+            margin-bottom: 28px;
+            flex-grow: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding-top: 20px;
+            border-top: 1px solid var(--sand);
+        }
+
+        .testimonial-avatar {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--coral-light), var(--sunset));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .testimonial-name {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--forest-dark);
+        }
+
+        .testimonial-meta {
+            font-size: 0.75rem;
+            color: var(--forest-light);
+            letter-spacing: 1px;
+        }
+
+        /* ─── CHEF SPOTLIGHT ─── */
+        .chef-section {
+            background: var(--cream);
+            padding: 120px 40px;
+        }
+
+        .chef-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 70px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .chef-portrait {
+            position: relative;
+            aspect-ratio: 4 / 5;
+            background: linear-gradient(135deg, var(--forest-light), var(--forest-dark));
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chef-portrait::before {
+            content: '';
+            position: absolute;
+            inset: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 2px;
+        }
+
+        .chef-portrait::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: 30px;
+            bottom: 30px;
+            border: 2px solid var(--coral);
+            border-radius: 4px;
+            z-index: -1;
+        }
+
+        .chef-portrait-icon {
+            font-size: 5rem;
+            opacity: 0.3;
+            filter: grayscale(0.2);
+        }
+
+        .chef-portrait-label {
+            position: absolute;
+            bottom: 28px;
+            left: 28px;
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--cream);
+            font-style: italic;
+            z-index: 2;
+        }
+
+        .chef-name {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--forest-dark);
+            margin: 16px 0 6px;
+        }
+
+        .chef-title-tag {
+            font-family: var(--font-elegant);
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--coral);
+            margin-bottom: 28px;
+        }
+
+        .chef-bio {
+            font-family: var(--font-elegant);
+            font-size: 1.15rem;
+            line-height: 1.85;
+            color: var(--forest-light);
+            margin-bottom: 18px;
+        }
+
+        .chef-signature {
+            margin-top: 28px;
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 1.6rem;
+            color: var(--coral);
+            transform: rotate(-3deg);
+            display: inline-block;
+        }
+
+        /* ─── PRIVATE EVENTS ─── */
+        .private-events-section {
+            background: var(--forest-dark);
+            color: var(--cream);
+            padding: 120px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .private-events-section::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--coral) 0%, transparent 70%);
+            opacity: 0.15;
+            top: -150px;
+            right: -150px;
+        }
+
+        .private-events-section::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+            opacity: 0.1;
+            bottom: -100px;
+            left: -100px;
+        }
+
+        .private-events-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .private-events-section .section-eyebrow { color: var(--gold-light); }
+        .private-events-section .section-title { color: var(--cream); }
+        .private-events-section .section-desc { color: var(--sand); }
+
+        .private-events-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .private-event-feature {
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            transition: all 0.3s var(--ease-smooth);
+        }
+
+        .private-event-feature:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--coral);
+            transform: translateY(-3px);
+        }
+
+        .private-event-feature-icon {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+
+        .private-event-feature h4 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            color: var(--cream);
+            margin-bottom: 6px;
+        }
+
+        .private-event-feature p {
+            font-size: 0.85rem;
+            color: var(--sand);
+            line-height: 1.6;
+        }
+
+        .private-events-visual {
+            aspect-ratio: 4 / 5;
+            border-radius: 4px;
+            background: linear-gradient(135deg, var(--coral) 0%, var(--sunset) 50%, var(--gold) 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .private-events-visual::before {
+            content: '';
+            position: absolute;
+            inset: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 2px;
+        }
+
+        .private-events-visual-icon {
+            font-size: 6rem;
+            opacity: 0.5;
+        }
+
+        .private-events-visual-label {
+            position: absolute;
+            bottom: 36px;
+            left: 36px;
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 1.4rem;
+            color: white;
+            z-index: 1;
+        }
+
+        .btn-coral {
+            display: inline-block;
+            padding: 16px 40px;
+            background: var(--coral);
+            color: var(--cream);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: all 0.4s var(--ease-smooth);
+        }
+
+        .btn-coral:hover {
+            background: var(--coral-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 114, 92, 0.3);
+        }
+
+        /* ─── HOURS / MAP ─── */
+        .location-section {
+            background: var(--cream);
+            padding: 120px 40px;
+        }
+
+        .location-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+            align-items: stretch;
+        }
+
+        .map-placeholder {
+            position: relative;
+            min-height: 480px;
+            border-radius: 4px;
+            overflow: hidden;
+            background:
+                linear-gradient(135deg, #cfd8d2 0%, #b8c4bd 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--sand);
+        }
+
+        .map-placeholder::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(15, 34, 25, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(15, 34, 25, 0.06) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.7;
+        }
+
+        .map-pin {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .map-pin-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--coral);
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(212, 114, 92, 0.4);
+            position: relative;
+        }
+
+        .map-pin-icon::before {
+            content: '';
+            width: 22px;
+            height: 22px;
+            background: var(--cream);
+            border-radius: 50%;
+        }
+
+        .map-pin-label {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--forest-dark);
+            background: var(--cream);
+            padding: 8px 16px;
+            border-radius: 2px;
+            box-shadow: 0 4px 16px rgba(15, 34, 25, 0.12);
+            font-style: italic;
+        }
+
+        .location-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .location-info-block {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--sand);
+        }
+
+        .location-info-block:last-child {
+            border-bottom: none;
+        }
+
+        .location-info-block h4 {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 12px;
+        }
+
+        .location-info-block p,
+        .location-info-block .hours-row {
+            font-family: var(--font-elegant);
+            font-size: 1.1rem;
+            color: var(--forest);
+            line-height: 1.6;
+        }
+
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+        }
+
+        .hours-row span:first-child {
+            font-weight: 600;
+            color: var(--forest-dark);
+        }
+
+        .hours-row span:last-child {
+            color: var(--forest-light);
+            font-style: italic;
+        }
+
+        .transit-badge {
+            display: inline-block;
+            background: var(--forest);
+            color: var(--cream);
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            border-radius: 50%;
+            margin-right: 6px;
+            min-width: 26px;
+            text-align: center;
+        }
+
+        /* ─── NEWSLETTER ─── */
+        .newsletter-section {
+            background: linear-gradient(135deg, var(--coral) 0%, var(--sunset) 60%, var(--coral-dark) 100%);
+            padding: 100px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-section::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--gold-light) 0%, transparent 70%);
+            opacity: 0.18;
+            top: -300px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .newsletter-container {
+            max-width: 640px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-eyebrow {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--cream);
+            opacity: 0.9;
+            margin-bottom: 16px;
+        }
+
+        .newsletter-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            font-weight: 700;
+            color: var(--cream);
+            line-height: 1.1;
+            margin-bottom: 18px;
+        }
+
+        .newsletter-title em {
+            font-style: italic;
+            color: var(--forest-dark);
+        }
+
+        .newsletter-desc {
+            font-family: var(--font-elegant);
+            font-size: 1.15rem;
+            color: var(--cream);
+            opacity: 0.95;
+            margin-bottom: 36px;
+            line-height: 1.6;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            max-width: 520px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 2px;
+            box-shadow: 0 16px 40px rgba(15, 34, 25, 0.18);
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 14px 18px;
+            border: none;
+            background: transparent;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--forest-dark);
+            outline: none;
+        }
+
+        .newsletter-form input::placeholder {
+            color: var(--forest-light);
+            opacity: 0.6;
+        }
+
+        .newsletter-form button {
+            padding: 14px 28px;
+            background: var(--forest);
+            color: var(--cream);
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--forest-dark);
+            transform: translateY(-1px);
+        }
+
+        .newsletter-fineprint {
+            font-size: 0.75rem;
+            color: var(--cream);
+            opacity: 0.8;
+            margin-top: 18px;
+            letter-spacing: 1px;
+        }
+
         /* ─── RESPONSIVE ─── */
         @media (max-width: 1024px) {
             .about-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -1047,6 +1729,13 @@
             .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
             .reservation-container { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; max-width: 560px; }
+            .chef-container { grid-template-columns: 1fr; gap: 50px; }
+            .chef-portrait { max-width: 420px; margin: 0 auto; aspect-ratio: 4 / 5; }
+            .private-events-container { grid-template-columns: 1fr; gap: 50px; }
+            .private-events-visual { max-width: 480px; margin: 0 auto; aspect-ratio: 3 / 2; }
+            .location-container { grid-template-columns: 1fr; }
+            .map-placeholder { min-height: 360px; }
         }
 
         @media (max-width: 768px) {
@@ -1067,6 +1756,17 @@
             .experience-section { padding: 80px 0; }
             .events-section { padding: 80px 24px; }
             .reservation-section { padding: 80px 24px; }
+            .testimonials-section,
+            .chef-section,
+            .private-events-section,
+            .location-section { padding: 80px 24px; }
+            .newsletter-section { padding: 70px 24px; }
+            .private-events-features { grid-template-columns: 1fr; }
+            .newsletter-form { flex-direction: column; padding: 14px; }
+            .newsletter-form button { width: 100%; padding: 16px; }
+            .happy-hour-banner { padding: 24px 24px; gap: 14px; }
+            .happy-hour-divider { display: none; }
+            .hero-logo { width: 110px; height: 110px; margin-bottom: 22px; }
         }
 
         @media (max-width: 480px) {
@@ -1383,6 +2083,7 @@
         <div class="hero-bg-circle"></div>
         <div class="hero-bg-circle"></div>
         <div class="hero-content">
+            <img src="logo.jpg" alt="La Placita Rooftop logo" class="hero-logo">
             <p class="hero-eyebrow">Rooftop Bar &amp; Restaurant</p>
             <h1 class="hero-title">
                 <span class="la">La</span>
@@ -1408,6 +2109,14 @@
         <div class="divider-line"></div>
     </div>
 
+    <!-- Happy Hour Banner -->
+    <div class="happy-hour-banner">
+        <span class="happy-hour-tag">Happy Hour</span>
+        <span class="happy-hour-text"><strong>Mon &ndash; Fri &middot; 4&ndash;7PM</strong></span>
+        <span class="happy-hour-divider">&bull;</span>
+        <span class="happy-hour-text">Half-price cocktails &amp; $8 small plates</span>
+    </div>
+
     <!-- About -->
     <section class="about-section section" id="about">
         <div class="about-grid">
@@ -1418,9 +2127,15 @@
                 <p class="section-eyebrow reveal">Our Story</p>
                 <h2 class="section-title reveal reveal-delay-1">A Taste of<br>the Island, Above<br>the City</h2>
                 <p class="section-desc reveal reveal-delay-2">
-                    La Placita Rooftop brings the warmth and vibrance of Puerto Rico to the heart of Brooklyn.
-                    Set above the city skyline, we offer handcrafted tropical cocktails, authentic Latin cuisine,
-                    and an atmosphere that transports you to the plazas of Old San Juan.
+                    Step out of the elevator and the city falls away. Salt-warm air, the slow strum of cuatro
+                    strings, glasses clinking under string lights &mdash; for a moment, Brooklyn becomes the
+                    cobbled plaza of Old San Juan at golden hour.
+                </p>
+                <p class="section-desc reveal reveal-delay-2" style="margin-top:20px;">
+                    La Placita was born from a simple longing: to bottle a Puerto Rican summer evening and
+                    serve it on a rooftop above New York. Every dish is a memory from abuela&rsquo;s kitchen,
+                    every cocktail a sunset over Vieques. We are not a restaurant pretending to be the island
+                    &mdash; we are the island, transplanted, alive, and waiting for you.
                 </p>
                 <div class="about-features reveal reveal-delay-3">
                     <div class="about-feature">
@@ -1609,6 +2324,93 @@
         </div>
     </section>
 
+    <!-- Testimonials -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="testimonials-header">
+            <p class="section-eyebrow reveal">Word on the Street</p>
+            <h2 class="section-title reveal reveal-delay-1">Loved by<br>Brooklyn</h2>
+            <p class="section-desc reveal reveal-delay-2" style="margin:24px auto 0;text-align:center;">What our guests are saying about their nights on the rooftop.</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card reveal">
+                <div class="testimonial-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+                <p class="testimonial-quote">
+                    The mofongo was straight out of my abuela&rsquo;s kitchen and the sunset over the city
+                    made me forget I was in Brooklyn. Coquito Colada changed my life. Already booked
+                    for our anniversary.
+                </p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">M</div>
+                    <div>
+                        <div class="testimonial-name">Marisol Vega</div>
+                        <div class="testimonial-meta">Williamsburg &middot; Local guide</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card reveal reveal-delay-1">
+                <div class="testimonial-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+                <p class="testimonial-quote">
+                    Hands down the best rooftop experience in NYC. The salsa night had us dancing
+                    until 2am, the churrasco was perfect, and the staff treated us like family.
+                    This place has soul.
+                </p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar" style="background:linear-gradient(135deg,var(--forest-light),var(--forest));">J</div>
+                    <div>
+                        <div class="testimonial-name">James Okonkwo</div>
+                        <div class="testimonial-meta">Bed-Stuy &middot; Visited twice this month</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card reveal reveal-delay-2">
+                <div class="testimonial-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+                <p class="testimonial-quote">
+                    We hosted my sister&rsquo;s 30th here and the team made it unforgettable &mdash; custom
+                    cocktail menu, the whole snapper, fairy lights everywhere. Every guest is still
+                    texting me about it weeks later.
+                </p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar" style="background:linear-gradient(135deg,var(--gold),var(--sunset));">A</div>
+                    <div>
+                        <div class="testimonial-name">Alana Ruiz-Greene</div>
+                        <div class="testimonial-meta">Park Slope &middot; Hosted a private event</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chef Spotlight -->
+    <section class="chef-section" id="chef">
+        <div class="chef-container">
+            <div class="chef-portrait reveal">
+                <span class="chef-portrait-icon">&#128373;&#127999;&#8205;&#127859;</span>
+                <span class="chef-portrait-label">In the kitchen</span>
+            </div>
+            <div>
+                <p class="section-eyebrow reveal">Meet the Chef</p>
+                <h3 class="chef-name reveal reveal-delay-1">Chef Rafael &ldquo;Rafi&rdquo; Santiago</h3>
+                <p class="chef-title-tag reveal reveal-delay-1">Executive Chef &middot; Born in Loiza, raised in Brooklyn</p>
+                <p class="chef-bio reveal reveal-delay-2">
+                    Rafi grew up between two kitchens &mdash; his abuela&rsquo;s in Loiza, where the
+                    sofrito always hit before the front door, and his mother&rsquo;s in Bushwick,
+                    where she stretched island recipes across a Brooklyn winter. After fifteen years
+                    cooking through Madrid, San Juan, and Manhattan&rsquo;s finest Latin kitchens, he
+                    came home to build the menu he&rsquo;d been writing in his head since he was a kid.
+                </p>
+                <p class="chef-bio reveal reveal-delay-3">
+                    &ldquo;Every plate at La Placita is a postcard,&rdquo; he says. &ldquo;I want
+                    Brooklyn to taste what August feels like in Vieques.&rdquo;
+                </p>
+                <div class="reveal reveal-delay-3">
+                    <span class="chef-signature">&mdash; Rafi</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Events -->
     <section class="events-section" id="events">
         <div style="max-width:1400px;margin:0 auto;">
@@ -1663,6 +2465,49 @@
                         <a href="#" class="event-link">Learn More <span class="arrow">&rarr;</span></a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Private Events -->
+    <section class="private-events-section" id="private-events">
+        <div class="private-events-container">
+            <div>
+                <p class="section-eyebrow reveal">Celebrate With Us</p>
+                <h2 class="section-title reveal reveal-delay-1">Your Night,<br>On the Roof</h2>
+                <p class="section-desc reveal reveal-delay-2">
+                    From intimate birthday dinners to full rooftop buyouts &mdash; weddings, corporate
+                    gatherings, launches, and everything in between &mdash; we tailor every detail
+                    around your guests, your menu, and your moment.
+                </p>
+                <div class="private-events-features">
+                    <div class="private-event-feature reveal reveal-delay-2">
+                        <div class="private-event-feature-icon">&#127874;</div>
+                        <h4>Birthdays</h4>
+                        <p>From a chef&rsquo;s table for 8 to a 60-person fiesta &mdash; cake, cocktails, and the city skyline.</p>
+                    </div>
+                    <div class="private-event-feature reveal reveal-delay-2">
+                        <div class="private-event-feature-icon">&#128188;</div>
+                        <h4>Corporate</h4>
+                        <p>Holiday parties, off-sites, and client dinners with custom menus and AV-ready spaces.</p>
+                    </div>
+                    <div class="private-event-feature reveal reveal-delay-3">
+                        <div class="private-event-feature-icon">&#128141;</div>
+                        <h4>Weddings</h4>
+                        <p>Rehearsal dinners, ceremonies, or full receptions under string lights and the open sky.</p>
+                    </div>
+                    <div class="private-event-feature reveal reveal-delay-3">
+                        <div class="private-event-feature-icon">&#127870;</div>
+                        <h4>Full Buyouts</h4>
+                        <p>Take over the entire rooftop &mdash; up to 180 guests with cocktail-style service.</p>
+                    </div>
+                </div>
+                <a href="mailto:events@laplacitarooftop.com?subject=Private%20Event%20Inquiry" class="btn-coral reveal reveal-delay-3">Book Your Event</a>
+            </div>
+
+            <div class="private-events-visual reveal">
+                <span class="private-events-visual-icon">&#127878;</span>
+                <span class="private-events-visual-label">Above it all</span>
             </div>
         </div>
     </section>
@@ -1748,7 +2593,7 @@
                     <span class="info-icon">&#128205;</span>
                     <div>
                         <h4>Location</h4>
-                        <p>Brooklyn, New York<br>Address coming soon</p>
+                        <p>247 Wythe Avenue, 8th Fl<br>Brooklyn, NY 11211</p>
                     </div>
                 </div>
                 <div class="info-item">
@@ -1776,6 +2621,67 @@
         </div>
     </section>
 
+    <!-- Hours / Location Map -->
+    <section class="location-section" id="location">
+        <div style="text-align:center;margin-bottom:60px;">
+            <p class="section-eyebrow reveal">Find Us</p>
+            <h2 class="section-title reveal reveal-delay-1">Hours &amp;<br>Location</h2>
+        </div>
+        <div class="location-container">
+            <div class="map-placeholder reveal" aria-label="Map placeholder showing La Placita Rooftop in Brooklyn">
+                <div class="map-pin">
+                    <div class="map-pin-icon"></div>
+                    <div class="map-pin-label">La Placita Rooftop</div>
+                </div>
+            </div>
+            <div class="location-info">
+                <div class="location-info-block reveal">
+                    <h4>Address</h4>
+                    <p>247 Wythe Avenue, 8th Floor<br>Brooklyn, NY 11211</p>
+                </div>
+                <div class="location-info-block reveal reveal-delay-1">
+                    <h4>Hours</h4>
+                    <div class="hours-row"><span>Monday &ndash; Thursday</span><span>4PM &ndash; 12AM</span></div>
+                    <div class="hours-row"><span>Friday &ndash; Saturday</span><span>2PM &ndash; 2AM</span></div>
+                    <div class="hours-row"><span>Sunday</span><span>12PM &ndash; 10PM</span></div>
+                    <div class="hours-row"><span>Happy Hour</span><span>Mon &ndash; Fri 4&ndash;7PM</span></div>
+                </div>
+                <div class="location-info-block reveal reveal-delay-2">
+                    <h4>Getting Here</h4>
+                    <p>
+                        <span class="transit-badge">L</span> Bedford Av &middot; 6 min walk<br>
+                        <span class="transit-badge" style="background:var(--coral);">J</span>
+                        <span class="transit-badge" style="background:var(--coral);">M</span>
+                        <span class="transit-badge" style="background:var(--coral);">Z</span>
+                        Marcy Av &middot; 10 min walk<br>
+                        <span style="font-size:0.95rem;">Citi Bike dock at the corner. Valet on Friday &amp; Saturday nights.</span>
+                    </p>
+                </div>
+                <div class="location-info-block reveal reveal-delay-3">
+                    <h4>Contact</h4>
+                    <p>(718) 555-0100<br>info@laplacitarooftop.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section" id="newsletter">
+        <div class="newsletter-container">
+            <p class="newsletter-eyebrow reveal">Stay in the loop</p>
+            <h2 class="newsletter-title reveal reveal-delay-1">Join the <em>Island</em></h2>
+            <p class="newsletter-desc reveal reveal-delay-2">
+                Sunset previews, new menus, secret events, and the occasional cocktail recipe &mdash;
+                straight to your inbox. No spam, just sabor.
+            </p>
+            <form class="newsletter-form reveal reveal-delay-3" onsubmit="handleNewsletter(event)">
+                <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address">
+                <button type="submit">Sign Me Up</button>
+            </form>
+            <p class="newsletter-fineprint reveal reveal-delay-3">Unsubscribe anytime. We never share your email.</p>
+        </div>
+    </section>
+
     <!-- Instagram Banner -->
     <div class="instagram-banner">
         <p>Follow the vibe</p>
@@ -1795,8 +2701,10 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#menu">Menu</a></li>
                     <li><a href="#experience">Gallery</a></li>
-                    <li><a href="#events">Events</a></li>
+                    <li><a href="#chef">Our Chef</a></li>
+                    <li><a href="#private-events">Private Events</a></li>
                     <li><a href="#reservations">Reservations</a></li>
+                    <li><a href="#location">Hours &amp; Location</a></li>
                 </ul>
             </div>
             <div class="footer-col">
