@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="La Placita Rooftop">
+  <title>La Placita Rooftop</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1B3A2D"/>
+      <stop offset="100%" stop-color="#0F2219"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="10" ry="10" fill="url(#bg)"/>
+  <text
+    x="50%"
+    y="50%"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-family="'Playfair Display', Georgia, serif"
+    font-size="44"
+    font-weight="900"
+    font-style="italic"
+    fill="#FAF3EB">P</text>
+  <circle cx="48" cy="18" r="3" fill="#D4725C"/>
+</svg>

@@ -1,0 +1,48 @@
+{
+  "name": "La Placita Rooftop",
+  "short_name": "La Placita",
+  "description": "Brooklyn's premier rooftop bar and restaurant. Puerto Rican-inspired cocktails, Latin cuisine, and stunning skyline views.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FAF3EB",
+  "theme_color": "#1B3A2D",
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": ["food", "lifestyle", "entertainment"],
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Make a Reservation",
+      "short_name": "Reserve",
+      "description": "Book a table at La Placita Rooftop",
+      "url": "/#reservations"
+    },
+    {
+      "name": "View Menu",
+      "short_name": "Menu",
+      "description": "Browse our cocktails and Latin cuisine",
+      "url": "/#menu"
+    },
+    {
+      "name": "Upcoming Events",
+      "short_name": "Events",
+      "description": "See what's happening on the rooftop",
+      "url": "/#events"
+    }
+  ]
+}
