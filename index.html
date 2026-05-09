@@ -4,184 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Placita Rooftop | Brooklyn, New York</title>
-    <meta name="description" content="La Placita Rooftop — Brooklyn's premier rooftop bar and restaurant. Puerto Rican-inspired cocktails, Latin cuisine, and stunning skyline views.">
-    <!-- Open Graph -->
-    <meta property="og:title" content="La Placita Rooftop | Brooklyn, New York">
-    <meta property="og:description" content="Brooklyn's premier rooftop bar and restaurant. Puerto Rican-inspired cocktails, Latin cuisine, and stunning skyline views.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="logo.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon.png">
-    <!-- Fonts -->
+    <meta name="description" content="La Placita Rooftop — Brooklyn's rooftop bar and restaurant.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
-    <!-- Favicon SVG -->
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#1B3A2D">
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Restaurant",
-      "name": "La Placita Rooftop",
-      "description": "Brooklyn's premier rooftop bar and restaurant with Puerto Rican-inspired cocktails and Latin cuisine.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "247 Wythe Avenue, 8th Floor",
-        "addressLocality": "Brooklyn",
-        "addressRegion": "NY",
-        "postalCode": "11211",
-        "addressCountry": "US"
-      },
-      "servesCuisine": ["Latin American", "Puerto Rican", "Caribbean"],
-      "priceRange": "$$-$$$"
-    }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* ─── RESET & VARIABLES ─── */
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --cream: #FAF3EB;
             --cream-dark: #F0E6D6;
             --coral: #D4725C;
             --coral-light: #E8967C;
-            --coral-dark: #B85A46;
             --forest: #1B3A2D;
-            --forest-light: #2D5E47;
-            --forest-dark: #0F2219;
             --gold: #C5913E;
-            --gold-light: #D4A85A;
             --sunset: #E8834A;
-            --blush: #F2C4B8;
             --sand: #E8DDD0;
-            --font-display: 'Playfair Display', Georgia, serif;
-            --font-elegant: 'Cormorant Garamond', Georgia, serif;
-            --font-body: 'Montserrat', 'Segoe UI', sans-serif;
-            --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
-            --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+            --text: #2C2C2C;
+            --text-light: #6B6B6B;
         }
 
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: var(--font-body);
+            font-family: 'Montserrat', sans-serif;
             background: var(--cream);
-            color: var(--forest);
+            color: var(--text);
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
         }
 
-        img { max-width: 100%; display: block; }
-        a { text-decoration: none; color: inherit; }
-        button { cursor: pointer; border: none; background: none; font-family: inherit; }
-
-        /* ─── NAVIGATION ─── */
+        /* ─── NAV ─── */
         .nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 20px 40px;
+            padding: 24px 48px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            transition: all 0.4s var(--ease-smooth);
+            transition: all 0.4s ease;
         }
 
         .nav.scrolled {
-            background: rgba(250, 243, 235, 0.95);
+            background: rgba(250, 243, 235, 0.92);
             backdrop-filter: blur(20px);
-            padding: 12px 40px;
-            box-shadow: 0 2px 40px rgba(15, 34, 25, 0.08);
+            padding: 16px 48px;
+            box-shadow: 0 1px 30px rgba(0,0,0,0.06);
         }
 
         .nav-logo {
-            font-family: var(--font-display);
-            font-size: 1.6rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
             font-weight: 700;
-            color: var(--forest);
-            letter-spacing: 1px;
+            color: var(--text);
         }
 
-        .nav-logo span {
-            color: var(--coral);
-        }
+        .nav-logo span { color: var(--coral); }
 
         .nav-links {
             display: flex;
-            gap: 36px;
+            gap: 40px;
             list-style: none;
         }
 
         .nav-links a {
-            font-family: var(--font-body);
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 500;
-            letter-spacing: 2.5px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: var(--forest);
-            position: relative;
+            color: var(--text);
+            text-decoration: none;
             transition: color 0.3s;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1.5px;
-            background: var(--coral);
-            transition: width 0.3s var(--ease-smooth);
-        }
-
         .nav-links a:hover { color: var(--coral); }
-        .nav-links a:hover::after { width: 100%; }
 
-        .nav-cta {
-            font-size: 0.75rem;
+        .nav-reserve {
+            font-size: 0.8rem;
             font-weight: 600;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: var(--cream);
-            background: var(--forest);
+            color: white;
+            background: var(--coral);
             padding: 12px 28px;
-            border-radius: 2px;
+            text-decoration: none;
             transition: all 0.3s;
         }
 
-        .nav-cta:hover {
-            background: var(--coral);
-            transform: translateY(-1px);
-        }
+        .nav-reserve:hover { background: var(--sunset); transform: translateY(-1px); }
 
-        /* Mobile menu */
         .menu-toggle {
             display: none;
             flex-direction: column;
-            gap: 5px;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
             z-index: 1001;
         }
 
         .menu-toggle span {
-            width: 26px;
+            width: 28px;
             height: 2px;
-            background: var(--forest);
+            background: var(--text);
             transition: all 0.3s;
         }
 
@@ -194,21 +122,16 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 30px;
-            opacity: 0;
-            transition: opacity 0.4s;
+            gap: 36px;
         }
 
-        .mobile-menu.open {
-            display: flex;
-            opacity: 1;
-        }
+        .mobile-menu.open { display: flex; }
 
         .mobile-menu a {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            color: var(--forest);
-            transition: color 0.3s;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--text);
+            text-decoration: none;
         }
 
         .mobile-menu a:hover { color: var(--coral); }
@@ -221,820 +144,311 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            padding: 120px 24px 80px;
             position: relative;
-            background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 100%);
-            overflow: hidden;
         }
 
-        .hero-bg-circle {
-            position: absolute;
-            width: 600px;
-            height: 600px;
+        .hero-logo {
+            width: 280px;
+            height: 280px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--sunset), var(--coral-light), var(--gold-light));
-            opacity: 0.15;
-            top: 10%;
-            right: -10%;
-            animation: floatCircle 20s ease-in-out infinite;
-        }
-
-        .hero-bg-circle:nth-child(2) {
-            width: 400px;
-            height: 400px;
-            top: 50%;
-            left: -5%;
-            opacity: 0.1;
-            background: linear-gradient(135deg, var(--forest-light), var(--forest));
-            animation-delay: -10s;
-            animation-duration: 25s;
-        }
-
-        @keyframes floatCircle {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(30px, -20px) scale(1.05); }
-            66% { transform: translate(-20px, 15px) scale(0.95); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            padding: 0 20px;
-        }
-
-        .hero-eyebrow {
-            font-family: var(--font-body);
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            color: var(--coral);
-            margin-bottom: 24px;
+            object-fit: cover;
+            margin-bottom: 48px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
             opacity: 0;
-            animation: fadeUp 1s var(--ease-smooth) 0.3s forwards;
+            animation: fadeIn 1s ease 0.3s forwards;
         }
 
         .hero-title {
-            font-family: var(--font-display);
+            font-family: 'Playfair Display', serif;
             font-weight: 900;
             line-height: 0.9;
-            margin-bottom: 12px;
+            margin-bottom: 20px;
             opacity: 0;
-            animation: fadeUp 1s var(--ease-smooth) 0.5s forwards;
+            animation: fadeUp 1s ease 0.5s forwards;
         }
 
         .hero-title .la {
             display: block;
-            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-size: clamp(2rem, 5vw, 3.5rem);
             font-style: italic;
             font-weight: 400;
-            color: var(--forest);
+            color: var(--text);
         }
 
         .hero-title .placita {
             display: block;
-            font-size: clamp(5rem, 16vw, 12rem);
-            color: var(--forest-dark);
+            font-size: clamp(4.5rem, 14vw, 10rem);
+            color: var(--text);
             letter-spacing: -3px;
-            text-shadow: 2px 2px 0 var(--coral-light);
         }
 
-        .hero-subtitle {
-            font-family: var(--font-body);
-            font-size: 0.85rem;
-            font-weight: 400;
-            letter-spacing: 8px;
+        .hero-sub {
+            font-size: 1.1rem;
+            letter-spacing: 10px;
             text-transform: uppercase;
             color: var(--coral);
             margin-bottom: 8px;
             opacity: 0;
-            animation: fadeUp 1s var(--ease-smooth) 0.7s forwards;
+            animation: fadeUp 1s ease 0.7s forwards;
         }
 
         .hero-location {
-            font-family: var(--font-elegant);
-            font-size: 1.2rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
             font-style: italic;
-            color: var(--forest-light);
-            margin-bottom: 50px;
+            color: var(--text-light);
+            margin-bottom: 56px;
             opacity: 0;
-            animation: fadeUp 1s var(--ease-smooth) 0.9s forwards;
+            animation: fadeUp 1s ease 0.9s forwards;
         }
 
-        .hero-cta-group {
+        .hero-buttons {
             display: flex;
-            gap: 16px;
+            gap: 20px;
             flex-wrap: wrap;
             justify-content: center;
             opacity: 0;
-            animation: fadeUp 1s var(--ease-smooth) 1.1s forwards;
+            animation: fadeUp 1s ease 1.1s forwards;
         }
 
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .btn-primary {
+        .btn {
             display: inline-block;
-            padding: 16px 40px;
-            background: var(--forest);
-            color: var(--cream);
-            font-size: 0.75rem;
+            padding: 18px 48px;
+            font-size: 0.85rem;
             font-weight: 600;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            border-radius: 2px;
-            transition: all 0.4s var(--ease-smooth);
-            position: relative;
-            overflow: hidden;
+            text-decoration: none;
+            transition: all 0.3s;
         }
 
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            inset: 0;
+        .btn-fill {
             background: var(--coral);
-            transform: translateX(-101%);
-            transition: transform 0.4s var(--ease-smooth);
+            color: white;
         }
 
-        .btn-primary span { position: relative; z-index: 1; }
-        .btn-primary:hover::before { transform: translateX(0); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(15, 34, 25, 0.2); }
+        .btn-fill:hover { background: var(--sunset); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212, 114, 92, 0.3); }
 
-        .btn-outline {
-            display: inline-block;
-            padding: 16px 40px;
-            border: 1.5px solid var(--forest);
-            color: var(--forest);
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            border-radius: 2px;
-            transition: all 0.4s var(--ease-smooth);
+        .btn-ghost {
+            border: 1.5px solid var(--text);
+            color: var(--text);
         }
 
-        .btn-outline:hover {
-            background: var(--forest);
-            color: var(--cream);
-            transform: translateY(-2px);
-        }
+        .btn-ghost:hover { background: var(--text); color: var(--cream); }
 
-        /* Scroll indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            opacity: 0;
-            animation: fadeUp 1s var(--ease-smooth) 1.5s forwards;
-        }
-
-        .scroll-indicator span {
-            font-size: 0.65rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--forest-light);
-            opacity: 0.5;
-        }
-
-        .scroll-line {
-            width: 1px;
-            height: 40px;
-            background: linear-gradient(to bottom, var(--forest-light), transparent);
-            animation: scrollPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes scrollPulse {
-            0%, 100% { opacity: 0.3; transform: scaleY(1); }
-            50% { opacity: 0.8; transform: scaleY(1.2); }
-        }
-
-        /* ─── SECTION STYLING ─── */
-        .section {
-            padding: 120px 40px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-eyebrow {
-            font-family: var(--font-body);
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            color: var(--coral);
-            margin-bottom: 16px;
-        }
-
-        .section-title {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            color: var(--forest-dark);
-            line-height: 1.1;
-            margin-bottom: 24px;
-        }
-
-        .section-desc {
-            font-family: var(--font-elegant);
-            font-size: 1.25rem;
-            line-height: 1.8;
-            color: var(--forest-light);
-            max-width: 600px;
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 
         /* ─── DIVIDER ─── */
         .divider {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
-            padding: 0 40px;
-            max-width: 600px;
-            margin: 0 auto;
+            gap: 24px;
+            padding: 60px 24px;
         }
 
         .divider-line {
-            flex: 1;
+            width: 80px;
             height: 1px;
-            background: linear-gradient(to right, transparent, var(--coral-light), transparent);
+            background: var(--coral-light);
         }
 
-        .divider-icon {
-            font-size: 1.2rem;
-            color: var(--coral);
+        .divider-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--coral);
+            border-radius: 50%;
         }
 
         /* ─── ABOUT ─── */
-        .about-section {
-            background: var(--cream);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-            margin-top: 60px;
-        }
-
-        .about-image {
-            position: relative;
-            height: 500px;
-            background: linear-gradient(135deg, var(--coral-light), var(--sunset));
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .about-image::before {
-            content: '';
-            position: absolute;
-            inset: 12px;
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 2px;
-            z-index: 1;
-        }
-
-        .about-image-text {
-            position: absolute;
-            bottom: 30px;
-            left: 30px;
-            z-index: 2;
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            color: white;
-            font-style: italic;
-        }
-
-        .about-features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .about-feature {
-            padding: 24px 0;
-            border-top: 1px solid var(--sand);
-        }
-
-        .about-feature h4 {
-            font-family: var(--font-display);
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--forest-dark);
-            margin-bottom: 8px;
-        }
-
-        .about-feature p {
-            font-size: 0.85rem;
-            line-height: 1.6;
-            color: var(--forest-light);
-        }
-
-        /* ─── MENU ─── */
-        .menu-section {
-            background: var(--forest-dark);
-            color: var(--cream);
-            padding: 120px 40px;
-        }
-
-        .menu-section .section-eyebrow { color: var(--gold-light); }
-        .menu-section .section-title { color: var(--cream); }
-        .menu-section .section-desc { color: var(--sand); }
-
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-top: 60px;
-            max-width: 1400px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .menu-category {
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 4px;
-            transition: all 0.4s var(--ease-smooth);
-        }
-
-        .menu-category:hover {
-            background: rgba(255, 255, 255, 0.06);
-            transform: translateY(-4px);
-        }
-
-        .menu-category-icon {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        .menu-category h3 {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--cream);
-            margin-bottom: 8px;
-        }
-
-        .menu-category-desc {
-            font-family: var(--font-elegant);
-            font-size: 1rem;
-            color: var(--sand);
-            margin-bottom: 24px;
-            font-style: italic;
-        }
-
-        .menu-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            padding: 14px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .menu-item:last-child { border-bottom: none; }
-
-        .menu-item-name {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--cream);
-        }
-
-        .menu-item-price {
-            font-family: var(--font-elegant);
-            font-size: 1rem;
-            color: var(--gold-light);
-            white-space: nowrap;
-            margin-left: 16px;
-        }
-
-        .menu-item-desc {
-            font-size: 0.75rem;
-            color: rgba(232, 221, 208, 0.6);
-            margin-top: 4px;
-        }
-
-        /* ─── EXPERIENCE / GALLERY ─── */
-        .experience-section {
-            background: var(--cream);
-            padding: 120px 0;
-            overflow: hidden;
-        }
-
-        .experience-header {
-            text-align: center;
-            padding: 0 40px;
-            margin-bottom: 60px;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: 300px 300px;
-            gap: 8px;
-            padding: 0 40px;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 4px;
-            background: linear-gradient(135deg, var(--sand), var(--blush));
-            cursor: pointer;
-        }
-
-        .gallery-item:nth-child(1) {
-            grid-column: span 2;
-            grid-row: span 2;
-        }
-
-        .gallery-item::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(15, 34, 25, 0.6), transparent 50%);
-            opacity: 0;
-            transition: opacity 0.4s;
-            z-index: 1;
-        }
-
-        .gallery-item:hover::before { opacity: 1; }
-
-        .gallery-caption {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            z-index: 2;
-            font-family: var(--font-display);
-            font-size: 1.1rem;
-            color: white;
-            font-style: italic;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.4s var(--ease-smooth);
-        }
-
-        .gallery-item:hover .gallery-caption {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .gallery-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            opacity: 0.4;
-        }
-
-        /* ─── EVENTS ─── */
-        .events-section {
-            background: var(--sand);
-            padding: 120px 40px;
-        }
-
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 60px;
-            max-width: 1400px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .event-card {
-            background: var(--cream);
-            border-radius: 4px;
-            overflow: hidden;
-            transition: all 0.4s var(--ease-smooth);
-            border: 1px solid rgba(15, 34, 25, 0.06);
-        }
-
-        .event-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 60px rgba(15, 34, 25, 0.1);
-        }
-
-        .event-image {
-            height: 220px;
-            background: linear-gradient(135deg, var(--coral-light), var(--sunset));
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .event-image-emoji {
-            font-size: 3rem;
-            opacity: 0.6;
-        }
-
-        .event-date {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            background: var(--forest);
-            color: var(--cream);
-            padding: 8px 14px;
-            border-radius: 2px;
-            text-align: center;
-            line-height: 1.2;
-        }
-
-        .event-date .day {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 700;
-            display: block;
-        }
-
-        .event-date .month {
-            font-size: 0.6rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .event-content {
-            padding: 28px;
-        }
-
-        .event-tag {
-            font-size: 0.65rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--coral);
-            margin-bottom: 10px;
-        }
-
-        .event-content h3 {
-            font-family: var(--font-display);
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--forest-dark);
-            margin-bottom: 10px;
-        }
-
-        .event-content p {
-            font-size: 0.85rem;
-            line-height: 1.6;
-            color: var(--forest-light);
-            margin-bottom: 20px;
-        }
-
-        .event-link {
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--forest);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: color 0.3s;
-        }
-
-        .event-link:hover { color: var(--coral); }
-        .event-link .arrow { transition: transform 0.3s; }
-        .event-link:hover .arrow { transform: translateX(4px); }
-
-        /* ─── RESERVATION ─── */
-        .reservation-section {
-            background: var(--cream);
-            padding: 120px 40px;
-        }
-
-        .reservation-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: start;
-            max-width: 1200px;
+        .about {
+            max-width: 800px;
             margin: 0 auto;
-        }
-
-        .reservation-form {
-            margin-top: 40px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-group.full {
-            grid-column: span 2;
-        }
-
-        .form-group label {
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--forest);
-            margin-bottom: 8px;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            padding: 14px 16px;
-            border: 1px solid var(--sand);
-            border-radius: 2px;
-            background: white;
-            font-family: var(--font-body);
-            font-size: 0.9rem;
-            color: var(--forest);
-            transition: border-color 0.3s;
-            outline: none;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: var(--forest);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .reservation-info {
-            padding: 50px;
-            background: var(--forest-dark);
-            color: var(--cream);
-            border-radius: 4px;
-            margin-top: 40px;
-        }
-
-        .reservation-info h3 {
-            font-family: var(--font-display);
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-        }
-
-        .info-item {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 28px;
-        }
-
-        .info-icon {
-            font-size: 1.3rem;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        .info-item h4 {
-            font-family: var(--font-body);
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--gold-light);
-            margin-bottom: 6px;
-        }
-
-        .info-item p {
-            font-family: var(--font-elegant);
-            font-size: 1.1rem;
-            color: var(--sand);
-            line-height: 1.6;
-        }
-
-        /* ─── INSTAGRAM BANNER ─── */
-        .instagram-banner {
-            background: linear-gradient(135deg, var(--coral), var(--sunset));
-            padding: 60px 40px;
+            padding: 40px 24px 100px;
             text-align: center;
         }
 
-        .instagram-banner p {
-            font-family: var(--font-body);
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.8);
+        .about h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 28px;
+            line-height: 1.15;
+        }
+
+        .about p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            line-height: 1.9;
+            color: var(--text-light);
+        }
+
+        /* ─── FEATURES ─── */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            gap: 60px;
+            text-align: center;
+        }
+
+        .feature h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
             margin-bottom: 10px;
         }
 
-        .instagram-banner a {
-            font-family: var(--font-display);
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            color: white;
-            font-style: italic;
-            transition: opacity 0.3s;
-        }
-
-        .instagram-banner a:hover { opacity: 0.8; }
-
-        /* ─── FOOTER ─── */
-        .footer {
-            background: var(--forest-dark);
-            color: var(--cream);
-            padding: 80px 40px 40px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 60px;
-            max-width: 1400px;
-            margin: 0 auto 60px;
-        }
-
-        .footer-brand h3 {
-            font-family: var(--font-display);
-            font-size: 1.8rem;
-            margin-bottom: 16px;
-        }
-
-        .footer-brand p {
-            font-family: var(--font-elegant);
-            font-size: 1.05rem;
-            color: var(--sand);
+        .feature p {
+            font-size: 0.95rem;
             line-height: 1.7;
-            max-width: 350px;
+            color: var(--text-light);
         }
 
-        .footer-col h4 {
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--gold-light);
-            margin-bottom: 20px;
+        /* ─── CTA BAND ─── */
+        .cta-band {
+            background: var(--coral);
+            padding: 80px 24px;
+            text-align: center;
         }
 
-        .footer-col ul { list-style: none; }
-
-        .footer-col li {
+        .cta-band h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: white;
             margin-bottom: 12px;
         }
 
-        .footer-col a {
-            font-size: 0.9rem;
-            color: var(--sand);
+        .cta-band p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 36px;
+        }
+
+        .cta-band .btn {
+            border: 1.5px solid white;
+            color: white;
+        }
+
+        .cta-band .btn:hover {
+            background: white;
+            color: var(--coral);
+        }
+
+        /* ─── HOURS ─── */
+        .hours {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 100px 24px;
+            text-align: center;
+        }
+
+        .hours h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 32px;
+        }
+
+        .hours-grid {
+            display: grid;
+            gap: 12px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--sand);
+        }
+
+        .hours-row .day { font-weight: 600; color: var(--text); }
+
+        /* ─── INSTAGRAM ─── */
+        .instagram {
+            background: var(--sand);
+            padding: 60px 24px;
+            text-align: center;
+        }
+
+        .instagram p {
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .instagram a {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-style: italic;
+            color: var(--text);
+            text-decoration: none;
             transition: color 0.3s;
         }
 
-        .footer-col a:hover { color: var(--coral-light); }
+        .instagram a:hover { color: var(--coral); }
 
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding-top: 30px;
-            max-width: 1400px;
+        /* ─── FOOTER ─── */
+        .footer {
+            background: var(--text);
+            color: var(--cream);
+            padding: 60px 48px 40px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: start;
+            flex-wrap: wrap;
+            gap: 40px;
         }
 
-        .footer-bottom p {
-            font-size: 0.75rem;
-            color: rgba(232, 221, 208, 0.5);
+        .footer h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
         }
 
-        .footer-socials {
-            display: flex;
-            gap: 20px;
-        }
-
-        .footer-socials a {
-            font-size: 0.8rem;
+        .footer p, .footer a {
+            font-size: 0.9rem;
             color: var(--sand);
-            letter-spacing: 1px;
-            transition: color 0.3s;
+            text-decoration: none;
+            line-height: 1.8;
         }
 
-        .footer-socials a:hover { color: var(--coral-light); }
+        .footer a:hover { color: var(--coral-light); }
 
-        /* ─── SCROLL ANIMATIONS ─── */
+        .footer-links {
+            list-style: none;
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* ─── SCROLL REVEAL ─── */
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s var(--ease-smooth);
+            transform: translateY(30px);
+            transition: all 0.7s ease;
         }
 
         .reveal.visible {
@@ -1042,1706 +456,144 @@
             transform: translateY(0);
         }
 
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-
-        /* ─── HERO LOGO ─── */
-        .hero-logo {
-            width: 140px;
-            height: 140px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin: 0 auto 28px;
-            border: 3px solid var(--coral);
-            box-shadow: 0 12px 40px rgba(15, 34, 25, 0.18), 0 0 0 8px rgba(212, 114, 92, 0.08);
-            opacity: 0;
-            animation: fadeUp 1s var(--ease-smooth) 0.1s forwards;
-        }
-
-        /* ─── HAPPY HOUR BANNER ─── */
-        .happy-hour-banner {
-            background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 50%, var(--forest) 100%);
-            color: var(--cream);
-            padding: 28px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .happy-hour-banner::before,
-        .happy-hour-banner::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--coral) 0%, transparent 70%);
-            opacity: 0.2;
-            transform: translateY(-50%);
-        }
-        .happy-hour-banner::before { left: -80px; }
-        .happy-hour-banner::after { right: -80px; }
-
-        .happy-hour-tag {
-            font-family: var(--font-body);
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--gold-light);
-            padding: 6px 14px;
-            border: 1px solid var(--gold-light);
-            border-radius: 2px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .happy-hour-text {
-            font-family: var(--font-display);
-            font-size: clamp(1.1rem, 2.4vw, 1.6rem);
-            font-style: italic;
-            color: var(--cream);
-            position: relative;
-            z-index: 1;
-        }
-
-        .happy-hour-text strong {
-            color: var(--coral-light);
-            font-weight: 700;
-            font-style: normal;
-            letter-spacing: 1px;
-        }
-
-        .happy-hour-divider {
-            color: var(--gold-light);
-            opacity: 0.5;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* ─── TESTIMONIALS ─── */
-        .testimonials-section {
-            background: var(--cream-dark);
-            padding: 120px 40px;
-        }
-
-        .testimonials-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-
-        .testimonial-card {
-            background: var(--cream);
-            padding: 44px 36px;
-            border-radius: 4px;
-            border: 1px solid rgba(15, 34, 25, 0.06);
-            position: relative;
-            transition: all 0.4s var(--ease-smooth);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 24px 60px rgba(15, 34, 25, 0.1);
-        }
-
-        .testimonial-card::before {
-            content: '\201C';
-            position: absolute;
-            top: 10px;
-            right: 24px;
-            font-family: var(--font-display);
-            font-size: 5rem;
-            color: var(--coral-light);
-            line-height: 1;
-            opacity: 0.4;
-        }
-
-        .testimonial-stars {
-            color: var(--gold);
-            font-size: 1rem;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-        }
-
-        .testimonial-quote {
-            font-family: var(--font-elegant);
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: var(--forest);
-            font-style: italic;
-            margin-bottom: 28px;
-            flex-grow: 1;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding-top: 20px;
-            border-top: 1px solid var(--sand);
-        }
-
-        .testimonial-avatar {
-            width: 46px;
-            height: 46px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--coral-light), var(--sunset));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-
-        .testimonial-name {
-            font-family: var(--font-display);
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--forest-dark);
-        }
-
-        .testimonial-meta {
-            font-size: 0.75rem;
-            color: var(--forest-light);
-            letter-spacing: 1px;
-        }
-
-        /* ─── CHEF SPOTLIGHT ─── */
-        .chef-section {
-            background: var(--cream);
-            padding: 120px 40px;
-        }
-
-        .chef-container {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 70px;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .chef-portrait {
-            position: relative;
-            aspect-ratio: 4 / 5;
-            background: linear-gradient(135deg, var(--forest-light), var(--forest-dark));
-            border-radius: 4px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .chef-portrait::before {
-            content: '';
-            position: absolute;
-            inset: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            border-radius: 2px;
-        }
-
-        .chef-portrait::after {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            right: 30px;
-            bottom: 30px;
-            border: 2px solid var(--coral);
-            border-radius: 4px;
-            z-index: -1;
-        }
-
-        .chef-portrait-icon {
-            font-size: 5rem;
-            opacity: 0.3;
-            filter: grayscale(0.2);
-        }
-
-        .chef-portrait-label {
-            position: absolute;
-            bottom: 28px;
-            left: 28px;
-            font-family: var(--font-display);
-            font-size: 1.1rem;
-            color: var(--cream);
-            font-style: italic;
-            z-index: 2;
-        }
-
-        .chef-name {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            color: var(--forest-dark);
-            margin: 16px 0 6px;
-        }
-
-        .chef-title-tag {
-            font-family: var(--font-elegant);
-            font-size: 1.15rem;
-            font-style: italic;
-            color: var(--coral);
-            margin-bottom: 28px;
-        }
-
-        .chef-bio {
-            font-family: var(--font-elegant);
-            font-size: 1.15rem;
-            line-height: 1.85;
-            color: var(--forest-light);
-            margin-bottom: 18px;
-        }
-
-        .chef-signature {
-            margin-top: 28px;
-            font-family: var(--font-display);
-            font-style: italic;
-            font-size: 1.6rem;
-            color: var(--coral);
-            transform: rotate(-3deg);
-            display: inline-block;
-        }
-
-        /* ─── PRIVATE EVENTS ─── */
-        .private-events-section {
-            background: var(--forest-dark);
-            color: var(--cream);
-            padding: 120px 40px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .private-events-section::before {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--coral) 0%, transparent 70%);
-            opacity: 0.15;
-            top: -150px;
-            right: -150px;
-        }
-
-        .private-events-section::after {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
-            opacity: 0.1;
-            bottom: -100px;
-            left: -100px;
-        }
-
-        .private-events-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .private-events-section .section-eyebrow { color: var(--gold-light); }
-        .private-events-section .section-title { color: var(--cream); }
-        .private-events-section .section-desc { color: var(--sand); }
-
-        .private-events-features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-top: 40px;
-            margin-bottom: 40px;
-        }
-
-        .private-event-feature {
-            padding: 24px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 4px;
-            transition: all 0.3s var(--ease-smooth);
-        }
-
-        .private-event-feature:hover {
-            background: rgba(255, 255, 255, 0.07);
-            border-color: var(--coral);
-            transform: translateY(-3px);
-        }
-
-        .private-event-feature-icon {
-            font-size: 1.8rem;
-            margin-bottom: 12px;
-        }
-
-        .private-event-feature h4 {
-            font-family: var(--font-display);
-            font-size: 1.15rem;
-            color: var(--cream);
-            margin-bottom: 6px;
-        }
-
-        .private-event-feature p {
-            font-size: 0.85rem;
-            color: var(--sand);
-            line-height: 1.6;
-        }
-
-        .private-events-visual {
-            aspect-ratio: 4 / 5;
-            border-radius: 4px;
-            background: linear-gradient(135deg, var(--coral) 0%, var(--sunset) 50%, var(--gold) 100%);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .private-events-visual::before {
-            content: '';
-            position: absolute;
-            inset: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 2px;
-        }
-
-        .private-events-visual-icon {
-            font-size: 6rem;
-            opacity: 0.5;
-        }
-
-        .private-events-visual-label {
-            position: absolute;
-            bottom: 36px;
-            left: 36px;
-            font-family: var(--font-display);
-            font-style: italic;
-            font-size: 1.4rem;
-            color: white;
-            z-index: 1;
-        }
-
-        .btn-coral {
-            display: inline-block;
-            padding: 16px 40px;
-            background: var(--coral);
-            color: var(--cream);
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            border-radius: 2px;
-            transition: all 0.4s var(--ease-smooth);
-        }
-
-        .btn-coral:hover {
-            background: var(--coral-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(212, 114, 92, 0.3);
-        }
-
-        /* ─── HOURS / MAP ─── */
-        .location-section {
-            background: var(--cream);
-            padding: 120px 40px;
-        }
-
-        .location-container {
-            max-width: 1300px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 60px;
-            align-items: stretch;
-        }
-
-        .map-placeholder {
-            position: relative;
-            min-height: 480px;
-            border-radius: 4px;
-            overflow: hidden;
-            background:
-                linear-gradient(135deg, #cfd8d2 0%, #b8c4bd 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid var(--sand);
-        }
-
-        .map-placeholder::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(15, 34, 25, 0.06) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(15, 34, 25, 0.06) 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.7;
-        }
-
-        .map-pin {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .map-pin-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--coral);
-            border-radius: 50% 50% 50% 0;
-            transform: rotate(-45deg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 30px rgba(212, 114, 92, 0.4);
-            position: relative;
-        }
-
-        .map-pin-icon::before {
-            content: '';
-            width: 22px;
-            height: 22px;
-            background: var(--cream);
-            border-radius: 50%;
-        }
-
-        .map-pin-label {
-            font-family: var(--font-display);
-            font-size: 1.1rem;
-            color: var(--forest-dark);
-            background: var(--cream);
-            padding: 8px 16px;
-            border-radius: 2px;
-            box-shadow: 0 4px 16px rgba(15, 34, 25, 0.12);
-            font-style: italic;
-        }
-
-        .location-info {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .location-info-block {
-            padding: 24px 0;
-            border-bottom: 1px solid var(--sand);
-        }
-
-        .location-info-block:last-child {
-            border-bottom: none;
-        }
-
-        .location-info-block h4 {
-            font-family: var(--font-body);
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--coral);
-            margin-bottom: 12px;
-        }
-
-        .location-info-block p,
-        .location-info-block .hours-row {
-            font-family: var(--font-elegant);
-            font-size: 1.1rem;
-            color: var(--forest);
-            line-height: 1.6;
-        }
-
-        .hours-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 4px 0;
-        }
-
-        .hours-row span:first-child {
-            font-weight: 600;
-            color: var(--forest-dark);
-        }
-
-        .hours-row span:last-child {
-            color: var(--forest-light);
-            font-style: italic;
-        }
-
-        .transit-badge {
-            display: inline-block;
-            background: var(--forest);
-            color: var(--cream);
-            font-family: var(--font-body);
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            padding: 4px 10px;
-            border-radius: 50%;
-            margin-right: 6px;
-            min-width: 26px;
-            text-align: center;
-        }
-
-        /* ─── NEWSLETTER ─── */
-        .newsletter-section {
-            background: linear-gradient(135deg, var(--coral) 0%, var(--sunset) 60%, var(--coral-dark) 100%);
-            padding: 100px 40px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .newsletter-section::before {
-            content: '';
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--gold-light) 0%, transparent 70%);
-            opacity: 0.18;
-            top: -300px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .newsletter-container {
-            max-width: 640px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .newsletter-eyebrow {
-            font-family: var(--font-body);
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            color: var(--cream);
-            opacity: 0.9;
-            margin-bottom: 16px;
-        }
-
-        .newsletter-title {
-            font-family: var(--font-display);
-            font-size: clamp(2.2rem, 5vw, 3.4rem);
-            font-weight: 700;
-            color: var(--cream);
-            line-height: 1.1;
-            margin-bottom: 18px;
-        }
-
-        .newsletter-title em {
-            font-style: italic;
-            color: var(--forest-dark);
-        }
-
-        .newsletter-desc {
-            font-family: var(--font-elegant);
-            font-size: 1.15rem;
-            color: var(--cream);
-            opacity: 0.95;
-            margin-bottom: 36px;
-            line-height: 1.6;
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 10px;
-            max-width: 520px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 8px;
-            border-radius: 2px;
-            box-shadow: 0 16px 40px rgba(15, 34, 25, 0.18);
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 14px 18px;
-            border: none;
-            background: transparent;
-            font-family: var(--font-body);
-            font-size: 0.95rem;
-            color: var(--forest-dark);
-            outline: none;
-        }
-
-        .newsletter-form input::placeholder {
-            color: var(--forest-light);
-            opacity: 0.6;
-        }
-
-        .newsletter-form button {
-            padding: 14px 28px;
-            background: var(--forest);
-            color: var(--cream);
-            font-family: var(--font-body);
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            border-radius: 2px;
-            transition: all 0.3s;
-            white-space: nowrap;
-        }
-
-        .newsletter-form button:hover {
-            background: var(--forest-dark);
-            transform: translateY(-1px);
-        }
-
-        .newsletter-fineprint {
-            font-size: 0.75rem;
-            color: var(--cream);
-            opacity: 0.8;
-            margin-top: 18px;
-            letter-spacing: 1px;
-        }
-
         /* ─── RESPONSIVE ─── */
-        @media (max-width: 1024px) {
-            .about-grid { grid-template-columns: 1fr; gap: 40px; }
-            .about-image { height: 350px; }
-            .menu-grid { grid-template-columns: 1fr 1fr; }
-            .events-grid { grid-template-columns: 1fr 1fr; }
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: 250px 250px 250px; }
-            .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
-            .footer-grid { grid-template-columns: 1fr 1fr; }
-            .reservation-container { grid-template-columns: 1fr; }
-            .testimonials-grid { grid-template-columns: 1fr; max-width: 560px; }
-            .chef-container { grid-template-columns: 1fr; gap: 50px; }
-            .chef-portrait { max-width: 420px; margin: 0 auto; aspect-ratio: 4 / 5; }
-            .private-events-container { grid-template-columns: 1fr; gap: 50px; }
-            .private-events-visual { max-width: 480px; margin: 0 auto; aspect-ratio: 3 / 2; }
-            .location-container { grid-template-columns: 1fr; }
-            .map-placeholder { min-height: 360px; }
-        }
-
         @media (max-width: 768px) {
-            .nav-links, .nav-cta { display: none; }
+            .nav { padding: 20px 24px; }
+            .nav.scrolled { padding: 14px 24px; }
+            .nav-links, .nav-reserve { display: none; }
             .menu-toggle { display: flex; }
-            .section { padding: 80px 24px; }
-            .hero { padding: 0 20px; }
-            .menu-section { padding: 80px 24px; }
-            .menu-grid { grid-template-columns: 1fr; }
-            .events-grid { grid-template-columns: 1fr; }
-            .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 200px; }
-            .form-row { grid-template-columns: 1fr; }
-            .form-group.full { grid-column: span 1; }
-            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
-            .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
-            .about-features { grid-template-columns: 1fr; }
-            .reservation-info { padding: 30px; }
-            .experience-section { padding: 80px 0; }
-            .events-section { padding: 80px 24px; }
-            .reservation-section { padding: 80px 24px; }
-            .testimonials-section,
-            .chef-section,
-            .private-events-section,
-            .location-section { padding: 80px 24px; }
-            .newsletter-section { padding: 70px 24px; }
-            .private-events-features { grid-template-columns: 1fr; }
-            .newsletter-form { flex-direction: column; padding: 14px; }
-            .newsletter-form button { width: 100%; padding: 16px; }
-            .happy-hour-banner { padding: 24px 24px; gap: 14px; }
-            .happy-hour-divider { display: none; }
-            .hero-logo { width: 110px; height: 110px; margin-bottom: 22px; }
-        }
-
-        @media (max-width: 480px) {
-            .nav { padding: 16px 20px; }
-            .nav.scrolled { padding: 10px 20px; }
-            .hero-title .placita { letter-spacing: -1px; }
-            .gallery-grid { grid-template-columns: 1fr; grid-template-rows: repeat(5, 200px); }
-            .gallery-item:nth-child(1) { grid-column: span 1; }
-        }
-
-        /* ─── PRELOADER ─── */
-        .preloader {
-            position: fixed; inset: 0; z-index: 9999;
-            background: var(--cream);
-            display: flex; align-items: center; justify-content: center;
-            transition: opacity 0.6s var(--ease-smooth), visibility 0.6s;
-        }
-        .preloader--hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-        .preloader-inner { text-align: center; }
-        .preloader-logo {
-            font-family: var(--font-display);
-            font-size: 2.4rem; font-weight: 700;
-            color: var(--forest); letter-spacing: 1.5px;
-            margin-bottom: 24px;
-        }
-        .preloader-logo span { color: var(--coral); font-style: italic; }
-        .preloader-bar {
-            width: 180px; height: 2px; background: var(--sand);
-            margin: 0 auto; overflow: hidden; border-radius: 2px;
-        }
-        .preloader-bar-fill {
-            height: 100%; width: 100%;
-            background: linear-gradient(90deg, var(--coral), var(--sunset));
-            transform-origin: left center;
-            animation: preloaderSlide 1.4s var(--ease-smooth) infinite;
-        }
-        @keyframes preloaderSlide {
-            0% { transform: scaleX(0); transform-origin: left; }
-            50% { transform: scaleX(1); transform-origin: left; }
-            51% { transform-origin: right; }
-            100% { transform: scaleX(0); transform-origin: right; }
-        }
-
-        /* ─── ACTIVE NAV LINK ─── */
-        .nav-links a.is-active { color: var(--coral); }
-        .nav-links a.is-active::after { width: 100%; }
-
-        /* ─── MOBILE MENU SLIDE-IN ─── */
-        .mobile-menu.mobile-menu--slide {
-            display: flex;
-            transform: translateX(100%);
-            opacity: 1;
-            transition: transform 0.5s var(--ease-smooth);
-            background: var(--cream);
-        }
-        .mobile-menu.mobile-menu--slide.open {
-            transform: translateX(0);
-        }
-        .mobile-menu.mobile-menu--slide a {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s var(--ease-smooth), transform 0.5s var(--ease-smooth);
-        }
-        .mobile-menu.mobile-menu--slide.open a { opacity: 1; transform: translateY(0); }
-        .mobile-menu.mobile-menu--slide.open a:nth-child(1) { transition-delay: 0.15s; }
-        .mobile-menu.mobile-menu--slide.open a:nth-child(2) { transition-delay: 0.22s; }
-        .mobile-menu.mobile-menu--slide.open a:nth-child(3) { transition-delay: 0.29s; }
-        .mobile-menu.mobile-menu--slide.open a:nth-child(4) { transition-delay: 0.36s; }
-        .mobile-menu.mobile-menu--slide.open a:nth-child(5) { transition-delay: 0.43s; }
-        .menu-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-        .menu-toggle.is-open span:nth-child(2) { opacity: 0; }
-        .menu-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-        /* ─── STATS STRIP ─── */
-        .stats-strip {
-            background: var(--forest-dark);
-            color: var(--cream);
-            padding: 60px 40px;
-        }
-        .stats-strip-inner {
-            max-width: 1400px; margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            text-align: center;
-        }
-        .stat-num {
-            font-family: var(--font-display);
-            font-size: clamp(2.4rem, 5vw, 3.6rem);
-            font-weight: 700;
-            color: var(--gold-light);
-            line-height: 1; margin-bottom: 8px;
-            font-variant-numeric: tabular-nums;
-        }
-        .stat-label {
-            font-size: 0.7rem; font-weight: 600;
-            letter-spacing: 3px; text-transform: uppercase;
-            color: var(--sand);
-        }
-        @media (max-width: 768px) {
-            .stats-strip { padding: 50px 24px; }
-            .stats-strip-inner { grid-template-columns: 1fr 1fr; gap: 36px; }
-        }
-
-        /* ─── TYPEWRITER CARET ─── */
-        .typewriter::after {
-            content: '';
-            display: inline-block;
-            width: 2px; height: 1em;
-            background: var(--coral);
-            margin-left: 4px;
-            vertical-align: -0.15em;
-            animation: caretBlink 0.9s steps(2, start) infinite;
-        }
-        @keyframes caretBlink { 50% { opacity: 0; } }
-
-        /* ─── LIGHTBOX ─── */
-        .lightbox {
-            position: fixed; inset: 0; z-index: 1100;
-            background: rgba(15, 34, 25, 0.92);
-            backdrop-filter: blur(10px);
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s;
-        }
-        .lightbox--open { opacity: 1; visibility: visible; }
-        .lightbox-stage {
-            position: relative;
-            width: min(90vw, 800px);
-            height: min(75vh, 600px);
-            background: linear-gradient(135deg, var(--coral-light), var(--sunset));
-            border-radius: 4px;
-            display: flex; align-items: center; justify-content: center;
-            overflow: hidden;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
-        }
-        .lightbox-visual {
-            font-size: 8rem; opacity: 0.85;
-            transition: opacity 0.25s ease;
-        }
-        .lightbox-caption {
-            position: absolute; bottom: 30px; left: 30px;
-            font-family: var(--font-display);
-            font-size: 1.4rem; font-style: italic; color: white;
-        }
-        .lightbox-counter {
-            position: absolute; top: 20px; right: 24px;
-            font-size: 0.75rem; letter-spacing: 3px;
-            color: rgba(255,255,255,0.85);
-        }
-        .lightbox-close, .lightbox-prev, .lightbox-next {
-            position: absolute;
-            background: rgba(250, 243, 235, 0.12);
-            color: var(--cream);
-            border: 1px solid rgba(250, 243, 235, 0.18);
-            width: 50px; height: 50px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            display: flex; align-items: center; justify-content: center;
-            transition: background 0.25s, transform 0.25s;
-        }
-        .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover {
-            background: var(--coral); transform: scale(1.08);
-        }
-        .lightbox-close { top: 24px; right: 24px; }
-        .lightbox-prev  { left: 24px; top: 50%; transform: translateY(-50%); }
-        .lightbox-next  { right: 24px; top: 50%; transform: translateY(-50%); }
-        .lightbox-prev:hover { transform: translateY(-50%) scale(1.08); }
-        .lightbox-next:hover { transform: translateY(-50%) scale(1.08); }
-        @media (max-width: 600px) {
-            .lightbox-stage { width: 94vw; height: 65vh; }
-            .lightbox-visual { font-size: 5rem; }
-            .lightbox-prev, .lightbox-next { width: 42px; height: 42px; }
-        }
-
-        /* ─── FORM ERRORS ─── */
-        .field-invalid { border-color: var(--coral-dark) !important; background: #fff5f1 !important; }
-        .field-error {
-            font-size: 0.72rem; color: var(--coral-dark);
-            margin-top: 6px; opacity: 0;
-            transform: translateY(-4px);
-            transition: opacity 0.25s var(--ease-smooth), transform 0.25s var(--ease-smooth);
-        }
-        .field-error--show { opacity: 1; transform: translateY(0); }
-
-        /* ─── LAZY IMAGE FADE-IN ─── */
-        .lazy-img { opacity: 0; transition: opacity 0.6s var(--ease-smooth); }
-        .lazy-img--loaded { opacity: 1; }
-
-        /* ─── BACK TO TOP ─── */
-        .back-to-top {
-            position: fixed; right: 24px; bottom: 24px; z-index: 900;
-            width: 48px; height: 48px;
-            background: var(--forest);
-            color: var(--cream);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; visibility: hidden; transform: translateY(10px);
-            transition: opacity 0.3s, visibility 0.3s, transform 0.3s, background 0.3s;
-            box-shadow: 0 8px 30px rgba(15, 34, 25, 0.25);
-            font-size: 1.1rem;
-        }
-        .back-to-top--visible { opacity: 1; visibility: visible; transform: translateY(0); }
-        .back-to-top:hover { background: var(--coral); transform: translateY(-4px); }
-
-        /* ─── TOAST ─── */
-        .toast-container {
-            position: fixed; right: 24px; top: 90px;
-            z-index: 1200;
-            display: flex; flex-direction: column; gap: 12px;
-            max-width: 360px;
-            pointer-events: none;
-        }
-        .toast {
-            background: var(--forest-dark); color: var(--cream);
-            padding: 14px 18px; border-radius: 4px;
-            box-shadow: 0 12px 40px rgba(15, 34, 25, 0.3);
-            display: flex; align-items: center; gap: 12px;
-            font-size: 0.85rem; line-height: 1.4;
-            opacity: 0; transform: translateX(120%);
-            transition: opacity 0.4s var(--ease-smooth), transform 0.4s var(--ease-smooth);
-            pointer-events: auto;
-            border-left: 3px solid var(--coral);
-        }
-        .toast--show { opacity: 1; transform: translateX(0); }
-        .toast--success { border-left-color: var(--gold); }
-        .toast--error   { border-left-color: var(--coral-dark); }
-        .toast-icon { font-size: 1.1rem; flex-shrink: 0; color: var(--gold-light); }
-        .toast--error .toast-icon { color: var(--coral-light); }
-        @media (max-width: 600px) {
-            .toast-container { right: 12px; left: 12px; max-width: none; }
-        }
-
-        /* ─── CURSOR GLOW ─── */
-        .cursor-glow {
-            position: fixed; top: 0; left: 0;
-            width: 300px; height: 300px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(212, 114, 92, 0.18), rgba(212, 114, 92, 0) 65%);
-            pointer-events: none;
-            z-index: 9998;
-            mix-blend-mode: multiply;
-            opacity: 0;
-            transition: opacity 0.4s, width 0.3s, height 0.3s;
-            will-change: transform;
-        }
-        .cursor-glow--visible { opacity: 1; }
-        .cursor-glow--hover {
-            background: radial-gradient(circle, rgba(212, 114, 92, 0.3), rgba(212, 114, 92, 0) 65%);
-        }
-        @media (hover: none), (pointer: coarse) { .cursor-glow { display: none; } }
-
-        /* ─── STAGGER ANIMATION ─── */
-        .stagger-item {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.7s var(--ease-smooth) var(--stagger-delay, 0ms),
-                        transform 0.7s var(--ease-smooth) var(--stagger-delay, 0ms);
-        }
-        .stagger-item--in { opacity: 1; transform: translateY(0); }
-
-        /* ─── KEYBOARD FOCUS RING ─── */
-        body:not(.user-is-tabbing) :focus { outline: none; }
-        body.user-is-tabbing a:focus,
-        body.user-is-tabbing button:focus,
-        body.user-is-tabbing input:focus,
-        body.user-is-tabbing select:focus,
-        body.user-is-tabbing textarea:focus,
-        body.user-is-tabbing [tabindex]:focus {
-            outline: 2px solid var(--coral);
-            outline-offset: 3px;
-        }
-
-        /* ─── REDUCED MOTION ─── */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.001ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.001ms !important;
-            }
-            .cursor-glow, .preloader { display: none; }
+            .features { grid-template-columns: 1fr; gap: 40px; }
+            .hero-logo { width: 200px; height: 200px; }
+            .footer-inner { flex-direction: column; }
+            .footer-links { flex-direction: column; gap: 12px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
     <nav class="nav" id="nav">
-        <a href="#" class="nav-logo">La <span>Placita</span></a>
+        <a href="#" class="nav-logo" style="text-decoration:none">La <span>Placita</span></a>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
-            <li><a href="#menu">Menu</a></li>
-            <li><a href="#experience">Gallery</a></li>
+            <li><a href="#hours">Hours</a></li>
+            <li><a href="menu.html">Menu</a></li>
             <li><a href="events.html">Events</a></li>
-            <li><a href="#reservations">Reservations</a></li>
         </ul>
-        <a href="#reservations" class="nav-cta">Reserve</a>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener" class="nav-reserve">Follow Us</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
             <span></span><span></span><span></span>
         </button>
     </nav>
 
-    <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#about" onclick="closeMobileMenu()">About</a>
-        <a href="#menu" onclick="closeMobileMenu()">Menu</a>
-        <a href="#experience" onclick="closeMobileMenu()">Gallery</a>
-        <a href="events.html" onclick="closeMobileMenu()">Events</a>
-        <a href="#reservations" onclick="closeMobileMenu()">Reservations</a>
+        <a href="#about" onclick="closeMenu()">About</a>
+        <a href="#hours" onclick="closeMenu()">Hours</a>
+        <a href="menu.html" onclick="closeMenu()">Menu</a>
+        <a href="events.html" onclick="closeMenu()">Events</a>
+        <a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener">Instagram</a>
     </div>
 
-    <!-- Hero -->
-    <section class="hero" id="hero">
-        <div class="hero-bg-circle"></div>
-        <div class="hero-bg-circle"></div>
-        <div class="hero-content">
-            <img src="logo.jpg" alt="La Placita Rooftop logo" class="hero-logo">
-            <p class="hero-eyebrow">Rooftop Bar &amp; Restaurant</p>
-            <h1 class="hero-title">
-                <span class="la">La</span>
-                <span class="placita">Placita</span>
-            </h1>
-            <p class="hero-subtitle">R O O F T O P</p>
-            <p class="hero-location">Brooklyn, New York</p>
-            <div class="hero-cta-group">
-                <a href="#reservations" class="btn-primary"><span>Make a Reservation</span></a>
-                <a href="#menu" class="btn-outline">View Menu</a>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <span>Scroll</span>
-            <div class="scroll-line"></div>
+    <section class="hero">
+        <img src="logo.jpg" alt="La Placita Rooftop" class="hero-logo">
+        <h1 class="hero-title">
+            <span class="la">La</span>
+            <span class="placita">Placita</span>
+        </h1>
+        <p class="hero-sub">R O O F T O P</p>
+        <p class="hero-location">Brooklyn, New York</p>
+        <div class="hero-buttons">
+            <a href="menu.html" class="btn btn-fill">View Menu</a>
+            <a href="events.html" class="btn btn-ghost">Events</a>
         </div>
     </section>
 
-    <!-- Divider -->
     <div class="divider">
         <div class="divider-line"></div>
-        <span class="divider-icon">&#9753;</span>
+        <div class="divider-dot"></div>
         <div class="divider-line"></div>
     </div>
 
-    <!-- Happy Hour Banner -->
-    <div class="happy-hour-banner">
-        <span class="happy-hour-tag">Happy Hour</span>
-        <span class="happy-hour-text"><strong>Mon &ndash; Fri &middot; 4&ndash;7PM</strong></span>
-        <span class="happy-hour-divider">&bull;</span>
-        <span class="happy-hour-text">Half-price cocktails &amp; $8 small plates</span>
-    </div>
+    <section class="about reveal" id="about">
+        <h2>Brooklyn Meets<br>the Island</h2>
+        <p>
+            A rooftop escape above Brooklyn — tropical cocktails, Latin plates,
+            and skyline sunsets with the warmth and soul of Puerto Rico.
+        </p>
+    </section>
 
-    <!-- About -->
-    <section class="about-section section" id="about">
-        <div class="about-grid">
-            <div class="about-image reveal">
-                <div class="about-image-text">Where Brooklyn meets the island</div>
-            </div>
-            <div>
-                <p class="section-eyebrow reveal">Our Story</p>
-                <h2 class="section-title reveal reveal-delay-1">A Taste of<br>the Island, Above<br>the City</h2>
-                <p class="section-desc reveal reveal-delay-2">
-                    Step out of the elevator and the city falls away. Salt-warm air, the slow strum of cuatro
-                    strings, glasses clinking under string lights &mdash; for a moment, Brooklyn becomes the
-                    cobbled plaza of Old San Juan at golden hour.
-                </p>
-                <p class="section-desc reveal reveal-delay-2" style="margin-top:20px;">
-                    La Placita was born from a simple longing: to bottle a Puerto Rican summer evening and
-                    serve it on a rooftop above New York. Every dish is a memory from abuela&rsquo;s kitchen,
-                    every cocktail a sunset over Vieques. We are not a restaurant pretending to be the island
-                    &mdash; we are the island, transplanted, alive, and waiting for you.
-                </p>
-                <div class="about-features reveal reveal-delay-3">
-                    <div class="about-feature">
-                        <h4>Rooftop Views</h4>
-                        <p>Panoramic skyline views from our open-air terrace.</p>
-                    </div>
-                    <div class="about-feature">
-                        <h4>Craft Cocktails</h4>
-                        <p>Puerto Rican-inspired drinks with premium spirits.</p>
-                    </div>
-                    <div class="about-feature">
-                        <h4>Latin Kitchen</h4>
-                        <p>Authentic island flavors with a modern Brooklyn twist.</p>
-                    </div>
-                    <div class="about-feature">
-                        <h4>Live Music</h4>
-                        <p>Weekend DJ sets and live Latin performances.</p>
-                    </div>
-                </div>
-            </div>
+    <section class="features">
+        <div class="feature reveal">
+            <h3>Rooftop Views</h3>
+            <p>Open-air terrace with panoramic skyline views.</p>
+        </div>
+        <div class="feature reveal">
+            <h3>Craft Cocktails</h3>
+            <p>Puerto Rican-inspired drinks with premium spirits.</p>
+        </div>
+        <div class="feature reveal">
+            <h3>Live Music</h3>
+            <p>Weekend DJs and live Latin performances.</p>
         </div>
     </section>
 
-    <!-- Menu -->
-    <section class="menu-section" id="menu">
-        <div style="max-width:1400px;margin:0 auto;">
-            <p class="section-eyebrow reveal">The Menu</p>
-            <h2 class="section-title reveal reveal-delay-1">Sabor del<br>Caribe</h2>
-            <p class="section-desc reveal reveal-delay-2">Island-inspired dishes and handcrafted cocktails, made with love and the freshest ingredients.</p>
+    <section class="cta-band">
+        <h2>Now Open</h2>
+        <p>Walk-ins welcome. Reservations recommended on weekends.</p>
+        <a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener" class="btn">Follow for Updates</a>
+    </section>
 
-            <div class="menu-grid">
-                <div class="menu-category reveal">
-                    <div class="menu-category-icon">&#127864;</div>
-                    <h3>Cocktails</h3>
-                    <p class="menu-category-desc">Tropical sips, elevated</p>
-                    <div class="menu-item">
-                        <div>
-                            <div class="menu-item-name">Coquito Colada</div>
-                            <div class="menu-item-desc">Rum, coconut cream, cinnamon, nutmeg</div>
-                        </div>
-                        <span class="menu-item-price">$16</span>
-                    </div>
-                    <div class="menu-item">
-                        <div>
-                            <div class="menu-item-name">Sunset en Borinquen</div>
-                            <div class="menu-item-desc">Passion fruit, aged rum, lime, guava</div>
-                        </div>
-                        <span class="menu-item-price">$17</span>
-                    </div>
-                    <div class="menu-item">
-                        <div>
-                            <div class="menu-item-name">Old San Juan Sour</div>
-                            <div class="menu-item-desc">Pisco, tamarind, egg white, bitters</div>
-                        </div>
-                        <span class="menu-item-price">$18</span>
-                    </div>
-                    <div class="menu-item">
-                        <div>
-                            <div class="menu-item-name">La Placita Mojito</div>
-                            <div class="menu-item-desc">White rum, fresh mint, lime, sugarcane</div>
-                        </div>
-                        <span class="menu-item-price">$15</span>
-                    </div>
-                    <div class="menu-item">
-                        <div>
-                            <div class="menu-item-name">Maracuyá Margarita</div>
-                            <div class="menu-item-desc">Tequila, passion fruit, triple sec, chili rim</div>
-                        </div>
-                        <span class="menu-item-price">$17</span>
-                    </div>
-                </div>
-
-                <div class="menu-category reveal reveal-delay-1">
-                    <div class="menu-category-icon">&#127860;</div>
-                    <h3>Small Plates</h3>
-                    <p class="menu-category-desc">Para compartir</p>
-                    <div class="menu-item">
-                        <div>
-                            <div class="menu-item-name">Tostones con Guacamole</div>
-                            <div class="menu-item-desc">Crispy plantain, avocado, pico de gallo</div>
-                        </div>
-                        <span class="menu-item-price">$14</span>
-                    </div>
-                    <div class="menu-item">
-                        <div>
-                            <div class="menu-item-name">Empanadas de Carne</div>
-                            <div class="menu-item-desc">Seasoned beef, sofrito, pimento olives</div>
-                        </div>
-                        <span class="menu-item-price">$13</span>
-                    </div>
-                    <div class="menu-item">
-                        <div>
-                            <div class="menu-item-name">Ceviche Tropical</div>
-                            <div class="menu-item-desc">Fresh catch, mango, habanero, lime</div>
-                        </div>
-                        <span class="menu-item-price">$16</span>
-                    </div>
-                    <div class="menu-item">
-                        <div>
-                            <div class="menu-item-name">Alcapurrias</div>
-                            <div class="menu-item-desc">Yuca fritters, seasoned pork, ajili mojili</div>
-                        </div>
-                        <span class="menu-item-price">$12</span>
-                    </div>
-                    <div class="menu-item">
-                        <div>
-                            <div class="menu-item-name">Queso Fundido</div>
-                            <div class="menu-item-desc">Melted Oaxacan cheese, chorizo, tortillas</div>
-                        </div>
-                        <span class="menu-item-price">$15</span>
-                    </div>
-                </div>
-
-                <div class="menu-category reveal reveal-delay-2">
-                    <div class="menu-category-icon">&#127838;</div>
-                    <h3>Entrees</h3>
-                    <p class="menu-category-desc">Platos principales</p>
-                    <div class="menu-item">
-                        <div>
-                            <div class="menu-item-name">Pernil Roast</div>
-                            <div class="menu-item-desc">Slow-roasted pork, rice & beans, maduros</div>
-                        </div>
-                        <span class="menu-item-price">$26</span>
-                    </div>
-                    <div class="menu-item">
-                        <div>
-                            <div class="menu-item-name">Mofongo de Camarones</div>
-                            <div class="menu-item-desc">Garlic plantain mash, shrimp, creole sauce</div>
-                        </div>
-                        <span class="menu-item-price">$28</span>
-                    </div>
-                    <div class="menu-item">
-                        <div>
-                            <div class="menu-item-name">Churrasco a la Plancha</div>
-                            <div class="menu-item-desc">Grilled skirt steak, chimichurri, yuca fries</div>
-                        </div>
-                        <span class="menu-item-price">$32</span>
-                    </div>
-                    <div class="menu-item">
-                        <div>
-                            <div class="menu-item-name">Arroz con Pollo</div>
-                            <div class="menu-item-desc">Saffron rice, roasted chicken, sofrito</div>
-                        </div>
-                        <span class="menu-item-price">$22</span>
-                    </div>
-                    <div class="menu-item">
-                        <div>
-                            <div class="menu-item-name">Whole Fried Snapper</div>
-                            <div class="menu-item-desc">Crispy red snapper, coconut rice, salsa verde</div>
-                        </div>
-                        <span class="menu-item-price">$34</span>
-                    </div>
-                </div>
-            </div>
+    <section class="hours reveal" id="hours">
+        <h2>Hours</h2>
+        <div class="hours-grid">
+            <div class="hours-row"><span class="day">Monday — Thursday</span><span>4 PM — 12 AM</span></div>
+            <div class="hours-row"><span class="day">Friday — Saturday</span><span>2 PM — 2 AM</span></div>
+            <div class="hours-row"><span class="day">Sunday</span><span>12 PM — 10 PM</span></div>
         </div>
     </section>
 
-    <!-- Experience / Gallery -->
-    <section class="experience-section" id="experience">
-        <div class="experience-header">
-            <p class="section-eyebrow reveal">The Experience</p>
-            <h2 class="section-title reveal reveal-delay-1">Elevated Island<br>Vibes</h2>
-            <p class="section-desc reveal reveal-delay-2" style="margin:0 auto;">Rooftop sunsets, tropical beats, and unforgettable nights above Brooklyn.</p>
-        </div>
-        <div class="gallery-grid">
-            <div class="gallery-item reveal">
-                <div class="gallery-placeholder">&#127773;</div>
-                <span class="gallery-caption">Sunset Sessions</span>
-            </div>
-            <div class="gallery-item reveal reveal-delay-1">
-                <div class="gallery-placeholder">&#127864;</div>
-                <span class="gallery-caption">Craft Cocktails</span>
-            </div>
-            <div class="gallery-item reveal reveal-delay-2">
-                <div class="gallery-placeholder">&#127860;</div>
-                <span class="gallery-caption">Latin Kitchen</span>
-            </div>
-            <div class="gallery-item reveal reveal-delay-1">
-                <div class="gallery-placeholder">&#127926;</div>
-                <span class="gallery-caption">Live Music</span>
-            </div>
-            <div class="gallery-item reveal reveal-delay-2">
-                <div class="gallery-placeholder">&#127796;</div>
-                <span class="gallery-caption">Tropical Vibes</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials-section" id="testimonials">
-        <div class="testimonials-header">
-            <p class="section-eyebrow reveal">Word on the Street</p>
-            <h2 class="section-title reveal reveal-delay-1">Loved by<br>Brooklyn</h2>
-            <p class="section-desc reveal reveal-delay-2" style="margin:24px auto 0;text-align:center;">What our guests are saying about their nights on the rooftop.</p>
-        </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-card reveal">
-                <div class="testimonial-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-                <p class="testimonial-quote">
-                    The mofongo was straight out of my abuela&rsquo;s kitchen and the sunset over the city
-                    made me forget I was in Brooklyn. Coquito Colada changed my life. Already booked
-                    for our anniversary.
-                </p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar">M</div>
-                    <div>
-                        <div class="testimonial-name">Marisol Vega</div>
-                        <div class="testimonial-meta">Williamsburg &middot; Local guide</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card reveal reveal-delay-1">
-                <div class="testimonial-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-                <p class="testimonial-quote">
-                    Hands down the best rooftop experience in NYC. The salsa night had us dancing
-                    until 2am, the churrasco was perfect, and the staff treated us like family.
-                    This place has soul.
-                </p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar" style="background:linear-gradient(135deg,var(--forest-light),var(--forest));">J</div>
-                    <div>
-                        <div class="testimonial-name">James Okonkwo</div>
-                        <div class="testimonial-meta">Bed-Stuy &middot; Visited twice this month</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card reveal reveal-delay-2">
-                <div class="testimonial-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-                <p class="testimonial-quote">
-                    We hosted my sister&rsquo;s 30th here and the team made it unforgettable &mdash; custom
-                    cocktail menu, the whole snapper, fairy lights everywhere. Every guest is still
-                    texting me about it weeks later.
-                </p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar" style="background:linear-gradient(135deg,var(--gold),var(--sunset));">A</div>
-                    <div>
-                        <div class="testimonial-name">Alana Ruiz-Greene</div>
-                        <div class="testimonial-meta">Park Slope &middot; Hosted a private event</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Chef Spotlight -->
-    <section class="chef-section" id="chef">
-        <div class="chef-container">
-            <div class="chef-portrait reveal">
-                <span class="chef-portrait-icon">&#128373;&#127999;&#8205;&#127859;</span>
-                <span class="chef-portrait-label">In the kitchen</span>
-            </div>
-            <div>
-                <p class="section-eyebrow reveal">Meet the Chef</p>
-                <h3 class="chef-name reveal reveal-delay-1">Chef Rafael &ldquo;Rafi&rdquo; Santiago</h3>
-                <p class="chef-title-tag reveal reveal-delay-1">Executive Chef &middot; Born in Loiza, raised in Brooklyn</p>
-                <p class="chef-bio reveal reveal-delay-2">
-                    Rafi grew up between two kitchens &mdash; his abuela&rsquo;s in Loiza, where the
-                    sofrito always hit before the front door, and his mother&rsquo;s in Bushwick,
-                    where she stretched island recipes across a Brooklyn winter. After fifteen years
-                    cooking through Madrid, San Juan, and Manhattan&rsquo;s finest Latin kitchens, he
-                    came home to build the menu he&rsquo;d been writing in his head since he was a kid.
-                </p>
-                <p class="chef-bio reveal reveal-delay-3">
-                    &ldquo;Every plate at La Placita is a postcard,&rdquo; he says. &ldquo;I want
-                    Brooklyn to taste what August feels like in Vieques.&rdquo;
-                </p>
-                <div class="reveal reveal-delay-3">
-                    <span class="chef-signature">&mdash; Rafi</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Events -->
-    <section class="events-section" id="events">
-        <div style="max-width:1400px;margin:0 auto;">
-            <p class="section-eyebrow reveal">What's Happening</p>
-            <h2 class="section-title reveal reveal-delay-1">Upcoming<br>Events</h2>
-
-            <div class="events-grid">
-                <div class="event-card reveal">
-                    <div class="event-image">
-                        <span class="event-image-emoji">&#127926;</span>
-                        <div class="event-date">
-                            <span class="day">15</span>
-                            <span class="month">Jun</span>
-                        </div>
-                    </div>
-                    <div class="event-content">
-                        <div class="event-tag">Live Music</div>
-                        <h3>Salsa Sunset Sessions</h3>
-                        <p>Live salsa band, craft cocktails, and rooftop dancing as the sun sets over Brooklyn.</p>
-                        <a href="#" class="event-link">Learn More <span class="arrow">&rarr;</span></a>
-                    </div>
-                </div>
-
-                <div class="event-card reveal reveal-delay-1">
-                    <div class="event-image" style="background: linear-gradient(135deg, var(--forest-light), var(--forest));">
-                        <span class="event-image-emoji">&#127863;</span>
-                        <div class="event-date">
-                            <span class="day">22</span>
-                            <span class="month">Jun</span>
-                        </div>
-                    </div>
-                    <div class="event-content">
-                        <div class="event-tag">Special</div>
-                        <h3>Rum Tasting Night</h3>
-                        <p>Journey through Caribbean rums with our head bartender. Five premium pours paired with bites.</p>
-                        <a href="#" class="event-link">Learn More <span class="arrow">&rarr;</span></a>
-                    </div>
-                </div>
-
-                <div class="event-card reveal reveal-delay-2">
-                    <div class="event-image" style="background: linear-gradient(135deg, var(--gold), var(--sunset));">
-                        <span class="event-image-emoji">&#127911;</span>
-                        <div class="event-date">
-                            <span class="day">29</span>
-                            <span class="month">Jun</span>
-                        </div>
-                    </div>
-                    <div class="event-content">
-                        <div class="event-tag">Weekly</div>
-                        <h3>Reggaeton Rooftop</h3>
-                        <p>Every Saturday night — top DJs spinning the best reggaeton, dembow, and Latin hits.</p>
-                        <a href="#" class="event-link">Learn More <span class="arrow">&rarr;</span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Private Events -->
-    <section class="private-events-section" id="private-events">
-        <div class="private-events-container">
-            <div>
-                <p class="section-eyebrow reveal">Celebrate With Us</p>
-                <h2 class="section-title reveal reveal-delay-1">Your Night,<br>On the Roof</h2>
-                <p class="section-desc reveal reveal-delay-2">
-                    From intimate birthday dinners to full rooftop buyouts &mdash; weddings, corporate
-                    gatherings, launches, and everything in between &mdash; we tailor every detail
-                    around your guests, your menu, and your moment.
-                </p>
-                <div class="private-events-features">
-                    <div class="private-event-feature reveal reveal-delay-2">
-                        <div class="private-event-feature-icon">&#127874;</div>
-                        <h4>Birthdays</h4>
-                        <p>From a chef&rsquo;s table for 8 to a 60-person fiesta &mdash; cake, cocktails, and the city skyline.</p>
-                    </div>
-                    <div class="private-event-feature reveal reveal-delay-2">
-                        <div class="private-event-feature-icon">&#128188;</div>
-                        <h4>Corporate</h4>
-                        <p>Holiday parties, off-sites, and client dinners with custom menus and AV-ready spaces.</p>
-                    </div>
-                    <div class="private-event-feature reveal reveal-delay-3">
-                        <div class="private-event-feature-icon">&#128141;</div>
-                        <h4>Weddings</h4>
-                        <p>Rehearsal dinners, ceremonies, or full receptions under string lights and the open sky.</p>
-                    </div>
-                    <div class="private-event-feature reveal reveal-delay-3">
-                        <div class="private-event-feature-icon">&#127870;</div>
-                        <h4>Full Buyouts</h4>
-                        <p>Take over the entire rooftop &mdash; up to 180 guests with cocktail-style service.</p>
-                    </div>
-                </div>
-                <a href="mailto:events@laplacitarooftop.com?subject=Private%20Event%20Inquiry" class="btn-coral reveal reveal-delay-3">Book Your Event</a>
-            </div>
-
-            <div class="private-events-visual reveal">
-                <span class="private-events-visual-icon">&#127878;</span>
-                <span class="private-events-visual-label">Above it all</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Reservation -->
-    <section class="reservation-section" id="reservations">
-        <div class="reservation-container">
-            <div>
-                <p class="section-eyebrow reveal">Book Your Table</p>
-                <h2 class="section-title reveal reveal-delay-1">Make a<br>Reservation</h2>
-                <p class="section-desc reveal reveal-delay-2">Reserve your spot on the rooftop. Walk-ins welcome, but we recommend booking ahead for weekends and special events.</p>
-
-                <form class="reservation-form reveal reveal-delay-3" id="reservationForm" onsubmit="handleReservation(event)">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" required placeholder="Your name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required placeholder="you@email.com">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="date">Date</label>
-                            <input type="date" id="date" name="date" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="time">Time</label>
-                            <select id="time" name="time" required>
-                                <option value="">Select time</option>
-                                <option>5:00 PM</option>
-                                <option>5:30 PM</option>
-                                <option>6:00 PM</option>
-                                <option>6:30 PM</option>
-                                <option>7:00 PM</option>
-                                <option>7:30 PM</option>
-                                <option>8:00 PM</option>
-                                <option>8:30 PM</option>
-                                <option>9:00 PM</option>
-                                <option>9:30 PM</option>
-                                <option>10:00 PM</option>
-                                <option>10:30 PM</option>
-                                <option>11:00 PM</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="guests">Party Size</label>
-                            <select id="guests" name="guests" required>
-                                <option value="">Guests</option>
-                                <option>1 Guest</option>
-                                <option>2 Guests</option>
-                                <option>3 Guests</option>
-                                <option>4 Guests</option>
-                                <option>5 Guests</option>
-                                <option>6 Guests</option>
-                                <option>7+ Guests</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group full">
-                            <label for="notes">Special Requests</label>
-                            <textarea id="notes" name="notes" placeholder="Birthdays, dietary restrictions, seating preference..."></textarea>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn-primary" style="width:100%;text-align:center;margin-top:10px;">
-                        <span>Request Reservation</span>
-                    </button>
-                </form>
-            </div>
-
-            <div class="reservation-info reveal">
-                <h3>Visit Us</h3>
-                <div class="info-item">
-                    <span class="info-icon">&#128205;</span>
-                    <div>
-                        <h4>Location</h4>
-                        <p>247 Wythe Avenue, 8th Fl<br>Brooklyn, NY 11211</p>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <span class="info-icon">&#128337;</span>
-                    <div>
-                        <h4>Hours</h4>
-                        <p>Mon &ndash; Thu: 4 PM &ndash; 12 AM<br>Fri &ndash; Sat: 2 PM &ndash; 2 AM<br>Sunday: 12 PM &ndash; 10 PM</p>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <span class="info-icon">&#128222;</span>
-                    <div>
-                        <h4>Contact</h4>
-                        <p>info@laplacitarooftop.com<br>(718) 555-0100</p>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <span class="info-icon">&#127881;</span>
-                    <div>
-                        <h4>Private Events</h4>
-                        <p>Host your next celebration on our rooftop. Email us for packages and availability.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Hours / Location Map -->
-    <section class="location-section" id="location">
-        <div style="text-align:center;margin-bottom:60px;">
-            <p class="section-eyebrow reveal">Find Us</p>
-            <h2 class="section-title reveal reveal-delay-1">Hours &amp;<br>Location</h2>
-        </div>
-        <div class="location-container">
-            <div class="map-placeholder reveal" aria-label="Map placeholder showing La Placita Rooftop in Brooklyn">
-                <div class="map-pin">
-                    <div class="map-pin-icon"></div>
-                    <div class="map-pin-label">La Placita Rooftop</div>
-                </div>
-            </div>
-            <div class="location-info">
-                <div class="location-info-block reveal">
-                    <h4>Address</h4>
-                    <p>247 Wythe Avenue, 8th Floor<br>Brooklyn, NY 11211</p>
-                </div>
-                <div class="location-info-block reveal reveal-delay-1">
-                    <h4>Hours</h4>
-                    <div class="hours-row"><span>Monday &ndash; Thursday</span><span>4PM &ndash; 12AM</span></div>
-                    <div class="hours-row"><span>Friday &ndash; Saturday</span><span>2PM &ndash; 2AM</span></div>
-                    <div class="hours-row"><span>Sunday</span><span>12PM &ndash; 10PM</span></div>
-                    <div class="hours-row"><span>Happy Hour</span><span>Mon &ndash; Fri 4&ndash;7PM</span></div>
-                </div>
-                <div class="location-info-block reveal reveal-delay-2">
-                    <h4>Getting Here</h4>
-                    <p>
-                        <span class="transit-badge">L</span> Bedford Av &middot; 6 min walk<br>
-                        <span class="transit-badge" style="background:var(--coral);">J</span>
-                        <span class="transit-badge" style="background:var(--coral);">M</span>
-                        <span class="transit-badge" style="background:var(--coral);">Z</span>
-                        Marcy Av &middot; 10 min walk<br>
-                        <span style="font-size:0.95rem;">Citi Bike dock at the corner. Valet on Friday &amp; Saturday nights.</span>
-                    </p>
-                </div>
-                <div class="location-info-block reveal reveal-delay-3">
-                    <h4>Contact</h4>
-                    <p>(718) 555-0100<br>info@laplacitarooftop.com</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section class="newsletter-section" id="newsletter">
-        <div class="newsletter-container">
-            <p class="newsletter-eyebrow reveal">Stay in the loop</p>
-            <h2 class="newsletter-title reveal reveal-delay-1">Join the <em>Island</em></h2>
-            <p class="newsletter-desc reveal reveal-delay-2">
-                Sunset previews, new menus, secret events, and the occasional cocktail recipe &mdash;
-                straight to your inbox. No spam, just sabor.
-            </p>
-            <form class="newsletter-form reveal reveal-delay-3" onsubmit="handleNewsletter(event)">
-                <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address">
-                <button type="submit">Sign Me Up</button>
-            </form>
-            <p class="newsletter-fineprint reveal reveal-delay-3">Unsubscribe anytime. We never share your email.</p>
-        </div>
-    </section>
-
-    <!-- Instagram Banner -->
-    <div class="instagram-banner">
+    <div class="instagram">
         <p>Follow the vibe</p>
         <a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener">@laplacita.rooftop</a>
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
-        <div class="footer-grid">
-            <div class="footer-brand">
+        <div class="footer-inner">
+            <div>
                 <h3>La Placita Rooftop</h3>
-                <p>Brooklyn's rooftop escape &mdash; where Puerto Rican soul meets New York skyline. Tropical cocktails, authentic Latin cuisine, and unforgettable sunsets.</p>
+                <p>Brooklyn, New York</p>
             </div>
-            <div class="footer-col">
-                <h4>Navigate</h4>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#menu">Menu</a></li>
-                    <li><a href="#experience">Gallery</a></li>
+            <div>
+                <ul class="footer-links">
+                    <li><a href="menu.html">Menu</a></li>
                     <li><a href="events.html">Events</a></li>
-                    <li><a href="#chef">Our Chef</a></li>
-                    <li><a href="#private-events">Private Events</a></li>
-                    <li><a href="#reservations">Reservations</a></li>
-                    <li><a href="#location">Hours &amp; Location</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Hours</h4>
-                <ul>
-                    <li>Mon &ndash; Thu: 4PM &ndash; 12AM</li>
-                    <li>Fri &ndash; Sat: 2PM &ndash; 2AM</li>
-                    <li>Sunday: 12PM &ndash; 10PM</li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Connect</h4>
-                <ul>
                     <li><a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener">Instagram</a></li>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">TikTok</a></li>
-                    <li><a href="mailto:info@laplacitarooftop.com">Email Us</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 La Placita Rooftop. All rights reserved.</p>
-            <div class="footer-socials">
-                <a href="#">Privacy</a>
-                <a href="#">Terms</a>
-            </div>
+            &copy; 2026 La Placita Rooftop. All rights reserved.
         </div>
     </footer>
 
-    <script src="app.js" defer></script>
+    <script>
+        document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.toggle('open');
+        });
+
+        function closeMenu() {
+            document.getElementById('mobileMenu').classList.remove('open');
+        }
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            new IntersectionObserver(([e]) => {
+                if (e.isIntersecting) { e.target.classList.add('visible'); }
+            }, { threshold: 0.1 }).observe(el);
+        });
+    </script>
 </body>
 </html>
