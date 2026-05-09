@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events &amp; Happenings | La Placita Rooftop</title>
+    <meta name="description" content="Weekly lineups, special events, and private bookings at La Placita Rooftop in Brooklyn. Live salsa, DJ nights, brunch, and more.">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Events & Happenings | La Placita Rooftop">
+    <meta property="og:description" content="Weekly lineups, special events, and private bookings at La Placita Rooftop in Brooklyn.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="logo.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ─── RESET & VARIABLES ─── */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #FAF3EB;
+            --cream-dark: #F0E6D6;
+            --coral: #D4725C;
+            --coral-light: #E8967C;
+            --coral-dark: #B85A46;
+            --forest: #1B3A2D;
+            --forest-light: #2D5E47;
+            --forest-dark: #0F2219;
+            --gold: #C5913E;
+            --gold-light: #D4A85A;
+            --sunset: #E8834A;
+            --blush: #F2C4B8;
+            --sand: #E8DDD0;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-elegant: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Montserrat', 'Segoe UI', sans-serif;
+            --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--cream);
+            color: var(--forest);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+        /* ─── NAVIGATION ─── */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s var(--ease-smooth);
+            background: rgba(250, 243, 235, 0.95);
+            backdrop-filter: blur(20px);
+        }
+
+        .nav.scrolled {
+            padding: 12px 40px;
+            box-shadow: 0 2px 40px rgba(15, 34, 25, 0.08);
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--forest);
+            letter-spacing: 1px;
+        }
+
+        .nav-logo span {
+            color: var(--coral);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--forest);
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--coral);
+            transition: width 0.3s var(--ease-smooth);
+        }
+
+        .nav-links a:hover { color: var(--coral); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a.active { color: var(--coral); }
+        .nav-links a.active::after { width: 100%; }
+
+        .nav-cta {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--cream);
+            background: var(--forest);
+            padding: 12px 28px;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            background: var(--coral);
+            transform: translateY(-1px);
+        }
+
+        /* Mobile menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 26px;
+            height: 2px;
+            background: var(--forest);
+            transition: all 0.3s;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--cream);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+            opacity: 1;
+        }
+
+        .mobile-menu a {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--forest);
+            transition: color 0.3s;
+        }
+
+        .mobile-menu a:hover { color: var(--coral); }
+
+        /* ─── HERO BANNER ─── */
+        .hero-banner {
+            min-height: 75vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--forest-dark) 0%, var(--forest) 60%, var(--forest-light) 100%);
+            color: var(--cream);
+            overflow: hidden;
+            padding: 140px 20px 80px;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--coral) 0%, transparent 70%);
+            opacity: 0.2;
+            top: -20%;
+            right: -15%;
+            animation: floatCircle 22s ease-in-out infinite;
+        }
+
+        .hero-banner::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+            opacity: 0.15;
+            bottom: -20%;
+            left: -10%;
+            animation: floatCircle 28s ease-in-out infinite;
+            animation-delay: -10s;
+        }
+
+        @keyframes floatCircle {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -20px) scale(1.05); }
+            66% { transform: translate(-20px, 15px) scale(0.95); }
+        }
+
+        .hero-banner-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .hero-banner-eyebrow {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: fadeUp 1s var(--ease-smooth) 0.3s forwards;
+        }
+
+        .hero-banner h1 {
+            font-family: var(--font-display);
+            font-weight: 900;
+            font-size: clamp(2.8rem, 8vw, 6rem);
+            line-height: 1;
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: fadeUp 1s var(--ease-smooth) 0.5s forwards;
+        }
+
+        .hero-banner h1 em {
+            color: var(--coral-light);
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .hero-banner p {
+            font-family: var(--font-elegant);
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--sand);
+            line-height: 1.6;
+            max-width: 640px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeUp 1s var(--ease-smooth) 0.7s forwards;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─── BUTTONS ─── */
+        .btn-primary {
+            display: inline-block;
+            padding: 16px 40px;
+            background: var(--forest);
+            color: var(--cream);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: all 0.4s var(--ease-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--coral);
+            transform: translateX(-101%);
+            transition: transform 0.4s var(--ease-smooth);
+        }
+
+        .btn-primary span { position: relative; z-index: 1; }
+        .btn-primary:hover::before { transform: translateX(0); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(15, 34, 25, 0.2); }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 16px 40px;
+            border: 1.5px solid var(--forest);
+            color: var(--forest);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: all 0.4s var(--ease-smooth);
+        }
+
+        .btn-outline:hover {
+            background: var(--forest);
+            color: var(--cream);
+            transform: translateY(-2px);
+        }
+
+        .btn-coral {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--coral);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: all 0.3s var(--ease-smooth);
+        }
+
+        .btn-coral:hover {
+            background: var(--coral-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(212, 114, 92, 0.3);
+        }
+
+        /* ─── SECTION STYLING ─── */
+        .section {
+            padding: 120px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-eyebrow {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            color: var(--forest-dark);
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .section-desc {
+            font-family: var(--font-elegant);
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: var(--forest-light);
+            max-width: 700px;
+        }
+
+        .section-header-center {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-header-center .section-desc {
+            margin: 0 auto;
+        }
+
+        /* ─── DIVIDER ─── */
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 0 40px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--coral-light), transparent);
+        }
+
+        .divider-icon {
+            font-size: 1.2rem;
+            color: var(--coral);
+        }
+
+        /* ─── WEEKLY LINEUP ─── */
+        .weekly-section {
+            background: var(--cream);
+            padding: 120px 40px;
+        }
+
+        .weekly-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 14px;
+            margin-top: 60px;
+        }
+
+        .weekly-card {
+            position: relative;
+            padding: 28px 18px;
+            background: white;
+            border-radius: 4px;
+            border: 1px solid var(--sand);
+            text-align: center;
+            transition: all 0.4s var(--ease-smooth);
+            overflow: hidden;
+            min-height: 240px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .weekly-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--coral);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s var(--ease-smooth);
+        }
+
+        .weekly-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(15, 34, 25, 0.1);
+            border-color: transparent;
+        }
+
+        .weekly-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .weekly-card.featured {
+            background: var(--forest-dark);
+            color: var(--cream);
+            border-color: var(--forest-dark);
+        }
+
+        .weekly-card.featured::before {
+            background: var(--gold);
+        }
+
+        .weekly-card.featured .weekly-day {
+            color: var(--gold-light);
+        }
+
+        .weekly-card.featured .weekly-title {
+            color: var(--cream);
+        }
+
+        .weekly-card.featured .weekly-desc {
+            color: var(--sand);
+        }
+
+        .weekly-day {
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 12px;
+        }
+
+        .weekly-icon {
+            font-size: 1.8rem;
+            margin-bottom: 14px;
+        }
+
+        .weekly-title {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--forest-dark);
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .weekly-desc {
+            font-size: 0.75rem;
+            line-height: 1.5;
+            color: var(--forest-light);
+        }
+
+        /* ─── UPCOMING EVENTS ─── */
+        .upcoming-section {
+            background: var(--sand);
+            padding: 120px 40px;
+        }
+
+        .upcoming-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .event-card {
+            background: var(--cream);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.4s var(--ease-smooth);
+            border: 1px solid rgba(15, 34, 25, 0.06);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(15, 34, 25, 0.12);
+        }
+
+        .event-image {
+            height: 220px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .event-image-emoji {
+            font-size: 3.2rem;
+            opacity: 0.7;
+        }
+
+        .event-image.gradient-1 { background: linear-gradient(135deg, var(--coral-light), var(--sunset)); }
+        .event-image.gradient-2 { background: linear-gradient(135deg, var(--forest-light), var(--forest-dark)); }
+        .event-image.gradient-3 { background: linear-gradient(135deg, var(--gold), var(--sunset)); }
+        .event-image.gradient-4 { background: linear-gradient(135deg, var(--coral), var(--coral-dark)); }
+        .event-image.gradient-5 { background: linear-gradient(135deg, var(--forest), var(--gold)); }
+        .event-image.gradient-6 { background: linear-gradient(135deg, var(--blush), var(--coral)); }
+
+        .event-date {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--cream);
+            color: var(--forest-dark);
+            padding: 10px 16px;
+            border-radius: 2px;
+            text-align: center;
+            line-height: 1.1;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+
+        .event-date .day {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .event-date .month {
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+            font-weight: 600;
+        }
+
+        .event-content {
+            padding: 28px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-tag {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 10px;
+        }
+
+        .event-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--forest-dark);
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .event-content p.event-desc {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--forest-light);
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .event-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid var(--sand);
+            margin-bottom: 18px;
+        }
+
+        .event-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .event-meta-label {
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--forest-light);
+        }
+
+        .event-meta-value {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            color: var(--forest-dark);
+            font-weight: 700;
+        }
+
+        .event-meta-value.price {
+            color: var(--coral);
+        }
+
+        .event-cta {
+            text-align: center;
+            display: block;
+            width: 100%;
+        }
+
+        /* ─── PRIVATE EVENTS ─── */
+        .private-section {
+            background: var(--forest-dark);
+            color: var(--cream);
+            padding: 120px 40px;
+        }
+
+        .private-section .section-eyebrow { color: var(--gold-light); }
+        .private-section .section-title { color: var(--cream); }
+        .private-section .section-desc { color: var(--sand); }
+
+        .private-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+            max-width: 1400px;
+            margin: 0 auto 80px;
+        }
+
+        .private-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 30px;
+        }
+
+        .private-feature {
+            padding: 22px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 4px;
+        }
+
+        .private-feature-icon {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .private-feature h4 {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            color: var(--cream);
+            margin-bottom: 6px;
+        }
+
+        .private-feature p {
+            font-size: 0.8rem;
+            color: var(--sand);
+            line-height: 1.5;
+        }
+
+        .capacity-card {
+            padding: 50px 40px;
+            background: linear-gradient(135deg, rgba(212, 114, 92, 0.15), rgba(197, 145, 62, 0.1));
+            border: 1px solid rgba(212, 114, 92, 0.25);
+            border-radius: 4px;
+        }
+
+        .capacity-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            color: var(--cream);
+            margin-bottom: 24px;
+        }
+
+        .capacity-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .capacity-row:last-child { border-bottom: none; }
+
+        .capacity-label {
+            font-family: var(--font-elegant);
+            font-size: 1.1rem;
+            color: var(--sand);
+            font-style: italic;
+        }
+
+        .capacity-value {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--gold-light);
+        }
+
+        /* Pricing tiers */
+        .pricing-tiers {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto 80px;
+        }
+
+        .pricing-card {
+            padding: 50px 40px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 4px;
+            text-align: center;
+            transition: all 0.4s var(--ease-smooth);
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-6px);
+            background: rgba(255,255,255,0.06);
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(135deg, rgba(197, 145, 62, 0.15), rgba(212, 114, 92, 0.1));
+            border-color: var(--gold);
+        }
+
+        .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold);
+            color: var(--forest-dark);
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 2px;
+        }
+
+        .pricing-tier {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 16px;
+        }
+
+        .pricing-amount {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--cream);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .pricing-amount sup {
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            vertical-align: top;
+            margin-right: 4px;
+        }
+
+        .pricing-note {
+            font-family: var(--font-elegant);
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--sand);
+            margin-bottom: 30px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .pricing-features li {
+            padding: 10px 0;
+            font-size: 0.85rem;
+            color: var(--sand);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            position: relative;
+            padding-left: 22px;
+        }
+
+        .pricing-features li:last-child { border-bottom: none; }
+
+        .pricing-features li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--coral-light);
+            font-size: 0.9rem;
+        }
+
+        /* Inquiry */
+        .inquiry-card {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 50px;
+            background: linear-gradient(135deg, var(--coral), var(--sunset));
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .inquiry-card h3 {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .inquiry-card p {
+            font-family: var(--font-elegant);
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .inquiry-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            text-align: left;
+        }
+
+        .inquiry-form .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .inquiry-form .form-group.full {
+            grid-column: span 2;
+        }
+
+        .inquiry-form label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 8px;
+        }
+
+        .inquiry-form input,
+        .inquiry-form select,
+        .inquiry-form textarea {
+            padding: 13px 14px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 2px;
+            background: rgba(255,255,255,0.95);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: var(--forest);
+            transition: all 0.3s;
+            outline: none;
+        }
+
+        .inquiry-form input:focus,
+        .inquiry-form select:focus,
+        .inquiry-form textarea:focus {
+            background: white;
+            border-color: var(--forest-dark);
+        }
+
+        .inquiry-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .inquiry-submit {
+            grid-column: span 2;
+            padding: 16px 40px;
+            background: var(--forest-dark);
+            color: var(--cream);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: all 0.3s;
+            margin-top: 8px;
+        }
+
+        .inquiry-submit:hover {
+            background: var(--forest);
+            transform: translateY(-2px);
+        }
+
+        /* ─── PHOTO GALLERY STRIP ─── */
+        .gallery-section {
+            background: var(--cream);
+            padding: 120px 0 60px;
+            overflow: hidden;
+        }
+
+        .gallery-strip {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+            padding: 0 40px;
+            margin-top: 50px;
+        }
+
+        .gallery-tile {
+            position: relative;
+            aspect-ratio: 3 / 4;
+            overflow: hidden;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: transform 0.4s var(--ease-smooth);
+        }
+
+        .gallery-tile:hover { transform: scale(1.03); }
+
+        .gallery-tile.tall { aspect-ratio: 3 / 5; }
+
+        .gallery-tile::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(15, 34, 25, 0.7), transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: 1;
+        }
+
+        .gallery-tile:hover::before { opacity: 1; }
+
+        .gallery-tile-caption {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            z-index: 2;
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            color: white;
+            font-style: italic;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: all 0.4s var(--ease-smooth);
+        }
+
+        .gallery-tile:hover .gallery-tile-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-tile-icon {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            opacity: 0.45;
+        }
+
+        .gallery-tile.g1 { background: linear-gradient(135deg, var(--coral-light), var(--sunset)); }
+        .gallery-tile.g2 { background: linear-gradient(135deg, var(--forest-light), var(--forest)); }
+        .gallery-tile.g3 { background: linear-gradient(135deg, var(--gold), var(--gold-light)); }
+        .gallery-tile.g4 { background: linear-gradient(135deg, var(--blush), var(--coral)); }
+        .gallery-tile.g5 { background: linear-gradient(135deg, var(--forest-dark), var(--forest-light)); }
+        .gallery-tile.g6 { background: linear-gradient(135deg, var(--sunset), var(--coral-dark)); }
+
+        /* ─── INSTAGRAM BANNER ─── */
+        .instagram-banner {
+            background: linear-gradient(135deg, var(--coral), var(--sunset));
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .instagram-banner p {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 10px;
+        }
+
+        .instagram-banner a {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: white;
+            font-style: italic;
+            transition: opacity 0.3s;
+        }
+
+        .instagram-banner a:hover { opacity: 0.8; }
+
+        /* ─── FOOTER ─── */
+        .footer {
+            background: var(--forest-dark);
+            color: var(--cream);
+            padding: 80px 40px 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto 60px;
+        }
+
+        .footer-brand h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            font-family: var(--font-elegant);
+            font-size: 1.05rem;
+            color: var(--sand);
+            line-height: 1.7;
+            max-width: 350px;
+        }
+
+        .footer-col h4 {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul { list-style: none; }
+
+        .footer-col li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col a {
+            font-size: 0.9rem;
+            color: var(--sand);
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover { color: var(--coral-light); }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            font-size: 0.75rem;
+            color: rgba(232, 221, 208, 0.5);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-socials a {
+            font-size: 0.8rem;
+            color: var(--sand);
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .footer-socials a:hover { color: var(--coral-light); }
+
+        /* ─── SCROLL ANIMATIONS ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s var(--ease-smooth);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+        .reveal-delay-6 { transition-delay: 0.6s; }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1200px) {
+            .weekly-grid { grid-template-columns: repeat(4, 1fr); }
+            .gallery-strip { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 1024px) {
+            .upcoming-grid { grid-template-columns: 1fr 1fr; }
+            .private-intro { grid-template-columns: 1fr; gap: 50px; }
+            .pricing-tiers { grid-template-columns: 1fr; max-width: 500px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta { display: none; }
+            .menu-toggle { display: flex; }
+            .nav { padding: 16px 24px; }
+            .section { padding: 80px 24px; }
+            .hero-banner { padding: 120px 20px 60px; min-height: 60vh; }
+            .weekly-section { padding: 80px 24px; }
+            .weekly-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .upcoming-section { padding: 80px 24px; }
+            .upcoming-grid { grid-template-columns: 1fr; }
+            .private-section { padding: 80px 24px; }
+            .private-features { grid-template-columns: 1fr; }
+            .capacity-card { padding: 36px 28px; }
+            .pricing-card { padding: 40px 28px; }
+            .inquiry-card { padding: 40px 28px; }
+            .inquiry-form { grid-template-columns: 1fr; }
+            .inquiry-form .form-group.full { grid-column: span 1; }
+            .inquiry-submit { grid-column: span 1; }
+            .gallery-section { padding: 80px 0 40px; }
+            .gallery-strip { grid-template-columns: 1fr 1fr; gap: 8px; padding: 0 24px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+            .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .nav { padding: 14px 18px; }
+            .weekly-grid { grid-template-columns: 1fr; }
+            .gallery-strip { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav scrolled" id="nav">
+        <a href="index.html" class="nav-logo">La <span>Placita</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#menu">Menu</a></li>
+            <li><a href="index.html#experience">Gallery</a></li>
+            <li><a href="events.html" class="active">Events</a></li>
+            <li><a href="index.html#reservations">Reservations</a></li>
+        </ul>
+        <a href="index.html#reservations" class="nav-cta">Reserve</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html#about" onclick="closeMobileMenu()">About</a>
+        <a href="index.html#menu" onclick="closeMobileMenu()">Menu</a>
+        <a href="index.html#experience" onclick="closeMobileMenu()">Gallery</a>
+        <a href="events.html" onclick="closeMobileMenu()">Events</a>
+        <a href="index.html#reservations" onclick="closeMobileMenu()">Reservations</a>
+    </div>
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <div class="hero-banner-content">
+            <p class="hero-banner-eyebrow">Live Music · DJ Nights · Private Bookings</p>
+            <h1>Events &amp; <em>Happenings</em></h1>
+            <p>From salsa under the stars to bottomless brunches and unforgettable private celebrations — every night on the rooftop has a rhythm of its own.</p>
+        </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="divider" style="margin-top:-1px;background:var(--cream);padding:40px;max-width:none;">
+        <div class="divider-line"></div>
+        <span class="divider-icon">&#9753;</span>
+        <div class="divider-line"></div>
+    </div>
+
+    <!-- Weekly Lineup -->
+    <section class="weekly-section" id="weekly">
+        <div style="max-width:1400px;margin:0 auto;">
+            <div class="section-header-center">
+                <p class="section-eyebrow reveal">Every Week</p>
+                <h2 class="section-title reveal reveal-delay-1">Weekly<br>Lineup</h2>
+                <p class="section-desc reveal reveal-delay-2">Seven nights, seven flavors. From service-industry hangs to live salsa and sunset brunch — there's always a reason to come up.</p>
+            </div>
+
+            <div class="weekly-grid">
+                <div class="weekly-card reveal">
+                    <div>
+                        <div class="weekly-day">Mon</div>
+                        <div class="weekly-icon">&#127866;</div>
+                        <div class="weekly-title">Industry Night</div>
+                    </div>
+                    <p class="weekly-desc">Service-industry pros — flash your badge for half-off cocktails &amp; bites all night long.</p>
+                </div>
+
+                <div class="weekly-card reveal reveal-delay-1">
+                    <div>
+                        <div class="weekly-day">Tue</div>
+                        <div class="weekly-icon">&#127790;</div>
+                        <div class="weekly-title">Taco &amp; Tequila</div>
+                    </div>
+                    <p class="weekly-desc">$3 street tacos, $7 house margaritas, and an all-mezcal flight menu.</p>
+                </div>
+
+                <div class="weekly-card featured reveal reveal-delay-2">
+                    <div>
+                        <div class="weekly-day">Wed</div>
+                        <div class="weekly-icon">&#127927;</div>
+                        <div class="weekly-title">Live Salsa Band</div>
+                    </div>
+                    <p class="weekly-desc">Free dance lessons at 8 PM, live band hits the stage at 9. No partner required.</p>
+                </div>
+
+                <div class="weekly-card reveal reveal-delay-3">
+                    <div>
+                        <div class="weekly-day">Thu</div>
+                        <div class="weekly-icon">&#127865;</div>
+                        <div class="weekly-title">Ladies Night</div>
+                    </div>
+                    <p class="weekly-desc">Complimentary welcome cocktail and 2-for-1 wine pours all night for the ladies.</p>
+                </div>
+
+                <div class="weekly-card reveal reveal-delay-4">
+                    <div>
+                        <div class="weekly-day">Fri</div>
+                        <div class="weekly-icon">&#127911;</div>
+                        <div class="weekly-title">DJ Reggaeton</div>
+                    </div>
+                    <p class="weekly-desc">The hottest reggaeton, dembow, and Latin hits spun live by NYC's top selectors.</p>
+                </div>
+
+                <div class="weekly-card reveal reveal-delay-5">
+                    <div>
+                        <div class="weekly-day">Sat</div>
+                        <div class="weekly-icon">&#127773;</div>
+                        <div class="weekly-title">Sunset &amp; Late Night</div>
+                    </div>
+                    <p class="weekly-desc">Acoustic Sunset Sessions 4&ndash;8 PM, then full party mode 'til 2 AM.</p>
+                </div>
+
+                <div class="weekly-card reveal reveal-delay-6">
+                    <div>
+                        <div class="weekly-day">Sun</div>
+                        <div class="weekly-icon">&#127869;</div>
+                        <div class="weekly-title">Rooftop Brunch</div>
+                    </div>
+                    <p class="weekly-desc">Live acoustic, bottomless mimosas, and a Latin-inspired brunch menu 'til 4 PM.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Special Events -->
+    <section class="upcoming-section" id="upcoming">
+        <div style="max-width:1400px;margin:0 auto;">
+            <div class="section-header-center">
+                <p class="section-eyebrow reveal">Mark Your Calendar</p>
+                <h2 class="section-title reveal reveal-delay-1">Upcoming<br>Special Events</h2>
+                <p class="section-desc reveal reveal-delay-2">One-of-a-kind nights, takeovers, and rooftop celebrations. Get tickets early — these go fast.</p>
+            </div>
+
+            <div class="upcoming-grid">
+                <!-- Event 1 -->
+                <div class="event-card reveal">
+                    <div class="event-image gradient-1">
+                        <span class="event-image-emoji">&#127881;</span>
+                        <div class="event-date">
+                            <span class="day">15</span>
+                            <span class="month">Jun</span>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-tag">Summer Kickoff</div>
+                        <h3>Solstice Sunset Soirée</h3>
+                        <p class="event-desc">Welcome summer with frozen daiquiris on arrival, a live percussion set, and an open dance floor under the longest sunset of the year.</p>
+                        <div class="event-meta">
+                            <div class="event-meta-item">
+                                <span class="event-meta-label">Doors</span>
+                                <span class="event-meta-value">6:00 PM</span>
+                            </div>
+                            <div class="event-meta-item">
+                                <span class="event-meta-label">Cover</span>
+                                <span class="event-meta-value price">$25</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn-coral event-cta">Get Tickets</a>
+                    </div>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="event-card reveal reveal-delay-1">
+                    <div class="event-image gradient-2">
+                        <span class="event-image-emoji">&#127863;</span>
+                        <div class="event-date">
+                            <span class="day">22</span>
+                            <span class="month">Jun</span>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-tag">Tasting</div>
+                        <h3>Caribbean Rum Journey</h3>
+                        <p class="event-desc">Five premium pours from across the islands paired with chef-curated bites. Hosted by our head bartender — limited to 30 guests.</p>
+                        <div class="event-meta">
+                            <div class="event-meta-item">
+                                <span class="event-meta-label">Start</span>
+                                <span class="event-meta-value">7:30 PM</span>
+                            </div>
+                            <div class="event-meta-item">
+                                <span class="event-meta-label">Per Seat</span>
+                                <span class="event-meta-value price">$65</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn-coral event-cta">Get Tickets</a>
+                    </div>
+                </div>
+
+                <!-- Event 3 -->
+                <div class="event-card reveal reveal-delay-2">
+                    <div class="event-image gradient-3">
+                        <span class="event-image-emoji">&#127911;</span>
+                        <div class="event-date">
+                            <span class="day">29</span>
+                            <span class="month">Jun</span>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-tag">DJ Takeover</div>
+                        <h3>DJ Carla Reyes Live</h3>
+                        <p class="event-desc">Brooklyn's reggaeton queen takes over the rooftop for a high-energy set. Bottle service available — VIP tables booking now.</p>
+                        <div class="event-meta">
+                            <div class="event-meta-item">
+                                <span class="event-meta-label">Doors</span>
+                                <span class="event-meta-value">10:00 PM</span>
+                            </div>
+                            <div class="event-meta-item">
+                                <span class="event-meta-label">Cover</span>
+                                <span class="event-meta-value price">$30</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn-coral event-cta">Get Tickets</a>
+                    </div>
+                </div>
+
+                <!-- Event 4 -->
+                <div class="event-card reveal">
+                    <div class="event-image gradient-4">
+                        <span class="event-image-emoji">&#129380;</span>
+                        <div class="event-date">
+                            <span class="day">06</span>
+                            <span class="month">Jul</span>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-tag">Pop-Up Dinner</div>
+                        <h3>Chef's Table: Sabor de San Juan</h3>
+                        <p class="event-desc">A 6-course tasting menu by guest chef Marisol Vega, paired with Puerto Rican wines. Single seating, communal table.</p>
+                        <div class="event-meta">
+                            <div class="event-meta-item">
+                                <span class="event-meta-label">Seating</span>
+                                <span class="event-meta-value">7:00 PM</span>
+                            </div>
+                            <div class="event-meta-item">
+                                <span class="event-meta-label">Per Seat</span>
+                                <span class="event-meta-value price">$120</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn-coral event-cta">Reserve Seat</a>
+                    </div>
+                </div>
+
+                <!-- Event 5 -->
+                <div class="event-card reveal reveal-delay-1">
+                    <div class="event-image gradient-5">
+                        <span class="event-image-emoji">&#127922;</span>
+                        <div class="event-date">
+                            <span class="day">13</span>
+                            <span class="month">Jul</span>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-tag">Community</div>
+                        <h3>Loteria &amp; Lemonade Sunday</h3>
+                        <p class="event-desc">Family-friendly Sunday afternoon — Mexican bingo, agua frescas, food specials, and live mariachi from 2 PM.</p>
+                        <div class="event-meta">
+                            <div class="event-meta-item">
+                                <span class="event-meta-label">Open</span>
+                                <span class="event-meta-value">2:00 PM</span>
+                            </div>
+                            <div class="event-meta-item">
+                                <span class="event-meta-label">Entry</span>
+                                <span class="event-meta-value price">Free</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn-coral event-cta">RSVP</a>
+                    </div>
+                </div>
+
+                <!-- Event 6 -->
+                <div class="event-card reveal reveal-delay-2">
+                    <div class="event-image gradient-6">
+                        <span class="event-image-emoji">&#127878;</span>
+                        <div class="event-date">
+                            <span class="day">26</span>
+                            <span class="month">Jul</span>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-tag">Anniversary Bash</div>
+                        <h3>La Placita Anniversary Block Party</h3>
+                        <p class="event-desc">Two stages, four DJs, surprise guests, and the rooftop transformed into a tropical block party. All night, all summer vibes.</p>
+                        <div class="event-meta">
+                            <div class="event-meta-item">
+                                <span class="event-meta-label">Doors</span>
+                                <span class="event-meta-value">6:00 PM</span>
+                            </div>
+                            <div class="event-meta-item">
+                                <span class="event-meta-label">Cover</span>
+                                <span class="event-meta-value price">$45</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn-coral event-cta">Get Tickets</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Private Events -->
+    <section class="private-section" id="private">
+        <div class="private-intro">
+            <div>
+                <p class="section-eyebrow reveal">Host With Us</p>
+                <h2 class="section-title reveal reveal-delay-1">Private<br>Events</h2>
+                <p class="section-desc reveal reveal-delay-2">Birthdays, engagements, corporate launches, holiday parties — host your celebration above Brooklyn with rooftop views, custom menus, and a vibe your guests will never forget.</p>
+
+                <div class="private-features reveal reveal-delay-3">
+                    <div class="private-feature">
+                        <div class="private-feature-icon">&#127864;</div>
+                        <h4>Dedicated Bartender</h4>
+                        <p>A bartender just for your party — custom cocktail menu included.</p>
+                    </div>
+                    <div class="private-feature">
+                        <div class="private-feature-icon">&#127860;</div>
+                        <h4>Custom Menu</h4>
+                        <p>Tailored bites and family-style platters by our chef team.</p>
+                    </div>
+                    <div class="private-feature">
+                        <div class="private-feature-icon">&#127911;</div>
+                        <h4>DJ &amp; Sound</h4>
+                        <p>Pro DJ, full sound system, and your own playlist on request.</p>
+                    </div>
+                    <div class="private-feature">
+                        <div class="private-feature-icon">&#127881;</div>
+                        <h4>Décor &amp; Setup</h4>
+                        <p>Florals, signage, and themed décor handled by our events team.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="capacity-card reveal reveal-delay-2">
+                <h3>Spaces &amp; Capacity</h3>
+                <div class="capacity-row">
+                    <span class="capacity-label">Full rooftop buyout</span>
+                    <span class="capacity-value">150</span>
+                </div>
+                <div class="capacity-row">
+                    <span class="capacity-label">Terrace lounge</span>
+                    <span class="capacity-value">50</span>
+                </div>
+                <div class="capacity-row">
+                    <span class="capacity-label">Sunset deck</span>
+                    <span class="capacity-value">35</span>
+                </div>
+                <div class="capacity-row">
+                    <span class="capacity-label">Semi-private nook</span>
+                    <span class="capacity-value">20</span>
+                </div>
+                <p style="margin-top:24px;font-family:var(--font-elegant);font-style:italic;color:var(--sand);font-size:1rem;line-height:1.6;">All spaces include weather contingency, dedicated event coordinator, and complimentary parking validation for your guests.</p>
+            </div>
+        </div>
+
+        <!-- Pricing -->
+        <div style="max-width:1400px;margin:0 auto 60px;text-align:center;">
+            <p class="section-eyebrow reveal">Packages</p>
+            <h2 class="section-title reveal reveal-delay-1" style="margin-bottom:50px;">Choose Your Vibe</h2>
+        </div>
+
+        <div class="pricing-tiers">
+            <div class="pricing-card reveal">
+                <div class="pricing-tier">Bronze</div>
+                <div class="pricing-amount"><sup>$</sup>2,000</div>
+                <p class="pricing-note">Up to 30 guests · 3 hours</p>
+                <ul class="pricing-features">
+                    <li>Semi-private nook reservation</li>
+                    <li>Welcome cocktail per guest</li>
+                    <li>Choice of 4 passed appetizers</li>
+                    <li>Dedicated server</li>
+                    <li>House playlist</li>
+                </ul>
+                <a href="#inquire" class="btn-coral event-cta">Inquire</a>
+            </div>
+
+            <div class="pricing-card featured reveal reveal-delay-1">
+                <div class="pricing-tier">Silver</div>
+                <div class="pricing-amount"><sup>$</sup>3,500</div>
+                <p class="pricing-note">Up to 60 guests · 4 hours</p>
+                <ul class="pricing-features">
+                    <li>Sunset deck or terrace lounge</li>
+                    <li>Open bar (beer, wine, signature cocktail)</li>
+                    <li>6 passed appetizers + grazing board</li>
+                    <li>Dedicated bartender &amp; servers</li>
+                    <li>DJ for 3 hours</li>
+                    <li>Custom signage &amp; décor accents</li>
+                </ul>
+                <a href="#inquire" class="btn-coral event-cta">Inquire</a>
+            </div>
+
+            <div class="pricing-card reveal reveal-delay-2">
+                <div class="pricing-tier">Gold</div>
+                <div class="pricing-amount"><sup>$</sup>5,000</div>
+                <p class="pricing-note">Up to 150 guests · 5 hours</p>
+                <ul class="pricing-features">
+                    <li>Full rooftop buyout</li>
+                    <li>Premium open bar all night</li>
+                    <li>Custom 3-course family-style menu</li>
+                    <li>Two dedicated bartenders + full staff</li>
+                    <li>Headlining DJ + full sound system</li>
+                    <li>Florals, custom décor &amp; lighting</li>
+                    <li>Personal event coordinator</li>
+                </ul>
+                <a href="#inquire" class="btn-coral event-cta">Inquire</a>
+            </div>
+        </div>
+
+        <!-- Inquiry CTA -->
+        <div class="inquiry-card reveal" id="inquire">
+            <h3>Let's Plan Something Unforgettable</h3>
+            <p>Tell us about your event — we'll get back within 24 hours with availability, custom packages, and tasting options.</p>
+            <form class="inquiry-form" onsubmit="handleInquiry(event)">
+                <div class="form-group">
+                    <label for="iname">Your Name</label>
+                    <input type="text" id="iname" name="name" required placeholder="Full name">
+                </div>
+                <div class="form-group">
+                    <label for="iemail">Email</label>
+                    <input type="email" id="iemail" name="email" required placeholder="you@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="idate">Preferred Date</label>
+                    <input type="date" id="idate" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="iguests">Guest Count</label>
+                    <select id="iguests" name="guests" required>
+                        <option value="">Select size</option>
+                        <option>10 &ndash; 25</option>
+                        <option>26 &ndash; 50</option>
+                        <option>51 &ndash; 100</option>
+                        <option>101 &ndash; 150</option>
+                    </select>
+                </div>
+                <div class="form-group full">
+                    <label for="ipackage">Package Interest</label>
+                    <select id="ipackage" name="package">
+                        <option value="">Not sure yet</option>
+                        <option>Bronze ($2,000)</option>
+                        <option>Silver ($3,500)</option>
+                        <option>Gold ($5,000)</option>
+                        <option>Custom Package</option>
+                    </select>
+                </div>
+                <div class="form-group full">
+                    <label for="imessage">Tell Us About Your Event</label>
+                    <textarea id="imessage" name="message" placeholder="Birthday, engagement, corporate launch, anniversary..."></textarea>
+                </div>
+                <button type="submit" class="inquiry-submit"><span>Send Inquiry</span></button>
+            </form>
+            <p style="margin-top:24px;font-size:0.85rem;color:rgba(255,255,255,0.85);">Or email us directly at <a href="mailto:events@laplacitarooftop.com" style="color:white;text-decoration:underline;">events@laplacitarooftop.com</a></p>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Strip -->
+    <section class="gallery-section">
+        <div style="text-align:center;padding:0 24px;">
+            <p class="section-eyebrow reveal">The Atmosphere</p>
+            <h2 class="section-title reveal reveal-delay-1">Moments From<br>The Rooftop</h2>
+        </div>
+        <div class="gallery-strip">
+            <div class="gallery-tile g1 reveal">
+                <div class="gallery-tile-icon">&#127773;</div>
+                <span class="gallery-tile-caption">Sunset Sessions</span>
+            </div>
+            <div class="gallery-tile tall g2 reveal reveal-delay-1">
+                <div class="gallery-tile-icon">&#127927;</div>
+                <span class="gallery-tile-caption">Salsa Nights</span>
+            </div>
+            <div class="gallery-tile g3 reveal reveal-delay-2">
+                <div class="gallery-tile-icon">&#127864;</div>
+                <span class="gallery-tile-caption">Craft Cocktails</span>
+            </div>
+            <div class="gallery-tile g4 reveal reveal-delay-3">
+                <div class="gallery-tile-icon">&#127881;</div>
+                <span class="gallery-tile-caption">Private Parties</span>
+            </div>
+            <div class="gallery-tile tall g5 reveal reveal-delay-4">
+                <div class="gallery-tile-icon">&#127911;</div>
+                <span class="gallery-tile-caption">DJ Takeovers</span>
+            </div>
+            <div class="gallery-tile g6 reveal reveal-delay-5">
+                <div class="gallery-tile-icon">&#127869;</div>
+                <span class="gallery-tile-caption">Sunday Brunch</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Banner -->
+    <div class="instagram-banner">
+        <p>Follow the vibe</p>
+        <a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener">@laplacita.rooftop</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>La Placita Rooftop</h3>
+                <p>Brooklyn's rooftop escape &mdash; where Puerto Rican soul meets New York skyline. Tropical cocktails, authentic Latin cuisine, and unforgettable sunsets.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigate</h4>
+                <ul>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#menu">Menu</a></li>
+                    <li><a href="index.html#experience">Gallery</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="index.html#reservations">Reservations</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Hours</h4>
+                <ul>
+                    <li>Mon &ndash; Thu: 4PM &ndash; 12AM</li>
+                    <li>Fri &ndash; Sat: 2PM &ndash; 2AM</li>
+                    <li>Sunday: 12PM &ndash; 10PM</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">TikTok</a></li>
+                    <li><a href="mailto:info@laplacitarooftop.com">Email Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 La Placita Rooftop. All rights reserved.</p>
+            <div class="footer-socials">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile menu
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+        }
+
+        // Scroll reveal
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Set minimum date for inquiry
+        const dateInput = document.getElementById('idate');
+        if (dateInput) {
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.setAttribute('min', today);
+        }
+
+        // Inquiry form handler
+        function handleInquiry(e) {
+            e.preventDefault();
+            const form = e.target;
+            const btn = form.querySelector('button[type="submit"] span');
+            btn.textContent = 'Inquiry Sent!';
+            btn.closest('button').style.background = 'var(--coral)';
+            setTimeout(() => {
+                btn.textContent = 'Send Inquiry';
+                btn.closest('button').style.background = '';
+                form.reset();
+            }, 3000);
+        }
+
+        // Smooth scroll for in-page anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#' || href.length < 2) return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
