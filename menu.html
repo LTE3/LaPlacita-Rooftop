@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu | La Placita Rooftop &mdash; Brooklyn, New York</title>
+    <meta name="description" content="Explore the full menu at La Placita Rooftop. Puerto Rican-inspired cocktails, Caribbean cuisine, brunch, and seasonal specials in Brooklyn, NY.">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Menu | La Placita Rooftop">
+    <meta property="og:description" content="Island-inspired, Brooklyn-crafted. Cocktails, mofongo, pernil, brunch, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="logo.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ─── RESET & VARIABLES ─── */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #FAF3EB;
+            --cream-dark: #F0E6D6;
+            --coral: #D4725C;
+            --coral-light: #E8967C;
+            --coral-dark: #B85A46;
+            --forest: #1B3A2D;
+            --forest-light: #2D5E47;
+            --forest-dark: #0F2219;
+            --gold: #C5913E;
+            --gold-light: #D4A85A;
+            --sunset: #E8834A;
+            --blush: #F2C4B8;
+            --sand: #E8DDD0;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-elegant: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Montserrat', 'Segoe UI', sans-serif;
+            --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--cream);
+            color: var(--forest);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+        /* ─── NAVIGATION ─── */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s var(--ease-smooth);
+            background: rgba(250, 243, 235, 0.95);
+            backdrop-filter: blur(20px);
+        }
+
+        .nav.scrolled {
+            padding: 12px 40px;
+            box-shadow: 0 2px 40px rgba(15, 34, 25, 0.08);
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--forest);
+            letter-spacing: 1px;
+        }
+
+        .nav-logo span { color: var(--coral); }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--forest);
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a.active { color: var(--coral); }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--coral);
+            transition: width 0.3s var(--ease-smooth);
+        }
+
+        .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover { color: var(--coral); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-cta {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--cream);
+            background: var(--forest);
+            padding: 12px 28px;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            background: var(--coral);
+            transform: translateY(-1px);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 26px;
+            height: 2px;
+            background: var(--forest);
+            transition: all 0.3s;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--cream);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+            opacity: 1;
+        }
+
+        .mobile-menu a {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--forest);
+            transition: color 0.3s;
+        }
+
+        .mobile-menu a:hover { color: var(--coral); }
+
+        /* ─── MENU HERO ─── */
+        .menu-hero {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 100%);
+            overflow: hidden;
+            padding: 140px 20px 80px;
+        }
+
+        .menu-hero-bg-circle {
+            position: absolute;
+            width: 520px;
+            height: 520px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--sunset), var(--coral-light), var(--gold-light));
+            opacity: 0.15;
+            top: 5%;
+            right: -8%;
+            animation: floatCircle 22s ease-in-out infinite;
+        }
+
+        .menu-hero-bg-circle:nth-child(2) {
+            width: 380px;
+            height: 380px;
+            top: 45%;
+            left: -6%;
+            opacity: 0.1;
+            background: linear-gradient(135deg, var(--forest-light), var(--forest));
+            animation-delay: -10s;
+            animation-duration: 28s;
+        }
+
+        @keyframes floatCircle {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -20px) scale(1.05); }
+            66% { transform: translate(-20px, 15px) scale(0.95); }
+        }
+
+        .menu-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .menu-hero-eyebrow {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: fadeUp 1s var(--ease-smooth) 0.3s forwards;
+        }
+
+        .menu-hero-title {
+            font-family: var(--font-display);
+            font-weight: 900;
+            line-height: 0.95;
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: fadeUp 1s var(--ease-smooth) 0.5s forwards;
+        }
+
+        .menu-hero-title .our {
+            display: block;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-style: italic;
+            font-weight: 400;
+            color: var(--forest);
+        }
+
+        .menu-hero-title .menu-word {
+            display: block;
+            font-size: clamp(4.5rem, 14vw, 10rem);
+            color: var(--forest-dark);
+            letter-spacing: -2px;
+            text-shadow: 2px 2px 0 var(--coral-light);
+        }
+
+        .menu-hero-subtitle {
+            font-family: var(--font-elegant);
+            font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+            font-style: italic;
+            color: var(--forest-light);
+            margin-bottom: 14px;
+            opacity: 0;
+            animation: fadeUp 1s var(--ease-smooth) 0.7s forwards;
+        }
+
+        .menu-hero-tagline {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            opacity: 0;
+            animation: fadeUp 1s var(--ease-smooth) 0.9s forwards;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─── DIETARY LEGEND ─── */
+        .dietary-legend {
+            background: var(--cream);
+            padding: 30px 40px;
+            border-bottom: 1px solid var(--sand);
+        }
+
+        .legend-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            font-size: 0.78rem;
+            color: var(--forest-light);
+        }
+
+        .legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .legend-badge {
+            display: inline-block;
+            min-width: 22px;
+            height: 22px;
+            padding: 0 6px;
+            border-radius: 50%;
+            background: var(--forest);
+            color: var(--cream);
+            font-size: 0.65rem;
+            line-height: 22px;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 0;
+        }
+
+        .legend-badge.gf { background: var(--gold); }
+        .legend-badge.s { background: var(--coral); }
+
+        /* ─── CATEGORY TABS ─── */
+        .menu-tabs-wrap {
+            position: sticky;
+            top: 70px;
+            z-index: 50;
+            background: rgba(250, 243, 235, 0.96);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--sand);
+        }
+
+        .menu-tabs {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 6px;
+            padding: 18px 40px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .menu-tabs::-webkit-scrollbar { display: none; }
+
+        .menu-tab {
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--forest-light);
+            padding: 10px 18px;
+            border-radius: 2px;
+            transition: all 0.3s var(--ease-smooth);
+            white-space: nowrap;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .menu-tab:hover {
+            color: var(--coral);
+            border-color: var(--coral-light);
+        }
+
+        .menu-tab.active {
+            background: var(--forest);
+            color: var(--cream);
+            border-color: var(--forest);
+        }
+
+        /* ─── SEASONAL SPECIALS ─── */
+        .seasonal-section {
+            padding: 100px 40px 40px;
+            background: var(--cream);
+        }
+
+        .seasonal-card {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--forest-dark) 0%, var(--forest) 100%);
+            color: var(--cream);
+            border-radius: 6px;
+            padding: 60px 50px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(15, 34, 25, 0.18);
+        }
+
+        .seasonal-card::before {
+            content: '';
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--sunset));
+            opacity: 0.18;
+            top: -80px;
+            right: -80px;
+        }
+
+        .seasonal-card::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--coral), var(--coral-dark));
+            opacity: 0.15;
+            bottom: -60px;
+            left: -60px;
+        }
+
+        .seasonal-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .seasonal-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .seasonal-subtitle {
+            font-family: var(--font-elegant);
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--sand);
+            margin-bottom: 40px;
+            max-width: 600px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .seasonal-items {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .seasonal-item {
+            padding: 22px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .seasonal-item-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+
+        .seasonal-item-name {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--cream);
+        }
+
+        .seasonal-item-price {
+            font-family: var(--font-elegant);
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            white-space: nowrap;
+        }
+
+        .seasonal-item-desc {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: rgba(232, 221, 208, 0.8);
+        }
+
+        /* ─── MENU CATEGORIES ─── */
+        .menu-content {
+            background: var(--cream);
+            padding: 60px 40px 100px;
+        }
+
+        .menu-category-block {
+            max-width: 1200px;
+            margin: 0 auto 90px;
+            scroll-margin-top: 160px;
+        }
+
+        .category-header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .category-eyebrow {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 12px;
+        }
+
+        .category-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+            font-weight: 700;
+            color: var(--forest-dark);
+            line-height: 1.05;
+            margin-bottom: 14px;
+        }
+
+        .category-subtitle {
+            font-family: var(--font-elegant);
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--forest-light);
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        .category-note {
+            display: inline-block;
+            margin-top: 14px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            padding: 6px 16px;
+            border: 1px solid var(--gold);
+            border-radius: 999px;
+        }
+
+        .category-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            max-width: 320px;
+            margin: 18px auto 0;
+        }
+
+        .category-divider .line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--coral-light), transparent);
+        }
+
+        .category-divider .icon {
+            color: var(--coral);
+            font-size: 1rem;
+        }
+
+        .menu-items-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 36px 60px;
+        }
+
+        .menu-item-row {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding-bottom: 22px;
+            border-bottom: 1px dashed rgba(27, 58, 45, 0.15);
+        }
+
+        .menu-item-row .row-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 16px;
+        }
+
+        .menu-item-row .item-name {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--forest-dark);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .menu-item-row .item-price {
+            font-family: var(--font-elegant);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--gold);
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+        }
+
+        .menu-item-row .item-desc {
+            font-family: var(--font-elegant);
+            font-size: 1rem;
+            line-height: 1.55;
+            color: var(--forest-light);
+            font-style: italic;
+        }
+
+        .badge {
+            display: inline-block;
+            min-width: 20px;
+            height: 20px;
+            padding: 0 5px;
+            border-radius: 50%;
+            background: var(--forest);
+            color: var(--cream);
+            font-family: var(--font-body);
+            font-size: 0.6rem;
+            line-height: 20px;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 0;
+            vertical-align: middle;
+        }
+
+        .badge.gf { background: var(--gold); }
+        .badge.s { background: var(--coral); }
+
+        /* Dark category variant — for cocktails / drinks */
+        .menu-category-block.dark {
+            background: var(--forest-dark);
+            color: var(--cream);
+            padding: 70px 50px;
+            border-radius: 6px;
+            max-width: 1200px;
+        }
+
+        .menu-category-block.dark .category-eyebrow { color: var(--gold-light); }
+        .menu-category-block.dark .category-title { color: var(--cream); }
+        .menu-category-block.dark .category-subtitle { color: var(--sand); }
+        .menu-category-block.dark .menu-item-row { border-bottom-color: rgba(255,255,255,0.08); }
+        .menu-category-block.dark .menu-item-row .item-name { color: var(--cream); }
+        .menu-category-block.dark .menu-item-row .item-desc { color: rgba(232, 221, 208, 0.7); }
+        .menu-category-block.dark .menu-item-row .item-price { color: var(--gold-light); }
+
+        /* ─── CTA BAND ─── */
+        .menu-cta-band {
+            background: linear-gradient(135deg, var(--coral), var(--sunset));
+            padding: 80px 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .menu-cta-band h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: white;
+        }
+
+        .menu-cta-band p {
+            font-family: var(--font-elegant);
+            font-size: 1.15rem;
+            font-style: italic;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 32px;
+            max-width: 540px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .menu-cta-band .btn-light {
+            display: inline-block;
+            padding: 16px 40px;
+            background: white;
+            color: var(--forest);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: all 0.4s var(--ease-smooth);
+        }
+
+        .menu-cta-band .btn-light:hover {
+            background: var(--forest);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+        }
+
+        /* ─── FOOTER ─── */
+        .footer {
+            background: var(--forest-dark);
+            color: var(--cream);
+            padding: 80px 40px 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto 60px;
+        }
+
+        .footer-brand h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            font-family: var(--font-elegant);
+            font-size: 1.05rem;
+            color: var(--sand);
+            line-height: 1.7;
+            max-width: 350px;
+        }
+
+        .footer-col h4 {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 12px; }
+
+        .footer-col a {
+            font-size: 0.9rem;
+            color: var(--sand);
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover { color: var(--coral-light); }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            font-size: 0.75rem;
+            color: rgba(232, 221, 208, 0.5);
+        }
+
+        .footer-socials { display: flex; gap: 20px; }
+
+        .footer-socials a {
+            font-size: 0.8rem;
+            color: var(--sand);
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .footer-socials a:hover { color: var(--coral-light); }
+
+        /* ─── REVEAL ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s var(--ease-smooth);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .menu-items-grid { grid-template-columns: 1fr; gap: 28px; }
+            .seasonal-items { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .menu-category-block.dark { padding: 50px 30px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta { display: none; }
+            .menu-toggle { display: flex; }
+            .nav { padding: 16px 24px; }
+            .menu-tabs-wrap { top: 60px; }
+            .menu-tabs { padding: 14px 24px; gap: 4px; }
+            .menu-tab { font-size: 0.68rem; padding: 8px 14px; letter-spacing: 2px; }
+            .menu-hero { padding: 120px 20px 60px; min-height: 60vh; }
+            .seasonal-section { padding: 70px 24px 30px; }
+            .seasonal-card { padding: 40px 26px; }
+            .menu-content { padding: 40px 24px 70px; }
+            .menu-category-block { margin-bottom: 70px; }
+            .legend-inner { gap: 16px; }
+            .footer { padding: 60px 24px 30px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+            .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+            .menu-cta-band { padding: 60px 24px; }
+        }
+
+        @media (max-width: 480px) {
+            .menu-hero-title .menu-word { letter-spacing: -1px; }
+            .dietary-legend { padding: 22px 20px; }
+            .legend-inner { font-size: 0.7rem; gap: 14px; }
+            .seasonal-card { padding: 36px 22px; }
+            .seasonal-item-name { font-size: 1.05rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <a href="index.html" class="nav-logo">La <span>Placita</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="menu.html" class="active">Menu</a></li>
+            <li><a href="index.html#experience">Gallery</a></li>
+            <li><a href="index.html#events">Events</a></li>
+            <li><a href="index.html#reservations">Reservations</a></li>
+        </ul>
+        <a href="index.html#reservations" class="nav-cta">Reserve</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html#about" onclick="closeMobileMenu()">About</a>
+        <a href="menu.html" onclick="closeMobileMenu()">Menu</a>
+        <a href="index.html#experience" onclick="closeMobileMenu()">Gallery</a>
+        <a href="index.html#events" onclick="closeMobileMenu()">Events</a>
+        <a href="index.html#reservations" onclick="closeMobileMenu()">Reservations</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="menu-hero">
+        <div class="menu-hero-bg-circle"></div>
+        <div class="menu-hero-bg-circle"></div>
+        <div class="menu-hero-content">
+            <p class="menu-hero-eyebrow">La Cocina &amp; La Barra</p>
+            <h1 class="menu-hero-title">
+                <span class="our">Our</span>
+                <span class="menu-word">Menu</span>
+            </h1>
+            <p class="menu-hero-subtitle">Island-inspired, Brooklyn-crafted</p>
+            <p class="menu-hero-tagline">Sabor &middot; Tradici&oacute;n &middot; Rooftop</p>
+        </div>
+    </section>
+
+    <!-- Dietary Legend -->
+    <div class="dietary-legend">
+        <div class="legend-inner">
+            <span class="legend-item"><span class="legend-badge">V</span> Vegetarian</span>
+            <span class="legend-item"><span class="legend-badge gf">GF</span> Gluten-Free</span>
+            <span class="legend-item"><span class="legend-badge s">S</span> Spicy</span>
+            <span class="legend-item">Prices subject to change &middot; 20% gratuity for parties of 6+</span>
+        </div>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="menu-tabs-wrap">
+        <nav class="menu-tabs" id="menuTabs">
+            <a class="menu-tab active" href="#cocktails">Cocktails</a>
+            <a class="menu-tab" href="#mocktails">Mocktails</a>
+            <a class="menu-tab" href="#beer-wine">Beer &amp; Wine</a>
+            <a class="menu-tab" href="#small-plates">Small Plates</a>
+            <a class="menu-tab" href="#entrees">Entr&eacute;es</a>
+            <a class="menu-tab" href="#sides">Sides</a>
+            <a class="menu-tab" href="#desserts">Desserts</a>
+            <a class="menu-tab" href="#brunch">Brunch</a>
+        </nav>
+    </div>
+
+    <!-- Seasonal Specials -->
+    <section class="seasonal-section">
+        <div class="seasonal-card reveal">
+            <span class="seasonal-tag">&#9733; Seasonal Specials &#9733;</span>
+            <h2 class="seasonal-title">Sabores de Temporada</h2>
+            <p class="seasonal-subtitle">Limited-time creations from Chef Mart&iacute;nez and our head bartender, inspired by what's fresh on the island this season.</p>
+            <div class="seasonal-items">
+                <div class="seasonal-item">
+                    <div class="seasonal-item-head">
+                        <span class="seasonal-item-name">Quenepa Spritz</span>
+                        <span class="seasonal-item-price">$18</span>
+                    </div>
+                    <p class="seasonal-item-desc">Fresh quenepa (Spanish lime) puree, prosecco, white rum, basil, and a splash of soda. Served over crushed ice.</p>
+                </div>
+                <div class="seasonal-item">
+                    <div class="seasonal-item-head">
+                        <span class="seasonal-item-name">Chillo en Hoja de Pl&aacute;tano</span>
+                        <span class="seasonal-item-price">$38</span>
+                    </div>
+                    <p class="seasonal-item-desc">Whole red snapper steamed in banana leaf with sofrito, citrus, and aji dulce. Served with arroz con coco.</p>
+                </div>
+                <div class="seasonal-item">
+                    <div class="seasonal-item-head">
+                        <span class="seasonal-item-name">Mango-Habanero Pork Belly</span>
+                        <span class="seasonal-item-price">$19</span>
+                    </div>
+                    <p class="seasonal-item-desc">Crispy braised pork belly glazed with mango-habanero reduction, pickled onion, and toasted coconut. <span class="badge s">S</span></p>
+                </div>
+                <div class="seasonal-item">
+                    <div class="seasonal-item-head">
+                        <span class="seasonal-item-name">Coconut Tres Leches</span>
+                        <span class="seasonal-item-price">$13</span>
+                    </div>
+                    <p class="seasonal-item-desc">House sponge cake soaked in three milks plus coconut cream, finished with toasted coconut and fresh passion fruit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Categories -->
+    <main class="menu-content">
+
+        <!-- COCKTAILS -->
+        <section class="menu-category-block dark reveal" id="cocktails">
+            <header class="category-header">
+                <p class="category-eyebrow">La Barra</p>
+                <h2 class="category-title">Cocktails</h2>
+                <p class="category-subtitle">Tropical sips, elevated &mdash; built around Caribbean rums and bright island fruit.</p>
+                <div class="category-divider"><span class="line"></span><span class="icon">&#9753;</span><span class="line"></span></div>
+            </header>
+            <div class="menu-items-grid">
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Coquito Colada</span>
+                        <span class="item-price">$16</span>
+                    </div>
+                    <p class="item-desc">Aged Puerto Rican rum, coconut cream, condensed milk, cinnamon, nutmeg. Our signature winter classic year-round.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Sunset en Borinquen</span>
+                        <span class="item-price">$17</span>
+                    </div>
+                    <p class="item-desc">Aged rum, passion fruit, fresh lime, guava nectar, and a smoked rosemary sprig. Drinks like the rooftop at golden hour.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Old San Juan Sour</span>
+                        <span class="item-price">$18</span>
+                    </div>
+                    <p class="item-desc">Pisco, tamarind, fresh lemon, egg white, Angostura bitters. Velvety, tart, and dressed in lace.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">La Placita Mojito</span>
+                        <span class="item-price">$15</span>
+                    </div>
+                    <p class="item-desc">House white rum, hand-clapped mint, lime, pure sugarcane syrup, soda. The way it should be.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Maracuy&aacute; Margarita</span>
+                        <span class="item-price">$17</span>
+                    </div>
+                    <p class="item-desc">Blanco tequila, passion fruit, triple sec, lime, smoked chili-salt rim. <span class="badge s">S</span></p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Pi&ntilde;a del Caribe</span>
+                        <span class="item-price">$16</span>
+                    </div>
+                    <p class="item-desc">Charred pineapple, dark rum, lime, demerara, and a float of overproof. Tiki by way of San Juan.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Guayaba Paloma</span>
+                        <span class="item-price">$16</span>
+                    </div>
+                    <p class="item-desc">Reposado tequila, fresh guava, grapefruit, lime, Tajin rim, sparkling. Bright and just a little dirty.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Don Q Manhattan</span>
+                        <span class="item-price">$19</span>
+                    </div>
+                    <p class="item-desc">Don Q a&ntilde;ejo, sweet vermouth, mole bitters, brandied cherry. Stirred, never shaken.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Pi&ntilde;a Picante</span>
+                        <span class="item-price">$17</span>
+                    </div>
+                    <p class="item-desc">Mezcal, pineapple, lime, agave, muddled jalape&ntilde;o, cilantro tincture. Smoke, fire, sweet. <span class="badge s">S</span></p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Vieques Rum Punch</span>
+                        <span class="item-price">$15</span>
+                    </div>
+                    <p class="item-desc">Three-rum blend, orange, pineapple, lime, grenadine, fresh nutmeg. Served tall with a paper umbrella, no apologies.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Espresso Coqu&iacute;</span>
+                        <span class="item-price">$17</span>
+                    </div>
+                    <p class="item-desc">Spiced rum, espresso, vanilla, coquito cream, dusted cocoa. The nightcap that starts the night.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Hibiscus Daiquiri</span>
+                        <span class="item-price">$16</span>
+                    </div>
+                    <p class="item-desc">White rum, house hibiscus syrup, fresh lime, orange flower water. A floral riff on the original.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MOCKTAILS -->
+        <section class="menu-category-block reveal" id="mocktails">
+            <header class="category-header">
+                <p class="category-eyebrow">Sin Alcohol</p>
+                <h2 class="category-title">Mocktails</h2>
+                <p class="category-subtitle">Zero-proof, full flavor &mdash; for designated drivers, daytime sippers, and anyone who wants in on the island.</p>
+                <div class="category-divider"><span class="line"></span><span class="icon">&#9753;</span><span class="line"></span></div>
+            </header>
+            <div class="menu-items-grid">
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Virgin Coquito</span>
+                        <span class="item-price">$10</span>
+                    </div>
+                    <p class="item-desc">Coconut cream, condensed milk, cinnamon, nutmeg, vanilla. All the comfort, none of the rum.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Tropical Sun-Down</span>
+                        <span class="item-price">$11</span>
+                    </div>
+                    <p class="item-desc">Mango, passion fruit, lime, ginger beer, smoked rosemary garnish. Bright, fizzy, layered.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Cucumber-Hibiscus Cooler</span>
+                        <span class="item-price">$10</span>
+                    </div>
+                    <p class="item-desc">Cold-pressed cucumber, hibiscus tea, lime, mint, sparkling water. <span class="badge">V</span> <span class="badge gf">GF</span></p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Guava Sour Zero</span>
+                        <span class="item-price">$11</span>
+                    </div>
+                    <p class="item-desc">Fresh guava, lemon, aquafaba, agave, bitters. Frothy and sophisticated.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Maracuy&aacute; Spritz N/A</span>
+                        <span class="item-price">$11</span>
+                    </div>
+                    <p class="item-desc">Passion fruit, elderflower cordial, sparkling grape, soda, orange peel. As celebratory as it sounds.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BEER & WINE -->
+        <section class="menu-category-block dark reveal" id="beer-wine">
+            <header class="category-header">
+                <p class="category-eyebrow">Cervezas &amp; Vinos</p>
+                <h2 class="category-title">Beer &amp; Wine</h2>
+                <p class="category-subtitle">A short, sharp list &mdash; local brews, island lagers, and rooftop-friendly bottles.</p>
+                <div class="category-divider"><span class="line"></span><span class="icon">&#9753;</span><span class="line"></span></div>
+            </header>
+            <div class="menu-items-grid">
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Medalla Light</span>
+                        <span class="item-price">$7</span>
+                    </div>
+                    <p class="item-desc">Puerto Rico's hometown lager. Crisp, light, ice-cold. The unofficial beer of the rooftop.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Magna Premium</span>
+                        <span class="item-price">$8</span>
+                    </div>
+                    <p class="item-desc">Smooth Puerto Rican pilsner with a clean finish. Pairs beautifully with anything fried.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Brooklyn Lager</span>
+                        <span class="item-price">$8</span>
+                    </div>
+                    <p class="item-desc">Hometown amber lager &mdash; toasty malt, dry finish. Local pride in a glass.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Modelo Especial</span>
+                        <span class="item-price">$8</span>
+                    </div>
+                    <p class="item-desc">Mexican pilsner-style lager with a touch of orange. Served with lime, of course.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Albari&ntilde;o, Rias Baixas</span>
+                        <span class="item-price">$14 / $52</span>
+                    </div>
+                    <p class="item-desc">Spanish white &mdash; stone fruit, sea spray, snappy acidity. Made for ceviche.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Ros&eacute;, Provence</span>
+                        <span class="item-price">$13 / $48</span>
+                    </div>
+                    <p class="item-desc">Pale, dry, strawberry-and-melon. The official drink of any rooftop, anywhere.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Malbec, Mendoza</span>
+                        <span class="item-price">$13 / $48</span>
+                    </div>
+                    <p class="item-desc">Plum, violet, soft tannin. Built to stand up to churrasco.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Cava Brut</span>
+                        <span class="item-price">$12 / $44</span>
+                    </div>
+                    <p class="item-desc">Crisp Spanish bubbles &mdash; brioche, citrus, fine bead. Always say yes.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SMALL PLATES / APPETIZERS -->
+        <section class="menu-category-block reveal" id="small-plates">
+            <header class="category-header">
+                <p class="category-eyebrow">Para Compartir</p>
+                <h2 class="category-title">Small Plates</h2>
+                <p class="category-subtitle">The way to eat at La Placita &mdash; pick four, set them in the middle, pass them around.</p>
+                <div class="category-divider"><span class="line"></span><span class="icon">&#9753;</span><span class="line"></span></div>
+            </header>
+            <div class="menu-items-grid">
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Tostones con Guacamole <span class="badge">V</span> <span class="badge gf">GF</span></span>
+                        <span class="item-price">$14</span>
+                    </div>
+                    <p class="item-desc">Twice-fried green plantains, smashed avocado, pico de gallo, chili-lime salt.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Empanadas de Carne</span>
+                        <span class="item-price">$13</span>
+                    </div>
+                    <p class="item-desc">Hand-folded empanadas with seasoned beef, sofrito, manzanilla olives, raisins. Served with cilantro crema.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Ceviche Tropical <span class="badge gf">GF</span></span>
+                        <span class="item-price">$16</span>
+                    </div>
+                    <p class="item-desc">Daily catch in lime leche de tigre, mango, red onion, habanero, cilantro. Crispy plantain chips. <span class="badge s">S</span></p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Alcapurrias</span>
+                        <span class="item-price">$12</span>
+                    </div>
+                    <p class="item-desc">Yautia and green banana fritters stuffed with picadillo. Served with house aj&iacute;li-mojili.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Queso Fundido</span>
+                        <span class="item-price">$15</span>
+                    </div>
+                    <p class="item-desc">Bubbling Oaxaca cheese, house chorizo, charred poblano, warm flour tortillas.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Bacalaitos</span>
+                        <span class="item-price">$13</span>
+                    </div>
+                    <p class="item-desc">Crispy salt-cod fritters, lime aioli, pickled jalape&ntilde;o. Beachfront classic.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Pinchos de Pollo</span>
+                        <span class="item-price">$14</span>
+                    </div>
+                    <p class="item-desc">Adobo-marinated chicken skewers grilled over open flame, BBQ guava glaze, toasted bread.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Chicharr&oacute;n de Pollo</span>
+                        <span class="item-price">$15</span>
+                    </div>
+                    <p class="item-desc">Crispy bone-in chicken nuggets in adobo, garlic-lime mojo on the side.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Sorullitos de Ma&iacute;z <span class="badge">V</span></span>
+                        <span class="item-price">$11</span>
+                    </div>
+                    <p class="item-desc">Sweet corn fritters with melty queso blanco inside, mayo-ketchup on the side. Don't judge until you try.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Camarones al Ajillo <span class="badge gf">GF</span></span>
+                        <span class="item-price">$17</span>
+                    </div>
+                    <p class="item-desc">Wild shrimp sauteed in garlic, butter, white wine, parsley, lemon. Bread for the sauce.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ENTREES -->
+        <section class="menu-category-block dark reveal" id="entrees">
+            <header class="category-header">
+                <p class="category-eyebrow">Platos Principales</p>
+                <h2 class="category-title">Entr&eacute;es</h2>
+                <p class="category-subtitle">Hearty island plates, slow-cooked traditions, and Brooklyn-sized portions.</p>
+                <div class="category-divider"><span class="line"></span><span class="icon">&#9753;</span><span class="line"></span></div>
+            </header>
+            <div class="menu-items-grid">
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Pernil Roast <span class="badge gf">GF</span></span>
+                        <span class="item-price">$26</span>
+                    </div>
+                    <p class="item-desc">Slow-roasted pork shoulder marinated in garlic, oregano, sour orange. Crispy skin, fall-apart inside. Served with arroz con gandules and maduros.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Mofongo de Camarones</span>
+                        <span class="item-price">$28</span>
+                    </div>
+                    <p class="item-desc">Garlic-mashed green plantain with chicharron, topped with shrimp in a creamy creole sauce.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Churrasco a la Plancha <span class="badge gf">GF</span></span>
+                        <span class="item-price">$32</span>
+                    </div>
+                    <p class="item-desc">10oz grilled skirt steak, house chimichurri, crispy yuca fries, charred lime.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Arroz con Pollo</span>
+                        <span class="item-price">$22</span>
+                    </div>
+                    <p class="item-desc">Saffron-and-sofrito rice, pulled roasted chicken, sweet peppers, peas, capers. Crispy bottom guaranteed.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Whole Fried Snapper</span>
+                        <span class="item-price">$34</span>
+                    </div>
+                    <p class="item-desc">Crispy 1.5lb red snapper, coconut rice, salsa verde, fried sweet plantains. Eat with your hands. <span class="badge gf">GF</span></p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Carne Guisada</span>
+                        <span class="item-price">$24</span>
+                    </div>
+                    <p class="item-desc">Slow-braised beef stew with potato, carrot, sofrito, olives. White rice and tostones.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Mofongo Vegetariano <span class="badge">V</span> <span class="badge gf">GF</span></span>
+                        <span class="item-price">$22</span>
+                    </div>
+                    <p class="item-desc">Garlic plantain mash topped with sauteed wild mushrooms, sweet peppers, garlic-tomato broth.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Camarones al Coco</span>
+                        <span class="item-price">$29</span>
+                    </div>
+                    <p class="item-desc">Coconut-cream shrimp curry with aji dulce, served over white rice with fried plantain.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Bistec Encebollado</span>
+                        <span class="item-price">$25</span>
+                    </div>
+                    <p class="item-desc">Thinly pounded sirloin smothered in citrus-marinated onions, white rice, beans, tostones.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SIDES -->
+        <section class="menu-category-block reveal" id="sides">
+            <header class="category-header">
+                <p class="category-eyebrow">Acompa&ntilde;antes</p>
+                <h2 class="category-title">Sides</h2>
+                <p class="category-subtitle">Build your plate &mdash; the supporting cast that often steals the show.</p>
+                <div class="category-divider"><span class="line"></span><span class="icon">&#9753;</span><span class="line"></span></div>
+            </header>
+            <div class="menu-items-grid">
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Arroz con Gandules <span class="badge">V</span> <span class="badge gf">GF</span></span>
+                        <span class="item-price">$8</span>
+                    </div>
+                    <p class="item-desc">Rice with pigeon peas, sofrito, smoky annatto. The national dish in side form.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Habichuelas Guisadas <span class="badge">V</span> <span class="badge gf">GF</span></span>
+                        <span class="item-price">$7</span>
+                    </div>
+                    <p class="item-desc">Stewed pink beans with sofrito, calabaza pumpkin, cilantro.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Maduros <span class="badge">V</span> <span class="badge gf">GF</span></span>
+                        <span class="item-price">$7</span>
+                    </div>
+                    <p class="item-desc">Sweet ripe plantains, caramelized in butter. Sticky, jammy, perfect.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Yuca con Mojo <span class="badge">V</span> <span class="badge gf">GF</span></span>
+                        <span class="item-price">$8</span>
+                    </div>
+                    <p class="item-desc">Boiled yuca tossed in garlic-citrus mojo, finished with crispy onions.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Ensalada Tropical <span class="badge">V</span> <span class="badge gf">GF</span></span>
+                        <span class="item-price">$10</span>
+                    </div>
+                    <p class="item-desc">Bibb lettuce, mango, avocado, hearts of palm, candied pepitas, passion fruit vinaigrette.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DESSERTS -->
+        <section class="menu-category-block dark reveal" id="desserts">
+            <header class="category-header">
+                <p class="category-eyebrow">Postres</p>
+                <h2 class="category-title">Desserts</h2>
+                <p class="category-subtitle">Sweet endings &mdash; abuela's classics with a Brooklyn twist.</p>
+                <div class="category-divider"><span class="line"></span><span class="icon">&#9753;</span><span class="line"></span></div>
+            </header>
+            <div class="menu-items-grid">
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Tres Leches Cl&aacute;sico</span>
+                        <span class="item-price">$11</span>
+                    </div>
+                    <p class="item-desc">Sponge cake soaked in three milks, whipped cream, fresh berries. Dangerously light.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Flan de Coco</span>
+                        <span class="item-price">$10</span>
+                    </div>
+                    <p class="item-desc">Silky coconut flan with burnt-sugar caramel and toasted coconut.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Churros con Chocolate <span class="badge">V</span></span>
+                        <span class="item-price">$10</span>
+                    </div>
+                    <p class="item-desc">Cinnamon-sugar churros with warm bittersweet dipping chocolate and dulce de leche.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Arroz con Dulce</span>
+                        <span class="item-price">$9</span>
+                    </div>
+                    <p class="item-desc">Coconut rice pudding with cinnamon, ginger, raisins, clove. Served warm or chilled.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Mango Sorbet <span class="badge">V</span> <span class="badge gf">GF</span></span>
+                        <span class="item-price">$8</span>
+                    </div>
+                    <p class="item-desc">House-churned Ataulfo mango sorbet with chili-lime salt and fresh mint.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BRUNCH -->
+        <section class="menu-category-block reveal" id="brunch">
+            <header class="category-header">
+                <p class="category-eyebrow">El Domingo &mdash; Saturdays &amp; Sundays, 11am to 3pm</p>
+                <h2 class="category-title">Brunch</h2>
+                <p class="category-subtitle">Late-morning rooftop, mimosa in hand. Includes one welcome drink with any entr&eacute;e.</p>
+                <span class="category-note">Weekends Only</span>
+                <div class="category-divider"><span class="line"></span><span class="icon">&#9753;</span><span class="line"></span></div>
+            </header>
+            <div class="menu-items-grid">
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Mallorca Sandwich</span>
+                        <span class="item-price">$15</span>
+                    </div>
+                    <p class="item-desc">Sweet pan dulce stuffed with ham, eggs, melted cheese, dusted with powdered sugar. Trust the contradiction.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Huevos La Placita</span>
+                        <span class="item-price">$17</span>
+                    </div>
+                    <p class="item-desc">Two eggs any style, pernil hash, maduros, avocado, salsa verde, warm tortillas.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Mofongo Brunch Bowl</span>
+                        <span class="item-price">$18</span>
+                    </div>
+                    <p class="item-desc">Garlic mofongo, two over-easy eggs, crispy bacon, sofrito hollandaise. Carb hug.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Pancakes de Coco <span class="badge">V</span></span>
+                        <span class="item-price">$15</span>
+                    </div>
+                    <p class="item-desc">Fluffy coconut pancakes, dulce de leche drizzle, toasted coconut, fresh tropical fruit.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Avocado &amp; Tostones <span class="badge">V</span> <span class="badge gf">GF</span></span>
+                        <span class="item-price">$14</span>
+                    </div>
+                    <p class="item-desc">Smashed avocado on crispy tostones, pickled onion, soft-boiled egg, chili crunch, lime.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Chilaquiles Verdes</span>
+                        <span class="item-price">$16</span>
+                    </div>
+                    <p class="item-desc">Crispy tortillas tossed in salsa verde, two eggs, queso fresco, crema, pickled red onion. <span class="badge s">S</span></p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Bottomless Mimosas</span>
+                        <span class="item-price">$28 / 90 min</span>
+                    </div>
+                    <p class="item-desc">Cava with fresh-squeezed orange, passion fruit, or guava juice. Must be ordered with brunch entr&eacute;e.</p>
+                </div>
+                <div class="menu-item-row">
+                    <div class="row-head">
+                        <span class="item-name">Caf&eacute; Bustelo Latte</span>
+                        <span class="item-price">$6</span>
+                    </div>
+                    <p class="item-desc">Espresso pulled from Bustelo beans, steamed milk, brown sugar, cinnamon dust.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- CTA Band -->
+    <section class="menu-cta-band">
+        <h2>Ready to taste it for yourself?</h2>
+        <p>Reserve your spot on the rooftop. Walk-ins welcome &mdash; reservations strongly recommended on weekends.</p>
+        <a href="index.html#reservations" class="btn-light">Reserve a Table</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>La Placita Rooftop</h3>
+                <p>Brooklyn's rooftop escape &mdash; where Puerto Rican soul meets New York skyline. Tropical cocktails, authentic Latin cuisine, and unforgettable sunsets.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigate</h4>
+                <ul>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="index.html#experience">Gallery</a></li>
+                    <li><a href="index.html#events">Events</a></li>
+                    <li><a href="index.html#reservations">Reservations</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Hours</h4>
+                <ul>
+                    <li>Mon &ndash; Thu: 4PM &ndash; 12AM</li>
+                    <li>Fri &ndash; Sat: 2PM &ndash; 2AM</li>
+                    <li>Sunday: 12PM &ndash; 10PM</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">TikTok</a></li>
+                    <li><a href="mailto:info@laplacitarooftop.com">Email Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 La Placita Rooftop. All rights reserved.</p>
+            <div class="footer-socials">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Nav scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile menu
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+        }
+
+        // Reveal animations
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Tab active state on scroll
+        const tabs = document.querySelectorAll('.menu-tab');
+        const sections = Array.from(tabs).map(tab => document.querySelector(tab.getAttribute('href')));
+
+        function setActiveTab() {
+            const scrollY = window.scrollY + 220;
+            let currentIndex = 0;
+            sections.forEach((section, i) => {
+                if (section && section.offsetTop <= scrollY) currentIndex = i;
+            });
+            tabs.forEach((tab, i) => tab.classList.toggle('active', i === currentIndex));
+        }
+        window.addEventListener('scroll', setActiveTab);
+
+        // Smooth scroll with offset for sticky header
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#' || href.length < 2) return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    const top = target.getBoundingClientRect().top + window.scrollY - 140;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
