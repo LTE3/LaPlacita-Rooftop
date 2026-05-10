@@ -86,11 +86,45 @@
   }
   .hero-bg{
     position:absolute;inset:0;
-    background-image:url('rooftop-aerial.jpg'), url('terrace.jpg');
+    background-image:url('terrace.jpg');
     background-size:cover;background-position:center;
     filter:sepia(.18) saturate(1.45) brightness(1.22) contrast(1.05);
     z-index:1;
   }
+
+  /* AERIAL BREAK */
+  .aerial-break{
+    position:relative;width:100vw;height:62vh;min-height:440px;
+    overflow:hidden;margin-left:calc(-50vw + 50%);
+    border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);
+  }
+  .aerial-break-img{
+    position:absolute;inset:0;
+    background-image:url('rooftop-aerial.jpg');
+    background-size:cover;background-position:center;
+    filter:brightness(1.4) saturate(1.6) contrast(1.1);
+  }
+  .aerial-break-overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(135deg, rgba(255,45,120,.15), rgba(232,131,74,.2));
+  }
+  .aerial-break-frame{
+    position:absolute;inset:25px;border:1px solid rgba(245,235,221,.5);
+    pointer-events:none;z-index:2;
+  }
+  .aerial-break-caption{
+    position:absolute;left:50%;bottom:3rem;transform:translateX(-50%);z-index:3;
+    color:var(--cream);text-align:center;
+    font-family:var(--serif);font-style:italic;font-weight:700;
+    font-size:1.4rem;letter-spacing:.5px;
+    text-shadow:0 2px 14px rgba(0,0,0,.4);
+  }
+  .aerial-break-caption span{
+    display:block;font-family:var(--sans);font-style:normal;font-weight:600;
+    font-size:.7rem;letter-spacing:5px;text-transform:uppercase;
+    margin-bottom:.7rem;color:var(--gold);
+  }
+  @media(max-width:768px){.aerial-break{height:48vh;min-height:340px}.aerial-break-caption{font-size:1.1rem;bottom:2rem}}
   .hero-overlay{
     position:absolute;inset:0;z-index:2;
     background:
@@ -428,6 +462,13 @@
     </div>
   </div>
 </section>
+
+<div class="aerial-break reveal">
+  <div class="aerial-break-img"></div>
+  <div class="aerial-break-overlay"></div>
+  <div class="aerial-break-frame"></div>
+  <div class="aerial-break-caption"><span>— Vista Aérea —</span>Doce pisos sobre Brooklyn.</div>
+</div>
 
 <section class="hours" id="hours">
   <div class="hours-inner reveal">
