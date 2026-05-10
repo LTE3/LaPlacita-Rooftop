@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>La Placita Rooftop — Brooklyn, New York</title>
+<meta name="description" content="La Placita Rooftop — a Puerto Rican-inspired rooftop bar in Brooklyn. Tropical cocktails, Latin plates, and skyline sunsets." />
+<link rel="icon" href="favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ---------- RESET & BASE ---------- */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    color: #2C2C2C;
+    background: #FAF3EB;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+  :root {
+    --cream: #FAF3EB;
+    --coral: #D4725C;
+    --sunset: #E8834A;
+    --forest: #1B3A2D;
+    --teal: #2A9D8F;
+    --sky: #89C2D9;
+    --gold: #C5913E;
+    --dark: #2C2C2C;
+  }
+
+  .serif { font-family: 'Playfair Display', serif; }
+
+  /* ---------- NAVIGATION ---------- */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 22px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.4s ease, backdrop-filter 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+    background: transparent;
+  }
+  .nav.scrolled {
+    background: rgba(250, 243, 235, 0.78);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    padding: 14px 48px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #fff;
+    transition: color 0.4s ease;
+  }
+  .nav.scrolled .nav-logo { color: var(--forest); }
+
+  .nav-links {
+    display: flex;
+    gap: 38px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -6px; left: 0;
+    width: 0; height: 1px;
+    background: var(--coral);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover::after { width: 100%; }
+  .nav.scrolled .nav-links a { color: var(--dark); }
+
+  .nav-cta {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 11px 22px;
+    border: 1px solid rgba(255,255,255,0.7);
+    color: #fff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+  .nav-cta:hover { background: var(--coral); border-color: var(--coral); }
+  .nav.scrolled .nav-cta { color: var(--forest); border-color: var(--forest); }
+  .nav.scrolled .nav-cta:hover { background: var(--forest); color: #fff; }
+
+  .hamburger {
+    display: none;
+    width: 28px; height: 22px;
+    position: relative;
+    cursor: pointer;
+  }
+  .hamburger span {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: #fff;
+    transition: all 0.3s ease;
+  }
+  .hamburger span:nth-child(1) { top: 0; }
+  .hamburger span:nth-child(2) { top: 10px; }
+  .hamburger span:nth-child(3) { top: 20px; }
+  .nav.scrolled .hamburger span { background: var(--dark); }
+  .hamburger.active span:nth-child(1) { transform: rotate(45deg); top: 10px; }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: rotate(-45deg); top: 10px; }
+
+  .mobile-menu {
+    position: fixed;
+    top: 0; right: -100%;
+    width: 80%; max-width: 360px;
+    height: 100vh;
+    background: var(--forest);
+    z-index: 99;
+    padding: 100px 40px 40px;
+    transition: right 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .mobile-menu.open { right: 0; }
+  .mobile-menu a {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    font-size: 26px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 14px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    width: 100%;
+    background: url('hero-bg.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(27,58,45,0.35) 50%, rgba(0,0,0,0.7) 100%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 24px;
+    max-width: 900px;
+    animation: heroFade 1.4s ease-out;
+  }
+  @keyframes heroFade {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-logo {
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    margin: 0 auto 32px;
+    border: 2px solid rgba(255,255,255,0.85);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    object-fit: cover;
+    background: var(--cream);
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(60px, 10vw, 130px);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+  }
+  .hero-sub {
+    font-size: clamp(11px, 1.2vw, 14px);
+    font-weight: 500;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+    color: rgba(255,255,255,0.92);
+  }
+  .hero-location {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(15px, 1.6vw, 19px);
+    margin-bottom: 44px;
+    color: rgba(255,255,255,0.85);
+  }
+  .hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 16px 38px;
+    border-radius: 2px;
+    transition: all 0.35s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .btn-primary {
+    background: var(--coral);
+    color: #fff;
+  }
+  .btn-primary:hover {
+    background: var(--sunset);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(212,114,92,0.4);
+  }
+  .btn-outline {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.85);
+  }
+  .btn-outline:hover {
+    background: #fff;
+    color: var(--forest);
+    transform: translateY(-2px);
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 36px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    color: rgba(255,255,255,0.7);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-align: center;
+    animation: bobble 2.4s ease-in-out infinite;
+  }
+  .scroll-indicator::after {
+    content: '';
+    display: block;
+    width: 1px; height: 36px;
+    background: rgba(255,255,255,0.6);
+    margin: 12px auto 0;
+  }
+  @keyframes bobble {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 8px); }
+  }
+
+  /* ---------- SECTIONS ---------- */
+  .section { padding: 130px 48px; }
+
+  /* ABOUT */
+  .about {
+    text-align: center;
+    background: var(--cream);
+  }
+  .about-inner { max-width: 800px; margin: 0 auto; }
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 22px;
+  }
+  .about h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 5vw, 58px);
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--forest);
+    margin-bottom: 32px;
+    letter-spacing: -0.5px;
+  }
+  .about p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #555;
+    font-weight: 300;
+  }
+  .divider {
+    width: 50px; height: 1px;
+    background: var(--gold);
+    margin: 0 auto 36px;
+  }
+
+  /* SPLIT SECTION */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 640px;
+    background: var(--forest);
+  }
+  .split-image {
+    background: url('cocktails.jpg') center/cover no-repeat;
+    position: relative;
+  }
+  .split-image::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.15), rgba(0,0,0,0.05));
+  }
+  .split-content {
+    background: var(--forest);
+    color: #fff;
+    padding: 100px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+  .split-content .eyebrow { color: var(--gold); }
+  .split-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 4.5vw, 56px);
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 28px;
+    color: #fff;
+    letter-spacing: -0.5px;
+  }
+  .split-content p {
+    font-size: 16px;
+    line-height: 1.85;
+    color: rgba(255,255,255,0.78);
+    margin-bottom: 40px;
+    font-weight: 300;
+    max-width: 440px;
+  }
+  .btn-gold {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    align-self: flex-start;
+  }
+  .btn-gold:hover {
+    background: var(--gold);
+    color: var(--forest);
+    transform: translateY(-2px);
+  }
+
+  /* FEATURE CARDS */
+  .features {
+    padding: 130px 48px;
+    background: var(--cream);
+    text-align: center;
+  }
+  .features-header { max-width: 700px; margin: 0 auto 70px; }
+  .features-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 4vw, 48px);
+    font-weight: 500;
+    color: var(--forest);
+    line-height: 1.15;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .feature-card {
+    background: #fff;
+    padding: 60px 40px;
+    border-radius: 4px;
+    text-align: center;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 1px solid rgba(27,58,45,0.06);
+  }
+  .feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 24px 48px rgba(27,58,45,0.12);
+  }
+  .feature-icon {
+    font-size: 44px;
+    margin-bottom: 26px;
+    display: block;
+  }
+  .feature-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--forest);
+    margin-bottom: 14px;
+  }
+  .feature-card p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* PHOTO BAND */
+  .band {
+    position: relative;
+    padding: 160px 48px;
+    background: url('terrace.jpg') center/cover no-repeat;
+    background-attachment: fixed;
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+  }
+  .band::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(27,58,45,0.65), rgba(0,0,0,0.7));
+  }
+  .band-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .band .eyebrow { color: var(--sunset); }
+  .band h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(50px, 7vw, 90px);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -1px;
+    margin-bottom: 50px;
+  }
+  .hours {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+    padding: 36px 0;
+    border-top: 1px solid rgba(255,255,255,0.18);
+    border-bottom: 1px solid rgba(255,255,255,0.18);
+  }
+  .hours-block {
+    text-align: center;
+  }
+  .hours-block .day {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--sunset);
+    margin-bottom: 8px;
+  }
+  .hours-block .time {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 400;
+    color: #fff;
+  }
+  .band-ig {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: rgba(255,255,255,0.85);
+  }
+  .band-ig a { color: #fff; border-bottom: 1px solid var(--sunset); padding-bottom: 2px; }
+
+  /* INSTAGRAM BAR */
+  .ig-bar {
+    background: var(--coral);
+    color: #fff;
+    padding: 64px 48px;
+    text-align: center;
+  }
+  .ig-bar h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 400;
+    margin-bottom: 14px;
+    letter-spacing: -0.3px;
+  }
+  .ig-bar a {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255,255,255,0.7);
+    padding-bottom: 4px;
+    transition: opacity 0.3s ease;
+  }
+  .ig-bar a:hover { opacity: 0.8; }
+
+  /* FOOTER */
+  .footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.75);
+    padding: 56px 48px 36px;
+  }
+  .footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  .footer-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .footer-links a {
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+  }
+  .footer-links a:hover { color: var(--coral); }
+  .footer-copy {
+    text-align: center;
+    margin-top: 36px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* ---------- ANIMATIONS ---------- */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px) {
+    .nav { padding: 18px 24px; }
+    .nav.scrolled { padding: 12px 24px; }
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: block; }
+    .section { padding: 90px 24px; }
+    .split { grid-template-columns: 1fr; }
+    .split-image { min-height: 360px; }
+    .split-content { padding: 70px 36px; }
+    .features-grid { grid-template-columns: 1fr; gap: 20px; }
+    .features { padding: 90px 24px; }
+    .band { padding: 110px 24px; background-attachment: scroll; }
+    .hours { gap: 30px; padding: 28px 0; }
+    .footer-inner { flex-direction: column; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 20px; }
+    .ig-bar { padding: 52px 24px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-buttons { flex-direction: column; width: 100%; max-width: 280px; margin: 0 auto; }
+    .btn { width: 100%; }
+    .hero-logo { width: 90px; height: 90px; margin-bottom: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">La Placita</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="events.html">Events</a></li>
+  </ul>
+  <a href="#reserve" class="nav-cta">Reserve</a>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about">About</a>
+  <a href="menu.html">Menu</a>
+  <a href="events.html">Events</a>
+  <a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener">Instagram</a>
+  <a href="#reserve">Reserve</a>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-content">
+    <img src="logo.jpg" alt="La Placita Rooftop logo" class="hero-logo" />
+    <h1>La Placita</h1>
+    <div class="hero-sub">Rooftop</div>
+    <div class="hero-location">Brooklyn, New York</div>
+    <div class="hero-buttons">
+      <a href="menu.html" class="btn btn-primary">View Menu</a>
+      <a href="events.html" class="btn btn-outline">Events</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">Scroll</div>
+</header>
+
+<!-- ABOUT -->
+<section class="section about" id="about">
+  <div class="about-inner fade-up">
+    <div class="eyebrow">Our Story</div>
+    <h2>Brooklyn Meets the Island</h2>
+    <div class="divider"></div>
+    <p>Tropical cocktails poured under string lights, Latin-inspired plates served family-style, and Manhattan skyline sunsets that linger long after the sun goes down. La Placita brings the warmth of Puerto Rico to a Brooklyn rooftop — an island escape three stories above the street.</p>
+  </div>
+</section>
+
+<!-- SPLIT -->
+<section class="split">
+  <div class="split-image" aria-label="Craft cocktails on the rooftop"></div>
+  <div class="split-content fade-up">
+    <div class="eyebrow">The Bar</div>
+    <h2>Craft Cocktails</h2>
+    <p>From smoky mezcal palomas to passion-fruit daiquiris and house-aged rum old fashioneds, every drink is built around bright island flavors and small-batch spirits. Sip something new — or rediscover a classic done right.</p>
+    <a href="menu.html" class="btn btn-gold">See the Menu</a>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="features-header fade-up">
+    <div class="eyebrow">What Awaits</div>
+    <h2>An Evening on the Roof</h2>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card fade-up">
+      <span class="feature-icon">☀️</span>
+      <h3>Rooftop Views</h3>
+      <p>Three stories above Williamsburg with panoramic views of the Brooklyn and Manhattan skylines.</p>
+    </div>
+    <div class="feature-card fade-up">
+      <span class="feature-icon">🍸</span>
+      <h3>Tropical Drinks</h3>
+      <p>Island-inspired cocktails crafted with fresh juices, premium rums, and house-made syrups.</p>
+    </div>
+    <div class="feature-card fade-up">
+      <span class="feature-icon">🎶</span>
+      <h3>Live Music</h3>
+      <p>Salsa, bomba, and DJ sets every weekend — plus open-air sessions under the stars.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BAND -->
+<section class="band">
+  <div class="band-inner fade-up">
+    <div class="eyebrow">Visit Us</div>
+    <h2>Now Open</h2>
+    <div class="hours">
+      <div class="hours-block">
+        <div class="day">Mon – Thu</div>
+        <div class="time">4PM – 12AM</div>
+      </div>
+      <div class="hours-block">
+        <div class="day">Fri – Sat</div>
+        <div class="time">2PM – 2AM</div>
+      </div>
+      <div class="hours-block">
+        <div class="day">Sunday</div>
+        <div class="time">12PM – 10PM</div>
+      </div>
+    </div>
+    <div class="band-ig">Follow along <a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener">@laplacita.rooftop</a></div>
+  </div>
+</section>
+
+<!-- IG BAR -->
+<section class="ig-bar">
+  <h3>Follow the vibe</h3>
+  <a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener">@laplacita.rooftop</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">La Placita Rooftop</div>
+    <ul class="footer-links">
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener">Instagram</a></li>
+    </ul>
+  </div>
+  <div class="footer-copy">© 2026 La Placita Rooftop · Brooklyn, NY</div>
+</footer>
+
+<script>
+  // ---------- NAV SCROLL STATE ----------
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if (window.scrollY > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ---------- MOBILE MENU ----------
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // ---------- FADE-UP ON SCROLL ----------
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

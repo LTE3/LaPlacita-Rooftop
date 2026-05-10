@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Placita Rooftop — Brooklyn, New York</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* ---------- RESET ---------- */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: #FAF3EB;
+    color: #2C2C2C;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ---------- COLORS ---------- */
+  :root {
+    --cream: #FAF3EB;
+    --coral: #D4725C;
+    --teal: #2A9D8F;
+    --sky: #89C2D9;
+    --charcoal: #2C2C2C;
+  }
+
+  /* ---------- TYPOGRAPHY HELPERS ---------- */
+  .serif { font-family: 'Playfair Display', serif; }
+  .italic { font-style: italic; }
+  .upper { text-transform: uppercase; letter-spacing: 0.18em; }
+
+  /* ---------- NAV ---------- */
+  nav.top {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 48px;
+    background: transparent;
+    transition: background 0.4s ease, padding 0.4s ease;
+  }
+  nav.top.scrolled {
+    background: rgba(250, 243, 235, 0.92);
+    padding: 18px 48px;
+  }
+  nav.top .brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--charcoal);
+  }
+  nav.top .links {
+    display: flex;
+    gap: 36px;
+  }
+  nav.top .links a {
+    font-size: 0.78rem;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.3s ease;
+  }
+  nav.top .links a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0; height: 1px;
+    background: var(--coral);
+    transition: width 0.35s ease;
+  }
+  nav.top .links a:hover { color: var(--coral); }
+  nav.top .links a:hover::after { width: 100%; }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    padding: 120px 48px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero .meta-top {
+    position: absolute;
+    top: 110px;
+    left: 48px;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    opacity: 0.6;
+  }
+  .hero .meta-right {
+    position: absolute;
+    top: 110px;
+    right: 48px;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    opacity: 0.6;
+    text-align: right;
+  }
+  .hero .logo-img {
+    position: absolute;
+    top: 50%;
+    right: 6%;
+    transform: translateY(-50%);
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 30px 80px rgba(44,44,44,0.12);
+    z-index: 2;
+  }
+  .hero-text {
+    position: relative;
+    z-index: 3;
+    margin-left: 2%;
+    max-width: 90%;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: 17vw;
+    line-height: 0.88;
+    color: var(--charcoal);
+    letter-spacing: -0.02em;
+    margin-bottom: 0;
+  }
+  .hero h1 .rooftop {
+    display: block;
+    color: var(--coral);
+    font-style: italic;
+    font-weight: 400;
+    margin-left: 12vw;
+    margin-top: -1.2vw;
+  }
+  .hero .city {
+    margin-top: 32px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.4rem;
+    color: var(--charcoal);
+    opacity: 0.85;
+    margin-left: 2%;
+  }
+  .hero .cta-wrap {
+    margin-top: 48px;
+    margin-left: 2%;
+  }
+  .cta {
+    display: inline-block;
+    padding: 18px 52px;
+    border: 1px solid var(--charcoal);
+    font-size: 0.78rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    background: transparent;
+    transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+    cursor: pointer;
+  }
+  .cta:hover {
+    background: var(--charcoal);
+    color: var(--cream);
+  }
+  .cta.coral { border-color: var(--coral); color: var(--coral); }
+  .cta.coral:hover { background: var(--coral); color: var(--cream); }
+
+  /* ---------- MARQUEE ---------- */
+  .marquee {
+    overflow: hidden;
+    border-top: 1px solid rgba(44,44,44,0.12);
+    border-bottom: 1px solid rgba(44,44,44,0.12);
+    padding: 22px 0;
+    background: var(--cream);
+  }
+  .marquee-track {
+    display: inline-flex;
+    white-space: nowrap;
+    animation: scroll 40s linear infinite;
+    will-change: transform;
+  }
+  .marquee-track span {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.6rem;
+    color: var(--charcoal);
+    opacity: 0.6;
+    padding: 0 32px;
+  }
+  .marquee-track span .dot {
+    color: var(--coral);
+    margin-left: 32px;
+    font-style: normal;
+  }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ---------- ASYMMETRIC SPLIT ---------- */
+  .split {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    align-items: center;
+    padding: 160px 0 160px 0;
+    gap: 80px;
+    position: relative;
+  }
+  .split .photo {
+    position: relative;
+    transform: translateY(40px);
+  }
+  .split .photo img {
+    width: 100%;
+    height: 78vh;
+    object-fit: cover;
+  }
+  .split .photo .caption {
+    position: absolute;
+    bottom: -36px;
+    left: 24px;
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    opacity: 0.55;
+  }
+  .split .text {
+    padding-right: 80px;
+    transform: translateY(-40px);
+  }
+  .split .text .label {
+    font-size: 0.7rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 28px;
+  }
+  .split .text h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 3.4rem;
+    line-height: 1.05;
+    color: var(--charcoal);
+    margin-bottom: 32px;
+    letter-spacing: -0.01em;
+  }
+  .split .text h2 em {
+    color: var(--teal);
+    font-weight: 400;
+  }
+  .split .text p {
+    font-size: 1rem;
+    color: var(--charcoal);
+    opacity: 0.78;
+    margin-bottom: 20px;
+    max-width: 420px;
+  }
+
+  /* ---------- STACKED TEXT ---------- */
+  .stacked {
+    padding: 180px 48px 180px 8%;
+    background: var(--cream);
+  }
+  .stacked .small-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 80px;
+  }
+  .stacked .row {
+    display: flex;
+    align-items: baseline;
+    gap: 48px;
+    border-bottom: 1px solid rgba(44,44,44,0.1);
+    padding: 32px 0;
+    transition: padding 0.6s ease;
+  }
+  .stacked .row:hover { padding-left: 24px; }
+  .stacked .row .word {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 9vw;
+    line-height: 1;
+    color: var(--charcoal);
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+  }
+  .stacked .row:nth-child(2) .word { color: var(--charcoal); }
+  .stacked .row:nth-child(3) .word { color: var(--coral); font-style: italic; }
+  .stacked .row:nth-child(4) .word { color: var(--teal); }
+  .stacked .row .desc {
+    font-size: 0.95rem;
+    color: var(--charcoal);
+    opacity: 0.7;
+    max-width: 320px;
+    margin-bottom: 18px;
+  }
+
+  /* ---------- SINGLE IMAGE ---------- */
+  .full-image {
+    width: 100%;
+    height: 95vh;
+    overflow: hidden;
+  }
+  .full-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ---------- HOURS ---------- */
+  .hours {
+    padding: 200px 48px;
+    text-align: center;
+    background: var(--cream);
+  }
+  .hours .small-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 56px;
+  }
+  .hours h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 4.2rem;
+    line-height: 1.1;
+    color: var(--charcoal);
+    margin-bottom: 80px;
+    letter-spacing: -0.01em;
+  }
+  .hours h3 em {
+    font-style: italic;
+    color: var(--teal);
+  }
+  .hours .schedule {
+    max-width: 520px;
+    margin: 0 auto 80px;
+  }
+  .hours .schedule .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(44,44,44,0.12);
+  }
+  .hours .schedule .row:last-child { border-bottom: none; }
+  .hours .schedule .day {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--charcoal);
+  }
+  .hours .schedule .time {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    color: var(--charcoal);
+    opacity: 0.78;
+  }
+  .hours .ig {
+    margin-top: 40px;
+  }
+  .hours .ig .label {
+    font-size: 0.7rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin-bottom: 12px;
+  }
+  .hours .ig a {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.6rem;
+    color: var(--coral);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+  .hours .ig a:hover { border-bottom-color: var(--coral); }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 48px 48px 36px;
+    text-align: center;
+    background: var(--cream);
+    border-top: 1px solid rgba(44,44,44,0.08);
+  }
+  footer .copy {
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    opacity: 0.7;
+    margin-bottom: 14px;
+  }
+  footer .links {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+  }
+  footer .links a {
+    font-size: 0.68rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    opacity: 0.55;
+    transition: opacity 0.3s ease;
+  }
+  footer .links a:hover { opacity: 1; color: var(--coral); }
+
+  /* ---------- FADE-IN ANIMATION ---------- */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px) {
+    nav.top { padding: 20px 24px; }
+    nav.top.scrolled { padding: 14px 24px; }
+    nav.top .links { gap: 20px; }
+    nav.top .links a { font-size: 0.7rem; letter-spacing: 0.18em; }
+
+    .hero { padding: 100px 24px 60px; }
+    .hero .meta-top, .hero .meta-right {
+      top: 88px;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+    }
+    .hero .meta-top { left: 24px; }
+    .hero .meta-right { right: 24px; }
+    .hero h1 { font-size: 22vw; }
+    .hero h1 .rooftop { margin-left: 8vw; }
+    .hero .city { font-size: 1.1rem; }
+    .hero .logo-img {
+      position: relative;
+      top: auto; right: auto;
+      transform: none;
+      width: 140px; height: 140px;
+      margin: 40px auto 0;
+      display: block;
+    }
+    .hero-text { margin-left: 0; }
+
+    .marquee-track span { font-size: 1.1rem; padding: 0 18px; }
+    .marquee-track span .dot { margin-left: 18px; }
+
+    .split {
+      grid-template-columns: 1fr;
+      padding: 90px 24px;
+      gap: 60px;
+    }
+    .split .photo { transform: none; }
+    .split .photo img { height: 60vh; }
+    .split .text { padding-right: 0; transform: none; }
+    .split .text h2 { font-size: 2.2rem; }
+
+    .stacked { padding: 100px 24px; }
+    .stacked .row { flex-direction: column; gap: 16px; align-items: flex-start; padding: 24px 0; }
+    .stacked .row:hover { padding-left: 0; }
+    .stacked .row .word { font-size: 16vw; }
+    .stacked .row .desc { max-width: 100%; }
+
+    .full-image { height: 60vh; }
+
+    .hours { padding: 100px 24px; }
+    .hours h3 { font-size: 2.4rem; }
+    .hours .schedule .day { font-size: 1rem; }
+    .hours .schedule .time { font-size: 0.75rem; letter-spacing: 0.12em; }
+
+    footer .links { flex-wrap: wrap; gap: 16px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero .meta-right { display: none; }
+    .cta { padding: 16px 36px; font-size: 0.72rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav class="top" id="topNav">
+  <a href="#" class="brand">La Placita</a>
+  <div class="links">
+    <a href="menu.html">Menu</a>
+    <a href="events.html">Events</a>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="meta-top">Est. Brooklyn — 2024</div>
+  <div class="meta-right">N 40.6782°<br>W 73.9442°</div>
+
+  <img src="logo.jpg" alt="La Placita Rooftop logo" class="logo-img fade-in">
+
+  <div class="hero-text">
+    <h1 class="fade-in">
+      La Placita
+      <span class="rooftop">Rooftop.</span>
+    </h1>
+    <p class="city fade-in">Brooklyn, New York</p>
+    <div class="cta-wrap fade-in">
+      <a href="#story" class="cta">Enter</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MARQUEE ========== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Cocktails<span class="dot">•</span></span>
+    <span>Sunsets<span class="dot">•</span></span>
+    <span>Latin Soul<span class="dot">•</span></span>
+    <span>Brooklyn<span class="dot">•</span></span>
+    <span>Rooftop<span class="dot">•</span></span>
+    <span>Cocktails<span class="dot">•</span></span>
+    <span>Sunsets<span class="dot">•</span></span>
+    <span>Latin Soul<span class="dot">•</span></span>
+    <span>Brooklyn<span class="dot">•</span></span>
+    <span>Rooftop<span class="dot">•</span></span>
+    <span>Cocktails<span class="dot">•</span></span>
+    <span>Sunsets<span class="dot">•</span></span>
+    <span>Latin Soul<span class="dot">•</span></span>
+    <span>Brooklyn<span class="dot">•</span></span>
+    <span>Rooftop<span class="dot">•</span></span>
+  </div>
+</div>
+
+<!-- ========== ASYMMETRIC SPLIT ========== -->
+<section class="split" id="story">
+  <div class="photo fade-in">
+    <img src="terrace.jpg" alt="The terrace at La Placita Rooftop">
+    <div class="caption">— The Terrace, Golden Hour</div>
+  </div>
+  <div class="text fade-in">
+    <div class="label">Chapter One</div>
+    <h2>A small piece of <em>San Juan</em> above the Brooklyn skyline.</h2>
+    <p>La Placita is a love letter to the Puerto Rican plaza — a place where neighbors gather, music spills into the street, and the air smells of salt and citrus.</p>
+    <p>Six stories up, our terrace catches the East River breeze and the last light of the day. Stay for one drink. Stay for all of them.</p>
+  </div>
+</section>
+
+<!-- ========== STACKED TEXT ========== -->
+<section class="stacked">
+  <div class="small-label fade-in">— Three Things We Believe In</div>
+
+  <div class="row fade-in">
+    <div class="word">Views.</div>
+    <div class="desc">Open sky, the river to the west, Manhattan glittering after dark.</div>
+  </div>
+
+  <div class="row fade-in">
+    <div class="word">Cocktails.</div>
+    <div class="desc">House rum, fresh tropical fruit, a generous pour of sunshine.</div>
+  </div>
+
+  <div class="row fade-in">
+    <div class="word">Music.</div>
+    <div class="desc">Salsa, bomba, plena. Live every Thursday through Sunday.</div>
+  </div>
+</section>
+
+<!-- ========== FULL IMAGE ========== -->
+<section class="full-image fade-in">
+  <img src="cocktails.jpg" alt="House cocktails at La Placita Rooftop">
+</section>
+
+<!-- ========== HOURS ========== -->
+<section class="hours">
+  <div class="small-label fade-in">— Visit Us</div>
+  <h3 class="fade-in">Open <em>nightly</em><br>under the Brooklyn sky.</h3>
+
+  <div class="schedule fade-in">
+    <div class="row">
+      <span class="day">Monday — Wednesday</span>
+      <span class="time">5 PM — 12 AM</span>
+    </div>
+    <div class="row">
+      <span class="day">Thursday — Friday</span>
+      <span class="time">4 PM — 2 AM</span>
+    </div>
+    <div class="row">
+      <span class="day">Saturday</span>
+      <span class="time">2 PM — 2 AM</span>
+    </div>
+    <div class="row">
+      <span class="day">Sunday</span>
+      <span class="time">2 PM — 12 AM</span>
+    </div>
+  </div>
+
+  <div class="ig fade-in">
+    <div class="label">Follow Along</div>
+    <a href="https://instagram.com/laplacitarooftop" target="_blank" rel="noopener">@laplacitarooftop</a>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="copy">La Placita Rooftop &nbsp;©&nbsp; 2026</div>
+  <div class="links">
+    <a href="menu.html">Menu</a>
+    <a href="events.html">Events</a>
+    <a href="#">Reservations</a>
+    <a href="#">Press</a>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll state
+  (function() {
+    const nav = document.getElementById('topNav');
+    const onScroll = () => {
+      if (window.scrollY > 40) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+
+  // Fade-in on scroll
+  (function() {
+    const els = document.querySelectorAll('.fade-in');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(el => el.classList.add('visible'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+    els.forEach(el => io.observe(el));
+  })();
+</script>
+
+</body>
+</html>
