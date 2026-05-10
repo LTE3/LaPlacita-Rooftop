@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>La Placita Rooftop — Brooklyn's Sunset on a Plate</title>
+<link rel="icon" href="favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,700&family=Montserrat:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+
+<!-- Basecoat UI -->
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basecoat-css@0.3.1/dist/basecoat.cdn.min.css">
+<script src="https://cdn.jsdelivr.net/npm/basecoat-css@0.3.1/dist/js/all.min.js" defer></script>
+
+<style>
+  /* ============ RESET & BASE ============ */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --cream:#FAF3EB;
+    --coral:#D4725C;
+    --orange:#E8834A;
+    --teal:#2A9D8F;
+    --sky:#89C2D9;
+    --gold:#C5913E;
+    --navy:#0A1628;
+    --serif:'Playfair Display', serif;
+    --sans:'Montserrat', sans-serif;
+
+    /* Basecoat theme overrides — teal as primary */
+    --primary: 173 58% 39%;            /* teal */
+    --primary-foreground: 36 50% 95%;  /* cream */
+    --secondary: 18 58% 60%;           /* coral */
+    --secondary-foreground: 36 50% 95%;
+    --accent: 36 53% 51%;              /* gold */
+    --accent-foreground: 213 67% 14%;  /* navy */
+    --background: 36 50% 95%;
+    --foreground: 213 67% 14%;
+    --card: 36 50% 95%;
+    --card-foreground: 213 67% 14%;
+    --border: 213 20% 80%;
+    --radius: 0.6rem;
+  }
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);
+    background:var(--cream);
+    color:var(--navy);
+    overflow-x:hidden;
+    cursor:none;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  /* ============ CUSTOM CURSOR ============ */
+  .cursor-dot,.cursor-ring{
+    position:fixed;top:0;left:0;pointer-events:none;z-index:9999;
+    border-radius:50%;mix-blend-mode:difference;
+    transition:transform .15s ease;
+  }
+  .cursor-dot{width:8px;height:8px;background:#fff;transform:translate(-50%,-50%)}
+  .cursor-ring{width:40px;height:40px;border:1.5px solid #fff;transform:translate(-50%,-50%);transition:transform .25s ease, width .25s, height .25s}
+  .cursor-ring.grow{width:80px;height:80px;background:rgba(255,255,255,.05)}
+  @media (max-width:768px){.cursor-dot,.cursor-ring{display:none}body{cursor:auto}}
+
+  /* ============ MOUSE GLOW ============ */
+  .glow{
+    position:fixed;top:0;left:0;width:600px;height:600px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(232,131,74,.25) 0%, rgba(212,114,92,.12) 30%, transparent 70%);
+    pointer-events:none;z-index:1;
+    transform:translate(-50%,-50%);
+    transition:opacity .4s;
+    mix-blend-mode:screen;
+    filter:blur(20px);
+  }
+
+  /* ============ NAV ============ */
+  nav.topnav{
+    position:fixed;top:0;left:0;right:0;z-index:1000;
+    padding:1.5rem 2.5rem;
+    display:flex;justify-content:space-between;align-items:center;
+    transition:all .4s ease;
+  }
+  nav.topnav.scrolled{
+    background:rgba(10,22,40,.85);
+    backdrop-filter:blur(20px);
+    padding:1rem 2.5rem;
+    box-shadow:0 4px 30px rgba(0,0,0,.15);
+  }
+  .nav-logo{
+    display:flex;align-items:center;gap:.7rem;
+    font-family:var(--serif);font-style:italic;font-weight:700;
+    color:var(--cream);font-size:1.3rem;letter-spacing:.5px;
+  }
+  .nav-logo img{width:42px;height:42px;border-radius:50%;border:2px solid var(--gold);object-fit:cover}
+  .nav-links{display:flex;gap:2.2rem;align-items:center}
+  .nav-links a, .nav-links button.nav-link-btn{
+    color:var(--cream);font-size:.78rem;text-transform:uppercase;
+    letter-spacing:2.5px;font-weight:500;position:relative;padding:.3rem 0;
+    background:none;border:none;cursor:none;font-family:var(--sans);
+  }
+  .nav-links a::after, .nav-links button.nav-link-btn::after{
+    content:'';position:absolute;bottom:0;left:0;width:0;height:1px;
+    background:var(--teal);transition:width .35s ease;
+  }
+  .nav-links a:hover::after, .nav-links button.nav-link-btn:hover::after{width:100%}
+  .nav-cta{
+    border:1px solid var(--teal);padding:.7rem 1.5rem;border-radius:30px;
+    background:transparent;color:var(--teal)!important;
+    transition:all .3s;font-family:var(--sans);
+    cursor:none;
+  }
+  .nav-cta:hover{background:var(--teal);color:var(--cream)!important}
+  .nav-cta::after{display:none}
+  @media(max-width:768px){
+    nav.topnav{padding:1rem 1.2rem}
+    .nav-links{gap:1rem}
+    .nav-links a:not(.nav-cta), .nav-links button.nav-link-btn{display:none}
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;min-height:100vh;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+    background:linear-gradient(135deg, #0A1628 0%, #1a2c4a 100%);
+  }
+  .hero-bg-img{
+    position:absolute;inset:0;
+    background:url('hero-bg.jpg') center/cover;
+    opacity:.35;
+    filter:saturate(1.2) contrast(1.1);
+    z-index:1;
+  }
+  .hero-gradient{
+    position:absolute;inset:0;z-index:2;
+    background:linear-gradient(120deg,
+      rgba(212,114,92,.55) 0%,
+      rgba(232,131,74,.45) 25%,
+      rgba(197,145,62,.4) 50%,
+      rgba(42,157,143,.45) 75%,
+      rgba(137,194,217,.35) 100%);
+    background-size:400% 400%;
+    animation:gradientShift 18s ease infinite;
+    mix-blend-mode:overlay;
+  }
+  @keyframes gradientShift{
+    0%,100%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+  }
+  /* Floating sun */
+  .sun{
+    position:absolute;top:18%;right:12%;
+    width:240px;height:240px;border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, #FFE2A3 0%, #E8834A 45%, #D4725C 100%);
+    box-shadow:0 0 80px rgba(232,131,74,.6), 0 0 160px rgba(212,114,92,.3);
+    z-index:2;
+    animation:floatSun 12s ease-in-out infinite;
+  }
+  @keyframes floatSun{
+    0%,100%{transform:translateY(0) scale(1)}
+    50%{transform:translateY(-30px) scale(1.05)}
+  }
+  /* Palm leaves CSS art */
+  .palm{position:absolute;z-index:3;pointer-events:none}
+  .palm-1{bottom:-30px;left:-50px;transform:rotate(-15deg);animation:sway 7s ease-in-out infinite}
+  .palm-2{top:-60px;right:-40px;transform:rotate(160deg);animation:sway 9s ease-in-out infinite reverse}
+  @keyframes sway{
+    0%,100%{transform:rotate(-15deg) translateX(0)}
+    50%{transform:rotate(-10deg) translateX(15px)}
+  }
+  .palm-leaf{
+    width:90px;height:280px;
+    background:linear-gradient(180deg, var(--teal) 0%, #1d6e63 100%);
+    clip-path:polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    position:absolute;transform-origin:bottom center;
+    opacity:.7;
+  }
+  .palm-leaf:nth-child(1){transform:rotate(0deg)}
+  .palm-leaf:nth-child(2){transform:rotate(40deg)}
+  .palm-leaf:nth-child(3){transform:rotate(-40deg)}
+  .palm-leaf:nth-child(4){transform:rotate(70deg);opacity:.5}
+  .palm-leaf:nth-child(5){transform:rotate(-70deg);opacity:.5}
+
+  /* Floating particles */
+  .particles{position:absolute;inset:0;z-index:3;overflow:hidden;pointer-events:none}
+  .particle{
+    position:absolute;width:4px;height:4px;border-radius:50%;
+    background:var(--gold);opacity:.6;
+    animation:rise linear infinite;
+  }
+  @keyframes rise{
+    0%{transform:translateY(100vh) scale(.5);opacity:0}
+    10%{opacity:.7}
+    100%{transform:translateY(-10vh) scale(1.2);opacity:0}
+  }
+
+  .hero-content{
+    position:relative;z-index:5;text-align:center;padding:0 1.5rem;
+    max-width:1100px;
+  }
+  .hero-eyebrow{
+    display:inline-block;
+    color:var(--teal);
+    font-size:.75rem;
+    letter-spacing:6px;
+    text-transform:uppercase;
+    margin-bottom:1.5rem;
+    padding:.5rem 1.2rem;
+    border:1px solid rgba(42,157,143,.5);
+    border-radius:30px;
+    backdrop-filter:blur(10px);
+    background:rgba(10,22,40,.2);
+    opacity:0;animation:fadeUp 1s .3s forwards;
+  }
+  .hero-title{
+    font-family:var(--serif);
+    font-size:clamp(3.5rem, 11vw, 9.5rem);
+    font-weight:900;
+    line-height:.9;
+    color:var(--cream);
+    letter-spacing:-2px;
+    margin-bottom:1rem;
+    text-shadow:0 8px 40px rgba(0,0,0,.3);
+  }
+  .hero-title .word{display:inline-block;overflow:hidden;padding:0 .15em}
+  .hero-title .char{
+    display:inline-block;
+    transform:translateY(120%);
+    animation:revealChar .9s cubic-bezier(.65,0,.35,1) forwards;
+  }
+  @keyframes revealChar{to{transform:translateY(0)}}
+  .hero-title .accent{
+    font-style:italic;font-weight:400;
+    background:linear-gradient(90deg,#FFE2A3,#E8834A,#D4725C,#C5913E);
+    background-size:200% auto;
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:shimmer 4s linear infinite;
+  }
+  @keyframes shimmer{to{background-position:200% center}}
+  .hero-sub{
+    font-family:var(--serif);font-style:italic;
+    color:var(--cream);font-size:clamp(1rem, 2vw, 1.4rem);
+    margin-top:1.5rem;letter-spacing:1px;
+    opacity:0;animation:fadeUp 1s 1.4s forwards;
+  }
+  .hero-loc{
+    margin-top:1rem;font-size:.7rem;letter-spacing:5px;
+    text-transform:uppercase;color:var(--teal);font-weight:600;
+    opacity:0;animation:fadeUp 1s 1.6s forwards;
+  }
+  .hero-badges{
+    margin-top:1.6rem;display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;
+    opacity:0;animation:fadeUp 1s 1.7s forwards;
+  }
+  .hero-badges .badge,
+  .hero-badges .badge-secondary,
+  .hero-badges .badge-outline{
+    backdrop-filter:blur(8px);
+    letter-spacing:2px;text-transform:uppercase;font-size:.65rem;
+    padding:.4rem .8rem;
+  }
+  .hero-cta-row{
+    margin-top:2.8rem;display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;
+    opacity:0;animation:fadeUp 1s 1.8s forwards;
+  }
+  .btn-creative{
+    padding:1.05rem 2.4rem;
+    border-radius:40px;
+    font-size:.78rem;letter-spacing:3px;text-transform:uppercase;
+    font-weight:600;cursor:none;
+    transition:all .35s cubic-bezier(.4,0,.2,1);
+    position:relative;overflow:hidden;
+    border:none;
+    font-family:var(--sans);
+    display:inline-block;
+  }
+  .btn-primary-creative{
+    background:linear-gradient(135deg, var(--coral), var(--orange));
+    color:var(--cream);
+    box-shadow:0 10px 30px rgba(212,114,92,.4);
+  }
+  .btn-primary-creative:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 40px rgba(212,114,92,.55);
+  }
+  .btn-ghost-creative{
+    background:transparent;color:var(--cream);
+    border:1.5px solid var(--teal);
+  }
+  .btn-ghost-creative:hover{background:var(--teal);color:var(--cream)}
+  @keyframes fadeUp{
+    from{opacity:0;transform:translateY(30px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+  /* Scroll cue */
+  .scroll-cue{
+    position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
+    z-index:5;color:var(--cream);font-size:.65rem;letter-spacing:4px;
+    text-transform:uppercase;text-align:center;
+    opacity:0;animation:fadeUp 1s 2.2s forwards;
+  }
+  .scroll-cue::after{
+    content:'';display:block;width:1px;height:50px;
+    background:linear-gradient(var(--teal), transparent);
+    margin:.8rem auto 0;
+    animation:lineGrow 2s ease-in-out infinite;
+  }
+  @keyframes lineGrow{
+    0%,100%{transform:scaleY(.3)}
+    50%{transform:scaleY(1)}
+  }
+
+  /* ============ DIAGONAL DIVIDER ============ */
+  .diagonal-divider{
+    position:relative;height:140px;background:var(--teal);
+    margin-top:-80px;z-index:6;
+    clip-path:polygon(0 60px, 100% 0, 100% 100%, 0 100%);
+  }
+
+  /* ============ INTRO / MANIFESTO ============ */
+  .manifesto{
+    padding:8rem 2rem 6rem;
+    background:var(--teal);
+    position:relative;
+    overflow:hidden;
+  }
+  .manifesto-inner{max-width:1100px;margin:0 auto;position:relative;z-index:2}
+  .section-label{
+    display:inline-block;
+    font-size:.7rem;letter-spacing:5px;text-transform:uppercase;
+    color:var(--cream);font-weight:600;margin-bottom:1.5rem;
+    position:relative;padding-left:50px;
+  }
+  .section-label::before{
+    content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);
+    width:35px;height:1.5px;background:var(--cream);
+  }
+  .manifesto-text{
+    font-family:var(--serif);
+    font-size:clamp(1.8rem, 4.5vw, 3.6rem);
+    line-height:1.15;
+    color:var(--cream);
+    font-weight:400;
+    letter-spacing:-.5px;
+  }
+  .manifesto-text .hl{
+    font-style:italic;
+    background:linear-gradient(120deg, transparent 60%, rgba(250,243,235,.2) 60%);
+    background-size:200% 100%;
+    background-position:100% 0;
+    transition:background-position 1.2s ease;
+  }
+  .manifesto-text.in-view .hl{background-position:0 0}
+  .manifesto-text .pop{color:var(--gold);font-weight:700}
+  .manifesto-deco{
+    position:absolute;font-family:var(--serif);font-style:italic;
+    color:rgba(250,243,235,.08);font-size:30vw;
+    top:-5%;right:-8%;line-height:1;font-weight:900;pointer-events:none;
+    z-index:1;
+  }
+
+  /* ============ EXPERIENCE / SPLIT IMAGES ============ */
+  .experience{
+    background:linear-gradient(180deg, var(--cream) 0%, #f0e3d2 100%);
+    padding:6rem 2rem 8rem;
+    position:relative;
+  }
+  .exp-grid{
+    max-width:1300px;margin:0 auto;
+    display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+  }
+  .exp-image{position:relative;height:560px;overflow:hidden;border-radius:8px}
+  .exp-image img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform 1.2s cubic-bezier(.2,.8,.2,1);
+  }
+  .exp-image:hover img{transform:scale(1.08)}
+  .exp-image-2{margin-top:6rem}
+  .exp-frame{
+    position:absolute;inset:-15px;border:1.5px solid var(--gold);
+    pointer-events:none;border-radius:8px;
+    transition:inset .4s;
+  }
+  .exp-image:hover .exp-frame{inset:-25px}
+  .exp-tag-badge{
+    position:absolute;bottom:20px;left:20px;z-index:2;
+    display:flex;gap:.5rem;flex-wrap:wrap;
+  }
+  .exp-tag-badge .badge{
+    background:var(--teal);color:var(--cream);
+    padding:.55rem 1.1rem;font-size:.65rem;letter-spacing:3px;
+    text-transform:uppercase;border-radius:30px;
+    border:none;font-weight:600;
+  }
+  .exp-tag-badge .badge-outline{
+    background:rgba(10,22,40,.55);color:var(--cream);
+    padding:.55rem 1.1rem;font-size:.65rem;letter-spacing:3px;
+    text-transform:uppercase;border-radius:30px;
+    border:1px solid var(--gold);font-weight:600;
+    backdrop-filter:blur(8px);
+  }
+  .exp-content h2{
+    font-family:var(--serif);font-weight:900;
+    font-size:clamp(2.3rem, 5vw, 4rem);
+    line-height:1;margin-bottom:1.8rem;
+    color:var(--navy);letter-spacing:-1px;
+  }
+  .exp-content h2 em{color:var(--coral);font-style:italic;font-weight:400}
+  .exp-content p{
+    font-size:1.05rem;line-height:1.8;color:#3a4555;
+    margin-bottom:1.5rem;font-weight:400;
+  }
+  .exp-stats{
+    display:flex;gap:2.5rem;margin-top:3rem;
+    padding-top:2.5rem;border-top:1px solid rgba(10,22,40,.15);
+  }
+  .stat-num{
+    font-family:var(--serif);font-size:2.8rem;font-weight:900;
+    background:linear-gradient(135deg, var(--teal), var(--gold));
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;
+    line-height:1;
+  }
+  .stat-label{
+    font-size:.7rem;letter-spacing:2px;text-transform:uppercase;
+    color:var(--navy);margin-top:.5rem;font-weight:500;
+  }
+  @media(max-width:900px){
+    .exp-grid{grid-template-columns:1fr;gap:3rem}
+    .exp-image{height:400px}
+    .exp-image-2{margin-top:0}
+  }
+
+  /* ============ MARQUEE ============ */
+  .marquee{
+    background:var(--navy);color:var(--cream);
+    padding:2.5rem 0;overflow:hidden;
+    border-top:1px solid rgba(197,145,62,.3);
+    border-bottom:1px solid rgba(197,145,62,.3);
+    position:relative;
+  }
+  .marquee-track{
+    display:flex;gap:3rem;width:max-content;
+    animation:marquee 35s linear infinite;
+  }
+  .marquee-item{
+    font-family:var(--serif);font-style:italic;font-weight:700;
+    font-size:clamp(2rem, 5vw, 4.5rem);
+    white-space:nowrap;display:flex;align-items:center;gap:3rem;
+    color:var(--cream);
+  }
+  .marquee-item .dot{
+    width:14px;height:14px;border-radius:50%;
+    background:var(--teal);flex-shrink:0;
+  }
+  .marquee-item .outline{
+    -webkit-text-stroke:1.5px var(--teal);
+    color:transparent;
+  }
+  @keyframes marquee{to{transform:translateX(-50%)}}
+
+  /* ============ FEATURE CARDS (Basecoat cards) ============ */
+  .features{
+    background:var(--cream);
+    padding:7rem 2rem;
+    position:relative;
+  }
+  .features-inner{max-width:1300px;margin:0 auto}
+  .features-head{text-align:center;margin-bottom:4rem}
+  .features-head .section-label{color:var(--teal)}
+  .features-head .section-label::before{background:var(--teal)}
+  .features-head h2{
+    font-family:var(--serif);font-weight:900;
+    font-size:clamp(2.3rem, 5vw, 4rem);
+    line-height:1;color:var(--navy);letter-spacing:-1px;
+  }
+  .features-head h2 em{color:var(--coral);font-style:italic;font-weight:400}
+  .features-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;
+  }
+  .features-grid .card{
+    background:#fff;
+    border:1px solid rgba(10,22,40,.08);
+    border-radius:14px;
+    transition:transform .4s ease, box-shadow .4s ease, border-color .4s ease;
+    overflow:hidden;
+    box-shadow:0 4px 20px rgba(10,22,40,.04);
+  }
+  .features-grid .card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 16px 40px rgba(10,22,40,.12);
+    border-color:var(--teal);
+  }
+  .features-grid .card header{
+    padding:1.8rem 1.8rem 1rem;
+    display:flex;flex-direction:column;gap:.8rem;
+  }
+  .features-grid .card .card-icon{
+    width:54px;height:54px;border-radius:14px;
+    background:linear-gradient(135deg, var(--teal), #1d6e63);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--cream);font-size:1.5rem;
+  }
+  .features-grid .card h3{
+    font-family:var(--serif);font-weight:700;font-size:1.5rem;
+    color:var(--navy);line-height:1.2;
+  }
+  .features-grid .card section{
+    padding:0 1.8rem 1.4rem;
+  }
+  .features-grid .card section p{
+    font-size:.95rem;line-height:1.7;color:#475569;
+  }
+  .features-grid .card footer{
+    padding:1rem 1.8rem 1.6rem;
+    display:flex;gap:.5rem;flex-wrap:wrap;
+    border-top:1px solid rgba(10,22,40,.06);
+  }
+  .features-grid .card footer .badge,
+  .features-grid .card footer .badge-secondary,
+  .features-grid .card footer .badge-outline{
+    font-size:.65rem;letter-spacing:1.5px;text-transform:uppercase;
+    padding:.35rem .75rem;border-radius:30px;font-weight:600;
+  }
+  .features-grid .card footer .badge{background:var(--teal);color:var(--cream);border:none}
+  .features-grid .card footer .badge-secondary{background:rgba(212,114,92,.15);color:var(--coral);border:none}
+  .features-grid .card footer .badge-outline{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+  @media(max-width:900px){
+    .features-grid{grid-template-columns:1fr;gap:1.5rem}
+  }
+
+  /* ============ HOURS / SUN-MOON + TABS ============ */
+  .hours{
+    background:linear-gradient(180deg, var(--navy) 0%, #142440 50%, #0A1628 100%);
+    color:var(--cream);
+    padding:8rem 2rem;
+    position:relative;
+    overflow:hidden;
+  }
+  .stars{position:absolute;inset:0;pointer-events:none;opacity:.5}
+  .star{position:absolute;background:var(--cream);border-radius:50%;
+    animation:twinkle 3s ease-in-out infinite;}
+  @keyframes twinkle{0%,100%{opacity:.2}50%{opacity:1}}
+  .hours-inner{
+    max-width:1200px;margin:0 auto;
+    display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+    position:relative;z-index:2;
+  }
+  .clock-viz{
+    position:relative;width:100%;aspect-ratio:1;max-width:480px;margin:0 auto;
+  }
+  .clock-circle{
+    position:absolute;inset:0;border-radius:50%;
+    border:1px solid rgba(197,145,62,.3);
+  }
+  .clock-circle.inner{inset:15%;border-color:rgba(197,145,62,.5)}
+  .clock-circle.inner2{inset:30%;border-color:rgba(197,145,62,.7)}
+  .sun-moon{
+    position:absolute;top:50%;left:50%;
+    width:60%;height:60%;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    background:linear-gradient(135deg,
+      var(--gold) 0%,
+      var(--orange) 30%,
+      var(--coral) 50%,
+      #2A4D7A 70%,
+      var(--navy) 100%);
+    box-shadow:
+      0 0 60px rgba(232,131,74,.4),
+      inset -30px -30px 80px rgba(10,22,40,.6);
+    animation:rotateSun 30s linear infinite;
+  }
+  @keyframes rotateSun{to{transform:translate(-50%,-50%) rotate(360deg)}}
+  .clock-tick{
+    position:absolute;top:50%;left:50%;
+    width:1px;height:50%;background:transparent;
+    transform-origin:bottom center;
+    transform:translate(-50%, -100%) rotate(var(--r,0deg));
+  }
+  .clock-tick::before{
+    content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+    width:2px;height:14px;background:var(--gold);
+  }
+  .clock-tick.major::before{height:24px;width:3px;background:var(--cream)}
+  .hours-content h2{
+    font-family:var(--serif);font-size:clamp(2.5rem, 5vw, 4rem);
+    font-weight:900;line-height:1;margin-bottom:2rem;letter-spacing:-1px;
+  }
+  .hours-content h2 em{color:var(--gold);font-style:italic;font-weight:400}
+
+  /* Custom tabs styled for the dark hours section */
+  .info-tabs{margin-top:2rem}
+  .info-tabs nav[role="tablist"]{
+    display:flex;gap:.4rem;
+    border-bottom:1px solid rgba(250,243,235,.15);
+    margin-bottom:1.8rem;padding-bottom:0;
+  }
+  .info-tabs button[role="tab"]{
+    background:none;border:none;cursor:none;
+    color:rgba(250,243,235,.55);
+    font-family:var(--sans);font-size:.7rem;
+    letter-spacing:3px;text-transform:uppercase;
+    font-weight:600;
+    padding:.9rem 1.3rem;
+    border-bottom:2px solid transparent;
+    transition:all .3s ease;
+    margin-bottom:-1px;
+  }
+  .info-tabs button[role="tab"]:hover{color:var(--cream)}
+  .info-tabs button[role="tab"][aria-selected="true"]{
+    color:var(--gold);
+    border-bottom-color:var(--gold);
+  }
+  .info-tabs [role="tabpanel"]{
+    padding:0;
+    animation:tabFade .35s ease;
+  }
+  @keyframes tabFade{
+    from{opacity:0;transform:translateY(8px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+  .hours-list{margin-top:.5rem}
+  .hours-row{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:1.3rem 0;border-bottom:1px solid rgba(250,243,235,.15);
+    transition:padding-left .3s;
+  }
+  .hours-row:hover{padding-left:1rem}
+  .hours-row:last-child{border-bottom:none}
+  .hours-day{
+    font-family:var(--serif);font-size:1.4rem;font-style:italic;
+    color:var(--cream);
+  }
+  .hours-time{
+    font-size:.95rem;letter-spacing:2px;color:var(--gold);
+    font-weight:500;
+  }
+  .hours-row.weekend .hours-time{color:var(--coral)}
+  .info-block p{
+    font-family:var(--sans);font-size:1rem;line-height:1.8;
+    color:rgba(250,243,235,.85);margin-bottom:1rem;
+  }
+  .info-block .info-line{
+    display:flex;align-items:flex-start;gap:1rem;
+    padding:1rem 0;border-bottom:1px solid rgba(250,243,235,.1);
+  }
+  .info-block .info-line:last-child{border-bottom:none}
+  .info-block .info-key{
+    font-size:.7rem;letter-spacing:3px;text-transform:uppercase;
+    color:var(--teal);font-weight:600;flex-shrink:0;width:120px;padding-top:.2rem;
+  }
+  .info-block .info-val{
+    font-family:var(--serif);font-style:italic;font-size:1.15rem;
+    color:var(--cream);line-height:1.5;
+  }
+  .info-block .info-val a{color:var(--gold);border-bottom:1px solid rgba(197,145,62,.4)}
+  .info-block .info-val a:hover{color:var(--cream)}
+  @media(max-width:900px){
+    .hours-inner{grid-template-columns:1fr;gap:3rem}
+  }
+
+  /* ============ CTA / EVENTS-MENU LINKS ============ */
+  .double-cta{
+    display:grid;grid-template-columns:1fr 1fr;
+    min-height:520px;
+  }
+  .cta-card{
+    position:relative;overflow:hidden;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;padding:4rem 2rem;
+    transition:all .5s ease;cursor:none;
+  }
+  .cta-card.menu{
+    background:linear-gradient(135deg, var(--coral) 0%, var(--orange) 100%);
+    color:var(--cream);
+  }
+  .cta-card.events{
+    background:linear-gradient(135deg, var(--teal) 0%, #1d6e63 100%);
+    color:var(--cream);
+  }
+  .cta-card::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.15), transparent 50%);
+    opacity:0;transition:opacity .4s;
+  }
+  .cta-card:hover::before{opacity:1}
+  .cta-num{
+    font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:1rem;opacity:.7;letter-spacing:3px;margin-bottom:1.5rem;
+  }
+  .cta-title{
+    font-family:var(--serif);font-weight:900;
+    font-size:clamp(2.8rem, 6vw, 5.5rem);
+    line-height:.95;margin-bottom:1.5rem;letter-spacing:-1px;
+    transition:transform .5s ease;
+  }
+  .cta-card:hover .cta-title{transform:translateY(-10px)}
+  .cta-desc{
+    max-width:380px;font-size:1rem;line-height:1.7;
+    opacity:.9;margin-bottom:2.5rem;
+  }
+  .cta-arrow{
+    display:inline-flex;align-items:center;gap:1rem;
+    font-size:.75rem;letter-spacing:4px;text-transform:uppercase;
+    font-weight:600;
+    border-bottom:1px solid currentColor;padding-bottom:.5rem;
+  }
+  .cta-arrow svg{transition:transform .35s ease}
+  .cta-card:hover .cta-arrow svg{transform:translateX(10px)}
+  @media(max-width:768px){
+    .double-cta{grid-template-columns:1fr}
+  }
+
+  /* ============ FOOTER ============ */
+  footer{
+    background:var(--navy);color:var(--cream);
+    padding:5rem 2rem 2rem;
+    position:relative;
+    overflow:hidden;
+  }
+  .footer-deco{
+    position:absolute;font-family:var(--serif);font-style:italic;font-weight:900;
+    font-size:25vw;color:rgba(250,243,235,.03);
+    bottom:-5%;left:-3%;line-height:1;pointer-events:none;
+  }
+  .footer-inner{max-width:1300px;margin:0 auto;position:relative;z-index:2}
+  .footer-top{
+    display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;
+    padding-bottom:3rem;border-bottom:1px solid rgba(250,243,235,.15);
+  }
+  .footer-brand{display:flex;flex-direction:column;gap:1rem}
+  .footer-brand img{width:60px;height:60px;border-radius:50%;border:2px solid var(--teal)}
+  .footer-brand h3{
+    font-family:var(--serif);font-style:italic;font-weight:700;
+    font-size:1.6rem;color:var(--cream);
+  }
+  .footer-brand p{font-size:.9rem;line-height:1.6;color:rgba(250,243,235,.6);max-width:320px}
+  .footer-col h4{
+    font-size:.7rem;letter-spacing:3px;text-transform:uppercase;
+    color:var(--teal);margin-bottom:1.2rem;font-weight:600;
+  }
+  .footer-col a, .footer-col p{
+    display:block;color:rgba(250,243,235,.7);font-size:.9rem;
+    line-height:2;transition:color .3s;
+  }
+  .footer-col a:hover{color:var(--teal)}
+  .footer-bottom{
+    margin-top:2rem;display:flex;justify-content:space-between;align-items:center;
+    font-size:.75rem;color:rgba(250,243,235,.5);letter-spacing:1px;flex-wrap:wrap;gap:1rem;
+  }
+  .ig-link{
+    display:inline-flex;align-items:center;gap:.6rem;color:var(--teal)!important;
+    font-weight:600;letter-spacing:2px;
+  }
+  @media(max-width:900px){
+    .footer-top{grid-template-columns:1fr 1fr;gap:2.5rem}
+  }
+  @media(max-width:500px){
+    .footer-top{grid-template-columns:1fr}
+  }
+
+  /* Reveal on scroll */
+  .reveal{opacity:0;transform:translateY(50px);transition:all 1s cubic-bezier(.2,.8,.2,1)}
+  .reveal.in-view{opacity:1;transform:translateY(0)}
+  .reveal-left{opacity:0;transform:translateX(-60px);transition:all 1s cubic-bezier(.2,.8,.2,1)}
+  .reveal-left.in-view{opacity:1;transform:translateX(0)}
+  .reveal-right{opacity:0;transform:translateX(60px);transition:all 1s cubic-bezier(.2,.8,.2,1)}
+  .reveal-right.in-view{opacity:1;transform:translateX(0)}
+
+  /* ============ RESERVATION DIALOG ============ */
+  dialog.dialog#reserveDialog{
+    border:none;padding:0;background:transparent;
+    max-width:520px;width:90%;
+    color:var(--navy);
+  }
+  dialog.dialog#reserveDialog::backdrop{
+    background:rgba(10,22,40,.7);
+    backdrop-filter:blur(8px);
+  }
+  dialog.dialog#reserveDialog article{
+    background:var(--cream);
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,.4);
+    border:1px solid rgba(197,145,62,.3);
+    position:relative;
+  }
+  dialog.dialog#reserveDialog article::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:5px;
+    background:linear-gradient(90deg, var(--coral), var(--orange), var(--gold), var(--teal));
+  }
+  dialog.dialog#reserveDialog header{
+    padding:2.2rem 2.2rem 1rem;
+    background:var(--cream);
+    position:relative;
+  }
+  dialog.dialog#reserveDialog header h2{
+    font-family:var(--serif);font-weight:900;
+    font-size:2rem;color:var(--navy);letter-spacing:-.5px;
+    margin-bottom:.4rem;
+  }
+  dialog.dialog#reserveDialog header h2 em{color:var(--coral);font-style:italic;font-weight:400}
+  dialog.dialog#reserveDialog header p{
+    color:#475569;font-size:.95rem;line-height:1.6;
+  }
+  dialog.dialog#reserveDialog .dialog-close{
+    position:absolute;top:1.2rem;right:1.2rem;
+    width:36px;height:36px;border-radius:50%;
+    background:rgba(10,22,40,.06);border:none;
+    cursor:none;font-size:1.2rem;color:var(--navy);
+    display:flex;align-items:center;justify-content:center;
+    transition:all .25s ease;
+  }
+  dialog.dialog#reserveDialog .dialog-close:hover{
+    background:var(--coral);color:var(--cream);transform:rotate(90deg);
+  }
+  dialog.dialog#reserveDialog section{
+    padding:1rem 2.2rem 1.5rem;
+  }
+  dialog.dialog#reserveDialog .form-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:1rem;
+  }
+  dialog.dialog#reserveDialog .form-row{
+    display:flex;flex-direction:column;gap:.4rem;
+  }
+  dialog.dialog#reserveDialog .form-row.full{grid-column:1/-1}
+  dialog.dialog#reserveDialog label{
+    font-size:.7rem;letter-spacing:2px;text-transform:uppercase;
+    color:var(--navy);font-weight:600;
+  }
+  dialog.dialog#reserveDialog input,
+  dialog.dialog#reserveDialog select{
+    padding:.85rem 1rem;border-radius:10px;
+    border:1px solid rgba(10,22,40,.15);background:#fff;
+    font-family:var(--sans);font-size:.95rem;color:var(--navy);
+    transition:all .25s ease;
+    outline:none;
+  }
+  dialog.dialog#reserveDialog input:focus,
+  dialog.dialog#reserveDialog select:focus{
+    border-color:var(--teal);
+    box-shadow:0 0 0 3px rgba(42,157,143,.18);
+  }
+  dialog.dialog#reserveDialog footer{
+    padding:1rem 2.2rem 2rem;
+    display:flex;gap:.8rem;justify-content:flex-end;
+    background:var(--cream);
+  }
+  dialog.dialog#reserveDialog .btn-cancel{
+    padding:.85rem 1.6rem;border-radius:30px;
+    background:transparent;border:1.5px solid rgba(10,22,40,.2);
+    color:var(--navy);font-weight:600;font-size:.75rem;
+    letter-spacing:2px;text-transform:uppercase;cursor:none;
+    transition:all .25s ease;font-family:var(--sans);
+  }
+  dialog.dialog#reserveDialog .btn-cancel:hover{
+    background:var(--navy);color:var(--cream);border-color:var(--navy);
+  }
+  dialog.dialog#reserveDialog .btn-confirm{
+    padding:.85rem 1.8rem;border-radius:30px;
+    background:linear-gradient(135deg, var(--teal), #1d6e63);
+    color:var(--cream);font-weight:600;font-size:.75rem;
+    letter-spacing:2px;text-transform:uppercase;cursor:none;
+    border:none;transition:all .25s ease;font-family:var(--sans);
+    box-shadow:0 8px 20px rgba(42,157,143,.35);
+  }
+  dialog.dialog#reserveDialog .btn-confirm:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 28px rgba(42,157,143,.5);
+  }
+  @media(max-width:520px){
+    dialog.dialog#reserveDialog .form-grid{grid-template-columns:1fr}
+  }
+
+  /* ============ TOAST ============ */
+  #toaster.toaster{
+    position:fixed;bottom:1.5rem;right:1.5rem;z-index:9998;
+    display:flex;flex-direction:column;gap:.7rem;pointer-events:none;
+  }
+  .lp-toast{
+    pointer-events:auto;
+    display:flex;align-items:flex-start;gap:1rem;
+    background:var(--navy);
+    color:var(--cream);
+    padding:1.1rem 1.4rem;
+    border-radius:14px;
+    border:1px solid rgba(197,145,62,.3);
+    box-shadow:0 18px 45px rgba(0,0,0,.35);
+    max-width:380px;
+    transform:translateX(120%);
+    transition:transform .55s cubic-bezier(.2,.8,.2,1), opacity .4s ease;
+    position:relative;overflow:hidden;
+  }
+  .lp-toast::before{
+    content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+    background:linear-gradient(180deg, var(--teal), var(--gold));
+  }
+  .lp-toast.show{transform:translateX(0)}
+  .lp-toast.hide{opacity:0;transform:translateX(120%)}
+  .lp-toast .toast-icon{
+    width:38px;height:38px;border-radius:50%;flex-shrink:0;
+    background:linear-gradient(135deg, var(--coral), var(--orange));
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.1rem;
+  }
+  .lp-toast .toast-body{flex:1;padding-left:.4rem}
+  .lp-toast .toast-title{
+    font-family:var(--serif);font-style:italic;font-weight:700;
+    font-size:1.05rem;color:var(--cream);margin-bottom:.2rem;
+  }
+  .lp-toast .toast-msg{
+    font-size:.82rem;color:rgba(250,243,235,.75);line-height:1.5;
+  }
+  .lp-toast .toast-close{
+    background:none;border:none;color:rgba(250,243,235,.5);
+    cursor:none;font-size:1.1rem;padding:0 .2rem;
+    transition:color .2s;
+  }
+  .lp-toast .toast-close:hover{color:var(--cream)}
+  @media(max-width:500px){
+    #toaster.toaster{bottom:1rem;right:1rem;left:1rem}
+    .lp-toast{max-width:none}
+  }
+
+</style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="glow" id="glow"></div>
+
+<!-- TOAST CONTAINER (Basecoat) -->
+<div id="toaster" class="toaster" data-align="end"></div>
+
+<!-- NAV -->
+<nav class="topnav" id="topnav">
+  <a href="#" class="nav-logo">
+    <img src="logo.jpg" alt="La Placita" />
+    <span>La Placita</span>
+  </a>
+  <div class="nav-links">
+    <a href="menu.html">Menu</a>
+    <a href="events.html">Events</a>
+    <a href="#hours">Hours</a>
+    <button type="button" class="nav-cta" onclick="document.getElementById('reserveDialog').showModal()">Reserve</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-gradient"></div>
+  <div class="sun"></div>
+
+  <div class="palm palm-1">
+    <div class="palm-leaf"></div>
+    <div class="palm-leaf"></div>
+    <div class="palm-leaf"></div>
+    <div class="palm-leaf"></div>
+    <div class="palm-leaf"></div>
+  </div>
+  <div class="palm palm-2">
+    <div class="palm-leaf"></div>
+    <div class="palm-leaf"></div>
+    <div class="palm-leaf"></div>
+  </div>
+
+  <div class="particles" id="particles"></div>
+
+  <div class="hero-content">
+    <span class="hero-eyebrow">A Brooklyn Rooftop · Estd. Sunset</span>
+    <h1 class="hero-title" id="heroTitle">
+      <span class="word"><span class="char">L</span><span class="char">a</span></span>
+      <span class="word"><span class="char">P</span><span class="char">l</span><span class="char">a</span><span class="char">c</span><span class="char">i</span><span class="char">t</span><span class="char">a</span></span>
+      <br/>
+      <span class="word accent"><span class="char">R</span><span class="char">o</span><span class="char">o</span><span class="char">f</span><span class="char">t</span><span class="char">o</span><span class="char">p</span></span>
+    </h1>
+    <p class="hero-sub">Where the island meets the city skyline.</p>
+    <p class="hero-loc">Brooklyn · New York</p>
+
+    <!-- Basecoat badges -->
+    <div class="hero-badges">
+      <span class="badge">The Terrace</span>
+      <span class="badge-secondary">Signature Cocktails</span>
+      <span class="badge-outline">Sunset Hours</span>
+    </div>
+
+    <div class="hero-cta-row">
+      <a href="menu.html" class="btn-creative btn-primary-creative">Explore the Menu</a>
+      <button type="button" class="btn-creative btn-ghost-creative" onclick="document.getElementById('reserveDialog').showModal()">Reserve a Table</button>
+    </div>
+  </div>
+
+  <div class="scroll-cue">Scroll · Descubre</div>
+</section>
+
+<!-- DIVIDER -->
+<div class="diagonal-divider"></div>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="manifesto-deco">¡Salud!</div>
+  <div class="manifesto-inner">
+    <span class="section-label reveal">Our Story</span>
+    <p class="manifesto-text reveal" id="manifestoText">
+      A <span class="hl">sliver of San Juan</span> tucked above the Brooklyn skyline. We pour <span class="pop">island spirits</span>, plate small bites kissed by sofrito, and chase the sun until the moon takes its turn. <span class="hl">This is not a bar.</span> It's a block party in the clouds.
+    </p>
+  </div>
+</section>
+
+<!-- EXPERIENCE - SPLIT 1 -->
+<section class="experience">
+  <div class="exp-grid">
+    <div class="exp-image reveal-left">
+      <div class="exp-frame"></div>
+      <div class="exp-tag-badge">
+        <span class="badge">The Terrace</span>
+        <span class="badge-outline">12F</span>
+      </div>
+      <img src="terrace.jpg" alt="La Placita rooftop terrace" />
+    </div>
+    <div class="exp-content reveal-right">
+      <span class="section-label" style="color:var(--teal)">The Space</span>
+      <h2>Open sky, <em>open arms.</em></h2>
+      <p>Twelve stories above Brooklyn, our terrace is wrapped in market-string lights, terracotta tile, and the kind of breeze that makes you forget which borough you're in. By day, brunch under the umbrellas. By night, the skyline becomes the wallpaper.</p>
+      <p>Hand-painted murals from local Boricua artists. Vintage Puerto Rican plena spinning on vinyl. Every surface tells a story.</p>
+      <div class="exp-stats">
+        <div>
+          <div class="stat-num">12F</div>
+          <div class="stat-label">Above the Street</div>
+        </div>
+        <div>
+          <div class="stat-num">360°</div>
+          <div class="stat-label">Skyline Views</div>
+        </div>
+        <div>
+          <div class="stat-num">21+</div>
+          <div class="stat-label">After 8 PM</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <div class="marquee-item">
+      <span>Mofongo</span><span class="dot"></span>
+      <span class="outline">Mojitos</span><span class="dot"></span>
+      <span>Rum Punch</span><span class="dot"></span>
+      <span class="outline">Sunset</span><span class="dot"></span>
+      <span>Plantains</span><span class="dot"></span>
+      <span class="outline">Salsa</span><span class="dot"></span>
+    </div>
+    <div class="marquee-item" aria-hidden="true">
+      <span>Mofongo</span><span class="dot"></span>
+      <span class="outline">Mojitos</span><span class="dot"></span>
+      <span>Rum Punch</span><span class="dot"></span>
+      <span class="outline">Sunset</span><span class="dot"></span>
+      <span>Plantains</span><span class="dot"></span>
+      <span class="outline">Salsa</span><span class="dot"></span>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE - SPLIT 2 (cocktails) -->
+<section class="experience" style="background:linear-gradient(180deg, #f0e3d2 0%, var(--cream) 100%);">
+  <div class="exp-grid">
+    <div class="exp-content reveal-left" style="order:1">
+      <span class="section-label" style="color:var(--teal)">The Pour</span>
+      <h2>Liquid <em>Caribbean.</em></h2>
+      <p>Our bar program is anchored in Puerto Rican rum — aged, white, spiced, and the small-batch stuff our bartender smuggled back in his suitcase. Every cocktail is a postcard: a mango-pasion margarita, a smoked-coconut old fashioned, a coquito that drinks like dessert.</p>
+      <p>Non-drinkers get the same love. Our zero-proof menu is just as fearless.</p>
+      <div class="exp-stats">
+        <div>
+          <div class="stat-num">38</div>
+          <div class="stat-label">Cocktails</div>
+        </div>
+        <div>
+          <div class="stat-num">14</div>
+          <div class="stat-label">Rare Rums</div>
+        </div>
+        <div>
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Vibes</div>
+        </div>
+      </div>
+    </div>
+    <div class="exp-image exp-image-2 reveal-right" style="order:2">
+      <div class="exp-frame"></div>
+      <div class="exp-tag-badge">
+        <span class="badge">Signature Cocktails</span>
+        <span class="badge-outline">Zero-Proof</span>
+      </div>
+      <img src="cocktails.jpg" alt="La Placita cocktails" />
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE CARDS (Basecoat cards) -->
+<section class="features">
+  <div class="features-inner">
+    <div class="features-head reveal">
+      <span class="section-label">What Awaits</span>
+      <h2>Three reasons <em>to come up.</em></h2>
+    </div>
+    <div class="features-grid">
+      <div class="card reveal">
+        <header>
+          <div class="card-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          </div>
+          <h3>Sunset Service</h3>
+        </header>
+        <section>
+          <p>Our golden hour menu drops at 5 PM sharp — small plates plated to chase the light as it slides behind the skyline.</p>
+        </section>
+        <footer>
+          <span class="badge">Daily 5–7</span>
+          <span class="badge-secondary">Small Plates</span>
+        </footer>
+      </div>
+
+      <div class="card reveal">
+        <header>
+          <div class="card-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8l-1 6a4 4 0 0 1-3 4 4 4 0 0 1-3-4z"/><path d="M12 12v6"/><path d="M8 22h8"/></svg>
+          </div>
+          <h3>The Bar Program</h3>
+        </header>
+        <section>
+          <p>Puerto Rican rum at the heart of every pour. Aged, white, spiced, and bottles you won't find south of the border.</p>
+        </section>
+        <footer>
+          <span class="badge">Signature Cocktails</span>
+          <span class="badge-outline">14 Rare Rums</span>
+        </footer>
+      </div>
+
+      <div class="card reveal">
+        <header>
+          <div class="card-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          </div>
+          <h3>Plena & DJs</h3>
+        </header>
+        <section>
+          <p>Vintage plena vinyl spinning before sundown. Live DJs Friday and Saturday — salsa, reggaetón, perreo until close.</p>
+        </section>
+        <footer>
+          <span class="badge">The Terrace</span>
+          <span class="badge-secondary">Fri–Sat Late</span>
+        </footer>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS / SUN-MOON CLOCK + TABS -->
+<section class="hours" id="hours">
+  <div class="stars" id="stars"></div>
+  <div class="hours-inner">
+    <div class="clock-viz reveal-left">
+      <div class="clock-circle"></div>
+      <div class="clock-circle inner"></div>
+      <div class="clock-circle inner2"></div>
+      <div class="clock-tick major" style="--r:0deg"></div>
+      <div class="clock-tick" style="--r:30deg"></div>
+      <div class="clock-tick" style="--r:60deg"></div>
+      <div class="clock-tick major" style="--r:90deg"></div>
+      <div class="clock-tick" style="--r:120deg"></div>
+      <div class="clock-tick" style="--r:150deg"></div>
+      <div class="clock-tick major" style="--r:180deg"></div>
+      <div class="clock-tick" style="--r:210deg"></div>
+      <div class="clock-tick" style="--r:240deg"></div>
+      <div class="clock-tick major" style="--r:270deg"></div>
+      <div class="clock-tick" style="--r:300deg"></div>
+      <div class="clock-tick" style="--r:330deg"></div>
+      <div class="sun-moon"></div>
+    </div>
+    <div class="hours-content reveal-right">
+      <span class="section-label" style="color:var(--gold)">Visit Us</span>
+      <h2>From <em>golden hour</em> to last call.</h2>
+
+      <!-- Basecoat tabs -->
+      <div class="tabs info-tabs w-full" id="info-tabs">
+        <nav role="tablist" aria-orientation="horizontal">
+          <button type="button" role="tab" aria-selected="true" aria-controls="panel-hours" id="tab-hours">Hours</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="panel-location" id="tab-location">Location</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="panel-contact" id="tab-contact">Contact</button>
+        </nav>
+
+        <div role="tabpanel" id="panel-hours" aria-labelledby="tab-hours">
+          <div class="hours-list">
+            <div class="hours-row">
+              <span class="hours-day">Mon — Thu</span>
+              <span class="hours-time">4 PM — 12 AM</span>
+            </div>
+            <div class="hours-row weekend">
+              <span class="hours-day">Fri — Sat</span>
+              <span class="hours-time">2 PM — 2 AM</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Sunday</span>
+              <span class="hours-time">12 PM — 10 PM</span>
+            </div>
+          </div>
+          <p style="margin-top:2rem;color:rgba(250,243,235,.6);font-size:.9rem;line-height:1.7">Walk-ins welcome at the bar. Tables and cabanas by reservation.</p>
+        </div>
+
+        <div role="tabpanel" id="panel-location" aria-labelledby="tab-location" hidden>
+          <div class="info-block">
+            <div class="info-line">
+              <span class="info-key">Borough</span>
+              <span class="info-val">Brooklyn, New York</span>
+            </div>
+            <div class="info-line">
+              <span class="info-key">Floor</span>
+              <span class="info-val">12th-floor rooftop</span>
+            </div>
+            <div class="info-line">
+              <span class="info-key">Access</span>
+              <span class="info-val">Elevator at the lobby — look for the teal door</span>
+            </div>
+            <div class="info-line">
+              <span class="info-key">Vibes</span>
+              <span class="info-val">360° skyline. Sunset side faces west.</span>
+            </div>
+          </div>
+        </div>
+
+        <div role="tabpanel" id="panel-contact" aria-labelledby="tab-contact" hidden>
+          <div class="info-block">
+            <div class="info-line">
+              <span class="info-key">Reserve</span>
+              <span class="info-val"><a href="https://instagram.com/laplacita.rooftop" target="_blank">DM @laplacita.rooftop</a></span>
+            </div>
+            <div class="info-line">
+              <span class="info-key">Instagram</span>
+              <span class="info-val"><a href="https://instagram.com/laplacita.rooftop" target="_blank">@laplacita.rooftop</a></span>
+            </div>
+            <div class="info-line">
+              <span class="info-key">Private</span>
+              <span class="info-val">Buyouts &amp; cabanas — DM with your date</span>
+            </div>
+            <div class="info-line">
+              <span class="info-key">Press</span>
+              <span class="info-val">Send a DM, we'll route you</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOUBLE CTA -->
+<section class="double-cta">
+  <a href="menu.html" class="cta-card menu" id="ctaMenu">
+    <span class="cta-num">— 01 —</span>
+    <h3 class="cta-title">The <em style="font-style:italic;font-weight:400">Menu</em></h3>
+    <p class="cta-desc">Small plates, big flavor. From tostones to the chef's nightly catch.</p>
+    <span class="cta-arrow">
+      View Menu
+      <svg width="24" height="12" viewBox="0 0 24 12" fill="none"><path d="M0 6h22m0 0L17 1m5 5l-5 5" stroke="currentColor" stroke-width="1.5"/></svg>
+    </span>
+  </a>
+  <a href="events.html" class="cta-card events" id="ctaEvents">
+    <span class="cta-num">— 02 —</span>
+    <h3 class="cta-title">The <em style="font-style:italic;font-weight:400">Events</em></h3>
+    <p class="cta-desc">Salsa nights, DJ sets, brunches, and private bookings under the stars.</p>
+    <span class="cta-arrow">
+      See Events
+      <svg width="24" height="12" viewBox="0 0 24 12" fill="none"><path d="M0 6h22m0 0L17 1m5 5l-5 5" stroke="currentColor" stroke-width="1.5"/></svg>
+    </span>
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-deco">Placita</div>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="logo.jpg" alt="La Placita" />
+        <h3>La Placita Rooftop</h3>
+        <p>A taste of Puerto Rico above the Brooklyn skyline. Sunsets, rum, and rhythm — seven days a week.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Visit</h4>
+        <p>Brooklyn</p>
+        <p>New York</p>
+        <p>12th Floor Rooftop</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="menu.html">Menu</a>
+        <a href="events.html">Events</a>
+        <a href="#hours">Hours</a>
+      </div>
+      <div class="footer-col">
+        <h4>Follow</h4>
+        <a href="https://instagram.com/laplacita.rooftop" target="_blank" class="ig-link">@laplacita.rooftop</a>
+        <a href="https://instagram.com/laplacita.rooftop" target="_blank">DM to Reserve</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 La Placita Rooftop · All rights reserved</span>
+      <span>Made with love in Brooklyn</span>
+    </div>
+  </div>
+</footer>
+
+<!-- RESERVATION DIALOG (Basecoat) -->
+<dialog class="dialog" id="reserveDialog" aria-labelledby="reserve-title" aria-describedby="reserve-desc">
+  <article>
+    <header>
+      <h2 id="reserve-title">Reserve a <em>spot</em></h2>
+      <p id="reserve-desc">Tell us when you're coming up. We'll confirm via DM on Instagram.</p>
+      <button type="button" class="dialog-close" onclick="document.getElementById('reserveDialog').close()" aria-label="Close">×</button>
+    </header>
+    <section>
+      <form class="form-grid" id="reserveForm" onsubmit="handleReserve(event)">
+        <div class="form-row">
+          <label for="r-name">Name</label>
+          <input type="text" id="r-name" required placeholder="Your name" />
+        </div>
+        <div class="form-row">
+          <label for="r-handle">Instagram</label>
+          <input type="text" id="r-handle" placeholder="@yourhandle" />
+        </div>
+        <div class="form-row">
+          <label for="r-date">Date</label>
+          <input type="date" id="r-date" required />
+        </div>
+        <div class="form-row">
+          <label for="r-time">Time</label>
+          <select id="r-time" required>
+            <option value="">Choose…</option>
+            <option>4:00 PM</option>
+            <option>5:00 PM (Sunset)</option>
+            <option>6:00 PM</option>
+            <option>7:00 PM</option>
+            <option>8:00 PM</option>
+            <option>9:00 PM</option>
+            <option>10:00 PM</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="r-party">Party Size</label>
+          <select id="r-party" required>
+            <option value="">Choose…</option>
+            <option>2 guests</option>
+            <option>3–4 guests</option>
+            <option>5–6 guests</option>
+            <option>7+ guests (cabana)</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="r-area">Seating</label>
+          <select id="r-area">
+            <option>Terrace table</option>
+            <option>Bar</option>
+            <option>Cabana</option>
+            <option>Sunset side</option>
+          </select>
+        </div>
+      </form>
+    </section>
+    <footer>
+      <button type="button" class="btn-cancel" onclick="document.getElementById('reserveDialog').close()">Cancel</button>
+      <button type="submit" form="reserveForm" class="btn-confirm">Send Request</button>
+    </footer>
+  </article>
+</dialog>
+
+<script>
+  /* ============ CUSTOM CURSOR ============ */
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  const glow = document.getElementById('glow');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove', e=>{
+    mx=e.clientX; my=e.clientY;
+    dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
+    glow.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
+  });
+  function loop(){
+    rx += (mx-rx)*.18;
+    ry += (my-ry)*.18;
+    ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
+    requestAnimationFrame(loop);
+  }
+  loop();
+  document.querySelectorAll('a,button,.btn-creative,.cta-card,.exp-image,.card,[role="tab"],input,select').forEach(el=>{
+    el.addEventListener('mouseenter', ()=>ring.classList.add('grow'));
+    el.addEventListener('mouseleave', ()=>ring.classList.remove('grow'));
+  });
+
+  /* ============ NAV SCROLL ============ */
+  const nav = document.getElementById('topnav');
+  window.addEventListener('scroll', ()=>{
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+  });
+
+  /* ============ CHAR REVEAL TIMING ============ */
+  document.querySelectorAll('#heroTitle .char').forEach((c,i)=>{
+    c.style.animationDelay = (.4 + i*.05) + 's';
+  });
+
+  /* ============ PARTICLES ============ */
+  const particles = document.getElementById('particles');
+  for(let i=0;i<25;i++){
+    const p = document.createElement('div');
+    p.className='particle';
+    p.style.left = Math.random()*100 + '%';
+    p.style.animationDuration = (8 + Math.random()*12) + 's';
+    p.style.animationDelay = (Math.random()*10) + 's';
+    p.style.width = p.style.height = (2 + Math.random()*4) + 'px';
+    p.style.background = ['#C5913E','#E8834A','#D4725C','#FAF3EB'][Math.floor(Math.random()*4)];
+    particles.appendChild(p);
+  }
+
+  /* ============ STARS ============ */
+  const stars = document.getElementById('stars');
+  for(let i=0;i<60;i++){
+    const s = document.createElement('div');
+    s.className='star';
+    s.style.left = Math.random()*100 + '%';
+    s.style.top = Math.random()*100 + '%';
+    s.style.width = s.style.height = (1 + Math.random()*2.5) + 'px';
+    s.style.animationDelay = (Math.random()*3) + 's';
+    stars.appendChild(s);
+  }
+
+  /* ============ SCROLL REVEAL ============ */
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in-view');
+      }
+    });
+  }, {threshold: .15});
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right,#manifestoText').forEach(el=>io.observe(el));
+
+  /* ============ PARALLAX SUN ============ */
+  const sun = document.querySelector('.sun');
+  window.addEventListener('scroll', ()=>{
+    const y = window.scrollY;
+    if(y < window.innerHeight){
+      sun.style.transform = `translateY(${y*.4}px) scale(${1 - y*.0005})`;
+    }
+  });
+
+  /* ============ CTA CARD MOUSE TRACK ============ */
+  ['ctaMenu','ctaEvents'].forEach(id=>{
+    const el = document.getElementById(id);
+    el.addEventListener('mousemove', e=>{
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', ((e.clientX-r.left)/r.width*100)+'%');
+      el.style.setProperty('--my', ((e.clientY-r.top)/r.height*100)+'%');
+    });
+  });
+
+  /* ============ PARALLAX HERO IMAGE ============ */
+  const heroBg = document.querySelector('.hero-bg-img');
+  window.addEventListener('scroll', ()=>{
+    const y = window.scrollY;
+    if(y < window.innerHeight){
+      heroBg.style.transform = `translateY(${y*.3}px) scale(${1 + y*.0003})`;
+    }
+  });
+
+  /* ============ TABS (Basecoat-style, manual handler so it works without JS lib timing) ============ */
+  const tabs = document.querySelectorAll('#info-tabs [role="tab"]');
+  tabs.forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+      tabs.forEach(t=>{
+        t.setAttribute('aria-selected','false');
+      });
+      tab.setAttribute('aria-selected','true');
+      const panels = document.querySelectorAll('#info-tabs [role="tabpanel"]');
+      panels.forEach(p=>p.hidden = true);
+      const target = document.getElementById(tab.getAttribute('aria-controls'));
+      if(target) target.hidden = false;
+    });
+  });
+
+  /* ============ TOAST (custom) ============ */
+  function showToast({title, msg, duration=6000}){
+    const toaster = document.getElementById('toaster');
+    const t = document.createElement('div');
+    t.className = 'lp-toast';
+    t.innerHTML = `
+      <div class="toast-icon">☀</div>
+      <div class="toast-body">
+        <div class="toast-title">${title}</div>
+        <div class="toast-msg">${msg}</div>
+      </div>
+      <button class="toast-close" aria-label="Close">×</button>
+    `;
+    toaster.appendChild(t);
+    requestAnimationFrame(()=> requestAnimationFrame(()=> t.classList.add('show')));
+    const close = ()=>{
+      t.classList.add('hide');
+      setTimeout(()=>t.remove(), 500);
+    };
+    t.querySelector('.toast-close').addEventListener('click', close);
+    t.querySelectorAll('.toast-close').forEach(b=>{
+      b.addEventListener('mouseenter', ()=>ring.classList.add('grow'));
+      b.addEventListener('mouseleave', ()=>ring.classList.remove('grow'));
+    });
+    setTimeout(close, duration);
+  }
+  // Welcome toast on load
+  window.addEventListener('load', ()=>{
+    setTimeout(()=>{
+      showToast({
+        title: 'Bienvenidos a La Placita',
+        msg: 'The terrace opens at 4 PM — golden hour starts at 5. Save your seat below.'
+      });
+    }, 1800);
+  });
+
+  /* ============ RESERVATION FORM ============ */
+  function handleReserve(e){
+    e.preventDefault();
+    document.getElementById('reserveDialog').close();
+    showToast({
+      title: 'Request received',
+      msg: "We'll confirm your table via Instagram DM shortly. ¡Salud!"
+    });
+    document.getElementById('reserveForm').reset();
+  }
+
+  // Close dialog on backdrop click
+  const dlg = document.getElementById('reserveDialog');
+  dlg.addEventListener('click', e=>{
+    if(e.target === dlg) dlg.close();
+  });
+
+</script>
+</body>
+</html>
