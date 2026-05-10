@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>La Placita Rooftop — Aurora</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;500;700&family=Inter:wght@300;400;500;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',sans-serif;
+    background:#020412;
+    color:#f4f4ff;
+    overflow-x:hidden;
+    line-height:1.6;
+  }
+  :root{
+    --pink:#FF2D78;
+    --pink-light:#FF69B4;
+    --blue:#00D4FF;
+    --blue-light:#89CFF0;
+    --green:#00FF87;
+    --green-neon:#39FF14;
+    --orange:#FF6B35;
+    --orange-light:#FF8C42;
+    --night:#020412;
+    --deep:#0a0e2a;
+  }
+
+  /* AURORA BACKGROUND */
+  .aurora-bg{
+    position:fixed;inset:0;
+    z-index:0;
+    overflow:hidden;
+    background:radial-gradient(ellipse at top,#0a0e2a 0%,#020412 60%,#000 100%);
+  }
+  .aurora{
+    position:absolute;
+    width:140%;height:80%;
+    top:-20%;left:-20%;
+    opacity:.65;
+    filter:blur(60px);
+    mix-blend-mode:screen;
+    animation:flow 18s ease-in-out infinite alternate;
+  }
+  .aurora.a1{
+    background:radial-gradient(ellipse 60% 40% at 30% 50%,var(--pink) 0%,transparent 70%);
+    animation-duration:22s;
+  }
+  .aurora.a2{
+    background:radial-gradient(ellipse 50% 35% at 60% 40%,var(--green) 0%,transparent 70%);
+    animation-duration:26s;animation-delay:-8s;
+  }
+  .aurora.a3{
+    background:radial-gradient(ellipse 60% 30% at 80% 60%,var(--blue) 0%,transparent 70%);
+    animation-duration:24s;animation-delay:-12s;
+  }
+  .aurora.a4{
+    background:radial-gradient(ellipse 45% 30% at 20% 30%,var(--orange) 0%,transparent 70%);
+    animation-duration:28s;animation-delay:-4s;
+  }
+  @keyframes flow{
+    0%{transform:translate(0,0) rotate(0deg) scale(1)}
+    50%{transform:translate(8%,4%) rotate(8deg) scale(1.1)}
+    100%{transform:translate(-6%,-3%) rotate(-6deg) scale(.95)}
+  }
+
+  /* STARS */
+  .stars{
+    position:fixed;inset:0;
+    z-index:1;pointer-events:none;
+  }
+  .star{
+    position:absolute;
+    background:#fff;border-radius:50%;
+    animation:twinkle 3s ease-in-out infinite;
+  }
+  @keyframes twinkle{
+    0%,100%{opacity:.2;transform:scale(.8)}
+    50%{opacity:1;transform:scale(1.2)}
+  }
+
+  .wrap{position:relative;z-index:2}
+
+  /* NAV */
+  nav{
+    position:fixed;top:0;left:0;right:0;
+    z-index:100;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:22px 40px;
+    background:rgba(2,4,18,.6);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  nav .brand{display:flex;align-items:center;gap:14px;font-family:'Bebas Neue';font-size:22px;letter-spacing:4px;color:#fff}
+  nav .brand img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:1px solid rgba(255,255,255,.3);box-shadow:0 0 20px rgba(255,45,120,.4)}
+  nav ul{display:flex;gap:36px;list-style:none}
+  nav a{color:rgba(255,255,255,.8);text-decoration:none;font-size:13px;letter-spacing:3px;text-transform:uppercase;transition:color .3s,text-shadow .3s}
+  nav a:hover{color:var(--green);text-shadow:0 0 12px var(--green)}
+  .reserve-btn{
+    background:transparent;color:#fff;
+    border:1px solid var(--pink);
+    padding:10px 22px;font-family:'Inter';font-size:12px;letter-spacing:3px;
+    text-transform:uppercase;cursor:pointer;
+    transition:all .35s;
+    box-shadow:0 0 0 rgba(255,45,120,0);
+  }
+  .reserve-btn:hover{background:var(--pink);box-shadow:0 0 30px rgba(255,45,120,.7)}
+
+  /* HERO */
+  .hero{
+    min-height:100vh;
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;padding:160px 24px 100px;
+    position:relative;
+  }
+  .hero .eyebrow{
+    font-family:'Inter';font-size:13px;letter-spacing:6px;
+    text-transform:uppercase;
+    color:var(--green);
+    margin-bottom:30px;
+    text-shadow:0 0 20px var(--green);
+  }
+  .hero h1{
+    font-family:'Cormorant Garamond';
+    font-weight:300;
+    font-size:clamp(60px,11vw,180px);
+    line-height:1;letter-spacing:-2px;
+    background:linear-gradient(120deg,var(--pink) 0%,var(--orange) 30%,var(--green) 60%,var(--blue) 100%);
+    background-size:300% auto;
+    -webkit-background-clip:text;background-clip:text;
+    color:transparent;
+    animation:gradientShift 8s ease-in-out infinite;
+    margin-bottom:30px;
+  }
+  @keyframes gradientShift{
+    0%,100%{background-position:0% center}
+    50%{background-position:100% center}
+  }
+  .hero h1 em{font-style:italic;font-weight:500}
+  .hero .sub{
+    font-family:'Cormorant Garamond';font-style:italic;
+    font-size:clamp(20px,2.4vw,30px);
+    color:rgba(255,255,255,.85);
+    max-width:680px;margin:0 auto 40px;
+    font-weight:300;
+  }
+  .hero .meta{
+    display:flex;justify-content:center;gap:40px;flex-wrap:wrap;
+    font-size:12px;letter-spacing:4px;text-transform:uppercase;
+    color:rgba(255,255,255,.6);
+  }
+  .hero .meta span{display:flex;align-items:center;gap:10px}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+
+  /* GENERIC SECTION */
+  section.content{
+    padding:140px 30px;
+    position:relative;
+  }
+  .container{max-width:1200px;margin:0 auto}
+  .eyebrow{
+    font-family:'Inter';font-size:12px;letter-spacing:5px;
+    text-transform:uppercase;
+    color:var(--blue);
+    margin-bottom:20px;
+    text-shadow:0 0 14px var(--blue);
+    display:inline-block;
+  }
+  h2{
+    font-family:'Cormorant Garamond';font-weight:300;
+    font-size:clamp(40px,5.5vw,80px);
+    line-height:1;letter-spacing:-1px;
+    margin-bottom:30px;
+  }
+  h2 em{font-style:italic;font-weight:500;color:var(--pink)}
+  .lead{
+    font-family:'Cormorant Garamond';font-style:italic;
+    font-size:22px;line-height:1.5;font-weight:300;
+    color:rgba(255,255,255,.85);
+    max-width:640px;
+  }
+
+  /* STORY */
+  .section-story{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:80px;align-items:center;
+  }
+  .section-story .img-frame{
+    position:relative;border-radius:6px;overflow:hidden;
+    aspect-ratio:4/5;
+    box-shadow:0 30px 100px rgba(255,45,120,.3),0 0 80px rgba(0,255,135,.15);
+  }
+  .section-story .img-frame img{
+    width:100%;height:100%;object-fit:cover;
+    filter:saturate(1.15) contrast(1.05);
+  }
+  .section-story .img-frame::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(160deg,transparent 30%,rgba(255,45,120,.2),rgba(0,255,135,.15));
+    pointer-events:none;
+  }
+
+  /* DRINKS — Glass cards on aurora */
+  .drinks-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+    margin-top:60px;
+  }
+  .drink-card{
+    padding:34px 28px;
+    border-radius:16px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(20px);
+    transition:transform .4s,box-shadow .4s,border-color .4s;
+  }
+  .drink-card:hover{
+    transform:translateY(-8px);
+    border-color:var(--pink);
+    box-shadow:0 20px 50px rgba(255,45,120,.25);
+  }
+  .drink-card .num{
+    font-family:'Bebas Neue';font-size:14px;letter-spacing:4px;
+    color:var(--green);margin-bottom:14px;
+  }
+  .drink-card h3{
+    font-family:'Cormorant Garamond';font-weight:500;font-style:italic;
+    font-size:32px;line-height:1.05;margin-bottom:10px;
+  }
+  .drink-card p{font-size:15px;color:rgba(255,255,255,.65);margin-bottom:18px;line-height:1.5}
+  .drink-card .price{
+    font-family:'Bebas Neue';font-size:22px;letter-spacing:3px;
+    color:var(--orange);
+  }
+
+  /* EVENTS — timeline */
+  .timeline{
+    position:relative;
+    margin-top:60px;
+    padding-left:30px;
+    border-left:1px solid rgba(255,255,255,.15);
+  }
+  .timeline::before{
+    content:'';position:absolute;left:-1px;top:0;bottom:0;width:1px;
+    background:linear-gradient(to bottom,var(--pink),var(--green),var(--blue));
+    opacity:.6;
+  }
+  .tl-item{padding:20px 0 50px;position:relative}
+  .tl-item::before{
+    content:'';position:absolute;left:-37px;top:24px;
+    width:14px;height:14px;border-radius:50%;
+    background:var(--pink);
+    box-shadow:0 0 25px var(--pink);
+  }
+  .tl-item:nth-child(2)::before{background:var(--green);box-shadow:0 0 25px var(--green)}
+  .tl-item:nth-child(3)::before{background:var(--blue);box-shadow:0 0 25px var(--blue)}
+  .tl-item:nth-child(4)::before{background:var(--orange);box-shadow:0 0 25px var(--orange)}
+  .tl-item .when{
+    font-family:'Bebas Neue';font-size:14px;letter-spacing:5px;
+    color:rgba(255,255,255,.5);margin-bottom:10px;
+  }
+  .tl-item h3{
+    font-family:'Cormorant Garamond';font-weight:500;font-style:italic;
+    font-size:38px;line-height:1.05;margin-bottom:10px;
+  }
+  .tl-item p{font-size:16px;color:rgba(255,255,255,.7);max-width:540px}
+
+  /* HOURS */
+  .hours-card{
+    margin-top:50px;
+    padding:50px;
+    border-radius:20px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(24px);
+    box-shadow:0 30px 80px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.08);
+  }
+  .hours-row{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:20px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .hours-row:last-child{border-bottom:none}
+  .hours-row .day{font-family:'Bebas Neue';font-size:22px;letter-spacing:4px}
+  .hours-row .time{
+    font-family:'Cormorant Garamond';font-style:italic;font-weight:500;
+    font-size:22px;color:var(--green);
+  }
+
+  /* FOOTER */
+  footer{
+    padding:100px 30px 50px;
+    text-align:center;
+    border-top:1px solid rgba(255,255,255,.06);
+    position:relative;z-index:2;
+  }
+  footer h3{
+    font-family:'Cormorant Garamond';font-weight:300;font-style:italic;
+    font-size:clamp(36px,5vw,68px);
+    background:linear-gradient(120deg,var(--pink),var(--green),var(--blue));
+    background-size:200% auto;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:gradientShift 8s ease-in-out infinite;
+    margin-bottom:20px;
+  }
+  footer .ig{
+    display:inline-block;margin:20px 0;
+    color:var(--green);
+    text-decoration:none;letter-spacing:3px;
+    font-family:'Bebas Neue';font-size:18px;
+  }
+  footer .ig:hover{text-shadow:0 0 18px var(--green)}
+  footer .copy{margin-top:40px;color:rgba(255,255,255,.4);font-size:12px;letter-spacing:3px;text-transform:uppercase}
+
+  /* SCROLL */
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity 1s,transform 1s}
+  .reveal.in{opacity:1;transform:translateY(0)}
+
+  @media(max-width:900px){
+    nav{padding:14px 20px}
+    nav ul{display:none}
+    .section-story{grid-template-columns:1fr;gap:50px}
+    .drinks-grid{grid-template-columns:1fr}
+    .hours-row .day,.hours-row .time{font-size:18px}
+    .hours-card{padding:30px}
+  }
+</style>
+</head>
+<body>
+
+<div class="aurora-bg">
+  <div class="aurora a1"></div>
+  <div class="aurora a2"></div>
+  <div class="aurora a3"></div>
+  <div class="aurora a4"></div>
+</div>
+<div class="stars" id="stars"></div>
+
+<div class="wrap">
+
+<nav>
+  <div class="brand">
+    <img src="logo.jpg" alt="logo" />
+    <span>La Placita</span>
+  </div>
+  <ul>
+    <li><a href="#story">Story</a></li>
+    <li><a href="#drinks">Menu</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#hours">Hours</a></li>
+  </ul>
+  <button class="reserve-btn" onclick="alert('Reservation system coming soon. DM @laplacita.rooftop')">Reserve</button>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="eyebrow">12th Floor · Brooklyn</div>
+    <h1>La Placita<br/><em>Rooftop</em></h1>
+    <p class="sub">An aurora over the East River. Puerto Rican spirits, salsa nights, and a sky that won't sit still.</p>
+    <div class="meta">
+      <span><i class="dot"></i> Open Tonight</span>
+      <span><i class="dot" style="background:var(--pink);box-shadow:0 0 10px var(--pink)"></i> Live DJ</span>
+      <span><i class="dot" style="background:var(--blue);box-shadow:0 0 10px var(--blue)"></i> Sunset 7:43</span>
+    </div>
+  </div>
+</section>
+
+<section class="content" id="story">
+  <div class="container section-story">
+    <div class="reveal">
+      <span class="eyebrow">Our Story</span>
+      <h2>Born of <em>salt</em>, brass, and Brooklyn dusk.</h2>
+      <p class="lead">La Placita is a love letter. To San Juan summers, to the slow burn of aged rum, to the moment a salsa break splits the room in half. Twelve floors above the borough, we built a plaza where the sky does the talking and the band finishes the sentence.</p>
+    </div>
+    <div class="img-frame reveal">
+      <img src="terrace.jpg" alt="Rooftop terrace" />
+    </div>
+  </div>
+</section>
+
+<section class="content" id="drinks">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">Cocktail Program</span>
+      <h2>Spirits that <em>shimmer.</em></h2>
+      <p class="lead">A list built around Puerto Rican rum and island botanicals — bright, bittersweet, and made for golden hour.</p>
+    </div>
+    <div class="drinks-grid">
+      <div class="drink-card reveal">
+        <div class="num">— 01</div>
+        <h3>Plaza Piña</h3>
+        <p>Aged rum, charred pineapple, coconut cream, lime oil.</p>
+        <div class="price">$16</div>
+      </div>
+      <div class="drink-card reveal">
+        <div class="num">— 02</div>
+        <h3>Bori-Spritz</h3>
+        <p>Passionfruit, cava, grapefruit, sea salt rim.</p>
+        <div class="price">$15</div>
+      </div>
+      <div class="drink-card reveal">
+        <div class="num">— 03</div>
+        <h3>Verde Verde</h3>
+        <p>Tequila, cilantro, jalapeño, agave, lime.</p>
+        <div class="price">$17</div>
+      </div>
+      <div class="drink-card reveal">
+        <div class="num">— 04</div>
+        <h3>Coquito Frío</h3>
+        <p>Rum, coconut, cinnamon, vanilla bean.</p>
+        <div class="price">$14</div>
+      </div>
+      <div class="drink-card reveal">
+        <div class="num">— 05</div>
+        <h3>Mango Eléctrico</h3>
+        <p>Mezcal, ataulfo mango, chili, tajín rim.</p>
+        <div class="price">$17</div>
+      </div>
+      <div class="drink-card reveal">
+        <div class="num">— 06</div>
+        <h3>Cielo Azul</h3>
+        <p>Gin, blue curaçao, lime, tonic, edible glitter.</p>
+        <div class="price">$16</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content" id="events">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">Nights of the Week</span>
+      <h2>Some <em>nights</em> burn brighter.</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="when">Thursday · 8 PM</div>
+        <h3>Salsa Sky</h3>
+        <p>Live percussion, free salsa lessons at eight, then DJ Tito until close. Wear shoes you can spin in.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="when">Friday · 10 PM</div>
+        <h3>Reggaetón Cielo</h3>
+        <p>From Daddy Yankee to Bad Bunny. The hottest dance floor twelve stories above Brooklyn.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="when">Saturday · 9 PM</div>
+        <h3>Boricua Disco</h3>
+        <p>Tropical disco edits, Latin house, and one mirror ball that does most of the work.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="when">Sunday · 5 PM</div>
+        <h3>Sunset Plena</h3>
+        <p>Live plena trio, family-style snacks, and the best sunset view in the borough.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content" id="hours">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">Visit</span>
+      <h2>Hours of <em>operation.</em></h2>
+      <p class="lead">Twelve floors up, weather depending. Reservations recommended Thursday through Saturday.</p>
+    </div>
+    <div class="hours-card reveal">
+      <div class="hours-row"><span class="day">Mon — Thu</span><span class="time">4 PM – 12 AM</span></div>
+      <div class="hours-row"><span class="day">Fri — Sat</span><span class="time">2 PM – 2 AM</span></div>
+      <div class="hours-row"><span class="day">Sunday</span><span class="time">12 PM – 10 PM</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <h3>La Placita Rooftop</h3>
+  <p>Brooklyn, NY · 12th Floor</p>
+  <a class="ig" href="https://instagram.com/laplacita.rooftop" target="_blank">@laplacita.rooftop</a>
+  <div class="copy">© 2026 — Made with rum, salt &amp; sky</div>
+</footer>
+
+</div>
+
+<script>
+  // stars
+  const starsEl = document.getElementById('stars');
+  for(let i=0;i<90;i++){
+    const s = document.createElement('div');
+    s.className='star';
+    const size = Math.random()*2+1;
+    s.style.width=size+'px';
+    s.style.height=size+'px';
+    s.style.left=(Math.random()*100)+'%';
+    s.style.top=(Math.random()*70)+'%';
+    s.style.animationDelay=(Math.random()*3)+'s';
+    s.style.animationDuration=(2+Math.random()*4)+'s';
+    starsEl.appendChild(s);
+  }
+  // reveal
+  const io = new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>

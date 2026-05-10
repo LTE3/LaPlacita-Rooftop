@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Placita Rooftop — Festival Remix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Bebas+Neue&family=Inter:wght@300;400;600;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;
+  color:#fff;
+  background:#0A1628;
+  overflow-x:hidden;
+  line-height:1.5;
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:-1;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,45,120,.30), transparent 35%),
+    radial-gradient(circle at 85% 30%, rgba(42,157,143,.40), transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(0,255,135,.20), transparent 40%),
+    radial-gradient(circle at 80% 90%, rgba(0,212,255,.28), transparent 40%);
+}
+body::after{
+  content:'';position:fixed;inset:0;z-index:-1;
+  background-image:repeating-linear-gradient(
+    0deg, rgba(255,255,255,.018) 0 1px, transparent 1px 4px
+  );
+  pointer-events:none;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 4vw;
+  background:rgba(10,22,40,.70);
+  backdrop-filter:blur(15px);
+  border-bottom:2px dashed #FF2D78;
+}
+.logo-wrap{display:flex;align-items:center;gap:.7rem}
+.logo-wrap img{width:40px;height:40px;border-radius:50%;border:2px solid #2A9D8F}
+.logo-wrap .name{
+  font-family:'Anton',sans-serif;
+  font-size:1.2rem;color:#fff;
+  letter-spacing:.1em;
+}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+  color:#fff;text-decoration:none;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.05rem;letter-spacing:.18em;
+  transition:color .2s;
+}
+.nav-links a:hover{color:#00FF87}
+.cta-tx{
+  padding:.7rem 1.5rem;
+  background:#2A9D8F;color:#0A1628;
+  font-family:'Anton',sans-serif;
+  font-size:.95rem;letter-spacing:.2em;text-transform:uppercase;
+  text-decoration:none;
+  transform:rotate(-2deg);
+  display:inline-block;
+  transition:all .25s;
+}
+.cta-tx:hover{transform:rotate(0deg) scale(1.05);background:#FF2D78;color:#fff}
+.menu-toggle{display:none;background:none;border:none;color:#fff;font-size:1.8rem;cursor:pointer}
+
+/* HERO POSTER - FULL BLEED ROOFTOP PHOTO */
+.hero{
+  position:relative;
+  min-height:100vh;
+  width:100%;
+  padding:7rem 4vw 4rem;
+  display:flex;flex-direction:column;justify-content:center;
+  text-align:center;
+  overflow:hidden;
+  isolation:isolate;
+}
+.hero-bg{
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  background-image:url('terrace.jpg');
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+  transform:scale(1.05);
+}
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:
+    linear-gradient(180deg,
+      rgba(10,22,40,.55) 0%,
+      rgba(10,22,40,.35) 35%,
+      rgba(10,22,40,.75) 75%,
+      rgba(10,22,40,.98) 100%
+    ),
+    radial-gradient(ellipse at 50% 30%, rgba(42,157,143,.25), transparent 60%),
+    radial-gradient(ellipse at 80% 70%, rgba(255,45,120,.30), transparent 55%);
+}
+.poster-tag{
+  font-family:'Permanent Marker',cursive;
+  color:#FF69B4;
+  font-size:clamp(1.2rem,2.5vw,2rem);
+  transform:rotate(-3deg);
+  margin-bottom:.5rem;
+  text-shadow:0 0 20px rgba(255,45,120,.6);
+}
+.poster-presents{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(.95rem,1.6vw,1.2rem);
+  letter-spacing:.5em;
+  color:#00D4FF;
+  margin-bottom:1.2rem;
+  text-shadow:0 0 15px rgba(0,212,255,.5);
+}
+.poster-headline{
+  font-family:'Anton',sans-serif;
+  font-size:clamp(4.5rem,18vw,17rem);
+  line-height:.85;
+  letter-spacing:-.03em;
+  text-transform:uppercase;
+}
+.poster-headline .l1{
+  display:block;
+  background:linear-gradient(180deg,#FF2D78,#FF69B4);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  text-shadow:0 0 50px rgba(255,45,120,.5);
+  filter:drop-shadow(0 4px 20px rgba(255,45,120,.4));
+}
+.poster-headline .l2{
+  display:block;
+  color:#fff;
+  text-shadow:0 0 40px rgba(42,157,143,.7), 0 4px 30px rgba(0,0,0,.6);
+  font-style:italic;
+}
+.poster-headline .l3{
+  display:block;
+  -webkit-text-stroke:3px #2A9D8F;
+  -webkit-text-fill-color:transparent;color:transparent;
+  letter-spacing:.05em;
+  filter:drop-shadow(0 0 25px rgba(42,157,143,.6));
+}
+.poster-rule{
+  width:80%;max-width:600px;
+  height:6px;
+  background:linear-gradient(90deg,#2A9D8F,#FF2D78,#00D4FF);
+  margin:1.8rem auto;
+  box-shadow:0 0 30px rgba(255,45,120,.5);
+}
+.poster-meta{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(1.1rem,2.2vw,1.6rem);
+  letter-spacing:.2em;
+  color:#fff;
+  display:flex;justify-content:center;flex-wrap:wrap;gap:1rem 2.5rem;
+  margin-bottom:2rem;
+  text-shadow:0 2px 12px rgba(0,0,0,.7);
+}
+.poster-meta span{position:relative}
+.poster-meta span:not(:last-child)::after{
+  content:'★';color:#FF2D78;
+  position:absolute;right:-1.6rem;top:50%;transform:translateY(-50%);
+  font-size:.8em;
+}
+.poster-stars{
+  font-family:'Anton',sans-serif;
+  font-size:clamp(1rem,2vw,1.4rem);
+  letter-spacing:.15em;
+  color:#FF69B4;
+  margin-bottom:1.5rem;
+  text-shadow:0 0 20px rgba(255,45,120,.5);
+}
+.poster-cta{
+  display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1rem;
+}
+.btn-poster{
+  padding:1.1rem 2.4rem;
+  font-family:'Anton',sans-serif;
+  font-size:1rem;letter-spacing:.2em;text-transform:uppercase;
+  text-decoration:none;
+  transition:all .25s;
+}
+.btn-poster.fill{background:#FF2D78;color:#fff;border:3px solid #FF2D78;box-shadow:0 0 30px rgba(255,45,120,.4)}
+.btn-poster.fill:hover{background:#fff;color:#FF2D78}
+.btn-poster.outline{background:transparent;color:#fff;border:3px solid #2A9D8F;box-shadow:0 0 30px rgba(42,157,143,.3)}
+.btn-poster.outline:hover{background:#2A9D8F;color:#0A1628}
+
+/* SECTIONS */
+.section{
+  padding:6rem 4vw;max-width:1300px;margin:0 auto;
+  position:relative;
+}
+.section-eyebrow{
+  font-family:'Permanent Marker',cursive;
+  color:#FF69B4;font-size:1.4rem;
+  transform:rotate(-2deg);
+  display:inline-block;margin-bottom:.5rem;
+}
+.section-title{
+  font-family:'Anton',sans-serif;
+  font-size:clamp(3rem,9vw,7rem);
+  line-height:.9;
+  text-transform:uppercase;letter-spacing:-.02em;
+  margin-bottom:2.5rem;
+}
+.section-title .pink{color:#FF2D78;text-shadow:0 0 40px rgba(255,45,120,.4)}
+.section-title .teal{color:#2A9D8F;text-shadow:0 0 40px rgba(42,157,143,.5)}
+.section-title .blue{color:#00D4FF;text-shadow:0 0 40px rgba(0,212,255,.4)}
+.section-title .green{color:#00FF87;text-shadow:0 0 40px rgba(0,255,135,.4)}
+.section-title .stroke{
+  -webkit-text-stroke:2.5px #fff;-webkit-text-fill-color:transparent;color:transparent;
+}
+
+/* LINEUP - Drinks as festival lineup */
+.lineup{
+  border-top:4px solid #2A9D8F;
+  border-bottom:4px solid #2A9D8F;
+  padding:2.5rem 0;
+}
+.lineup-row{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:2rem;align-items:center;
+  padding:1.4rem 1rem;
+  border-bottom:1px dashed rgba(255,255,255,.25);
+  transition:all .3s;
+}
+.lineup-row:last-child{border-bottom:none}
+.lineup-row:hover{background:rgba(255,45,120,.10);padding-left:2rem}
+.lineup-num{
+  font-family:'Anton',sans-serif;
+  color:#FF2D78;font-size:1.8rem;letter-spacing:.05em;
+  min-width:50px;
+}
+.lineup-name{
+  font-family:'Anton',sans-serif;
+  font-size:clamp(1.4rem,3vw,2.4rem);
+  text-transform:uppercase;letter-spacing:-.01em;
+}
+.lineup-row:nth-child(odd) .lineup-name{color:#fff}
+.lineup-row:nth-child(even) .lineup-name{color:#2A9D8F}
+.lineup-desc{
+  display:block;font-family:'Inter',sans-serif;
+  font-size:.85rem;color:rgba(255,255,255,.7);
+  font-weight:400;letter-spacing:0;text-transform:none;
+  margin-top:.2rem;
+}
+.lineup-price{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.5rem;letter-spacing:.1em;
+  color:#FF69B4;
+}
+
+/* TIERS - festival tickets */
+.tiers-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;
+  margin-top:2rem;
+}
+.tier{
+  position:relative;
+  padding:2.5rem 2rem;
+  background:rgba(255,255,255,.04);
+  border:3px solid #fff;
+  text-align:left;
+  transition:all .3s;
+  overflow:hidden;
+}
+.tier::before{
+  content:'';position:absolute;
+  top:-15px;left:50%;transform:translateX(-50%);
+  width:30px;height:30px;
+  background:#0A1628;
+  border-radius:50%;
+}
+.tier::after{
+  content:'';position:absolute;
+  bottom:-15px;left:50%;transform:translateX(-50%);
+  width:30px;height:30px;
+  background:#0A1628;
+  border-radius:50%;
+}
+.tier:nth-child(1){border-color:#2A9D8F}
+.tier:nth-child(2){border-color:#FF2D78;background:rgba(255,45,120,.08)}
+.tier:nth-child(3){border-color:#00D4FF}
+.tier:hover{transform:translateY(-8px)}
+.tier-name{
+  font-family:'Anton',sans-serif;
+  font-size:1.3rem;letter-spacing:.2em;
+  margin-bottom:.5rem;
+}
+.tier:nth-child(1) .tier-name{color:#2A9D8F}
+.tier:nth-child(2) .tier-name{color:#FF2D78}
+.tier:nth-child(3) .tier-name{color:#00D4FF}
+.tier-price{
+  font-family:'Anton',sans-serif;
+  font-size:4.5rem;line-height:1;color:#fff;
+  margin-bottom:1rem;
+}
+.tier-list{list-style:none;margin:1rem 0 1.5rem}
+.tier-list li{
+  padding:.6rem 0;
+  border-bottom:1px dashed rgba(255,255,255,.18);
+  font-size:.95rem;color:rgba(255,255,255,.85);
+}
+.tier-list li::before{content:'✦ ';color:#FF69B4}
+.tier-btn{
+  display:block;text-align:center;
+  padding:1rem;
+  font-family:'Anton',sans-serif;
+  font-size:.95rem;letter-spacing:.2em;text-transform:uppercase;
+  text-decoration:none;color:#0A1628;
+  transition:all .25s;
+}
+.tier:nth-child(1) .tier-btn{background:#2A9D8F;color:#fff}
+.tier:nth-child(2) .tier-btn{background:#FF2D78;color:#fff}
+.tier:nth-child(3) .tier-btn{background:#00D4FF;color:#0A1628}
+.tier-btn:hover{background:#fff;color:#0A1628}
+
+/* SCHEDULE / EVENTS */
+.schedule-grid{
+  display:grid;gap:0;
+  border-top:4px solid #FF2D78;
+  border-bottom:4px solid #FF2D78;
+}
+.sched-row{
+  display:grid;
+  grid-template-columns:130px 1fr auto;
+  gap:2rem;align-items:center;
+  padding:1.6rem 0;
+  border-bottom:1px dashed rgba(255,255,255,.2);
+}
+.sched-row:last-child{border-bottom:none}
+.sched-day{
+  font-family:'Anton',sans-serif;
+  font-size:1.6rem;letter-spacing:.1em;
+}
+.sched-row:nth-child(1) .sched-day{color:#2A9D8F}
+.sched-row:nth-child(2) .sched-day{color:#FF2D78}
+.sched-row:nth-child(3) .sched-day{color:#00D4FF}
+.sched-row:nth-child(4) .sched-day{color:#00FF87}
+.sched-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(1.3rem,2.5vw,1.9rem);letter-spacing:.05em;
+}
+.sched-time{
+  font-family:'Anton',sans-serif;
+  color:#fff;font-size:1.1rem;letter-spacing:.15em;
+}
+
+/* HOURS - poster style */
+.hours-poster{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;
+  margin-top:2rem;
+}
+.hour-tx{
+  text-align:center;
+  padding:2.5rem 1.5rem;
+  border:3px solid #fff;
+  background:rgba(255,255,255,.04);
+  transition:all .3s;
+}
+.hour-tx:nth-child(1){border-color:#FF2D78}
+.hour-tx:nth-child(2){border-color:#2A9D8F}
+.hour-tx:nth-child(3){border-color:#00D4FF}
+.hour-tx:hover{transform:translateY(-5px) rotate(-1deg);background:rgba(255,255,255,.08)}
+.hour-tx .day{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.3rem;letter-spacing:.25em;color:#FF69B4;
+  margin-bottom:.6rem;
+}
+.hour-tx .time{
+  font-family:'Anton',sans-serif;
+  font-size:1.8rem;color:#fff;letter-spacing:.05em;
+}
+
+/* FOOTER POSTER */
+footer{
+  padding:6rem 4vw 2rem;
+  text-align:center;
+  border-top:4px double #2A9D8F;
+  position:relative;
+}
+.footer-stars{
+  font-family:'Anton',sans-serif;
+  color:#FF2D78;font-size:1.2rem;letter-spacing:.5em;margin-bottom:1.5rem;
+}
+.footer-logo{
+  font-family:'Anton',sans-serif;
+  font-size:clamp(3rem,9vw,7rem);
+  line-height:.9;
+  background:linear-gradient(135deg,#FF2D78,#2A9D8F,#00D4FF);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  letter-spacing:-.02em;
+  margin-bottom:.8rem;
+  text-transform:uppercase;
+}
+.footer-handle{
+  font-family:'Permanent Marker',cursive;
+  color:#FF69B4;font-size:1.4rem;
+  margin-bottom:1.5rem;
+  transform:rotate(-2deg);
+  display:inline-block;
+}
+.footer-meta{
+  font-family:'Bebas Neue',sans-serif;
+  color:rgba(255,255,255,.6);font-size:1rem;letter-spacing:.25em;
+}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(40px);transition:all .9s cubic-bezier(.2,.8,.2,1)}
+.reveal.visible{opacity:1;transform:none}
+
+@media (max-width:850px){
+  .nav-links,nav .cta-tx{display:none}
+  .menu-toggle{display:block}
+  .nav-links.open{
+    display:flex;flex-direction:column;
+    position:absolute;top:100%;left:0;right:0;
+    background:rgba(10,22,40,.98);padding:2rem;gap:1.5rem;
+  }
+  .lineup-row,.sched-row{grid-template-columns:1fr;gap:.4rem;text-align:left}
+  .poster-meta span:not(:last-child)::after{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo-wrap">
+    <img src="logo.jpg" alt="">
+    <span class="name">LA PLACITA</span>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#lineup">Menu</a></li>
+    <li><a href="#schedule">Events</a></li>
+    <li><a href="#tickets">Tickets</a></li>
+    <li><a href="#hours">Hours</a></li>
+  </ul>
+  <a href="#tickets" class="cta-tx">Reserve</a>
+  <button class="menu-toggle" id="menuToggle">&#9776;</button>
+</nav>
+
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="poster-tag">★ live every weekend ★</div>
+  <div class="poster-presents">BROOKLYN · 12TH FLOOR · PRESENTS</div>
+  <h1 class="poster-headline">
+    <span class="l1">LA PLACITA</span>
+    <span class="l2">ROOFTOP</span>
+    <span class="l3">2026 SEASON</span>
+  </h1>
+  <div class="poster-rule"></div>
+  <div class="poster-meta">
+    <span>SALSA</span>
+    <span>REGGAETÓN</span>
+    <span>DJ NIGHTS</span>
+    <span>SUNSET BRUNCH</span>
+  </div>
+  <div class="poster-stars">★ ★ ★ ALL AGES 21+ · CASH &amp; CARD · NO COVER WEEKDAYS ★ ★ ★</div>
+  <div class="poster-cta">
+    <a href="#tickets" class="btn-poster fill">Get Tickets</a>
+    <a href="#lineup" class="btn-poster outline">View Lineup</a>
+  </div>
+</header>
+
+<section id="lineup" class="section reveal">
+  <div class="section-eyebrow">// the lineup</div>
+  <h2 class="section-title"><span class="pink">SIGNATURE</span> <span class="stroke">DRINKS</span></h2>
+  <div class="lineup">
+    <div class="lineup-row">
+      <div class="lineup-num">01</div>
+      <div>
+        <div class="lineup-name">PINKY SWEAR</div>
+        <span class="lineup-desc">Hibiscus rum, lime, guava nectar, prosecco float.</span>
+      </div>
+      <div class="lineup-price">$17</div>
+    </div>
+    <div class="lineup-row">
+      <div class="lineup-num">02</div>
+      <div>
+        <div class="lineup-name">VERDE VIDA</div>
+        <span class="lineup-desc">Mezcal, cucumber, jalapeño, cilantro, fresh lime.</span>
+      </div>
+      <div class="lineup-price">$18</div>
+    </div>
+    <div class="lineup-row">
+      <div class="lineup-num">03</div>
+      <div>
+        <div class="lineup-name">AZUL SKY</div>
+        <span class="lineup-desc">Coconut rum, blue curaçao, pineapple, coconut cream.</span>
+      </div>
+      <div class="lineup-price">$16</div>
+    </div>
+    <div class="lineup-row">
+      <div class="lineup-num">04</div>
+      <div>
+        <div class="lineup-name">SOL NARANJA</div>
+        <span class="lineup-desc">Tequila reposado, blood orange, smoked chili, agave.</span>
+      </div>
+      <div class="lineup-price">$17</div>
+    </div>
+  </div>
+</section>
+
+<section id="tickets" class="section reveal">
+  <div class="section-eyebrow">// reservations</div>
+  <h2 class="section-title"><span class="teal">PICK</span> YOUR <span class="pink">TIER</span></h2>
+  <div class="tiers-grid">
+    <div class="tier">
+      <div class="tier-name">GENERAL ADMISSION</div>
+      <div class="tier-price">$35</div>
+      <ul class="tier-list">
+        <li>Rooftop entry, any night</li>
+        <li>One welcome cocktail</li>
+        <li>Standing &amp; bar access</li>
+        <li>Sunset views included</li>
+      </ul>
+      <a href="#" class="tier-btn">Book GA</a>
+    </div>
+    <div class="tier">
+      <div class="tier-name">VIP</div>
+      <div class="tier-price">$75</div>
+      <ul class="tier-list">
+        <li>Priority elevator entry</li>
+        <li>Reserved lounge seating</li>
+        <li>Two signature cocktails</li>
+        <li>Tapas tasting board</li>
+        <li>Private bar access</li>
+      </ul>
+      <a href="#" class="tier-btn">Book VIP</a>
+    </div>
+    <div class="tier">
+      <div class="tier-name">TABLES</div>
+      <div class="tier-price">$250</div>
+      <ul class="tier-list">
+        <li>Private skyline table (up to 6)</li>
+        <li>Bottle service included</li>
+        <li>Dedicated host all night</li>
+        <li>Reserved through last call</li>
+      </ul>
+      <a href="#" class="tier-btn">Book Table</a>
+    </div>
+  </div>
+</section>
+
+<section id="schedule" class="section reveal">
+  <div class="section-eyebrow">// schedule</div>
+  <h2 class="section-title">THE <span class="teal">WEEK</span></h2>
+  <div class="schedule-grid">
+    <div class="sched-row">
+      <div class="sched-day">THU</div>
+      <div class="sched-name">Salsa &amp; Sunset Sessions</div>
+      <div class="sched-time">6 — 11 PM</div>
+    </div>
+    <div class="sched-row">
+      <div class="sched-day">FRI</div>
+      <div class="sched-name">DJ Reggaetón Nights</div>
+      <div class="sched-time">9 PM — 2 AM</div>
+    </div>
+    <div class="sched-row">
+      <div class="sched-day">SAT</div>
+      <div class="sched-name">Live Latin Bands &amp; Open Decks</div>
+      <div class="sched-time">8 PM — 2 AM</div>
+    </div>
+    <div class="sched-row">
+      <div class="sched-day">SUN</div>
+      <div class="sched-name">Sunday Sunset Brunch</div>
+      <div class="sched-time">12 — 5 PM</div>
+    </div>
+  </div>
+</section>
+
+<section id="hours" class="section reveal">
+  <div class="section-eyebrow">// gates open</div>
+  <h2 class="section-title"><span class="pink">DOORS</span> &amp; <span class="stroke">HOURS</span></h2>
+  <div class="hours-poster">
+    <div class="hour-tx"><div class="day">MON — THU</div><div class="time">4 PM — 12 AM</div></div>
+    <div class="hour-tx"><div class="day">FRI — SAT</div><div class="time">2 PM — 2 AM</div></div>
+    <div class="hour-tx"><div class="day">SUNDAY</div><div class="time">12 PM — 10 PM</div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-stars">★ ★ ★ ★ ★</div>
+  <div class="footer-logo">LA PLACITA</div>
+  <div class="footer-handle">@laplacita.rooftop</div>
+  <div class="footer-meta">12TH FLOOR · BROOKLYN, NY · ©2026</div>
+</footer>
+
+<script>
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+document.getElementById('menuToggle').addEventListener('click',()=>{
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(a=>{
+  a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open'));
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Placita Rooftop | Brooklyn, New York</title>
+    <meta name="description" content="La Placita Rooftop — Brooklyn's rooftop bar and restaurant.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --cream: #FAF3EB;
+            --cream-dark: #F0E6D6;
+            --teal: #2A9D8F;
+            --teal-light: #4FBDB0;
+            --teal-dark: #1F7A6F;
+            --pink: #FF2D78;
+            --pink-light: #FF69B4;
+            --pink-soft: #FFB3D1;
+            --navy: #0F2A3F;
+            --sand: #E8DDD0;
+            --text: #1A2A35;
+            --text-light: #6B6B6B;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+
+        /* ─── NAV ─── */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 28px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.5s ease;
+        }
+
+        .nav.scrolled {
+            background: rgba(250, 243, 235, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 16px 48px;
+            box-shadow: 0 1px 30px rgba(42,157,143,0.12);
+        }
+
+        .nav.scrolled .nav-logo,
+        .nav.scrolled .nav-links a { color: var(--text); }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            transition: color 0.5s;
+        }
+
+        .nav-logo span { color: var(--pink-light); }
+
+        .nav.scrolled .nav-logo span { color: var(--pink); }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.9);
+            transition: color 0.5s;
+        }
+
+        .nav-links a:hover { color: var(--pink-light); }
+
+        .nav.scrolled .nav-links a:hover { color: var(--teal); }
+
+        .nav-cta {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 12px 28px;
+            border: 1.5px solid var(--teal-light);
+            color: white;
+            background: rgba(42,157,143,0.25);
+            transition: all 0.3s;
+        }
+
+        .nav.scrolled .nav-cta {
+            border-color: var(--teal);
+            color: var(--teal);
+            background: transparent;
+        }
+
+        .nav-cta:hover {
+            background: var(--pink);
+            border-color: var(--pink);
+            color: white;
+        }
+
+        .nav.scrolled .nav-cta:hover {
+            background: var(--pink);
+            border-color: var(--pink);
+            color: white;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 2px;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .nav.scrolled .menu-toggle span { background: var(--teal); }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--cream);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+        }
+
+        .mobile-menu.open { display: flex; }
+
+        .mobile-menu a {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--text);
+        }
+
+        .mobile-menu a:hover { color: var(--pink); }
+
+        /* ─── HERO ─── */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('hero-bg.jpg') center/cover no-repeat;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(42,157,143,0.35) 0%,
+                rgba(0,0,0,0.25) 45%,
+                rgba(255,45,120,0.35) 100%
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 24px;
+        }
+
+        .hero-logo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 36px;
+            border: 3px solid var(--pink-light);
+            box-shadow: 0 12px 40px rgba(255,45,120,0.4), 0 0 0 6px rgba(42,157,143,0.25);
+            opacity: 0;
+            animation: fadeIn 1.2s ease 0.2s forwards;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            color: white;
+            line-height: 0.9;
+            margin-bottom: 16px;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.5s forwards;
+        }
+
+        .hero h1 .la {
+            display: block;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-style: italic;
+            font-weight: 400;
+            color: var(--pink-light);
+        }
+
+        .hero h1 .placita {
+            display: block;
+            font-size: clamp(4rem, 12vw, 9rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            text-shadow: 0 4px 30px rgba(42,157,143,0.5);
+        }
+
+        .hero-sub {
+            font-size: 1rem;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            color: var(--teal-light);
+            margin-bottom: 6px;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.7s forwards;
+        }
+
+        .hero-loc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 48px;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.9s forwards;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 1s ease 1.1s forwards;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 44px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .btn-fill {
+            background: var(--pink);
+            color: white;
+            box-shadow: 0 6px 20px rgba(255,45,120,0.35);
+        }
+
+        .btn-fill:hover {
+            background: var(--teal);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 32px rgba(42,157,143,0.5);
+        }
+
+        .btn-ghost {
+            border: 1.5px solid var(--teal-light);
+            color: white;
+            background: rgba(42,157,143,0.15);
+        }
+
+        .btn-ghost:hover {
+            background: var(--teal);
+            color: white;
+            border-color: var(--teal);
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .scroll-hint span {
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--pink-light);
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 36px;
+            background: linear-gradient(to bottom, var(--teal-light), transparent);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.9; }
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ─── ABOUT ─── */
+        .about {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 120px 32px;
+            text-align: center;
+            position: relative;
+        }
+
+        .about::before {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--teal), var(--pink));
+            margin: 0 auto 32px;
+        }
+
+        .about h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            color: var(--navy);
+        }
+
+        .about h2 em {
+            color: var(--pink);
+            font-style: italic;
+        }
+
+        .about p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            line-height: 1.9;
+            color: var(--text-light);
+        }
+
+        /* ─── IMAGE BAND ─── */
+        .img-band {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 50vh;
+            min-height: 360px;
+        }
+
+        .img-band-photo {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .img-band-photo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,45,120,0.15) 0%, rgba(42,157,143,0.15) 100%);
+        }
+
+        .img-band-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px;
+            background: var(--teal);
+            color: var(--cream);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .img-band-text::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 160px;
+            height: 160px;
+            background: var(--pink);
+            border-radius: 50%;
+            opacity: 0.25;
+        }
+
+        .img-band-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.2;
+            position: relative;
+        }
+
+        .img-band-text h3 br + br,
+        .img-band-text h3 span { color: var(--pink-light); }
+
+        .img-band-text p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.92);
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .btn-cream {
+            display: inline-block;
+            align-self: flex-start;
+            padding: 14px 36px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 1.5px solid var(--pink-light);
+            color: white;
+            background: var(--pink);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .btn-cream:hover {
+            background: white;
+            color: var(--pink);
+            border-color: white;
+        }
+
+        /* ─── FEATURES ─── */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 100px 32px;
+            gap: 48px;
+            text-align: center;
+        }
+
+        .feature {
+            padding: 32px 20px;
+            border-top: 3px solid transparent;
+            transition: all 0.4s ease;
+        }
+
+        .feature:nth-child(1) { border-top-color: var(--teal); }
+        .feature:nth-child(2) { border-top-color: var(--pink); }
+        .feature:nth-child(3) { border-top-color: var(--teal); }
+
+        .feature:hover {
+            transform: translateY(-6px);
+            background: rgba(42,157,143,0.04);
+        }
+
+        .feature:nth-child(2):hover {
+            background: rgba(255,45,120,0.05);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .feature h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--navy);
+        }
+
+        .feature:nth-child(1) h3 { color: var(--teal); }
+        .feature:nth-child(2) h3 { color: var(--pink); }
+        .feature:nth-child(3) h3 { color: var(--teal); }
+
+        .feature p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-light);
+        }
+
+        /* ─── TERRACE BAND ─── */
+        .terrace-band {
+            height: 60vh;
+            min-height: 400px;
+            background: url('terrace.jpg') center/cover no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .terrace-band::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(42,157,143,0.55) 0%, rgba(15,42,63,0.55) 50%, rgba(255,45,120,0.55) 100%);
+        }
+
+        .terrace-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 24px;
+        }
+
+        .terrace-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            color: white;
+            margin-bottom: 12px;
+            text-shadow: 0 4px 24px rgba(0,0,0,0.4);
+        }
+
+        .terrace-content p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--pink-soft);
+            margin-bottom: 36px;
+        }
+
+        /* ─── HOURS ─── */
+        .hours {
+            max-width: 550px;
+            margin: 0 auto;
+            padding: 100px 32px;
+            text-align: center;
+        }
+
+        .hours h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 36px;
+            color: var(--teal);
+        }
+
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--pink-soft);
+            font-size: 1.05rem;
+            transition: all 0.3s;
+        }
+
+        .hours-row:hover {
+            border-bottom-color: var(--teal);
+        }
+
+        .hours-row .day {
+            font-weight: 500;
+            color: var(--navy);
+        }
+
+        .hours-row .time {
+            color: var(--pink);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        /* ─── INSTAGRAM ─── */
+        .ig-bar {
+            background: linear-gradient(135deg, var(--teal) 0%, var(--pink) 100%);
+            padding: 56px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ig-bar::before {
+            content: '';
+            position: absolute;
+            top: -80px;
+            left: -80px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+        }
+
+        .ig-bar::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            right: -100px;
+            width: 240px;
+            height: 240px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+        }
+
+        .ig-bar p {
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .ig-bar a {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-style: italic;
+            color: white;
+            position: relative;
+        }
+
+        .ig-bar a:hover { opacity: 0.85; }
+
+        /* ─── FOOTER ─── */
+        .footer {
+            background: var(--navy);
+            color: var(--sand);
+            padding: 56px 48px 36px;
+            border-top: 4px solid var(--teal);
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 32px;
+        }
+
+        .footer h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: white;
+        }
+
+        .footer h3 span { color: var(--pink-light); }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+        }
+
+        .footer-links a {
+            font-size: 0.85rem;
+            color: var(--sand);
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover { color: var(--pink-light); }
+
+        .footer-copy {
+            width: 100%;
+            text-align: center;
+            padding-top: 28px;
+            margin-top: 28px;
+            border-top: 1px solid rgba(42,157,143,0.25);
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* ─── REVEAL ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .nav { padding: 20px 24px; }
+            .nav.scrolled { padding: 14px 24px; }
+            .nav-links, .nav-cta { display: none; }
+            .menu-toggle { display: flex; }
+            .hero-logo { width: 140px; height: 140px; }
+            .features { grid-template-columns: 1fr; gap: 36px; padding: 80px 32px; }
+            .img-band { grid-template-columns: 1fr; height: auto; }
+            .img-band-photo { height: 300px; }
+            .img-band-text { padding: 48px 32px; }
+            .terrace-band { height: 50vh; }
+            .about { padding: 80px 24px; }
+            .hours { padding: 80px 24px; }
+            .footer-inner { justify-content: center; text-align: center; }
+            .footer-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav" id="nav">
+        <a href="#" class="nav-logo">La <span>Placita</span></a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="events.html">Events</a></li>
+        </ul>
+        <a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener" class="nav-cta">Follow Us</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about" onclick="closeMenu()">About</a>
+        <a href="menu.html">Menu</a>
+        <a href="events.html">Events</a>
+        <a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener">Instagram</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <img src="logo.jpg" alt="La Placita Rooftop" class="hero-logo">
+            <h1>
+                <span class="la">La</span>
+                <span class="placita">Placita</span>
+            </h1>
+            <p class="hero-sub">R O O F T O P</p>
+            <p class="hero-loc">Brooklyn, New York</p>
+            <div class="hero-btns">
+                <a href="menu.html" class="btn btn-fill">View Menu</a>
+                <a href="events.html" class="btn btn-ghost">Events</a>
+            </div>
+        </div>
+        <div class="scroll-hint">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about reveal" id="about">
+        <h2>Brooklyn Meets<br>the <em>Island</em></h2>
+        <p>
+            A rooftop escape above Brooklyn — tropical cocktails, Latin plates,
+            and skyline sunsets with the warmth and soul of Puerto Rico.
+        </p>
+    </section>
+
+    <!-- COCKTAILS BAND -->
+    <section class="img-band">
+        <div class="img-band-photo" style="background-image: url('cocktails.jpg')"></div>
+        <div class="img-band-text">
+            <h3>Craft<br><span>Cocktails</span></h3>
+            <p>Puerto Rican-inspired drinks with premium spirits, tropical flavors, and island soul.</p>
+            <a href="menu.html" class="btn-cream">See the Menu</a>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features">
+        <div class="feature reveal">
+            <div class="feature-icon">&#127774;</div>
+            <h3>Rooftop Views</h3>
+            <p>Open-air terrace with panoramic skyline views.</p>
+        </div>
+        <div class="feature reveal">
+            <div class="feature-icon">&#127864;</div>
+            <h3>Tropical Drinks</h3>
+            <p>Handcrafted cocktails with island flavors.</p>
+        </div>
+        <div class="feature reveal">
+            <div class="feature-icon">&#127926;</div>
+            <h3>Live Music</h3>
+            <p>Weekend DJs and live Latin performances.</p>
+        </div>
+    </section>
+
+    <!-- TERRACE BAND -->
+    <section class="terrace-band">
+        <div class="terrace-content">
+            <h2>Now Open</h2>
+            <p>Walk-ins welcome. Reservations recommended on weekends.</p>
+            <a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener" class="btn btn-ghost">Follow for Updates</a>
+        </div>
+    </section>
+
+    <!-- HOURS -->
+    <section class="hours reveal" id="hours">
+        <h2>Hours</h2>
+        <div class="hours-row"><span class="day">Monday — Thursday</span><span class="time">4 PM — 12 AM</span></div>
+        <div class="hours-row"><span class="day">Friday — Saturday</span><span class="time">2 PM — 2 AM</span></div>
+        <div class="hours-row"><span class="day">Sunday</span><span class="time">12 PM — 10 PM</span></div>
+    </section>
+
+    <!-- INSTAGRAM -->
+    <div class="ig-bar">
+        <p>Follow the vibe</p>
+        <a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener">@laplacita.rooftop</a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <h3>La <span>Placita</span> Rooftop</h3>
+            <ul class="footer-links">
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener">Instagram</a></li>
+            </ul>
+        </div>
+        <div class="footer-copy">&copy; 2026 La Placita Rooftop. All rights reserved.</div>
+    </footer>
+
+    <script>
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 80), { passive: true });
+
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.toggle('open');
+        });
+
+        function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            new IntersectionObserver(([e]) => {
+                if (e.isIntersecting) e.target.classList.add('visible');
+            }, { threshold: 0.15 }).observe(el);
+        });
+    </script>
+</body>
+</html>

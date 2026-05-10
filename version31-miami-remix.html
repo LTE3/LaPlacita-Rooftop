@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Placita Rooftop — Miami Dream</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Outfit',sans-serif;
+  color:#fff;
+  overflow-x:hidden;
+  line-height:1.6;
+  background:#1a0a2e;
+}
+
+/* Animated gradient layer */
+.gradient-bg{
+  position:fixed;inset:0;z-index:-2;
+  background:linear-gradient(135deg,#FF2D78 0%,#FF69B4 25%,#FF8C42 50%,#00D4FF 75%,#89CFF0 100%);
+  background-size:300% 300%;
+  animation:gradientShift 18s ease infinite;
+}
+@keyframes gradientShift{
+  0%,100%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+}
+.gradient-bg::after{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 70% 30%, rgba(255,255,255,.15), transparent 40%),
+    radial-gradient(circle at 20% 80%, rgba(0,255,135,.25), transparent 40%);
+}
+
+/* PALM SILHOUETTES */
+.palm{
+  position:absolute;bottom:0;
+  width:0;height:0;
+  z-index:0;pointer-events:none;
+}
+.palm-trunk{
+  position:absolute;bottom:0;
+  width:14px;height:240px;
+  background:linear-gradient(to top,rgba(0,0,0,.55),rgba(0,0,0,.25));
+  border-radius:20px 20px 0 0;
+  transform-origin:bottom center;
+}
+.palm-leaf{
+  position:absolute;
+  width:140px;height:18px;
+  background:rgba(0,0,0,.5);
+  border-radius:50% 50% 0 0;
+  transform-origin:left center;
+  filter:blur(.5px);
+}
+.palm-left{left:3%}
+.palm-right{right:3%;transform:scaleX(-1)}
+.palm-left .palm-trunk{transform:rotate(-3deg)}
+.palm-left .palm-leaf:nth-child(2){top:-5px;left:7px;transform:rotate(-15deg)}
+.palm-left .palm-leaf:nth-child(3){top:-5px;left:7px;transform:rotate(-50deg)}
+.palm-left .palm-leaf:nth-child(4){top:-5px;left:7px;transform:rotate(-85deg)}
+.palm-left .palm-leaf:nth-child(5){top:-5px;left:7px;transform:rotate(-115deg) scaleX(-1)}
+.palm-left .palm-leaf:nth-child(6){top:-5px;left:7px;transform:rotate(-150deg) scaleX(-1)}
+
+/* SUN */
+.sun{
+  position:absolute;
+  top:18%;left:50%;
+  transform:translateX(-50%);
+  width:340px;height:340px;
+  border-radius:50%;
+  background:radial-gradient(circle,#FFEAA7 0%,#FF8C42 50%,#FF2D78 100%);
+  box-shadow:0 0 100px rgba(255,140,66,.5),0 0 200px rgba(255,45,120,.3);
+  z-index:0;
+  animation:sunPulse 6s ease-in-out infinite;
+}
+@keyframes sunPulse{
+  0%,100%{transform:translateX(-50%) scale(1)}
+  50%{transform:translateX(-50%) scale(1.04)}
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.4rem 5vw;
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,.2);
+}
+.logo-wrap{display:flex;align-items:center;gap:.7rem}
+.logo-wrap img{width:42px;height:42px;border-radius:50%;border:2px solid #fff;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+.logo-wrap .name{
+  font-family:'Outfit',sans-serif;font-weight:800;
+  font-size:1.05rem;color:#fff;letter-spacing:.05em;
+  text-shadow:0 2px 12px rgba(0,0,0,.25);
+}
+.nav-links{display:flex;gap:2.4rem;list-style:none}
+.nav-links a{color:#fff;text-decoration:none;font-weight:500;font-size:.95rem;letter-spacing:.06em;opacity:.95;transition:opacity .3s}
+.nav-links a:hover{opacity:1;text-shadow:0 0 14px #fff}
+.cta-pill{
+  padding:.8rem 1.7rem;border-radius:999px;
+  background:#fff;color:#FF2D78;font-weight:700;
+  text-decoration:none;font-size:.92rem;
+  letter-spacing:.04em;
+  box-shadow:0 8px 24px rgba(255,45,120,.35);
+  transition:transform .3s,box-shadow .3s;
+}
+.cta-pill:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(255,45,120,.5)}
+.menu-toggle{display:none;background:none;border:none;color:#fff;font-size:1.7rem;cursor:pointer}
+
+/* HERO */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:8rem 2rem 4rem;
+  z-index:2;
+  background-image:url('terrace.jpg');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  isolation:isolate;
+}
+.hero::before{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,45,120,.4) 0%,rgba(255,105,180,.35) 25%,rgba(255,140,66,.3) 50%,rgba(0,212,255,.35) 75%,rgba(137,207,240,.4) 100%);
+  z-index:-1;
+  pointer-events:none;
+}
+.hero-script{
+  font-family:'Caveat',cursive;
+  font-size:clamp(1.6rem,3vw,2.4rem);
+  color:#fff;
+  text-shadow:0 4px 18px rgba(255,45,120,.5);
+  margin-bottom:1rem;
+  transform:rotate(-3deg);
+}
+.hero h1{
+  font-family:'Outfit',sans-serif;
+  font-weight:900;
+  font-size:clamp(3.5rem,13vw,11rem);
+  line-height:.9;
+  letter-spacing:-.04em;
+  color:#fff;
+  text-shadow:
+    0 6px 30px rgba(255,45,120,.5),
+    0 2px 10px rgba(0,0,0,.25);
+  margin-bottom:1.5rem;
+}
+.hero h1 span{
+  display:block;
+  background:linear-gradient(135deg,#fff 0%,#FFEAA7 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  font-style:italic;
+  font-weight:800;
+}
+.hero-sub{
+  max-width:600px;
+  font-size:1.2rem;
+  font-weight:400;
+  color:rgba(255,255,255,.95);
+  text-shadow:0 2px 12px rgba(0,0,0,.2);
+  margin-bottom:2.5rem;
+}
+.hero-cta-row{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+.btn-outline{
+  padding:1rem 2rem;border-radius:999px;
+  background:rgba(255,255,255,.15);
+  color:#fff;border:2px solid #fff;
+  font-weight:600;text-decoration:none;
+  backdrop-filter:blur(10px);
+  transition:all .3s;
+  letter-spacing:.04em;
+}
+.btn-outline:hover{background:#fff;color:#FF2D78}
+.btn-fill{
+  padding:1rem 2rem;border-radius:999px;
+  background:#fff;color:#FF2D78;
+  font-weight:700;text-decoration:none;
+  letter-spacing:.04em;
+  box-shadow:0 10px 30px rgba(255,45,120,.4);
+  transition:transform .3s;
+}
+.btn-fill:hover{transform:translateY(-3px)}
+
+/* SECTIONS */
+section{position:relative;z-index:2;padding:7rem 5vw;max-width:1300px;margin:0 auto}
+.eyebrow{
+  font-family:'Caveat',cursive;
+  font-size:1.8rem;
+  color:#FFEAA7;
+  text-shadow:0 2px 10px rgba(0,0,0,.2);
+  margin-bottom:.5rem;
+  display:inline-block;
+  transform:rotate(-2deg);
+}
+.section-h{
+  font-family:'Outfit',sans-serif;
+  font-weight:900;
+  font-size:clamp(2.4rem,6vw,4.8rem);
+  line-height:.95;
+  letter-spacing:-.03em;
+  color:#fff;
+  text-shadow:0 4px 20px rgba(0,0,0,.25);
+  margin-bottom:2rem;
+}
+.section-h em{
+  font-style:italic;
+  background:linear-gradient(135deg,#FFEAA7,#fff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+
+/* STORY */
+.story-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:4rem;align-items:center}
+.story-img{
+  border-radius:30px;overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.3);
+  transform:rotate(-2deg);
+  transition:transform .6s;
+}
+.story-img:hover{transform:rotate(0deg) scale(1.02)}
+.story-img img{width:100%;display:block}
+.story-text p{
+  color:rgba(255,255,255,.95);font-size:1.1rem;margin-bottom:1.2rem;
+  text-shadow:0 1px 8px rgba(0,0,0,.15);
+}
+
+/* DRINKS - pill cards */
+.drink-pills{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-top:3rem}
+.drink-pill{
+  background:rgba(255,255,255,.18);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1.5px solid rgba(255,255,255,.35);
+  border-radius:30px;
+  padding:2.2rem 1.8rem;
+  transition:transform .4s,box-shadow .4s;
+}
+.drink-pill:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(255,45,120,.3)}
+.drink-pill h3{
+  font-family:'Outfit',sans-serif;font-weight:800;
+  font-size:1.5rem;color:#fff;margin-bottom:.5rem;
+  letter-spacing:-.01em;
+}
+.drink-pill p{color:rgba(255,255,255,.88);font-size:.97rem;margin-bottom:1rem}
+.drink-pill .price{
+  display:inline-block;
+  padding:.4rem 1rem;border-radius:999px;
+  background:#fff;color:#FF2D78;
+  font-weight:800;font-size:.95rem;
+}
+
+/* EVENTS */
+.events-card{
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(20px);
+  border-radius:40px;
+  border:1.5px solid rgba(255,255,255,.3);
+  padding:3rem;margin-top:3rem;
+  display:grid;gap:1rem;
+}
+.event-line{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:2rem;align-items:center;
+  padding:1.3rem 1.5rem;
+  background:rgba(255,255,255,.12);
+  border-radius:999px;
+  transition:all .3s;
+}
+.event-line:hover{background:rgba(255,255,255,.25);transform:translateX(8px)}
+.event-line .day{
+  padding:.5rem 1.1rem;border-radius:999px;
+  background:#fff;color:#FF2D78;font-weight:800;
+  font-size:.85rem;letter-spacing:.06em;
+}
+.event-line:nth-child(2) .day{background:#00FF87;color:#1a0a2e}
+.event-line:nth-child(3) .day{background:#FFEAA7;color:#FF2D78}
+.event-line:nth-child(4) .day{background:#89CFF0;color:#1a0a2e}
+.event-line .name{font-weight:600;font-size:1.1rem;color:#fff}
+.event-line .time{color:rgba(255,255,255,.85);font-size:.95rem;font-weight:500}
+
+/* HOURS */
+.hours-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:3rem}
+.hour-pill{
+  background:rgba(255,255,255,.18);
+  backdrop-filter:blur(20px);
+  border:1.5px solid rgba(255,255,255,.35);
+  border-radius:30px;
+  padding:2.2rem 1.5rem;
+  text-align:center;
+  transition:all .3s;
+}
+.hour-pill:hover{background:rgba(255,255,255,.3);transform:translateY(-4px)}
+.hour-pill .day{
+  font-family:'Caveat',cursive;font-size:1.5rem;color:#FFEAA7;margin-bottom:.4rem;
+}
+.hour-pill .time{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.4rem;color:#fff}
+
+/* RESERVE */
+.reserve{
+  text-align:center;padding-top:3rem;padding-bottom:7rem;
+}
+
+/* FOOTER */
+footer{
+  position:relative;z-index:2;
+  padding:5rem 5vw 2rem;
+  text-align:center;
+  background:rgba(26,10,46,.5);
+  backdrop-filter:blur(20px);
+  border-top:1px solid rgba(255,255,255,.15);
+}
+.footer-logo{
+  font-family:'Outfit',sans-serif;font-weight:900;
+  font-size:clamp(2.5rem,6vw,4rem);
+  background:linear-gradient(135deg,#fff,#FFEAA7);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  letter-spacing:-.03em;
+  margin-bottom:.5rem;
+}
+.footer-handle{
+  font-family:'Caveat',cursive;
+  font-size:1.6rem;
+  color:#fff;
+  margin-bottom:1.5rem;
+}
+.footer-meta{color:rgba(255,255,255,.7);font-size:.9rem;letter-spacing:.05em}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(50px);transition:all 1s cubic-bezier(.2,.8,.2,1)}
+.reveal.visible{opacity:1;transform:none}
+
+@media (max-width:850px){
+  .nav-links,nav .cta-pill{display:none}
+  .menu-toggle{display:block}
+  .nav-links.open{
+    display:flex;flex-direction:column;
+    position:absolute;top:100%;left:0;right:0;
+    background:rgba(255,45,120,.95);padding:2rem;gap:1.5rem;
+  }
+  .story-grid{grid-template-columns:1fr}
+  .event-line{grid-template-columns:1fr;gap:.5rem;text-align:left;border-radius:24px}
+  .sun{width:240px;height:240px;top:14%}
+  .events-card{padding:2rem 1.4rem}
+}
+</style>
+</head>
+<body>
+
+<div class="gradient-bg"></div>
+<div class="sun"></div>
+
+<nav>
+  <div class="logo-wrap">
+    <img src="logo.jpg" alt="">
+    <span class="name">La Placita</span>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#story">Story</a></li>
+    <li><a href="#drinks">Menu</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#hours">Hours</a></li>
+  </ul>
+  <a href="#reserve" class="cta-pill">Reserve</a>
+  <button class="menu-toggle" id="menuToggle">&#9776;</button>
+</nav>
+
+<header class="hero">
+  <div class="hero-script">welcome to the rooftop ✨</div>
+  <h1>La Placita<span>Rooftop</span></h1>
+  <p class="hero-sub">Twelve floors above Brooklyn, where Puerto Rican rhythm meets Miami sunsets. Cocktails, salsa, and the sky.</p>
+  <div class="hero-cta-row">
+    <a href="#reserve" class="btn-fill">Reserve a Table</a>
+    <a href="#drinks" class="btn-outline">Explore the Menu</a>
+  </div>
+  <div class="palm palm-left">
+    <div class="palm-trunk"></div>
+    <div class="palm-leaf" style="bottom:240px"></div>
+    <div class="palm-leaf" style="bottom:240px"></div>
+    <div class="palm-leaf" style="bottom:240px"></div>
+    <div class="palm-leaf" style="bottom:240px"></div>
+    <div class="palm-leaf" style="bottom:240px"></div>
+  </div>
+  <div class="palm palm-right">
+    <div class="palm-trunk"></div>
+    <div class="palm-leaf" style="bottom:240px"></div>
+    <div class="palm-leaf" style="bottom:240px"></div>
+    <div class="palm-leaf" style="bottom:240px"></div>
+    <div class="palm-leaf" style="bottom:240px"></div>
+    <div class="palm-leaf" style="bottom:240px"></div>
+  </div>
+</header>
+
+<section id="story" class="reveal">
+  <div class="story-grid">
+    <div class="story-img"><img src="terrace.jpg" alt="The terrace"></div>
+    <div class="story-text">
+      <span class="eyebrow">our story</span>
+      <h2 class="section-h">Brooklyn's<br><em>warmest</em><br>twelfth floor.</h2>
+      <p>La Placita is a love letter to Puerto Rico, served with a Brooklyn skyline. Pink-and-cyan sunsets, conga drums on the breeze, the slow burn of a perfect rum cocktail in your hand.</p>
+      <p>Every weekend our DJs spin from sunset to last call. Every weeknight we cool it down with salsa, tapas, and skyline views that make the city feel like an island.</p>
+    </div>
+  </div>
+</section>
+
+<section id="drinks" class="reveal">
+  <span class="eyebrow">cocktails</span>
+  <h2 class="section-h">Sip the <em>sunset</em>.</h2>
+  <div class="drink-pills">
+    <div class="drink-pill">
+      <h3>Pinky Swear</h3>
+      <p>Hibiscus rum, lime, guava nectar, prosecco float.</p>
+      <div class="price">$17</div>
+    </div>
+    <div class="drink-pill">
+      <h3>Verde Vida</h3>
+      <p>Mezcal, cucumber, jalapeño, cilantro, fresh lime.</p>
+      <div class="price">$18</div>
+    </div>
+    <div class="drink-pill">
+      <h3>Azul Sky</h3>
+      <p>Coconut rum, blue curaçao, pineapple, coconut cream.</p>
+      <div class="price">$16</div>
+    </div>
+    <div class="drink-pill">
+      <h3>Sol Naranja</h3>
+      <p>Tequila reposado, blood orange, smoked chili, agave.</p>
+      <div class="price">$17</div>
+    </div>
+  </div>
+</section>
+
+<section id="events" class="reveal">
+  <span class="eyebrow">what's on</span>
+  <h2 class="section-h"><em>Live</em> every<br>weekend.</h2>
+  <div class="events-card">
+    <div class="event-line">
+      <div class="day">THU</div>
+      <div class="name">Salsa &amp; Sunset Sessions</div>
+      <div class="time">6 — 11 PM</div>
+    </div>
+    <div class="event-line">
+      <div class="day">FRI</div>
+      <div class="name">DJ Reggaetón Nights</div>
+      <div class="time">9 PM — 2 AM</div>
+    </div>
+    <div class="event-line">
+      <div class="day">SAT</div>
+      <div class="name">Live Latin Bands &amp; Open Decks</div>
+      <div class="time">8 PM — 2 AM</div>
+    </div>
+    <div class="event-line">
+      <div class="day">SUN</div>
+      <div class="name">Sunday Sunset Brunch</div>
+      <div class="time">12 — 5 PM</div>
+    </div>
+  </div>
+</section>
+
+<section id="hours" class="reveal">
+  <span class="eyebrow">hours</span>
+  <h2 class="section-h">When we're<br><em>open</em>.</h2>
+  <div class="hours-grid">
+    <div class="hour-pill"><div class="day">Mon — Thu</div><div class="time">4 PM — 12 AM</div></div>
+    <div class="hour-pill"><div class="day">Fri — Sat</div><div class="time">2 PM — 2 AM</div></div>
+    <div class="hour-pill"><div class="day">Sunday</div><div class="time">12 PM — 10 PM</div></div>
+  </div>
+</section>
+
+<section id="reserve" class="reserve reveal">
+  <span class="eyebrow">reservations</span>
+  <h2 class="section-h">See you on<br>the <em>rooftop</em>.</h2>
+  <p style="color:rgba(255,255,255,.95);max-width:540px;margin:0 auto 2.5rem;font-size:1.15rem">Tables fill fast on weekends. Lock yours in and ride the elevator straight to twelve.</p>
+  <a href="#" class="btn-fill" style="font-size:1.05rem;padding:1.2rem 2.8rem">Book Your Night</a>
+</section>
+
+<footer>
+  <div class="footer-logo">La Placita</div>
+  <div class="footer-handle">@laplacita.rooftop</div>
+  <div class="footer-meta">12th Floor · Brooklyn, New York · ©2026</div>
+</footer>
+
+<script>
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+document.getElementById('menuToggle').addEventListener('click',()=>{
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(a=>{
+  a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open'));
+});
+
+// Gradient shift based on scroll
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;const max=document.body.scrollHeight-window.innerHeight;
+  const pct=Math.min(y/max,1);
+  document.querySelector('.gradient-bg').style.backgroundPosition=(pct*100)+'% 50%';
+});
+</script>
+</body>
+</html>

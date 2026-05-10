@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Placita — Version Gallery</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #fff; padding: 2rem; }
+  h1 { font-size: 2.5rem; font-weight: 800; text-align: center; margin-bottom: 0.5rem; }
+  .sub { text-align: center; color: #888; font-size: 0.9rem; margin-bottom: 3rem; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .card {
+    background: #161616;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+  }
+  .card:hover {
+    border-color: #FF2D78;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(255, 45, 120, 0.15);
+  }
+  .card-color {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+  }
+  .card-body { padding: 1.2rem; }
+  .card-body h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .card-body p { font-size: 0.82rem; color: #999; line-height: 1.5; }
+  .card-num {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #FF2D78;
+    margin-bottom: 0.3rem;
+  }
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #555;
+    text-align: center;
+    margin: 3rem 0 1.5rem;
+  }
+</style>
+</head>
+<body>
+
+<h1>La Placita Rooftop</h1>
+<p class="sub">20 Design Versions — Click to preview each one</p>
+
+<p class="section-label">Original Versions</p>
+<div class="grid">
+  <a href="version4.html" class="card" target="_blank">
+    <div class="card-color" style="background:linear-gradient(135deg,#0A1628,#2A9D8F)">v4</div>
+    <div class="card-body">
+      <span class="card-num">VERSION 4</span>
+      <h3>Original (Current Live)</h3>
+      <p>Teal/coral/gold. Floating sun, particles, custom cursor. The OG.</p>
+    </div>
+  </a>
+  <a href="version7-magic.html" class="card" target="_blank">
+    <div class="card-color" style="background:linear-gradient(135deg,#FAF3EB,#D4725C)">v7</div>
+    <div class="card-body">
+      <span class="card-num">VERSION 7</span>
+      <h3>Magic (Editorial)</h3>
+      <p>21st Magic inspired. Minimal editorial layout. Cream base.</p>
+    </div>
+  </a>
+</div>
+
+<p class="section-label">New Bold Versions</p>
+<div class="grid">
+  <a href="version8-neon-night.html" class="card" target="_blank">
+    <div class="card-color" style="background:#000;color:#FF2D78;text-shadow:0 0 20px #FF2D78,0 0 40px #FF2D78">v8</div>
+    <div class="card-body">
+      <span class="card-num">VERSION 8</span>
+      <h3>Neon Night</h3>
+      <p>Black bg, flickering neon signs. Tokyo alley meets Caribbean bar.</p>
+    </div>
+  </a>
+  <a href="version9-miami-gradient.html" class="card" target="_blank">
+    <div class="card-color" style="background:linear-gradient(135deg,#FF69B4,#00D4FF)">v9</div>
+    <div class="card-body">
+      <span class="card-num">VERSION 9</span>
+      <h3>Miami Gradient</h3>
+      <p>Pink-to-cyan dream. Palm silhouettes. Miami Vice retro.</p>
+    </div>
+  </a>
+  <a href="version10-candy-blocks.html" class="card" target="_blank">
+    <div class="card-color" style="background:#FF2D78;font-size:2rem">v10</div>
+    <div class="card-body">
+      <span class="card-num">VERSION 10</span>
+      <h3>Candy Blocks</h3>
+      <p>Flat bold color blocks. Mondrian meets tropical. Zero gradients.</p>
+    </div>
+  </a>
+  <a href="version11-festival-poster.html" class="card" target="_blank">
+    <div class="card-color" style="background:linear-gradient(180deg,#FF2D78,#FF6B35)">v11</div>
+    <div class="card-body">
+      <span class="card-num">VERSION 11</span>
+      <h3>Festival Poster</h3>
+      <p>Massive stacked type. Ticket tiers. Concert lineup energy.</p>
+    </div>
+  </a>
+  <a href="version12-glass-neon.html" class="card" target="_blank">
+    <div class="card-color" style="background:linear-gradient(135deg,#0A1628,#3a1078)">v12</div>
+    <div class="card-body">
+      <span class="card-num">VERSION 12</span>
+      <h3>Glass Neon</h3>
+      <p>Floating orbs, glassmorphism cards, navy-to-purple gradient.</p>
+    </div>
+  </a>
+  <a href="version13-memphis.html" class="card" target="_blank">
+    <div class="card-color" style="background:#FAF3EB;color:#FF2D78">v13</div>
+    <div class="card-body">
+      <span class="card-num">VERSION 13</span>
+      <h3>Memphis</h3>
+      <p>90s geometric shapes, zigzags, squiggles, confetti vibes.</p>
+    </div>
+  </a>
+  <a href="version14-comic.html" class="card" target="_blank">
+    <div class="card-color" style="background:#FFE135;color:#000;-webkit-text-stroke:2px #000">v14</div>
+    <div class="card-body">
+      <span class="card-num">VERSION 14</span>
+      <h3>Comic Book</h3>
+      <p>Halftone dots, POW! BOOM! ¡WEPA! Speech bubbles. Pop art.</p>
+    </div>
+  </a>
+  <a href="version15-dark-luxury-neon.html" class="card" target="_blank">
+    <div class="card-color" style="background:#0a0a0a;border:1px solid #FF2D78;color:#FF2D78">v15</div>
+    <div class="card-body">
+      <span class="card-num">VERSION 15</span>
+      <h3>Dark Luxury Neon</h3>
+      <p>Matte black. Ultra-thin neon borders. Premium hover glow-ups.</p>
+    </div>
+  </a>
+  <a href="version16-tropical-graffiti.html" class="card" target="_blank">
+    <div class="card-color" style="background:#555;color:#00FF87">v16</div>
+    <div class="card-body">
+      <span class="card-num">VERSION 16</span>
+      <h3>Tropical Graffiti</h3>
+      <p>Concrete texture, spray paint blobs, CSS drips, tilted cards.</p>
+    </div>
+  </a>
+  <a href="version17-gradient-mesh.html" class="card" target="_blank">
+    <div class="card-color" style="background:linear-gradient(135deg,#FF69B4,#00D4FF,#00FF87,#FF6B35)">v17</div>
+    <div class="card-body">
+      <span class="card-num">VERSION 17</span>
+      <h3>Gradient Mesh</h3>
+      <p>Flowing color blobs, mouse-reactive, frosted glass cards.</p>
+    </div>
+  </a>
+  <a href="version18-reggaeton-energy.html" class="card" target="_blank">
+    <div class="card-color" style="background:#000;color:#00FF87">v18</div>
+    <div class="card-body">
+      <span class="card-num">VERSION 18</span>
+      <h3>Reggaeton Energy</h3>
+      <p>La Casita-inspired. Tickets, venue map, emoji-heavy party mode.</p>
+    </div>
+  </a>
+  <a href="version19-holographic.html" class="card" target="_blank">
+    <div class="card-color" style="background:#111;background-image:linear-gradient(135deg,#FF2D78,#00D4FF,#00FF87,#FF6B35);-webkit-background-clip:text;color:transparent">v19</div>
+    <div class="card-body">
+      <span class="card-num">VERSION 19</span>
+      <h3>Holographic</h3>
+      <p>Iridescent foil on dark. Animated prismatic color shifts.</p>
+    </div>
+  </a>
+  <a href="version20-retro-caribbean.html" class="card" target="_blank">
+    <div class="card-color" style="background:#F5E6C8;color:#D4725C">v20</div>
+    <div class="card-body">
+      <span class="card-num">VERSION 20</span>
+      <h3>Retro Caribbean</h3>
+      <p>Vintage tourism poster. Stamps, chunky shadows, warm paper.</p>
+    </div>
+  </a>
+  <a href="version21-rave-minimal.html" class="card" target="_blank">
+    <div class="card-color" style="background:#000;color:#fff;font-size:3rem;font-weight:800">v21</div>
+    <div class="card-body">
+      <span class="card-num">VERSION 21</span>
+      <h3>Rave Minimal</h3>
+      <p>One massive word per section. Brutal simplicity. Color fills.</p>
+    </div>
+  </a>
+  <a href="version22-tropical-y2k.html" class="card" target="_blank">
+    <div class="card-color" style="background:linear-gradient(135deg,#FF69B4,#89CFF0)">v22</div>
+    <div class="card-body">
+      <span class="card-num">VERSION 22</span>
+      <h3>Tropical Y2K</h3>
+      <p>Bubblegum Bratz energy. Chrome text, sparkles, glossy buttons.</p>
+    </div>
+  </a>
+  <a href="version23-split-screen.html" class="card" target="_blank">
+    <div class="card-color" style="background:linear-gradient(90deg,#FF2D78 50%,#00FF87 50%)">v23</div>
+    <div class="card-body">
+      <span class="card-num">VERSION 23</span>
+      <h3>Split Screen</h3>
+      <p>Bold editorial halves. Diagonal clip-paths. Magazine cover energy.</p>
+    </div>
+  </a>
+  <a href="version24-aurora.html" class="card" target="_blank">
+    <div class="card-color" style="background:#020412;color:#00FF87;text-shadow:0 0 30px #00FF87">v24</div>
+    <div class="card-body">
+      <span class="card-num">VERSION 24</span>
+      <h3>Aurora</h3>
+      <p>Northern lights on dark navy. Twinkling stars. Ethereal magic.</p>
+    </div>
+  </a>
+  <a href="version25-cassette-tape.html" class="card" target="_blank">
+    <div class="card-color" style="background:#FF6B35;color:#000">v25</div>
+    <div class="card-body">
+      <span class="card-num">VERSION 25</span>
+      <h3>Cassette Tape</h3>
+      <p>CSS cassette with spinning reels. Tracklist menu. Mixtape cover.</p>
+    </div>
+  </a>
+  <a href="version26-paper-cutout.html" class="card" target="_blank">
+    <div class="card-color" style="background:#FAF3EB;color:#FF2D78">v26</div>
+    <div class="card-body">
+      <span class="card-num">VERSION 26</span>
+      <h3>Paper Cutout</h3>
+      <p>Torn paper layers. Washi tape. Scrapbook collage meets modern.</p>
+    </div>
+  </a>
+  <a href="version27-marquee-madness.html" class="card" target="_blank">
+    <div class="card-color" style="background:#000;overflow:hidden;position:relative"><span style="animation:scroll 3s linear infinite;position:absolute;white-space:nowrap;color:#00D4FF">v27 ★ MARQUEE ★ v27 ★ MARQUEE ★</span></div>
+    <div class="card-body">
+      <span class="card-num">VERSION 27</span>
+      <h3>Marquee Madness</h3>
+      <p>Scrolling LED banners everywhere. Times Square energy. Kinetic.</p>
+    </div>
+  </a>
+</div>
+
+<style>
+  @keyframes scroll {
+    from { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
+  }
+</style>
+
+</body>
+</html>
