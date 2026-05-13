@@ -1,0 +1,1017 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>La Placita Rooftop — The Issue, No. 044</title>
+<meta name="description" content="La Placita Rooftop. Brooklyn meets the island. A printed dispatch from a Latin-Caribbean terrace above the borough." />
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#0d0d0d;
+    --paper:#f4efe6;
+    --paper-2:#ece5d7;
+    --rule:#0d0d0d;
+    --muted:#6b665d;
+    --coral:#e2533a;
+    --coral-ink:#b13a26;
+    --serif:"Playfair Display","GT Sectra","Editorial New",ui-serif,Georgia,serif;
+    --sans:"Inter",ui-sans-serif,system-ui,sans-serif;
+    --mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+
+    /* type ladder — Playfair sizes step cleanly */
+    --t-display: clamp(54px, 11vw, 168px); /* hero */
+    --t-h1:      clamp(40px, 6vw, 96px);   /* masthead title */
+    --t-h2:      clamp(40px, 5vw, 76px);   /* section heads */
+    --t-h3:      clamp(34px, 4vw, 60px);   /* article title */
+    --t-h4:      28px;                     /* card heads */
+    --t-h5:      22px;                     /* feat heads */
+    --t-body:    17.5px;                   /* serif body */
+    --t-cap:     10.5px;                   /* mono caption */
+
+    /* 12-col gutter */
+    --gutter: 24px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-weight:400;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    pointer-events:none;
+    background:
+      radial-gradient(1200px 600px at 20% 0%,rgba(0,0,0,.04),transparent 60%),
+      radial-gradient(900px 500px at 80% 100%,rgba(0,0,0,.05),transparent 60%);
+    z-index:0;
+  }
+  body::after{
+    content:"";
+    position:fixed;inset:0;pointer-events:none;z-index:1;mix-blend-mode:multiply;opacity:.35;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1360px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
+
+  /* ───── canonical 12-col grid ───── */
+  .grid12{
+    display:grid;
+    grid-template-columns:repeat(12, minmax(0,1fr));
+    column-gap:var(--gutter);
+    row-gap:var(--gutter);
+  }
+
+  /* ───── small caps label ───── */
+  .label{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--ink);
+  }
+  .label .dot{display:inline-block;width:5px;height:5px;background:var(--coral);border-radius:50%;vertical-align:middle;margin:0 .5em 2px 0}
+  .rule{height:1px;background:var(--ink);width:100%}
+  .rule-thin{height:1px;background:rgba(13,13,13,.25);width:100%}
+
+  /* ───── masthead ───── */
+  .masthead{
+    border-bottom:1px solid var(--ink);
+    background:var(--paper);
+    position:relative;z-index:5;
+  }
+  .masthead-top{
+    display:grid;
+    grid-template-columns:repeat(12, minmax(0,1fr));
+    column-gap:var(--gutter);
+    align-items:center;
+    padding:12px 0;
+    font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    border-bottom:1px solid rgba(13,13,13,.2);
+  }
+  .masthead-top .mt-left  {grid-column:1 / span 4}
+  .masthead-top .mt-center{grid-column:5 / span 4;text-align:center}
+  .masthead-top .mt-right {grid-column:9 / span 4;text-align:right}
+
+  .masthead-mid{
+    display:grid;
+    grid-template-columns:repeat(12, minmax(0,1fr));
+    column-gap:var(--gutter);
+    align-items:center;
+    padding:24px 0 18px;
+  }
+  .masthead-mid .side-l{grid-column:1 / span 3;font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+  .masthead-mid .title {grid-column:4 / span 6;text-align:center}
+  .masthead-mid .side-r{grid-column:10 / span 3;font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);text-align:right}
+  .masthead-title{
+    font-family:var(--serif);
+    font-weight:900;
+    font-size:var(--t-h1);
+    line-height:.92;
+    letter-spacing:-.015em;
+    margin:0;
+    font-feature-settings:"kern" 1,"liga" 1,"dlig" 1;
+  }
+  .masthead-title em{font-style:italic;font-weight:400;color:var(--coral-ink)}
+
+  .nav-row{
+    display:grid;
+    grid-template-columns:repeat(12, minmax(0,1fr));
+    column-gap:var(--gutter);
+    align-items:center;
+    padding:10px 0 14px;border-top:1px solid var(--ink);
+  }
+  .nav-list{grid-column:1 / span 9;display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+  .nav-list a{
+    font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+    display:inline-flex;align-items:baseline;gap:8px;
+    padding:6px 0;border-bottom:1px solid transparent;transition:.25s;
+  }
+  .nav-list a:hover{border-bottom-color:var(--ink)}
+  .nav-num{font-family:var(--mono);font-size:9px;color:var(--coral);letter-spacing:.18em}
+  .nav-cta{
+    grid-column:10 / span 3;justify-self:end;
+    font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+    border:1px solid var(--ink);padding:9px 16px;background:var(--ink);color:var(--paper);
+    transition:.25s;
+  }
+  .nav-cta:hover{background:var(--coral);border-color:var(--coral);color:var(--paper)}
+  .burger{
+    display:none;background:none;border:1px solid var(--ink);padding:8px 12px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;
+    grid-column:10 / span 3;justify-self:end;
+  }
+
+  /* ───── chapter marker ───── */
+  .chapter{
+    display:grid;
+    grid-template-columns:repeat(12, minmax(0,1fr));
+    column-gap:var(--gutter);
+    align-items:center;
+    padding:30px 0 14px;
+  }
+  .chapter .line-l{grid-column:1 / span 4;height:1px;background:var(--ink)}
+  .chapter .badge {grid-column:5 / span 4;text-align:center;
+    font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;
+    display:flex;align-items:center;justify-content:center;gap:12px;
+  }
+  .chapter .line-r{grid-column:9 / span 4;height:1px;background:var(--ink)}
+  .chapter .badge .roman{font-family:var(--serif);font-style:italic;font-size:20px;letter-spacing:0;color:var(--coral-ink)}
+
+  /* ───── running page-number line ───── */
+  .page-no{
+    display:grid;
+    grid-template-columns:repeat(12, minmax(0,1fr));
+    column-gap:var(--gutter);
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    color:var(--muted);
+    padding:10px 0;
+    border-top:1px dotted rgba(13,13,13,.25);
+    border-bottom:1px dotted rgba(13,13,13,.25);
+    margin-bottom:18px;
+    font-feature-settings:"tnum" 1;
+  }
+  .page-no .pn-l{grid-column:1 / span 4;text-align:left}
+  .page-no .pn-c{grid-column:5 / span 4;text-align:center;color:var(--coral);letter-spacing:.4em}
+  .page-no .pn-c .folio{
+    font-family:var(--serif);font-style:italic;font-weight:400;font-size:14px;
+    letter-spacing:0;color:var(--coral);margin:0 .6em;
+  }
+  .page-no .pn-r{grid-column:9 / span 4;text-align:right}
+
+  /* ───── hero ───── */
+  .hero{padding:14px 0 44px;position:relative}
+  .hero-left{grid-column:1 / span 7;position:relative}
+  .hero-right{grid-column:9 / span 4;position:relative}
+  .hero-kicker{
+    display:flex;align-items:center;gap:14px;margin-bottom:20px;
+  }
+  .hero-kicker .ribbon{
+    background:var(--coral);color:var(--paper);padding:5px 10px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;
+  }
+  .hero h1{
+    font-family:var(--serif);font-weight:900;
+    font-size:var(--t-display);
+    line-height:.84;letter-spacing:-.028em;
+    margin:0 0 6px;
+    font-feature-settings:"kern" 1,"liga" 1,"dlig" 1;
+  }
+  .hero h1 em{font-style:italic;font-weight:400;color:var(--coral-ink)}
+  .hero h1 .ampline{display:block;padding-left:.6em;font-style:italic;font-weight:400}
+  .hero-meta{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px;
+    border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:14px 0;
+  }
+  .hero-meta div{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase}
+  .hero-meta strong{display:block;font-family:var(--serif);font-style:italic;font-weight:400;font-size:18px;letter-spacing:0;text-transform:none;margin-top:4px;color:var(--coral-ink)}
+
+  /* asymmetric hero photo — portrait 4:5 */
+  .hero-photo{
+    position:relative;aspect-ratio:4/5;overflow:hidden;border:1px solid var(--ink);
+    background:#222;
+  }
+  .hero-photo img{width:100%;height:100%;object-fit:cover;filter:contrast(1.02) saturate(.95)}
+  .hero-photo .frame-tag{
+    position:absolute;top:14px;left:14px;background:var(--paper);color:var(--ink);
+    padding:6px 10px;font-family:var(--mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase;
+  }
+  .hero-photo .caption{
+    position:absolute;bottom:14px;left:14px;right:14px;
+    color:var(--paper);font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+    display:flex;justify-content:space-between;gap:12px;
+    text-shadow:0 1px 4px rgba(0,0,0,.55);
+  }
+  .pullquote{
+    margin-top:34px;
+    font-family:var(--serif);font-style:italic;font-size:clamp(20px,2vw,26px);line-height:1.35;
+    border-left:2px solid var(--coral);padding:6px 0 6px 20px;color:#221f1c;
+  }
+  .pullquote cite{display:block;margin-top:10px;font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+
+  /* ───── about / feature article ───── */
+  .article{padding:54px 0 30px}
+  .article-side{grid-column:1 / span 3;border-right:1px solid var(--ink);padding-right:24px}
+  .article-side .standfirst{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;line-height:1.7;color:#3b3a36}
+  .article-body{grid-column:5 / span 8}
+  .article-title{
+    font-family:var(--serif);font-weight:900;font-size:var(--t-h3);
+    line-height:1;letter-spacing:-.018em;margin:0 0 22px;
+    font-feature-settings:"kern" 1,"liga" 1,"dlig" 1;
+  }
+  .article-title em{font-style:italic;font-weight:400;color:var(--coral-ink)}
+
+  /* drop-cap — kerned & baseline aligned to body */
+  .dropcap{
+    columns:2;column-gap:36px;column-rule:1px solid rgba(13,13,13,.15);
+    font-family:var(--serif);font-size:var(--t-body);line-height:1.65;color:#1a1916;
+    text-align:justify;hyphens:auto;
+    font-feature-settings:"kern" 1,"liga" 1,"onum" 1;
+  }
+  .dropcap p{margin:0 0 16px}
+  .dropcap p:first-child::first-letter{
+    font-family:var(--serif);
+    font-weight:900;
+    font-style:normal;
+    color:var(--coral);
+    float:left;
+    font-size:7.6em;
+    line-height:.76;
+    /* baseline-align the cap to body x-height: cap top sits at first line cap-height */
+    margin:0.04em 0.10em -0.12em -0.04em; /* trim left side-bearing, lift baseline */
+    padding:0;
+    letter-spacing:-.04em; /* tighten kern against following letters */
+    font-feature-settings:"kern" 1;
+    -webkit-font-feature-settings:"kern" 1;
+  }
+  .article-foot{
+    margin-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;
+    border-top:1px solid var(--ink);padding-top:14px;
+  }
+  .article-foot .byline{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+
+  /* ───── photo band: cocktails ───── */
+  .photoband{padding:30px 0 56px}
+  .pb-head{margin-bottom:24px;align-items:end}
+  .pb-head .lhs{grid-column:1 / span 6}
+  .pb-head .rhs{grid-column:8 / span 5;text-align:right}
+  .pb-head h2{
+    font-family:var(--serif);font-weight:900;font-size:var(--t-h2);
+    line-height:.95;letter-spacing:-.022em;margin:10px 0 0;
+    font-feature-settings:"kern" 1,"liga" 1,"dlig" 1;
+  }
+  .pb-head h2 em{font-style:italic;font-weight:400;color:var(--coral-ink)}
+  .pb-head .lede{font-family:var(--serif);font-style:italic;font-size:18px;color:#332f29;max-width:42ch;margin-left:auto}
+
+  /* asymmetric photo crops, varied aspect ratios via row spans */
+  .pb-grid{
+    display:grid;
+    grid-template-columns:repeat(12, minmax(0,1fr));
+    grid-template-rows: 220px 220px 220px;
+    column-gap:14px;row-gap:14px;
+  }
+  .pb-frame{position:relative;overflow:hidden;border:1px solid var(--ink);background:#1a1614}
+  .pb-frame img{width:100%;height:100%;object-fit:cover}
+  .pb-frame .pin{
+    position:absolute;top:10px;left:10px;background:var(--paper);padding:5px 9px;
+    font-family:var(--mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink);
+  }
+  .pb-frame .cap{
+    position:absolute;bottom:10px;left:10px;right:10px;color:var(--paper);
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;
+    display:flex;justify-content:space-between;text-shadow:0 1px 4px rgba(0,0,0,.65);
+    font-feature-settings:"tnum" 1;
+  }
+  /* Plate 02 — tall portrait, 5 cols × 3 rows  (≈ 2:3) */
+  .pb-a   {grid-column:1  / span 5; grid-row:1 / span 3}
+  /* Editor card — square-ish, 4 cols × 2 rows */
+  .pb-card{grid-column:6  / span 4; grid-row:1 / span 2;
+    background:var(--paper-2);border:1px solid var(--ink);padding:20px 20px 18px;
+    display:flex;flex-direction:column;justify-content:space-between;
+  }
+  /* Plate 04 — narrow tall, 3 cols × 2 rows */
+  .pb-c   {grid-column:10 / span 3; grid-row:1 / span 2}
+  /* Plate 05 — wide landscape, 4 cols × 1 row */
+  .pb-d   {grid-column:6  / span 4; grid-row:3 / span 1}
+  /* Plate 06 — wide landscape, 3 cols × 1 row */
+  .pb-e   {grid-column:10 / span 3; grid-row:3 / span 1}
+
+  .pb-card .top{font-family:var(--mono);font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--coral)}
+  .pb-card h3{font-family:var(--serif);font-weight:900;font-size:var(--t-h4);line-height:1;margin:10px 0 0;letter-spacing:-.012em}
+  .pb-card h3 em{font-style:italic;font-weight:400;color:var(--coral-ink)}
+  .pb-card p{font-family:var(--serif);font-style:italic;font-size:15px;margin:10px 0 0;color:#2b2823;line-height:1.5}
+  .pb-card .arrow{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;align-self:flex-end;margin-top:10px;color:var(--ink);display:inline-flex;align-items:center;gap:8px}
+  .pb-card .arrow svg{width:14px;height:14px}
+
+  /* ───── features (numbered) ───── */
+  .features{padding:46px 0 54px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);background:var(--paper-2)}
+  .features-head{align-items:end;margin-bottom:30px}
+  .features-head .lhs{grid-column:1 / span 7}
+  .features-head .rhs{grid-column:9 / span 4;text-align:right}
+  .features-head h2{font-family:var(--serif);font-weight:900;font-size:var(--t-h3);line-height:1;margin:8px 0 0;letter-spacing:-.018em;max-width:18ch;
+    font-feature-settings:"kern" 1,"liga" 1,"dlig" 1;
+  }
+  .features-head h2 em{font-style:italic;font-weight:400;color:var(--coral-ink)}
+  .features-head .rhs .meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);max-width:32ch;margin-left:auto}
+  .feat-grid{
+    display:grid;
+    grid-template-columns:repeat(12, minmax(0,1fr));
+    column-gap:0;border-top:1px solid var(--ink);
+  }
+  .feat{grid-column:span 4;padding:28px 26px 26px;border-right:1px solid var(--ink);position:relative}
+  .feat:last-child{border-right:none}
+  .feat .num{
+    font-family:var(--serif);font-weight:900;font-size:56px;line-height:1;color:var(--coral);
+    display:flex;align-items:baseline;gap:12px;letter-spacing:-.02em;
+    font-feature-settings:"lnum" 1;
+  }
+  .feat .num small{font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink)}
+  .feat h3{font-family:var(--serif);font-weight:700;font-size:var(--t-h5);line-height:1.15;margin:20px 0 12px;letter-spacing:-.01em}
+  .feat h3 em{font-style:italic;font-weight:400;color:var(--coral-ink)}
+  .feat p{font-family:var(--serif);font-size:15.5px;line-height:1.55;color:#2b2823;margin:0}
+  .feat .tag{
+    margin-top:20px;font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);
+    display:flex;justify-content:space-between;border-top:1px solid rgba(13,13,13,.2);padding-top:12px;
+  }
+
+  /* ───── terrace band ───── */
+  .terrace{padding:60px 0 40px}
+  .terrace-grid{align-items:center}
+  .terrace-photo{
+    grid-column:1 / span 7;
+    aspect-ratio:5/4;overflow:hidden;border:1px solid var(--ink);position:relative;background:#222
+  }
+  .terrace-photo img{width:100%;height:100%;object-fit:cover;filter:contrast(1.04) saturate(.95)}
+  .terrace-photo .pin{position:absolute;top:14px;left:14px;background:var(--paper);padding:6px 10px;font-family:var(--mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase}
+  .terrace-photo .cap{position:absolute;bottom:14px;right:14px;color:var(--paper);font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;text-shadow:0 1px 4px rgba(0,0,0,.55)}
+  .terrace-copy{grid-column:9 / span 4}
+  .terrace-copy .tinytitle{font-family:var(--mono);font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--coral)}
+  .terrace-copy h2{font-family:var(--serif);font-weight:900;font-size:var(--t-h3);line-height:.95;margin:10px 0 14px;letter-spacing:-.018em}
+  .terrace-copy h2 em{font-style:italic;font-weight:400;color:var(--coral-ink)}
+  .terrace-copy p{font-family:var(--serif);font-size:17px;line-height:1.6;color:#2b2823;margin:0 0 14px}
+  .terrace-copy ul{list-style:none;padding:0;margin:14px 0 0;border-top:1px solid var(--ink)}
+  .terrace-copy li{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dotted rgba(13,13,13,.35);font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+  .terrace-copy li span:last-child{font-family:var(--serif);font-style:italic;letter-spacing:0;text-transform:none;font-size:14px;color:var(--coral-ink)}
+
+  /* ───── hours ───── */
+  .hours{padding:50px 0;border-top:1px solid var(--ink)}
+  .hours-head{margin-bottom:26px}
+  .hours-head .lhs{grid-column:1 / span 6}
+  .hours-head .rhs{grid-column:7 / span 6}
+  .hours-head h2{font-family:var(--serif);font-weight:900;font-size:var(--t-h3);line-height:.95;margin:8px 0 0;letter-spacing:-.018em}
+  .hours-head h2 em{font-style:italic;font-weight:400;color:var(--coral-ink)}
+  .hours-head .rhs p{font-family:var(--serif);font-style:italic;font-size:17px;color:#2b2823;margin:0;max-width:44ch}
+  .hours-table{
+    grid-column:1 / span 12;
+    border:1px solid var(--ink);background:var(--paper-2);
+    display:grid;grid-template-columns:1fr 1fr;
+  }
+  .hours-col{padding:22px 26px}
+  .hours-col + .hours-col{border-left:1px solid var(--ink)}
+  .hours-col h4{
+    font-family:var(--mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;margin:0 0 14px;color:var(--coral);
+    display:flex;justify-content:space-between;border-bottom:1px solid var(--ink);padding-bottom:10px;
+  }
+  .hours-col h4 span:last-child{color:var(--ink)}
+  .hours-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px dotted rgba(13,13,13,.35)}
+  .hours-row:last-child{border-bottom:none}
+  .hours-row .d{font-family:var(--mono);font-size:11.5px;letter-spacing:.22em;text-transform:uppercase}
+  .hours-row .t{font-family:var(--serif);font-style:italic;font-size:16px;color:#1a1916}
+  .hours-row.closed .t{color:var(--coral-ink)}
+  .hours-foot{
+    grid-column:1 / span 12;
+    margin-top:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);
+  }
+
+  /* ───── instagram ───── */
+  .ig{padding:50px 0;border-top:1px solid var(--ink);background:var(--paper)}
+  .ig-head{align-items:end;margin-bottom:22px}
+  .ig-head .lhs{grid-column:1 / span 8}
+  .ig-head .rhs{grid-column:10 / span 3;text-align:right}
+  .ig-head h2{font-family:var(--serif);font-weight:900;font-size:clamp(30px,3.4vw,52px);line-height:1;margin:8px 0 0;letter-spacing:-.018em}
+  .ig-head h2 em{font-style:italic;font-weight:400;color:var(--coral-ink)}
+  .ig-head a.viewlink{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;border-bottom:1px solid var(--ink);padding-bottom:4px}
+  .ig-strip{
+    grid-column:1 / span 12;
+    display:grid;grid-template-columns:repeat(6, minmax(0,1fr));gap:8px;
+  }
+  .ig-tile{aspect-ratio:1/1;border:1px solid var(--ink);overflow:hidden;position:relative;background:#1c1814;display:block}
+  .ig-tile img{width:100%;height:100%;object-fit:cover;transition:.5s}
+  .ig-tile:hover img{transform:scale(1.05);filter:brightness(.85)}
+  .ig-tile .n{position:absolute;top:8px;left:8px;background:var(--paper);padding:3px 7px;font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase}
+
+  /* ───── colophon ───── */
+  .colophon{background:var(--ink);color:var(--paper);padding:54px 0 30px;margin-top:30px;position:relative;overflow:hidden}
+  .colophon .wrap{position:relative}
+  .col-mast{grid-column:1 / span 5}
+  .col-mast h3{font-family:var(--serif);font-weight:900;font-size:clamp(36px,4vw,64px);line-height:.95;margin:10px 0 10px;letter-spacing:-.018em}
+  .col-mast h3 em{font-style:italic;font-weight:400;color:var(--coral)}
+  .col-mast p{font-family:var(--serif);font-style:italic;color:#d8d0c1;max-width:38ch;margin:0 0 14px}
+  .col-mast .imprint{
+    margin-top:14px;padding-top:12px;border-top:1px solid rgba(244,239,230,.18);
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:#a8a193;
+    display:grid;grid-template-columns:repeat(2,1fr);gap:6px 18px;
+  }
+  .col-mast .imprint b{color:#e6dfd0;font-weight:400}
+  .col-block{grid-column:span 2}
+  .col-block.wide{grid-column:span 3}
+  .col-block h5{font-family:var(--mono);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--coral);margin:0 0 14px;border-bottom:1px solid rgba(244,239,230,.25);padding-bottom:8px}
+  .col-block a,.col-block p{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#e6dfd0;padding:6px 0;margin:0}
+  .col-block a:hover{color:var(--coral)}
+  .col-block .ser{font-family:var(--serif);font-style:italic;font-size:14px;letter-spacing:0;text-transform:none;color:#e6dfd0}
+  .col-bottom{
+    grid-column:1 / span 12;
+    margin-top:34px;padding-top:18px;border-top:1px solid rgba(244,239,230,.2);
+    display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+    font-family:var(--mono);font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:#bdb6a7;
+  }
+  .col-bottom .issue{color:var(--coral)}
+  .col-bottom .mid{text-align:center}
+  .col-bottom .end{text-align:right}
+  .col-watermark{
+    position:absolute;right:-12px;bottom:-30px;
+    font-family:var(--serif);font-weight:900;font-size:clamp(80px,16vw,220px);line-height:.8;
+    color:rgba(244,239,230,.06);letter-spacing:-.04em;pointer-events:none;
+  }
+
+  /* ───── mobile menu ───── */
+  .mobile-menu{
+    position:fixed;inset:0;background:var(--paper);z-index:50;
+    transform:translateY(-100%);transition:.4s cubic-bezier(.7,0,.2,1);
+    padding:80px 28px 40px;display:flex;flex-direction:column;
+  }
+  .mobile-menu.open{transform:translateY(0)}
+  .mobile-menu .close{position:absolute;top:18px;right:20px;background:none;border:1px solid var(--ink);padding:8px 12px;font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;cursor:pointer}
+  .mobile-menu a{
+    display:flex;justify-content:space-between;align-items:baseline;
+    padding:18px 0;border-bottom:1px solid var(--ink);
+    font-family:var(--serif);font-size:30px;font-weight:700;
+  }
+  .mobile-menu a em{font-style:italic;font-weight:400;color:var(--coral-ink)}
+  .mobile-menu a .n{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--coral);font-weight:400}
+  .mobile-menu .foot{margin-top:auto;font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+
+  /* ───── responsive: 12-col → 4-col ───── */
+  @media (max-width:980px){
+    :root{ --gutter: 16px; }
+    .nav-list,.nav-cta{display:none}
+    .burger{display:inline-flex}
+
+    /* 12-col → 4-col throughout */
+    .grid12,
+    .masthead-top,
+    .masthead-mid,
+    .nav-row,
+    .chapter,
+    .page-no,
+    .pb-head,
+    .features-head,
+    .terrace-grid,
+    .hours-head,
+    .ig-head,
+    .col-grid,
+    .feat-grid{
+      grid-template-columns:repeat(4, minmax(0,1fr));
+    }
+
+    .masthead-top .mt-left  {grid-column:1 / span 2;text-align:left}
+    .masthead-top .mt-center{grid-column:1 / -1;text-align:center;order:-1;padding-bottom:4px}
+    .masthead-top .mt-right {grid-column:3 / span 2;text-align:right}
+
+    .masthead-mid .side-l,.masthead-mid .side-r{display:none}
+    .masthead-mid .title{grid-column:1 / -1;text-align:center}
+
+    .nav-row{padding:8px 0 12px}
+    .burger{grid-column:1 / -1;justify-self:start}
+
+    .chapter .line-l{grid-column:1 / span 1}
+    .chapter .badge {grid-column:2 / span 2;text-align:center}
+    .chapter .line-r{grid-column:4 / span 1}
+
+    .page-no .pn-l{grid-column:1 / span 2;text-align:left}
+    .page-no .pn-c{grid-column:1 / -1;text-align:center;order:-1}
+    .page-no .pn-r{grid-column:3 / span 2;text-align:right}
+
+    .hero-left,.hero-right{grid-column:1 / -1}
+    .hero-photo{aspect-ratio:4/5;margin-top:20px}
+
+    .article-side{grid-column:1 / -1;border-right:none;border-bottom:1px solid var(--ink);padding:0 0 18px 0;margin-bottom:18px}
+    .article-body{grid-column:1 / -1}
+    .dropcap{columns:1}
+
+    .pb-head .lhs,.pb-head .rhs{grid-column:1 / -1;text-align:left}
+    .pb-head .rhs .lede{margin-left:0}
+    .pb-grid{
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      grid-template-rows: 220px 220px 200px 200px;
+    }
+    .pb-a   {grid-column:1 / span 4;grid-row:1 / span 1}
+    .pb-card{grid-column:1 / span 4;grid-row:2 / span 1}
+    .pb-c   {grid-column:1 / span 2;grid-row:3 / span 1}
+    .pb-d   {grid-column:3 / span 2;grid-row:3 / span 1}
+    .pb-e   {grid-column:1 / span 4;grid-row:4 / span 1}
+
+    .features-head .lhs,.features-head .rhs{grid-column:1 / -1;text-align:left}
+    .features-head .rhs .meta{margin-left:0}
+    .feat{grid-column:1 / -1;border-right:none;border-bottom:1px solid var(--ink)}
+    .feat:last-child{border-bottom:none}
+
+    .terrace-photo,.terrace-copy{grid-column:1 / -1}
+
+    .hours-head .lhs,.hours-head .rhs{grid-column:1 / -1}
+    .hours-table{grid-template-columns:1fr}
+    .hours-col + .hours-col{border-left:none;border-top:1px solid var(--ink)}
+
+    .ig-head .lhs,.ig-head .rhs{grid-column:1 / -1;text-align:left}
+    .ig-strip{grid-template-columns:repeat(3, minmax(0,1fr))}
+
+    .col-mast{grid-column:1 / -1}
+    .col-block,.col-block.wide{grid-column:span 2}
+    .col-bottom{grid-template-columns:1fr}
+    .col-bottom .mid,.col-bottom .end{text-align:left}
+  }
+  @media (max-width:520px){
+    .hero h1{font-size:clamp(46px,14vw,84px)}
+    .hero-meta{grid-template-columns:1fr 1fr}
+    .ig-strip{grid-template-columns:repeat(2, minmax(0,1fr))}
+    .col-block,.col-block.wide{grid-column:1 / -1}
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ MASTHEAD ═══════════════════ -->
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-top">
+      <div class="mt-left">Issue No. 044 &nbsp;·&nbsp; Vol. III</div>
+      <div class="mt-center">The Brooklyn Dispatch — A Quarterly of Tropical Affairs</div>
+      <div class="mt-right">Spring / Summer 2026</div>
+    </div>
+
+    <div class="masthead-mid">
+      <div class="side-l">Bushwick, NY · 11206</div>
+      <div class="title"><h1 class="masthead-title">La Placita <em>Rooftop</em></h1></div>
+      <div class="side-r">40.706° N · 73.939° W</div>
+    </div>
+
+    <nav class="nav-row" aria-label="primary">
+      <div class="nav-list">
+        <a href="#about"><span class="nav-num">01</span> The Story</a>
+        <a href="menu.html"><span class="nav-num">02</span> The Bar</a>
+        <a href="#features"><span class="nav-num">03</span> Features</a>
+        <a href="#terrace"><span class="nav-num">04</span> The Terrace</a>
+        <a href="events.html"><span class="nav-num">05</span> Calendar</a>
+        <a href="#hours"><span class="nav-num">06</span> Hours</a>
+      </div>
+      <a href="events.html" class="nav-cta">Reserve →</a>
+      <button class="burger" id="burger" aria-label="Open menu">Menu +</button>
+    </nav>
+  </div>
+</header>
+
+<!-- mobile menu -->
+<aside class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <button class="close" id="closeMenu">Close ×</button>
+  <a href="#about"><span>The <em>Story</em></span><span class="n">01</span></a>
+  <a href="menu.html"><span>The <em>Bar</em></span><span class="n">02</span></a>
+  <a href="#features"><span><em>Features</em></span><span class="n">03</span></a>
+  <a href="#terrace"><span>The <em>Terrace</em></span><span class="n">04</span></a>
+  <a href="events.html"><span><em>Calendar</em></span><span class="n">05</span></a>
+  <a href="#hours"><span><em>Hours</em></span><span class="n">06</span></a>
+  <a href="gallery.html"><span><em>Gallery</em></span><span class="n">07</span></a>
+  <div class="foot">@laplacita.rooftop · Bushwick</div>
+</aside>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero wrap" id="top">
+
+  <div class="chapter">
+    <span class="line-l"></span>
+    <span class="badge"><span class="roman">I.</span> Chapter One · The Cover Story</span>
+    <span class="line-r"></span>
+  </div>
+
+  <div class="page-no">
+    <span class="pn-l">The Brooklyn Dispatch / SS26</span>
+    <span class="pn-c">— <span class="folio">04</span> —</span>
+    <span class="pn-r">laplacitarooftop.com</span>
+  </div>
+
+  <div class="grid12" style="align-items:end">
+    <div class="hero-left">
+      <div class="hero-kicker">
+        <span class="ribbon">Cover Feature</span>
+        <span class="label"><span class="dot"></span>Filed from a rooftop, 60 ft up</span>
+      </div>
+
+      <h1>
+        Brooklyn<br/>
+        Meets <em>the</em><br/>
+        <span class="ampline">Island.</span>
+      </h1>
+
+      <div class="hero-meta">
+        <div>Location<strong>Bushwick, NY</strong></div>
+        <div>Latitude<strong>Tropical</strong></div>
+        <div>Service<strong>Sundown — Late</strong></div>
+      </div>
+
+      <p class="pullquote">
+        “The skyline keeps the rhythm; the rum keeps time. A San Juan plaza, six storeys above Knickerbocker.”
+        <cite>— The Brooklyn Dispatch, on La Placita</cite>
+      </p>
+    </div>
+
+    <aside class="hero-right">
+      <figure class="hero-photo">
+        <span class="frame-tag">Plate 01 · Hero</span>
+        <img src="hero-bg.jpg" alt="La Placita Rooftop at golden hour, Brooklyn skyline" />
+        <figcaption class="caption">
+          <span>Photo · The Terrace</span>
+          <span>SS26 / 01</span>
+        </figcaption>
+      </figure>
+    </aside>
+  </div>
+</section>
+
+<!-- ═══════════════════ ABOUT / FEATURE ═══════════════════ -->
+<section class="article wrap" id="about">
+  <div class="chapter">
+    <span class="line-l"></span>
+    <span class="badge"><span class="roman">II.</span> Chapter Two · Origin &amp; Intent</span>
+    <span class="line-r"></span>
+  </div>
+  <div class="page-no">
+    <span class="pn-l">The House</span>
+    <span class="pn-c">— <span class="folio">12</span> —</span>
+    <span class="pn-r">Feature</span>
+  </div>
+
+  <div class="grid12">
+    <aside class="article-side">
+      <div class="label" style="margin-bottom:14px"><span class="dot"></span>Standfirst</div>
+      <p class="standfirst">
+        A short essay on how a Bushwick rooftop learned to keep island time — the music, the rum, the abuelas, the cumbia at 1 a.m.
+      </p>
+      <div class="label" style="margin-top:24px;margin-bottom:8px"><span class="dot"></span>Filed under</div>
+      <p class="standfirst">Latin · Caribbean · Puerto Rican · Brooklyn · Rooftop · Late Night</p>
+    </aside>
+
+    <div class="article-body">
+      <h2 class="article-title">A Plaza in <em>the Sky</em>, &amp; the slow art of throwing a party that lasts until sunrise.</h2>
+      <div class="dropcap">
+        <p>Long before the elevator opens onto the terrace, you can hear it — bomba on the speakers, ice clattering into shakers, somebody laughing too loud at the bar. La Placita is named for the open-air plazas of San Juan and Mayagüez, the kind where neighbours gather without an agenda. We built ours six storeys up, in the middle of Bushwick, and let the city handle the skyline.</p>
+        <p>The kitchen leans Puerto Rican with detours through Cuba, the DR, and Colombia. The bar is rum-forward and unapologetically loud. The crowd is mixed, the dress code is whatever the weather says, and the music — salsa, perreo, boleros at the end — runs from sundown to last call.</p>
+        <p>What you’ll find on the following pages: a rum-led drinks programme, a terrace built for golden hour, a calendar that takes Sunday seriously, and a printed table of hours. Welcome to the Issue.</p>
+      </div>
+      <div class="article-foot">
+        <span class="byline">Words — The House &nbsp;·&nbsp; Photography — The Terrace &nbsp;·&nbsp; Set in Playfair</span>
+        <a href="menu.html" class="label">Continue to the bar →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ COCKTAILS BAND ═══════════════════ -->
+<section class="photoband wrap" id="cocktails">
+  <div class="chapter">
+    <span class="line-l"></span>
+    <span class="badge"><span class="roman">III.</span> Chapter Three · The Drinks Programme</span>
+    <span class="line-r"></span>
+  </div>
+  <div class="page-no">
+    <span class="pn-l">The Bar</span>
+    <span class="pn-c">— <span class="folio">28</span> —</span>
+    <span class="pn-r">Photographed in natural light</span>
+  </div>
+
+  <div class="pb-head grid12">
+    <div class="lhs">
+      <span class="label"><span class="dot"></span>Portfolio · Plates 02–06</span>
+      <h2>Rum, ice <em>&amp;</em> ritual.</h2>
+    </div>
+    <div class="rhs">
+      <p class="lede">Six drinks, photographed on the terrace between five and seven. The shaker, the citrus oil, the cigarette-smoke light — all of it intentional.</p>
+    </div>
+  </div>
+
+  <div class="pb-grid">
+    <figure class="pb-frame pb-a">
+      <span class="pin">Plate 02 · 2:3</span>
+      <img src="cocktails.jpg" alt="Signature cocktail" />
+      <figcaption class="cap"><span>Piña Brava · House</span><span>02 / 06</span></figcaption>
+    </figure>
+
+    <article class="pb-card">
+      <div>
+        <div class="top">Editor’s Pick · No. 03</div>
+        <h3>The Coquito <em>Sour</em></h3>
+        <p>Aged rum, coconut, lime, a bruise of cinnamon. Served in a coupe; lit by a candle on the railing.</p>
+      </div>
+      <a href="menu.html" class="arrow">See the menu
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </article>
+
+    <figure class="pb-frame pb-c">
+      <span class="pin">Plate 04 · 3:4</span>
+      <img src="rooftop-aerial.jpg" alt="Rooftop view at dusk" />
+      <figcaption class="cap"><span>Terrace · Dusk</span><span>04 / 06</span></figcaption>
+    </figure>
+
+    <figure class="pb-frame pb-d">
+      <span class="pin">Plate 05 · 16:9</span>
+      <img src="terrace.jpg" alt="Terrace seating" />
+      <figcaption class="cap"><span>Seating · West</span><span>05 / 06</span></figcaption>
+    </figure>
+
+    <figure class="pb-frame pb-e">
+      <span class="pin">Plate 06 · 4:3</span>
+      <img src="cocktails.jpg" alt="Cocktail garnish detail" />
+      <figcaption class="cap"><span>Garnish · Detail</span><span>06 / 06</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ═══════════════════ FEATURES ═══════════════════ -->
+<section class="features" id="features">
+  <div class="wrap">
+    <div class="chapter">
+      <span class="line-l"></span>
+      <span class="badge"><span class="roman">IV.</span> Chapter Four · Three Reasons to Come Up</span>
+      <span class="line-r"></span>
+    </div>
+    <div class="page-no">
+      <span class="pn-l">Featurettes</span>
+      <span class="pn-c">— <span class="folio">42</span> —</span>
+      <span class="pn-r">Three short reads</span>
+    </div>
+
+    <div class="features-head grid12">
+      <div class="lhs">
+        <span class="label"><span class="dot"></span>The Short List</span>
+        <h2>What the <em>house</em> is known for.</h2>
+      </div>
+      <div class="rhs">
+        <p class="meta">Three featurettes · No filler · Read in under ninety seconds while the elevator climbs.</p>
+      </div>
+    </div>
+
+    <div class="feat-grid">
+      <article class="feat">
+        <div class="num">01<small>Featurette</small></div>
+        <h3>A 360° <em>view</em> of the borough.</h3>
+        <p>From the western rail you’ll see Manhattan; from the eastern, the L train running into Bushwick. Sunset takes the whole terrace at once — bring a camera, or don’t.</p>
+        <div class="tag"><span>The View</span><span>NW · NE · S</span></div>
+      </article>
+
+      <article class="feat">
+        <div class="num">02<small>Featurette</small></div>
+        <h3>A bar built <em>around</em> the rum shelf.</h3>
+        <p>Sixty-plus bottles, mostly Caribbean, organized by island. The bartenders will guide. The Old Fashioned here is built on aged Puerto Rican rum — and yes, you can ask for two.</p>
+        <div class="tag"><span>The Bar</span><span>Rum-led</span></div>
+      </article>
+
+      <article class="feat">
+        <div class="num">03<small>Featurette</small></div>
+        <h3>Music that <em>actually</em> moves you.</h3>
+        <p>Live percussion Thursdays, DJ-led salsa Fridays, Sunday sessions until late. The dance floor is small on purpose. The energy is not.</p>
+        <div class="tag"><span>The Sound</span><span>Thu · Fri · Sun</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ TERRACE BAND ═══════════════════ -->
+<section class="terrace wrap" id="terrace">
+  <div class="chapter">
+    <span class="line-l"></span>
+    <span class="badge"><span class="roman">V.</span> Chapter Five · The Terrace</span>
+    <span class="line-r"></span>
+  </div>
+  <div class="page-no">
+    <span class="pn-l">The Setting</span>
+    <span class="pn-c">— <span class="folio">58</span> —</span>
+    <span class="pn-r">Photographed at golden hour</span>
+  </div>
+
+  <div class="terrace-grid grid12">
+    <figure class="terrace-photo">
+      <span class="pin">Plate 07 · 5:4</span>
+      <img src="terrace.jpg" alt="La Placita terrace, dusk" />
+      <span class="cap">Golden Hour · 7:42 p.m.</span>
+    </figure>
+    <div class="terrace-copy">
+      <span class="tinytitle">— The Setting —</span>
+      <h2>Six storeys up, <em>&amp;</em> one notch warmer.</h2>
+      <p>The terrace seats ninety-four, holds twice that on a good night, and turns coral the moment the sun hits the East River. Heaters in November, palms in July, candles always.</p>
+      <ul>
+        <li><span>Capacity</span><span>94 seated</span></li>
+        <li><span>Climate</span><span>Heated Apr–Oct</span></li>
+        <li><span>Views</span><span>Manhattan + East</span></li>
+        <li><span>Smoking</span><span>Allowed (west rail)</span></li>
+        <li><span>Dress code</span><span>Whatever the weather says</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ HOURS ═══════════════════ -->
+<section class="hours" id="hours">
+  <div class="wrap">
+    <div class="chapter">
+      <span class="line-l"></span>
+      <span class="badge"><span class="roman">VI.</span> Chapter Six · House Hours</span>
+      <span class="line-r"></span>
+    </div>
+    <div class="page-no">
+      <span class="pn-l">The Schedule</span>
+      <span class="pn-c">— <span class="folio">71</span> —</span>
+      <span class="pn-r">Printed for the season</span>
+    </div>
+
+    <div class="hours-head grid12">
+      <div class="lhs">
+        <span class="label"><span class="dot"></span>The Printed Table</span>
+        <h2>When the <em>doors</em> are open.</h2>
+      </div>
+      <div class="rhs">
+        <p>Seasonal hours — printed here in the back of the issue, also pinned by the elevator. Reservations recommended Friday through Sunday.</p>
+      </div>
+    </div>
+
+    <div class="grid12">
+      <div class="hours-table">
+        <div class="hours-col">
+          <h4><span>Weekdays</span><span>Mon — Thu</span></h4>
+          <div class="hours-row closed"><span class="d">Monday</span><span class="t">Closed</span></div>
+          <div class="hours-row"><span class="d">Tuesday</span><span class="t">5 p.m. – 12 a.m.</span></div>
+          <div class="hours-row"><span class="d">Wednesday</span><span class="t">5 p.m. – 12 a.m.</span></div>
+          <div class="hours-row"><span class="d">Thursday</span><span class="t">5 p.m. – 1 a.m. <em>· Live percussion</em></span></div>
+        </div>
+        <div class="hours-col">
+          <h4><span>The Weekend</span><span>Fri — Sun</span></h4>
+          <div class="hours-row"><span class="d">Friday</span><span class="t">4 p.m. – 2 a.m.</span></div>
+          <div class="hours-row"><span class="d">Saturday</span><span class="t">2 p.m. – 2 a.m.</span></div>
+          <div class="hours-row"><span class="d">Sunday</span><span class="t">12 p.m. – 12 a.m. <em>· Sessions</em></span></div>
+          <div class="hours-row"><span class="d">Brunch</span><span class="t">Sat &amp; Sun · noon–4 p.m.</span></div>
+        </div>
+      </div>
+
+      <div class="hours-foot">
+        <span>Address — 1486 Knickerbocker Ave, Brooklyn NY 11237</span>
+        <span>Reservations — events.html · Walk-ins welcome at the bar</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ INSTAGRAM ═══════════════════ -->
+<section class="ig" id="ig">
+  <div class="wrap">
+    <div class="chapter">
+      <span class="line-l"></span>
+      <span class="badge"><span class="roman">VII.</span> Chapter Seven · From the Feed</span>
+      <span class="line-r"></span>
+    </div>
+
+    <div class="ig-head grid12">
+      <div class="lhs">
+        <span class="label"><span class="dot"></span>The Back Page · Social</span>
+        <h2>Follow along <em>@laplacita.rooftop</em></h2>
+      </div>
+      <div class="rhs">
+        <a class="viewlink" href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener">View on Instagram →</a>
+      </div>
+    </div>
+
+    <div class="grid12">
+      <div class="ig-strip">
+        <a class="ig-tile" href="https://instagram.com/laplacita.rooftop"><span class="n">001</span><img src="cocktails.jpg" alt=""/></a>
+        <a class="ig-tile" href="https://instagram.com/laplacita.rooftop"><span class="n">002</span><img src="terrace.jpg" alt=""/></a>
+        <a class="ig-tile" href="https://instagram.com/laplacita.rooftop"><span class="n">003</span><img src="rooftop-aerial.jpg" alt=""/></a>
+        <a class="ig-tile" href="https://instagram.com/laplacita.rooftop"><span class="n">004</span><img src="hero-bg.jpg" alt=""/></a>
+        <a class="ig-tile" href="https://instagram.com/laplacita.rooftop"><span class="n">005</span><img src="cocktails.jpg" alt=""/></a>
+        <a class="ig-tile" href="https://instagram.com/laplacita.rooftop"><span class="n">006</span><img src="terrace.jpg" alt=""/></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ COLOPHON / FOOTER ═══════════════════ -->
+<footer class="colophon">
+  <div class="wrap">
+    <div class="col-grid grid12">
+      <div class="col-mast">
+        <span class="label" style="color:var(--coral)"><span class="dot"></span>The Colophon</span>
+        <h3>La Placita <em>Rooftop</em></h3>
+        <p>The Brooklyn Dispatch, a quarterly issued in print &amp; on the roof. Set in Playfair Display &amp; DM Mono. Printed in Bushwick, served until 2 a.m.</p>
+        <div class="imprint">
+          <span>Editor</span><span><b>The House</b></span>
+          <span>Photography</span><span><b>The Terrace</b></span>
+          <span>Type</span><span><b>Playfair · DM Mono</b></span>
+          <span>Paper</span><span><b>Bone 90gsm</b></span>
+          <span>Ink</span><span><b>Coral / Black</b></span>
+          <span>Printed</span><span><b>Bushwick, NY</b></span>
+        </div>
+      </div>
+
+      <div class="col-block">
+        <h5>Sections</h5>
+        <a href="#about">01 · The Story</a>
+        <a href="menu.html">02 · The Bar</a>
+        <a href="#features">03 · Features</a>
+        <a href="#terrace">04 · The Terrace</a>
+        <a href="events.html">05 · Calendar</a>
+        <a href="gallery.html">06 · Gallery</a>
+      </div>
+
+      <div class="col-block">
+        <h5>Visit</h5>
+        <p class="ser">1486 Knickerbocker Ave<br/>Brooklyn, NY 11237</p>
+        <p>L &amp; M trains · Halsey<br/>Open Tue – Sun</p>
+      </div>
+
+      <div class="col-block wide">
+        <h5>Correspond</h5>
+        <a href="https://instagram.com/laplacita.rooftop">@laplacita.rooftop</a>
+        <a href="mailto:hola@laplacitarooftop.com">hola@laplacitarooftop.com</a>
+        <a href="events.html">Private events &amp; bookings →</a>
+        <p class="ser">Brooklyn Meets the Island. Since 2024.</p>
+      </div>
+
+      <div class="col-bottom">
+        <span class="issue">Issue No. 044 · Vol. III · SS26</span>
+        <span class="mid">© 2026 La Placita Rooftop · All rights reserved</span>
+        <span class="end">Printed in Bushwick · Built with rum &amp; ink</span>
+      </div>
+    </div>
+
+    <div class="col-watermark">044</div>
+  </div>
+</footer>
+
+<script>
+  // mobile menu
+  const burger = document.getElementById('burger');
+  const closeBtn = document.getElementById('closeMenu');
+  const menu = document.getElementById('mobileMenu');
+  function toggle(open){
+    menu.classList.toggle('open', open);
+    menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  burger?.addEventListener('click', () => toggle(true));
+  closeBtn?.addEventListener('click', () => toggle(false));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggle(false)));
+
+  // smooth scroll for in-page anchors
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if(id.length > 1){
+        const el = document.querySelector(id);
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+      }
+    });
+  });
+</script>
+</body>
+</html>

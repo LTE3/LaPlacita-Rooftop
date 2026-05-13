@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Placita Rooftop | The Gilt Terrace — Brooklyn</title>
+<meta name="description" content="La Placita Rooftop — Art Deco glamour above Brooklyn. Tropical rooftop cocktails and Puerto Rican kitchen under the gold leaf sky.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Marcellus&family=Della+Respira&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root{
+  --black:#0B0907;
+  --black-soft:#15110D;
+  --ink:#1C1813;
+  --ivory:#F4ECDA;
+  --cream:#EADFC6;
+  /* Refined gilt palette — more chromatic depth, less flat-yellow */
+  --gilt:#C9A24A;
+  --gilt-bright:#F3D480;
+  --gilt-hot:#FFEFB4;
+  --gilt-mid:#B88A2E;
+  --gilt-deep:#7A5618;
+  --gilt-shadow:#3E2C0E;
+  --gilt-pale:#F6E6B0;
+  --rose-gilt:#C9924A;
+  --emerald:#1F4438;
+  --text:#1A1612;
+  --text-on-dark:#EEE3CA;  /* AA on var(--black) */
+  --text-muted-dark:#C9BB99; /* AA on var(--black) */
+
+  /* Layered gilt gradient — multi-stop reads as polished metal */
+  --gilt-grad:
+    linear-gradient(180deg,
+      #FFEFB4 0%,
+      #F3D480 18%,
+      #C9A24A 38%,
+      #8C6A22 58%,
+      #C9A24A 78%,
+      #F3D480 92%,
+      #7A5618 100%);
+
+  --gilt-grad-soft:
+    linear-gradient(180deg,
+      #F6E6B0 0%,
+      #E6C26A 30%,
+      #C9A24A 55%,
+      #8C6A22 85%,
+      #5A3F10 100%);
+
+  --gilt-conic:
+    conic-gradient(from 220deg at 50% 50%,
+      #7A5618 0deg,
+      #C9A24A 60deg,
+      #F3D480 110deg,
+      #FFEFB4 140deg,
+      #F3D480 170deg,
+      #C9A24A 230deg,
+      #8C6A22 300deg,
+      #7A5618 360deg);
+}
+
+html { scroll-behavior:smooth; }
+body{
+  font-family:'Cormorant Garamond', serif;
+  background:var(--ivory);
+  color:var(--text);
+  overflow-x:hidden;
+  font-size:18px;
+  line-height:1.6;
+}
+a{ text-decoration:none; color:inherit; }
+img{ max-width:100%; display:block; }
+button{ font-family:inherit; cursor:pointer; border:none; background:none; color:inherit; }
+
+/* ─── Utility: gilt text fill ─── */
+.gilt-text{
+  background:var(--gilt-grad);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+  filter:drop-shadow(0 1px 0 rgba(0,0,0,.25)) drop-shadow(0 0 24px rgba(243,212,128,.12));
+}
+
+/* ─── Ornament: gilt rule ─── */
+.gilt-rule{
+  display:block; width:100%; height:1px;
+  background:linear-gradient(90deg, transparent 0%, var(--gilt-deep) 12%, var(--gilt) 32%, var(--gilt-hot) 50%, var(--gilt) 68%, var(--gilt-deep) 88%, transparent 100%);
+  border:0;
+}
+.gilt-rule.double{
+  height:7px;
+  background:
+    linear-gradient(90deg, transparent 0%, var(--gilt-deep) 12%, var(--gilt) 32%, var(--gilt-hot) 50%, var(--gilt) 68%, var(--gilt-deep) 88%, transparent 100%) top/100% 1px no-repeat,
+    linear-gradient(90deg, transparent 0%, var(--gilt-deep) 12%, var(--gilt) 32%, var(--gilt-hot) 50%, var(--gilt) 68%, var(--gilt-deep) 88%, transparent 100%) bottom/100% 1px no-repeat;
+}
+
+/* ─── Ornament: chevron divider row ─── */
+.diamond-row{
+  display:flex; align-items:center; justify-content:center;
+  gap:14px;
+  color:var(--gilt-bright);
+  font-family:'Cinzel', serif;
+  font-weight:500;
+  letter-spacing:.42em;
+  font-size:.72rem;
+  text-transform:uppercase;
+}
+.diamond-row::before, .diamond-row::after{
+  content:""; flex:1; height:1px;
+  background:linear-gradient(90deg, transparent, var(--gilt) 50%, transparent);
+  max-width:180px;
+}
+.diamond-row .d{
+  width:9px; height:9px;
+  background:var(--gilt-grad);
+  transform:rotate(45deg);
+  display:inline-block;
+  box-shadow:0 0 10px rgba(243,212,128,.45), inset 0 0 4px rgba(0,0,0,.35);
+}
+
+/* ─── Ornament: chevron divider (svg-based, symmetric) ─── */
+.chevron-divider{
+  display:flex; align-items:center; justify-content:center;
+  gap:18px;
+  margin:34px auto;
+  max-width:520px;
+  color:var(--gilt);
+}
+.chevron-divider .line{
+  flex:1; height:1px;
+  background:linear-gradient(90deg, transparent, var(--gilt) 50%, transparent);
+}
+.chevron-divider svg{ width:46px; height:14px; }
+
+/* ─── NAV ─── */
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  padding:22px 56px;
+  display:flex; align-items:center; justify-content:space-between;
+  transition:all .5s ease;
+  background:linear-gradient(180deg, rgba(11,9,7,.72), rgba(11,9,7,.15) 70%, transparent);
+}
+.nav.scrolled{
+  background:rgba(11,9,7,.96);
+  padding:14px 56px;
+  border-bottom:1px solid rgba(201,162,74,.45);
+  box-shadow:0 4px 24px rgba(0,0,0,.4);
+}
+.nav-logo{
+  font-family:'Cinzel', serif;
+  font-weight:700;
+  font-size:1.05rem;
+  letter-spacing:.32em;
+  color:var(--gilt-bright);
+  text-transform:uppercase;
+  display:flex; align-items:center; gap:14px;
+}
+.nav-logo .mark{
+  width:26px; height:26px;
+  display:inline-block;
+  position:relative;
+}
+.nav-logo .mark::before,
+.nav-logo .mark::after{
+  content:""; position:absolute; inset:0;
+  border:1px solid var(--gilt);
+  transform:rotate(45deg);
+}
+.nav-logo .mark::after{ inset:5px; border-color:var(--gilt-bright); }
+
+.nav-links{ display:flex; gap:42px; list-style:none; }
+.nav-links a{
+  font-family:'Cinzel', serif;
+  font-size:.72rem;
+  font-weight:500;
+  letter-spacing:.32em;
+  color:var(--ivory);
+  text-transform:uppercase;
+  position:relative;
+  padding:6px 0;
+  transition:color .3s;
+}
+.nav-links a::after{
+  content:""; position:absolute; left:50%; bottom:0;
+  width:0; height:1px; background:var(--gilt-bright);
+  transition:all .35s ease; transform:translateX(-50%);
+}
+.nav-links a:hover{ color:var(--gilt-bright); }
+.nav-links a:hover::after{ width:100%; }
+
+.nav-cta{
+  font-family:'Cinzel', serif;
+  font-weight:600;
+  font-size:.7rem; letter-spacing:.3em;
+  padding:11px 24px;
+  border:1px solid var(--gilt);
+  color:var(--gilt-bright);
+  text-transform:uppercase;
+  transition:all .35s;
+  background:transparent;
+  position:relative;
+}
+.nav-cta:hover{
+  background:var(--gilt-grad);
+  color:var(--black);
+  border-color:var(--gilt-hot);
+  box-shadow:0 6px 18px rgba(201,162,74,.35);
+}
+
+.nav-toggle{ display:none; width:30px; height:22px; position:relative; }
+.nav-toggle span{
+  position:absolute; left:0; right:0; height:1px; background:var(--gilt-bright);
+  transition:all .3s;
+}
+.nav-toggle span:nth-child(1){ top:0; }
+.nav-toggle span:nth-child(2){ top:50%; }
+.nav-toggle span:nth-child(3){ bottom:0; }
+.nav-toggle.open span:nth-child(1){ top:50%; transform:rotate(45deg); }
+.nav-toggle.open span:nth-child(2){ opacity:0; }
+.nav-toggle.open span:nth-child(3){ bottom:50%; transform:rotate(-45deg); }
+
+.mobile-menu{
+  position:fixed; top:0; right:-100%; width:78%; max-width:380px; height:100vh;
+  background:var(--black); z-index:999;
+  padding:110px 40px 40px;
+  transition:right .5s cubic-bezier(.7,0,.3,1);
+  border-left:1px solid rgba(201,162,74,.4);
+}
+.mobile-menu.open{ right:0; }
+.mobile-menu ul{ list-style:none; display:flex; flex-direction:column; gap:30px; }
+.mobile-menu a{
+  font-family:'Cinzel', serif;
+  font-size:.95rem; letter-spacing:.3em; color:var(--ivory);
+  text-transform:uppercase;
+  padding-bottom:14px;
+  border-bottom:1px solid rgba(201,162,74,.25);
+  display:block;
+}
+
+/* ─── HERO ─── */
+.hero{
+  min-height:100vh;
+  position:relative;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  color:var(--ivory);
+  text-align:center;
+  padding:140px 32px 80px;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(201,162,74,.10), transparent 55%),
+    linear-gradient(180deg, rgba(11,9,7,.82) 0%, rgba(11,9,7,.55) 50%, rgba(11,9,7,.94) 100%),
+    url('hero-bg.jpg') center/cover no-repeat fixed;
+}
+
+.hero-frame{
+  position:absolute;
+  top:90px; right:40px; bottom:40px; left:40px;
+  border:1px solid rgba(201,162,74,.55);
+  pointer-events:none;
+}
+/* Refined corner brackets — double-line deco */
+.hero-frame .bracket{
+  position:absolute; width:56px; height:56px;
+  pointer-events:none;
+}
+.hero-frame .bracket::before{
+  content:""; position:absolute; inset:0;
+  border:1px solid var(--gilt-bright);
+}
+.hero-frame .bracket::after{
+  content:""; position:absolute; inset:5px;
+  border:1px solid rgba(243,212,128,.55);
+}
+.hero-frame .bracket.tl{ top:-9px; left:-9px; }
+.hero-frame .bracket.tl::before{ border-right:0; border-bottom:0; }
+.hero-frame .bracket.tl::after{ border-right:0; border-bottom:0; }
+.hero-frame .bracket.tr{ top:-9px; right:-9px; }
+.hero-frame .bracket.tr::before{ border-left:0; border-bottom:0; }
+.hero-frame .bracket.tr::after{ border-left:0; border-bottom:0; }
+.hero-frame .bracket.bl{ bottom:-9px; left:-9px; }
+.hero-frame .bracket.bl::before{ border-right:0; border-top:0; }
+.hero-frame .bracket.bl::after{ border-right:0; border-top:0; }
+.hero-frame .bracket.br{ bottom:-9px; right:-9px; }
+.hero-frame .bracket.br::before{ border-left:0; border-top:0; }
+.hero-frame .bracket.br::after{ border-left:0; border-top:0; }
+
+.sunburst{
+  position:absolute; left:50%; top:50%;
+  transform:translate(-50%,-58%);
+  width:min(880px, 92vw); aspect-ratio:1;
+  pointer-events:none;
+  opacity:.62;
+  z-index:0;
+  filter:drop-shadow(0 0 60px rgba(243,212,128,.10));
+}
+.sunburst svg{ width:100%; height:100%; }
+
+.hero-inner{
+  position:relative; z-index:2;
+  max-width:880px;
+  display:flex; flex-direction:column; align-items:center; gap:26px;
+}
+.hero-eyebrow{
+  font-family:'Cinzel', serif;
+  font-weight:500;
+  font-size:.78rem; letter-spacing:.55em;
+  color:var(--gilt-bright); text-transform:uppercase;
+  display:flex; align-items:center; gap:18px;
+}
+.hero-eyebrow .d{
+  width:7px; height:7px; background:var(--gilt-grad);
+  transform:rotate(45deg); display:inline-block;
+  box-shadow:0 0 6px rgba(243,212,128,.5);
+}
+.hero-title{
+  font-family:'Della Respira', serif;
+  font-size:clamp(3.4rem, 9vw, 7.2rem);
+  font-weight:400;
+  line-height:.95;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  background:var(--gilt-grad);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+  filter:drop-shadow(0 2px 0 rgba(0,0,0,.4)) drop-shadow(0 0 40px rgba(243,212,128,.15));
+}
+.hero-title .amp{
+  display:block; font-size:.28em; letter-spacing:.5em;
+  color:var(--ivory); -webkit-text-fill-color:var(--ivory);
+  background:none; filter:none;
+  margin:.55em 0;
+  font-family:'Cinzel', serif;
+  font-weight:400;
+  opacity:.85;
+}
+.hero-sub{
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:clamp(1.1rem, 1.7vw, 1.5rem);
+  color:var(--text-on-dark);
+  max-width:640px;
+  line-height:1.55;
+}
+.hero-actions{
+  display:flex; gap:16px; flex-wrap:wrap; justify-content:center;
+  margin-top:8px;
+}
+.btn{
+  font-family:'Cinzel', serif;
+  font-weight:600;
+  font-size:.78rem; letter-spacing:.32em;
+  padding:18px 36px;
+  text-transform:uppercase;
+  border:1px solid var(--gilt);
+  transition:all .4s;
+  position:relative;
+  display:inline-block;
+}
+.btn-gilt{
+  background:var(--gilt-grad);
+  color:var(--black);
+  border-color:var(--gilt-hot);
+  box-shadow:
+    inset 0 1px 0 rgba(255,239,180,.7),
+    inset 0 -2px 0 rgba(122,86,24,.5),
+    0 6px 18px rgba(0,0,0,.25);
+}
+.btn-gilt:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,239,180,.8),
+    inset 0 -2px 0 rgba(122,86,24,.5),
+    0 14px 32px rgba(201,162,74,.45);
+}
+.btn-ghost{ color:var(--gilt-bright); }
+.btn-ghost:hover{
+  background:rgba(201,162,74,.14);
+  border-color:var(--gilt-bright);
+  color:var(--gilt-hot);
+}
+
+.hero-scroll{
+  position:absolute; bottom:64px; left:50%; transform:translateX(-50%);
+  font-family:'Cinzel', serif; letter-spacing:.45em; font-size:.65rem;
+  color:var(--gilt-bright); text-transform:uppercase;
+  display:flex; flex-direction:column; align-items:center; gap:12px;
+  z-index:2;
+}
+.hero-scroll::after{
+  content:""; width:1px; height:36px;
+  background:linear-gradient(180deg, var(--gilt-bright), transparent);
+}
+
+/* ─── Section base ─── */
+section{ padding:120px 40px; position:relative; }
+.container{ max-width:1280px; margin:0 auto; }
+.section-head{ text-align:center; margin-bottom:70px; }
+.section-eyebrow{
+  font-family:'Cinzel', serif;
+  font-weight:500;
+  font-size:.7rem; letter-spacing:.5em; text-transform:uppercase;
+  color:var(--gilt-deep); margin-bottom:18px;
+}
+.section-title{
+  font-family:'Della Respira', serif;
+  font-size:clamp(2.4rem, 4.6vw, 4rem);
+  font-weight:400; letter-spacing:.05em;
+  text-transform:uppercase;
+  color:var(--ink);
+  line-height:1.05;
+}
+.section-title .accent{
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  text-transform:none;
+  color:var(--gilt-deep);
+  letter-spacing:.02em;
+  font-weight:400;
+}
+
+/* ─── ABOUT ─── */
+.about{ background:var(--ivory); }
+.about-inner{
+  display:grid; grid-template-columns: 1fr 1fr; gap:80px; align-items:center;
+}
+.about-text p{
+  font-family:'Cormorant Garamond', serif;
+  font-weight:400;
+  font-size:1.18rem;
+  color:#2C2418;
+  margin-bottom:22px;
+  line-height:1.75;
+}
+.about-text .lead{
+  font-family:'Della Respira', serif;
+  font-size:1.5rem; line-height:1.4;
+  color:var(--ink);
+  font-weight:400;
+}
+.about-text .lead::first-letter{
+  font-family:'Della Respira', serif;
+  font-size:4.4rem; float:left; line-height:.9;
+  margin:6px 14px 0 0;
+  background:var(--gilt-grad-soft);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+}
+.about-quote{
+  margin-top:30px; padding:24px 0;
+  border-top:1px solid var(--gilt);
+  border-bottom:1px solid var(--gilt);
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:1.4rem; color:var(--gilt-deep); text-align:center;
+  letter-spacing:.02em;
+}
+.about-img-wrap{
+  position:relative;
+  padding:18px;
+}
+.about-img-wrap::before{
+  content:""; position:absolute; inset:0;
+  border:1px solid var(--gilt);
+}
+.about-img-wrap::after{
+  content:""; position:absolute; inset:8px;
+  border:1px solid var(--gilt-bright); opacity:.6;
+}
+.about-img{
+  position:relative; overflow:hidden;
+  aspect-ratio:4/5;
+}
+.about-img img{ width:100%; height:100%; object-fit:cover; }
+.about-img-tag{
+  position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+  background:var(--ivory); padding:0 18px;
+  font-family:'Cinzel', serif; font-weight:500;
+  font-size:.7rem; letter-spacing:.45em;
+  color:var(--gilt-deep); text-transform:uppercase; z-index:3;
+}
+
+/* ─── COCKTAILS BAND ─── */
+.cocktails-band{
+  background:var(--black);
+  color:var(--text-on-dark);
+  padding:0;
+  overflow:hidden;
+}
+.cocktails-grid{
+  display:grid; grid-template-columns: 1fr 1.05fr;
+  min-height:640px;
+}
+.cocktails-img{
+  background:url('cocktails.jpg') center/cover no-repeat;
+  position:relative;
+}
+.cocktails-img::after{
+  content:""; position:absolute; inset:24px;
+  border:1px solid rgba(201,162,74,.5);
+  pointer-events:none;
+}
+.cocktails-content{
+  padding:90px 70px;
+  display:flex; flex-direction:column; justify-content:center;
+  position:relative;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(201,162,74,.10), transparent 60%),
+    var(--black);
+}
+.cocktails-content .section-title{
+  background:var(--gilt-grad);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+}
+.cocktails-content .section-title .accent{
+  -webkit-text-fill-color:initial;
+  color:var(--gilt-bright);
+  background:none;
+  font-style:italic;
+}
+.cocktails-content .section-eyebrow{ color:var(--gilt-bright); opacity:.85; }
+.cocktails-list{ margin-top:34px; }
+.cocktail-item{
+  display:grid;
+  grid-template-columns: auto 1fr auto;
+  align-items:baseline;
+  gap:14px;
+  padding:18px 0;
+  border-bottom:1px solid rgba(201,162,74,.25);
+  position:relative;
+}
+.cocktail-item:last-child{ border-bottom:0; }
+.cocktail-item .name{
+  font-family:'Marcellus', serif;
+  font-size:1.35rem;
+  color:var(--ivory);
+  letter-spacing:.04em;
+  white-space:nowrap;
+}
+.cocktail-item .desc{
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:1.02rem;
+  color:var(--text-muted-dark);
+  position:relative;
+  padding:0 14px;
+  overflow:hidden;
+}
+/* leader dots between desc and price for refined menu rhythm */
+.cocktail-item .desc::after{
+  content:" . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .";
+  letter-spacing:.18em;
+  color:rgba(201,162,74,.35);
+  margin-left:8px;
+}
+.cocktail-item .price{
+  font-family:'Cinzel', serif;
+  font-weight:600;
+  background:var(--gilt-grad);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+  font-size:1.05rem; letter-spacing:.14em;
+  font-variant-numeric:tabular-nums;
+  min-width:3.2em; text-align:right;
+}
+.cocktails-cta{
+  margin-top:38px;
+  align-self:flex-start;
+}
+
+/* ─── FEATURES ─── */
+.features{ background:var(--ivory); }
+.features-grid{
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:48px;
+  margin-top:60px;
+}
+.feature-card{
+  text-align:center;
+  padding:54px 30px 40px;
+  position:relative;
+  background:#FBF5E6;
+  border:1px solid rgba(201,162,74,.35);
+  transition:transform .4s ease, box-shadow .4s ease;
+}
+.feature-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 18px 38px rgba(122,86,24,.18);
+}
+/* refined four-corner brackets */
+.feature-card::before, .feature-card::after,
+.feature-card .corner-tr, .feature-card .corner-bl{
+  content:""; position:absolute; width:24px; height:24px;
+  border:1px solid var(--gilt);
+}
+.feature-card::before{ top:-1px; left:-1px; border-right:0; border-bottom:0; }
+.feature-card::after{ bottom:-1px; right:-1px; border-left:0; border-top:0; }
+.feature-card .corner-tr{ top:-1px; right:-1px; border-left:0; border-bottom:0; }
+.feature-card .corner-bl{ bottom:-1px; left:-1px; border-right:0; border-top:0; }
+.feature-icon{
+  width:80px; height:80px; margin:0 auto 26px;
+  display:flex; align-items:center; justify-content:center;
+  position:relative;
+}
+.feature-icon svg{ width:100%; height:100%; color:var(--gilt-deep); }
+.feature-num{
+  font-family:'Cinzel', serif;
+  font-weight:500;
+  font-size:.7rem; letter-spacing:.45em;
+  color:var(--gilt-deep); margin-bottom:8px;
+}
+.feature-title{
+  font-family:'Della Respira', serif;
+  font-size:1.45rem; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--ink);
+  margin-bottom:14px;
+  font-weight:400;
+}
+.feature-divider{
+  width:42px; height:1px;
+  background:linear-gradient(90deg, transparent, var(--gilt-mid) 30%, var(--gilt-hot) 50%, var(--gilt-mid) 70%, transparent);
+  margin:0 auto 18px;
+}
+.feature-desc{
+  font-family:'Cormorant Garamond', serif;
+  font-weight:400;
+  font-size:1.08rem; color:#3A2F1F;
+  line-height:1.65;
+}
+
+/* ─── TERRACE BAND ─── */
+.terrace{
+  position:relative;
+  background:linear-gradient(rgba(11,9,7,.78), rgba(11,9,7,.88)),
+             url('terrace.jpg') center/cover no-repeat fixed;
+  color:var(--text-on-dark);
+  text-align:center;
+  padding:140px 40px;
+}
+.terrace .section-title{
+  background:var(--gilt-grad);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+}
+.terrace .section-title .accent{
+  -webkit-text-fill-color:initial;
+  background:none;
+  color:var(--gilt-bright);
+  font-style:italic;
+}
+.terrace-lead{
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-weight:400;
+  font-size:1.4rem; max-width:720px; margin:24px auto 36px;
+  color:var(--cream);
+}
+.terrace-stats{
+  display:flex; justify-content:center; gap:80px;
+  flex-wrap:wrap; margin-top:60px;
+}
+.stat{
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+}
+.stat-num{
+  font-family:'Della Respira', serif;
+  font-weight:400;
+  font-size:3.4rem;
+  background:var(--gilt-grad);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+  letter-spacing:.04em;
+  filter:drop-shadow(0 2px 0 rgba(0,0,0,.4));
+}
+.stat-label{
+  font-family:'Cinzel', serif;
+  font-weight:500;
+  font-size:.7rem; letter-spacing:.45em;
+  color:var(--gilt-bright); text-transform:uppercase;
+}
+
+/* ─── HOURS ─── */
+.hours{ background:var(--ivory); }
+.hours-grid{
+  display:grid; grid-template-columns:1fr 1px 1fr; gap:60px;
+  max-width:1000px; margin:0 auto;
+  align-items:start;
+}
+.hours-divider{
+  background:linear-gradient(180deg, transparent, var(--gilt-deep) 12%, var(--gilt) 30%, var(--gilt-hot) 50%, var(--gilt) 70%, var(--gilt-deep) 88%, transparent);
+  align-self:stretch;
+  min-height:300px;
+}
+.hours-col h3{
+  font-family:'Della Respira', serif;
+  font-weight:400;
+  font-size:1.5rem; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink);
+  text-align:center; margin-bottom:30px;
+}
+.hours-row{
+  display:grid;
+  grid-template-columns: auto 1fr auto;
+  align-items:baseline;
+  gap:10px;
+  padding:14px 0;
+  border-bottom:1px dashed rgba(201,162,74,.45);
+}
+.hours-row:last-child{ border-bottom:0; }
+.hours-row .leaders{
+  flex:1; height:1px;
+  border-bottom:1px dotted rgba(201,162,74,.55);
+  transform:translateY(-4px);
+}
+.hours-day{
+  font-family:'Cinzel', serif;
+  font-weight:500;
+  font-size:.78rem;
+  letter-spacing:.32em; text-transform:uppercase;
+  color:var(--ink);
+}
+.hours-time{
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-weight:500;
+  font-size:1.15rem; color:var(--gilt-deep);
+  font-variant-numeric:tabular-nums;
+}
+
+.address-block{
+  text-align:center; margin-top:22px;
+}
+.address-block p{
+  font-family:'Cormorant Garamond', serif;
+  font-weight:400;
+  font-size:1.18rem; color:#2C2418; line-height:1.7;
+}
+.address-block .ph{
+  display:block; margin-top:14px;
+  font-family:'Cinzel', serif;
+  font-weight:500;
+  letter-spacing:.3em;
+  color:var(--gilt-deep);
+}
+
+/* ─── INSTAGRAM BAR ─── */
+.insta{
+  background:var(--black);
+  color:var(--text-on-dark);
+  padding:90px 40px;
+  text-align:center;
+}
+.insta .section-title{
+  background:var(--gilt-grad);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+}
+.insta .section-title .accent{
+  -webkit-text-fill-color:initial;
+  background:none;
+  color:var(--gilt-bright);
+  font-style:italic;
+}
+.insta-tag{
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-weight:400;
+  font-size:1.22rem; color:var(--text-on-dark);
+  margin:18px 0 40px;
+}
+.insta-grid{
+  display:grid; grid-template-columns:repeat(4, 1fr); gap:14px;
+  max-width:1200px; margin:0 auto 40px;
+}
+.insta-tile{
+  position:relative; aspect-ratio:1;
+  overflow:hidden;
+  border:1px solid rgba(201,162,74,.35);
+}
+.insta-tile img{ width:100%; height:100%; object-fit:cover; transition:transform .8s ease; filter:saturate(.85); }
+.insta-tile:hover img{ transform:scale(1.08); filter:saturate(1); }
+.insta-tile::after{
+  content:"@"; position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Cinzel', serif; font-size:1.8rem; color:var(--gilt-bright);
+  background:rgba(11,9,7,.65); opacity:0; transition:opacity .35s;
+}
+.insta-tile:hover::after{ opacity:1; }
+.insta-cta{
+  font-family:'Cinzel', serif;
+  font-weight:600;
+  letter-spacing:.4em; font-size:.8rem;
+  color:var(--gilt-bright); text-transform:uppercase;
+  border-bottom:1px solid var(--gilt-bright);
+  padding-bottom:6px;
+  display:inline-block;
+}
+.insta-cta:hover{ color:var(--gilt-hot); }
+
+/* ─── FOOTER ─── */
+.footer{
+  background:var(--black-soft);
+  color:var(--text-muted-dark);
+  padding:80px 40px 30px;
+  border-top:1px solid rgba(201,162,74,.4);
+}
+.footer-inner{
+  max-width:1280px; margin:0 auto;
+  display:grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap:60px;
+  margin-bottom:50px;
+}
+.footer h4{
+  font-family:'Cinzel', serif;
+  font-weight:600;
+  font-size:.78rem; letter-spacing:.38em;
+  color:var(--gilt-bright); text-transform:uppercase;
+  margin-bottom:20px;
+}
+.footer p, .footer a{ font-size:1.02rem; color:var(--text-muted-dark); line-height:1.8; }
+.footer a:hover{ color:var(--gilt-bright); }
+.footer-brand .name{
+  font-family:'Della Respira', serif;
+  font-size:1.85rem; letter-spacing:.08em;
+  background:var(--gilt-grad);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+  text-transform:uppercase;
+  margin-bottom:14px;
+}
+.footer-brand p{
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:1.1rem;
+}
+.footer ul{ list-style:none; display:flex; flex-direction:column; gap:10px; }
+.footer-bottom{
+  border-top:1px solid rgba(201,162,74,.25);
+  padding-top:26px; text-align:center;
+  font-family:'Cinzel', serif;
+  font-weight:500;
+  font-size:.7rem; letter-spacing:.4em;
+  color:rgba(201,187,153,.65); text-transform:uppercase;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 980px){
+  .nav{ padding:18px 24px; }
+  .nav.scrolled{ padding:14px 24px; }
+  .nav-links, .nav-cta{ display:none; }
+  .nav-toggle{ display:block; }
+  section{ padding:90px 24px; }
+  .about-inner{ grid-template-columns:1fr; gap:50px; }
+  .cocktails-grid{ grid-template-columns:1fr; }
+  .cocktails-img{ min-height:340px; }
+  .cocktails-content{ padding:60px 30px; }
+  .features-grid{ grid-template-columns:1fr; gap:30px; }
+  .hours-grid{ grid-template-columns:1fr; gap:50px; }
+  .hours-divider{ height:1px; min-height:0; width:80%; margin:0 auto;
+    background:linear-gradient(90deg, transparent, var(--gilt-deep), var(--gilt-hot), var(--gilt-deep), transparent); }
+  .terrace-stats{ gap:36px; }
+  .stat-num{ font-size:2.6rem; }
+  .insta-grid{ grid-template-columns:repeat(2,1fr); }
+  .footer-inner{ grid-template-columns:1fr 1fr; gap:40px; }
+  .footer-brand{ grid-column:span 2; }
+  .hero-frame{ top:80px; right:18px; bottom:18px; left:18px; }
+  .hero-frame .bracket{ width:38px; height:38px; }
+  .sunburst{ opacity:.42; transform:translate(-50%,-55%); }
+  /* hide leader dots on smaller screens — they get noisy */
+  .cocktail-item .desc::after{ content:""; }
+  .cocktail-item{ grid-template-columns: 1fr auto; row-gap:4px; }
+  .cocktail-item .name{ grid-column:1; }
+  .cocktail-item .price{ grid-column:2; grid-row:1; }
+  .cocktail-item .desc{ grid-column:1 / -1; padding:0; }
+}
+@media (max-width: 640px){
+  .sunburst{ display:none; }
+  .hero-frame{ display:none; }
+  .chevron-divider svg{ width:34px; }
+  .diamond-row::before, .diamond-row::after{ max-width:60px; }
+}
+@media (max-width: 520px){
+  .footer-inner{ grid-template-columns:1fr; }
+  .footer-brand{ grid-column:auto; }
+  .hero-title{ letter-spacing:.02em; }
+  .diamond-row{ font-size:.62rem; letter-spacing:.32em; gap:10px; }
+  .terrace-stats{ gap:28px 36px; }
+  .stat-num{ font-size:2.2rem; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{ transition:none !important; animation:none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo"><span class="mark"></span>La Placita</a>
+  <ul class="nav-links">
+    <li><a href="#about">Establishment</a></li>
+    <li><a href="menu.html">Carte</a></li>
+    <li><a href="events.html">Soirées</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="#hours">Visit</a></li>
+  </ul>
+  <a href="events.html" class="nav-cta">Reserve</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<aside class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#about">Establishment</a></li>
+    <li><a href="menu.html">Carte</a></li>
+    <li><a href="events.html">Soirées</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="#hours">Visit</a></li>
+    <li><a href="events.html">Reserve</a></li>
+  </ul>
+</aside>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-frame">
+    <span class="bracket tl"></span>
+    <span class="bracket tr"></span>
+    <span class="bracket bl"></span>
+    <span class="bracket br"></span>
+  </div>
+
+  <!-- Sunburst SVG ornament — symmetric 48-ray fan, programmatic -->
+  <div class="sunburst" aria-hidden="true">
+    <svg viewBox="0 0 800 800">
+      <defs>
+        <radialGradient id="sunCore" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"  stop-color="#FFEFB4" stop-opacity=".55"/>
+          <stop offset="28%" stop-color="#F3D480" stop-opacity=".32"/>
+          <stop offset="60%" stop-color="#C9A24A" stop-opacity=".12"/>
+          <stop offset="100%" stop-color="#7A5618" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="rayGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"  stop-color="#FFEFB4" stop-opacity=".0"/>
+          <stop offset="30%" stop-color="#F3D480" stop-opacity=".85"/>
+          <stop offset="100%" stop-color="#7A5618" stop-opacity=".95"/>
+        </linearGradient>
+        <linearGradient id="rayGradShort" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"  stop-color="#FFEFB4" stop-opacity=".0"/>
+          <stop offset="40%" stop-color="#E6C26A" stop-opacity=".55"/>
+          <stop offset="100%" stop-color="#8C6A22" stop-opacity=".7"/>
+        </linearGradient>
+        <g id="rayLong">
+          <line x1="0" y1="-140" x2="0" y2="-378" stroke="url(#rayGrad)" stroke-width="1.3" stroke-linecap="round"/>
+        </g>
+        <g id="rayShort">
+          <line x1="0" y1="-150" x2="0" y2="-300" stroke="url(#rayGradShort)" stroke-width="0.9" stroke-linecap="round"/>
+        </g>
+      </defs>
+
+      <circle cx="400" cy="400" r="380" fill="url(#sunCore)"/>
+
+      <!-- 24 long rays, evenly spaced -->
+      <g transform="translate(400 400)">
+        <use href="#rayLong" transform="rotate(0)"/>
+        <use href="#rayLong" transform="rotate(15)"/>
+        <use href="#rayLong" transform="rotate(30)"/>
+        <use href="#rayLong" transform="rotate(45)"/>
+        <use href="#rayLong" transform="rotate(60)"/>
+        <use href="#rayLong" transform="rotate(75)"/>
+        <use href="#rayLong" transform="rotate(90)"/>
+        <use href="#rayLong" transform="rotate(105)"/>
+        <use href="#rayLong" transform="rotate(120)"/>
+        <use href="#rayLong" transform="rotate(135)"/>
+        <use href="#rayLong" transform="rotate(150)"/>
+        <use href="#rayLong" transform="rotate(165)"/>
+        <use href="#rayLong" transform="rotate(180)"/>
+        <use href="#rayLong" transform="rotate(195)"/>
+        <use href="#rayLong" transform="rotate(210)"/>
+        <use href="#rayLong" transform="rotate(225)"/>
+        <use href="#rayLong" transform="rotate(240)"/>
+        <use href="#rayLong" transform="rotate(255)"/>
+        <use href="#rayLong" transform="rotate(270)"/>
+        <use href="#rayLong" transform="rotate(285)"/>
+        <use href="#rayLong" transform="rotate(300)"/>
+        <use href="#rayLong" transform="rotate(315)"/>
+        <use href="#rayLong" transform="rotate(330)"/>
+        <use href="#rayLong" transform="rotate(345)"/>
+      </g>
+
+      <!-- 24 short rays interleaved at 7.5deg offset -->
+      <g transform="translate(400 400)" opacity=".85">
+        <use href="#rayShort" transform="rotate(7.5)"/>
+        <use href="#rayShort" transform="rotate(22.5)"/>
+        <use href="#rayShort" transform="rotate(37.5)"/>
+        <use href="#rayShort" transform="rotate(52.5)"/>
+        <use href="#rayShort" transform="rotate(67.5)"/>
+        <use href="#rayShort" transform="rotate(82.5)"/>
+        <use href="#rayShort" transform="rotate(97.5)"/>
+        <use href="#rayShort" transform="rotate(112.5)"/>
+        <use href="#rayShort" transform="rotate(127.5)"/>
+        <use href="#rayShort" transform="rotate(142.5)"/>
+        <use href="#rayShort" transform="rotate(157.5)"/>
+        <use href="#rayShort" transform="rotate(172.5)"/>
+        <use href="#rayShort" transform="rotate(187.5)"/>
+        <use href="#rayShort" transform="rotate(202.5)"/>
+        <use href="#rayShort" transform="rotate(217.5)"/>
+        <use href="#rayShort" transform="rotate(232.5)"/>
+        <use href="#rayShort" transform="rotate(247.5)"/>
+        <use href="#rayShort" transform="rotate(262.5)"/>
+        <use href="#rayShort" transform="rotate(277.5)"/>
+        <use href="#rayShort" transform="rotate(292.5)"/>
+        <use href="#rayShort" transform="rotate(307.5)"/>
+        <use href="#rayShort" transform="rotate(322.5)"/>
+        <use href="#rayShort" transform="rotate(337.5)"/>
+        <use href="#rayShort" transform="rotate(352.5)"/>
+      </g>
+
+      <!-- Concentric inner rings -->
+      <circle cx="400" cy="400" r="132" fill="none" stroke="#F3D480" stroke-width="1.1" opacity=".85"/>
+      <circle cx="400" cy="400" r="118" fill="none" stroke="#C9A24A" stroke-width="1"   opacity=".55"/>
+      <circle cx="400" cy="400" r="100" fill="none" stroke="#F3D480" stroke-width=".7"  opacity=".38"/>
+      <circle cx="400" cy="400" r="86"  fill="none" stroke="#C9A24A" stroke-width=".6"  opacity=".28"/>
+
+      <!-- Inner deco rosette: 12 tiny lozenges -->
+      <g transform="translate(400 400)" fill="#F3D480" opacity=".7">
+        <g transform="rotate(0)"><rect x="-2" y="-78" width="4" height="10" transform="rotate(45)"/></g>
+        <g transform="rotate(30)"><rect x="-2" y="-78" width="4" height="10" transform="rotate(45)"/></g>
+        <g transform="rotate(60)"><rect x="-2" y="-78" width="4" height="10" transform="rotate(45)"/></g>
+        <g transform="rotate(90)"><rect x="-2" y="-78" width="4" height="10" transform="rotate(45)"/></g>
+        <g transform="rotate(120)"><rect x="-2" y="-78" width="4" height="10" transform="rotate(45)"/></g>
+        <g transform="rotate(150)"><rect x="-2" y="-78" width="4" height="10" transform="rotate(45)"/></g>
+        <g transform="rotate(180)"><rect x="-2" y="-78" width="4" height="10" transform="rotate(45)"/></g>
+        <g transform="rotate(210)"><rect x="-2" y="-78" width="4" height="10" transform="rotate(45)"/></g>
+        <g transform="rotate(240)"><rect x="-2" y="-78" width="4" height="10" transform="rotate(45)"/></g>
+        <g transform="rotate(270)"><rect x="-2" y="-78" width="4" height="10" transform="rotate(45)"/></g>
+        <g transform="rotate(300)"><rect x="-2" y="-78" width="4" height="10" transform="rotate(45)"/></g>
+        <g transform="rotate(330)"><rect x="-2" y="-78" width="4" height="10" transform="rotate(45)"/></g>
+      </g>
+    </svg>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="d"></span><span>Established Brooklyn</span><span class="d"></span>
+    </div>
+    <h1 class="hero-title">
+      La Placita
+      <span class="amp">— &amp; —</span>
+      Rooftop
+    </h1>
+    <p class="hero-sub">Brooklyn meets the island beneath a sky of gold leaf. A tropical terrace dressed for the age of glamour — palms, plumes, and Puerto Rican fire above the city lights.</p>
+    <div class="hero-actions">
+      <a href="events.html" class="btn btn-gilt">Reserve a Table</a>
+      <a href="menu.html" class="btn btn-ghost">View the Carte</a>
+    </div>
+  </div>
+
+  <a href="#about" class="hero-scroll">Descend</a>
+</header>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="diamond-row" style="margin-bottom:18px;"><span class="d"></span><span>The Establishment</span><span class="d"></span></div>
+    <div class="section-head">
+      <h2 class="section-title">Brooklyn Meets <span class="accent">the Island</span></h2>
+    </div>
+
+    <div class="about-inner">
+      <div class="about-text">
+        <p class="lead">High above the avenue, behind a velvet curtain and a flight of brass stairs, La Placita Rooftop opens onto a terrace of gold leaf, terracotta and palm.</p>
+        <p>Our kitchen draws from San Juan and the southern shore: lechón crisped over open flame, sofrito stirred patient and slow, plantains gilded to a Tiffany sheen. The bar mixes Caribbean rum with the cold precision of a Manhattan cocktail room.</p>
+        <p>It is theater. It is tropic. It is Brooklyn, dressed in 24-karat sunset.</p>
+        <div class="about-quote">"A rooftop where the islands keep company with Park Avenue."</div>
+      </div>
+      <div class="about-img-wrap">
+        <div class="about-img">
+          <span class="about-img-tag">Anno 2024</span>
+          <img src="rooftop-aerial.jpg" alt="La Placita Rooftop terrace">
+        </div>
+      </div>
+    </div>
+
+    <!-- Refined chevron divider — symmetric SVG -->
+    <div class="chevron-divider" aria-hidden="true">
+      <span class="line"></span>
+      <svg viewBox="0 0 92 14" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="2,11 12,3 22,11"/>
+        <polyline points="22,11 32,3 42,11"/>
+        <polyline points="50,11 60,3 70,11"/>
+        <polyline points="70,11 80,3 90,11"/>
+        <circle cx="46" cy="7" r="2" fill="currentColor" stroke="none"/>
+      </svg>
+      <span class="line"></span>
+    </div>
+  </div>
+</section>
+
+<hr class="gilt-rule double">
+
+<!-- COCKTAILS BAND -->
+<section class="cocktails-band" id="cocktails">
+  <div class="cocktails-grid">
+    <div class="cocktails-img" role="img" aria-label="Signature cocktails"></div>
+    <div class="cocktails-content">
+      <div class="diamond-row" style="margin-bottom:18px; justify-content:flex-start;">
+        <span class="d"></span><span>The Bar</span>
+      </div>
+      <h2 class="section-title">Cocktails of the <span class="accent">House</span></h2>
+      <div class="cocktails-list">
+        <div class="cocktail-item">
+          <span class="name">Gilded Coquito</span>
+          <span class="desc">aged rum, coconut, vanilla bean, gold leaf</span>
+          <span class="price">XVIII</span>
+        </div>
+        <div class="cocktail-item">
+          <span class="name">Park Avenue Piña</span>
+          <span class="desc">white rum, pineapple, lime, champagne float</span>
+          <span class="price">XVII</span>
+        </div>
+        <div class="cocktail-item">
+          <span class="name">El Marquesa</span>
+          <span class="desc">mezcal, passionfruit, hibiscus, smoked salt</span>
+          <span class="price">XIX</span>
+        </div>
+        <div class="cocktail-item">
+          <span class="name">Sunset on Calle Once</span>
+          <span class="desc">tequila reposado, guava, lime, chili tincture</span>
+          <span class="price">XVI</span>
+        </div>
+        <div class="cocktail-item">
+          <span class="name">The 1925</span>
+          <span class="desc">aged rum, dry vermouth, orange bitters, twist</span>
+          <span class="price">XX</span>
+        </div>
+      </div>
+      <a href="menu.html" class="btn btn-gilt cocktails-cta">The Full Carte</a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="container">
+    <div class="diamond-row" style="margin-bottom:18px;"><span class="d"></span><span>Of Note</span><span class="d"></span></div>
+    <div class="section-head">
+      <h2 class="section-title">Three <span class="accent">Pleasures</span> of the Terrace</h2>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="corner-tr"></span><span class="corner-bl"></span>
+        <div class="feature-icon">
+          <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round">
+            <polygon points="40,8 47,32 72,32 51.5,46 59,70 40,55 21,70 28.5,46 8,32 33,32"/>
+            <circle cx="40" cy="40" r="3.2" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="feature-num">I.</div>
+        <h3 class="feature-title">The Sky Bar</h3>
+        <div class="feature-divider"></div>
+        <p class="feature-desc">A marble counter under twelve hand-blown lanterns. Bartenders shake to a brass quartet on Thursdays through Sunday.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="corner-tr"></span><span class="corner-bl"></span>
+        <div class="feature-icon">
+          <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round">
+            <path d="M40 8 L62 28 L62 60 Q40 76 18 60 L18 28 Z"/>
+            <path d="M40 16 L54 30 L54 56 Q40 66 26 56 L26 30 Z"/>
+            <circle cx="40" cy="44" r="4.2" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="feature-num">II.</div>
+        <h3 class="feature-title">Lechón Sundays</h3>
+        <div class="feature-divider"></div>
+        <p class="feature-desc">Whole-roast pig carved tableside, plantain mofongo, and trio of salsas. Reservation required, ceremony optional.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="corner-tr"></span><span class="corner-bl"></span>
+        <div class="feature-icon">
+          <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round">
+            <rect x="20" y="14" width="40" height="52"/>
+            <rect x="26" y="20" width="28" height="40"/>
+            <line x1="40" y1="14" x2="40" y2="66"/>
+            <line x1="20" y1="40" x2="60" y2="40"/>
+            <circle cx="40" cy="40" r="3.2" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="feature-num">III.</div>
+        <h3 class="feature-title">Private Cabanas</h3>
+        <div class="feature-divider"></div>
+        <p class="feature-desc">Six gilded cabanas with curtains, bottle service and a private view of the Manhattan skyline. Reserved by host.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TERRACE BAND -->
+<section class="terrace">
+  <div class="container">
+    <div class="diamond-row" style="margin-bottom:18px;"><span class="d"></span><span>Above the Avenue</span><span class="d"></span></div>
+    <h2 class="section-title">The Terrace, by <span class="accent">Lantern Light</span></h2>
+    <p class="terrace-lead">When the sun lowers itself behind the bridges and the city begins to shimmer, our terrace becomes the prettiest room in Brooklyn.</p>
+    <a href="gallery.html" class="btn btn-gilt">Enter the Gallery</a>
+
+    <div class="terrace-stats">
+      <div class="stat">
+        <div class="stat-num">XII</div>
+        <div class="stat-label">Floors Above</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">180°</div>
+        <div class="stat-label">Skyline View</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">VI</div>
+        <div class="stat-label">Private Cabanas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Golden Hours</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS -->
+<section class="hours" id="hours">
+  <div class="container">
+    <div class="diamond-row" style="margin-bottom:18px;"><span class="d"></span><span>The Visit</span><span class="d"></span></div>
+    <div class="section-head">
+      <h2 class="section-title">Hours &amp; <span class="accent">Address</span></h2>
+    </div>
+
+    <div class="hours-grid">
+      <div class="hours-col">
+        <h3>The Hours</h3>
+        <div class="hours-row"><span class="hours-day">Monday</span><span class="leaders"></span><span class="hours-time">Closed</span></div>
+        <div class="hours-row"><span class="hours-day">Tue – Thu</span><span class="leaders"></span><span class="hours-time">5pm – 11pm</span></div>
+        <div class="hours-row"><span class="hours-day">Fri – Sat</span><span class="leaders"></span><span class="hours-time">5pm – 2am</span></div>
+        <div class="hours-row"><span class="hours-day">Sunday</span><span class="leaders"></span><span class="hours-time">3pm – 12am</span></div>
+        <div class="hours-row"><span class="hours-day">Brunch</span><span class="leaders"></span><span class="hours-time">Sat – Sun · 11 – 3</span></div>
+      </div>
+      <div class="hours-divider" aria-hidden="true"></div>
+      <div class="hours-col">
+        <h3>The Address</h3>
+        <div class="address-block">
+          <p>
+            La Placita Rooftop<br>
+            247 Grand Avenue, 12th Floor<br>
+            Brooklyn, New York 11205
+          </p>
+          <span class="ph">(718) 555 — 0247</span>
+          <div style="margin-top:30px;">
+            <a href="events.html" class="btn btn-gilt">Reserve a Table</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section class="insta">
+  <div class="container">
+    <div class="diamond-row" style="margin-bottom:18px;"><span class="d"></span><span>Society</span><span class="d"></span></div>
+    <h2 class="section-title">Of the <span class="accent">Moment</span></h2>
+    <p class="insta-tag">@laplacita.rooftop · Brooklyn rooftop society</p>
+
+    <div class="insta-grid">
+      <a class="insta-tile" href="https://instagram.com/laplacita.rooftop"><img src="cocktails.jpg" alt=""></a>
+      <a class="insta-tile" href="https://instagram.com/laplacita.rooftop"><img src="terrace.jpg" alt=""></a>
+      <a class="insta-tile" href="https://instagram.com/laplacita.rooftop"><img src="rooftop-aerial.jpg" alt=""></a>
+      <a class="insta-tile" href="https://instagram.com/laplacita.rooftop"><img src="hero-bg.jpg" alt=""></a>
+    </div>
+
+    <a href="https://instagram.com/laplacita.rooftop" class="insta-cta">Follow on Instagram</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="name">La Placita</div>
+      <p>Brooklyn meets the island — a tropical rooftop dressed for the age of glamour.</p>
+    </div>
+    <div>
+      <h4>Visit</h4>
+      <p>247 Grand Avenue<br>Brooklyn, NY 11205<br>(718) 555 — 0247</p>
+    </div>
+    <div>
+      <h4>Carte</h4>
+      <ul>
+        <li><a href="menu.html">Dinner</a></li>
+        <li><a href="menu.html">Cocktails</a></li>
+        <li><a href="events.html">Private Events</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Society</h4>
+      <ul>
+        <li><a href="https://instagram.com/laplacita.rooftop">@laplacita.rooftop</a></li>
+        <li><a href="events.html">Reservations</a></li>
+        <li><a href="mailto:hello@laplacita.nyc">hello@laplacita.nyc</a></li>
+      </ul>
+    </div>
+  </div>
+  <hr class="gilt-rule">
+  <div class="footer-bottom" style="margin-top:26px;">© MMXXVI La Placita Rooftop · Brooklyn, New York</div>
+</footer>
+
+<script>
+  // Scroll nav
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Mobile menu
+  const toggle = document.getElementById('navToggle');
+  const menu = document.getElementById('mobileMenu');
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    menu.classList.toggle('open');
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    toggle.classList.remove('open'); menu.classList.remove('open');
+  }));
+</script>
+
+</body>
+</html>
