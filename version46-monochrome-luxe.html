@@ -1,0 +1,837 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>La Placita Rooftop — Brooklyn Meets the Island</title>
+<meta name="description" content="La Placita Rooftop. A quiet, luminous rooftop in Brooklyn. Latin & Puerto Rican craft cocktails, elevated tropical kitchen, slow nights under the sky." />
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Italiana&display=swap" rel="stylesheet" />
+<style>
+  /* ============================================================
+     MONOCHROME LUXE — single-hue: deep AUBERGINE
+     One brand color expressed as ~9 tints/shades against bone.
+     No competing accents. Heavy negative space. Hotel-bar calm.
+     ============================================================ */
+  :root{
+    /* Single hue: aubergine. All UI color derives from this. */
+    --h: 305;            /* hue */
+    --s: 28%;            /* saturation */
+    --ink-1000: hsl(var(--h) 38% 8%);    /* near-black aubergine */
+    --ink-900:  hsl(var(--h) 32% 14%);
+    --ink-800:  hsl(var(--h) 30% 20%);
+    --ink-700:  hsl(var(--h) 28% 28%);
+    --ink-600:  hsl(var(--h) 24% 38%);
+    --ink-500:  hsl(var(--h) 20% 50%);
+    --ink-400:  hsl(var(--h) 18% 62%);
+    --ink-300:  hsl(var(--h) 16% 78%);
+    --ink-200:  hsl(var(--h) 18% 88%);
+    --ink-100:  hsl(var(--h) 22% 94%);
+    --bone:     #f6f3ee; /* bone white */
+    --bone-2:   #efeae2;
+    --paper:    #faf8f4;
+    --rule:     hsla(var(--h),30%,20%,.12);
+    --rule-2:   hsla(var(--h),30%,20%,.22);
+
+    --serif: "Italiana", "Domaine Display", "Cormorant Garamond", serif;
+    --sans:  "Inter", "Inter Display", ui-sans-serif, system-ui, sans-serif;
+
+    --maxw: 1320px;
+    --gut: clamp(20px, 4vw, 56px);
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);
+    color:var(--ink-900);
+    background:var(--bone);
+    font-weight:400;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
+
+  /* ---------- typography ---------- */
+  .serif{font-family:var(--serif);font-weight:400;letter-spacing:.005em}
+  .eyebrow{
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:.38em;
+    text-transform:uppercase;
+    color:var(--ink-700);
+    font-weight:500;
+  }
+  .eyebrow .dot{
+    display:inline-block;width:5px;height:5px;border-radius:50%;
+    background:var(--ink-800);margin:0 12px 2px 0;vertical-align:middle;
+  }
+  h1,h2,h3,h4{margin:0;font-weight:400;color:var(--ink-1000)}
+  p{margin:0}
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(246,243,238,.78);
+    backdrop-filter:saturate(140%) blur(12px);
+    -webkit-backdrop-filter:saturate(140%) blur(12px);
+    border-bottom:1px solid var(--rule);
+  }
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    height:78px;
+  }
+  .brand{display:flex;align-items:center;gap:14px}
+  .brand-mark{
+    width:38px;height:38px;border-radius:50%;
+    background:var(--ink-1000);
+    color:var(--bone);
+    display:grid;place-items:center;
+    font-family:var(--serif);font-size:18px;letter-spacing:.04em;
+  }
+  .brand-name{
+    font-family:var(--serif);font-size:20px;color:var(--ink-1000);
+    letter-spacing:.04em;
+  }
+  .brand-sub{
+    font-size:10px;letter-spacing:.36em;text-transform:uppercase;
+    color:var(--ink-600);margin-top:2px;
+  }
+  .nav-links{display:flex;align-items:center;gap:38px}
+  .nav-links a{
+    font-size:12px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--ink-800);font-weight:500;position:relative;
+  }
+  .nav-links a:hover{color:var(--ink-1000)}
+  .nav-links a::after{
+    content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;
+    background:var(--ink-1000);transform:scaleX(0);transform-origin:left;
+    transition:transform .35s ease;
+  }
+  .nav-links a:hover::after{transform:scaleX(1)}
+  .nav-cta{
+    border:1px solid var(--ink-1000);
+    color:var(--ink-1000);
+    padding:11px 18px;
+    font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+    font-weight:500;background:transparent;cursor:pointer;
+    transition:background .3s,color .3s;
+  }
+  .nav-cta:hover{background:var(--ink-1000);color:var(--bone)}
+  .menu-btn{display:none;background:none;border:0;cursor:pointer;padding:8px}
+  .menu-btn span{display:block;width:24px;height:1px;background:var(--ink-1000);margin:6px 0;transition:transform .3s,opacity .3s}
+  .menu-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .menu-btn.open span:nth-child(2){opacity:0}
+  .menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+  @media (max-width: 900px){
+    .nav-links, .nav-cta{display:none}
+    .menu-btn{display:block}
+    .mobile{
+      position:fixed;inset:78px 0 0 0;background:var(--bone);
+      transform:translateY(-100%);transition:transform .4s ease;
+      z-index:40;padding:48px var(--gut);border-top:1px solid var(--rule);
+    }
+    .mobile.open{transform:translateY(0)}
+    .mobile a{
+      display:block;padding:18px 0;border-bottom:1px solid var(--rule);
+      font-family:var(--serif);font-size:28px;color:var(--ink-1000);
+    }
+    .mobile .m-cta{
+      margin-top:32px;display:inline-block;border:1px solid var(--ink-1000);
+      padding:14px 22px;font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+    }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding: clamp(72px, 12vw, 160px) 0 clamp(64px, 10vw, 140px);
+    overflow:hidden;
+    background:var(--bone);
+  }
+  .hero::before{
+    /* Subtle vertical aubergine fade — barely there. */
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, var(--paper) 0%, var(--bone) 60%, var(--ink-100) 100%);
+    z-index:0;
+  }
+  .hero-grid{
+    position:relative;z-index:2;
+    display:grid;grid-template-columns: 1.05fr .95fr;gap: clamp(40px, 6vw, 96px);
+    align-items:center;
+  }
+  .hero-eyebrow{margin-bottom:48px}
+  .hero h1{
+    font-family:var(--serif);
+    font-size: clamp(56px, 9vw, 132px);
+    line-height:.95;
+    letter-spacing:-.01em;
+    color:var(--ink-1000);
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--ink-700);
+    font-family:var(--serif);
+  }
+  .hero h1 .amp{
+    display:inline-block;color:var(--ink-600);font-style:italic;
+    transform:translateY(-.05em);
+  }
+  .hero-sub{
+    margin-top:44px;max-width:480px;
+    font-size:15px;line-height:1.75;color:var(--ink-700);
+  }
+  .hero-actions{margin-top:48px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+  .btn-solid{
+    background:var(--ink-1000);color:var(--bone);
+    padding:16px 28px;border:1px solid var(--ink-1000);
+    font-size:11px;letter-spacing:.3em;text-transform:uppercase;font-weight:500;
+    cursor:pointer;transition:background .3s,color .3s;
+  }
+  .btn-solid:hover{background:transparent;color:var(--ink-1000)}
+  .btn-ghost{
+    background:transparent;color:var(--ink-1000);
+    padding:16px 4px;border:0;border-bottom:1px solid var(--ink-1000);
+    font-size:11px;letter-spacing:.3em;text-transform:uppercase;font-weight:500;
+    cursor:pointer;
+  }
+
+  .hero-media{
+    position:relative;
+    aspect-ratio: 4/5;
+    background:var(--ink-200);
+    overflow:hidden;
+  }
+  .hero-media img{
+    width:100%;height:100%;object-fit:cover;
+    filter: grayscale(1) contrast(1.05) brightness(.92);
+  }
+  .hero-media::after{
+    /* Duotone wash: aubergine over photograph */
+    content:"";position:absolute;inset:0;
+    background: linear-gradient(180deg, hsla(var(--h),40%,16%,.55), hsla(var(--h),50%,8%,.78));
+    mix-blend-mode: color;
+    pointer-events:none;
+  }
+  .hero-media::before{
+    /* Texture overlay for filmic feel */
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(120% 80% at 50% 0%, transparent 0%, hsla(var(--h),50%,6%,.35) 100%);
+    z-index:1;pointer-events:none;
+  }
+  .hero-caption{
+    position:absolute;left:24px;bottom:24px;z-index:2;
+    color:var(--bone);
+    font-size:10px;letter-spacing:.36em;text-transform:uppercase;
+  }
+  .hero-caption .line{display:inline-block;width:28px;height:1px;background:var(--bone);vertical-align:middle;margin-right:14px}
+
+  /* Hero meta strip */
+  .hero-meta{
+    position:relative;z-index:2;margin-top:clamp(64px,10vw,120px);
+    display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+    padding-top:32px;border-top:1px solid var(--rule);
+  }
+  .hero-meta div{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-700)}
+  .hero-meta strong{display:block;font-family:var(--serif);font-size:22px;color:var(--ink-1000);letter-spacing:.02em;margin-top:6px;text-transform:none;font-weight:400}
+
+  @media (max-width: 900px){
+    .hero-grid{grid-template-columns:1fr}
+    .hero-meta{grid-template-columns:repeat(2,1fr)}
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{
+    padding: clamp(96px, 14vw, 180px) 0;
+    background:var(--bone);
+  }
+  .about-grid{
+    display:grid;grid-template-columns:1fr 1.6fr;gap: clamp(40px, 8vw, 120px);
+    align-items:start;
+  }
+  .about h2{
+    font-family:var(--serif);
+    font-size: clamp(40px, 5.6vw, 80px);
+    line-height:1.02;letter-spacing:-.005em;
+    color:var(--ink-1000);
+  }
+  .about h2 em{font-style:italic;color:var(--ink-700)}
+  .about-body p{
+    font-size:16px;line-height:1.85;color:var(--ink-800);
+    max-width:62ch;
+  }
+  .about-body p + p{margin-top:22px}
+  .about-sig{
+    margin-top:42px;display:flex;align-items:center;gap:18px;
+    font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-700);
+  }
+  .about-sig .line{flex:0 0 60px;height:1px;background:var(--ink-400)}
+  @media (max-width: 900px){
+    .about-grid{grid-template-columns:1fr}
+  }
+
+  /* ---------- COCKTAILS BAND (duotone) ---------- */
+  .cocktails{
+    position:relative;
+    min-height: clamp(520px, 80vh, 760px);
+    overflow:hidden;
+    background:var(--ink-1000);
+    color:var(--bone);
+    display:grid;place-items:center;
+    isolation:isolate;
+  }
+  .cocktails .photo{
+    position:absolute;inset:0;
+    background-image:url("cocktails.jpg");
+    background-size:cover;background-position:center;
+    filter: grayscale(1) contrast(1.1) brightness(.7);
+  }
+  .cocktails::before{
+    content:"";position:absolute;inset:0;
+    background: linear-gradient(180deg, hsla(var(--h),50%,10%,.78), hsla(var(--h),40%,18%,.62) 50%, hsla(var(--h),60%,8%,.86));
+    mix-blend-mode: multiply;
+  }
+  .cocktails::after{
+    /* Color wash to push toward aubergine duotone */
+    content:"";position:absolute;inset:0;
+    background: hsla(var(--h),50%,18%,.55);
+    mix-blend-mode: color;
+  }
+  .cocktails-inner{
+    position:relative;z-index:2;text-align:center;
+    padding: clamp(72px,10vw,140px) var(--gut);
+    max-width:840px;
+  }
+  .cocktails .eyebrow{color:var(--ink-300)}
+  .cocktails .eyebrow .dot{background:var(--ink-300)}
+  .cocktails h2{
+    font-family:var(--serif);
+    color:var(--bone);
+    font-size: clamp(44px, 7vw, 96px);
+    line-height:1.04;
+    margin-top:28px;letter-spacing:-.005em;
+  }
+  .cocktails h2 em{font-style:italic;color:var(--ink-300)}
+  .cocktails p{
+    margin: 32px auto 0;max-width:560px;
+    font-size:15px;line-height:1.8;color:var(--ink-200);
+  }
+  .cocktails .btn-line{
+    margin-top:48px;display:inline-block;
+    padding:14px 0;border-bottom:1px solid var(--bone);
+    font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--bone);
+  }
+  .cocktails .btn-line:hover{border-color:var(--ink-300);color:var(--ink-300)}
+
+  /* ---------- FEATURES ---------- */
+  .features{
+    padding: clamp(96px, 14vw, 180px) 0;
+    background:var(--paper);
+  }
+  .features-head{
+    display:flex;justify-content:space-between;align-items:end;
+    gap:40px;margin-bottom:clamp(56px,8vw,96px);
+    border-bottom:1px solid var(--rule);padding-bottom:32px;
+  }
+  .features-head h2{
+    font-family:var(--serif);font-size:clamp(36px,5vw,68px);line-height:1.04;
+    max-width:14ch;color:var(--ink-1000);
+  }
+  .features-head h2 em{font-style:italic;color:var(--ink-700)}
+  .features-head p{max-width:36ch;color:var(--ink-700);font-size:14px;line-height:1.75}
+  .features-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap: clamp(32px, 4vw, 64px);
+  }
+  .feature{
+    padding-top:32px;border-top:1px solid var(--rule);
+  }
+  .feature .num{
+    font-family:var(--serif);font-size:13px;color:var(--ink-600);letter-spacing:.18em;
+  }
+  .feature .icon{
+    margin: 28px 0 32px;color:var(--ink-1000);
+  }
+  .feature h3{
+    font-family:var(--serif);font-size:28px;color:var(--ink-1000);
+    line-height:1.15;margin-bottom:16px;letter-spacing:-.005em;
+  }
+  .feature p{font-size:14.5px;line-height:1.8;color:var(--ink-700);max-width:32ch}
+  @media (max-width: 900px){
+    .features-head{flex-direction:column;align-items:flex-start}
+    .features-grid{grid-template-columns:1fr;gap:48px}
+  }
+
+  /* ---------- TERRACE BAND ---------- */
+  .terrace{
+    position:relative;
+    display:grid;grid-template-columns:1fr 1fr;
+    background:var(--bone);
+  }
+  .terrace-media{
+    position:relative;min-height:560px;overflow:hidden;background:var(--ink-200);
+  }
+  .terrace-media img{
+    width:100%;height:100%;object-fit:cover;position:absolute;inset:0;
+    filter: grayscale(1) contrast(1.08) brightness(.88);
+  }
+  .terrace-media::after{
+    content:"";position:absolute;inset:0;
+    background: hsla(var(--h),45%,16%,.5);
+    mix-blend-mode:color;
+  }
+  .terrace-media::before{
+    content:"";position:absolute;inset:0;z-index:1;
+    background:linear-gradient(180deg, transparent 40%, hsla(var(--h),40%,8%,.35));
+  }
+  .terrace-body{
+    padding: clamp(64px,8vw,120px) clamp(40px,6vw,96px);
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .terrace-body h2{
+    font-family:var(--serif);
+    font-size:clamp(36px,5vw,68px);line-height:1.04;
+    color:var(--ink-1000);margin-top:24px;
+  }
+  .terrace-body h2 em{font-style:italic;color:var(--ink-700)}
+  .terrace-body p{
+    margin-top:28px;max-width:42ch;color:var(--ink-800);
+    font-size:15px;line-height:1.85;
+  }
+  .terrace-list{margin-top:36px;padding:0;list-style:none}
+  .terrace-list li{
+    padding:18px 0;border-top:1px solid var(--rule);
+    display:flex;justify-content:space-between;
+    font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-700);
+  }
+  .terrace-list li:last-child{border-bottom:1px solid var(--rule)}
+  .terrace-list b{font-family:var(--serif);font-weight:400;color:var(--ink-1000);font-size:15px;letter-spacing:.02em;text-transform:none}
+  @media (max-width: 900px){
+    .terrace{grid-template-columns:1fr}
+    .terrace-media{min-height:420px}
+  }
+
+  /* ---------- HOURS ---------- */
+  .hours{
+    padding: clamp(96px, 14vw, 180px) 0;
+    background:var(--ink-1000);color:var(--bone);
+    text-align:center;
+  }
+  .hours .eyebrow{color:var(--ink-300)}
+  .hours .eyebrow .dot{background:var(--ink-300)}
+  .hours h2{
+    font-family:var(--serif);font-size:clamp(40px,6vw,88px);
+    line-height:1.04;color:var(--bone);margin-top:28px;
+  }
+  .hours h2 em{font-style:italic;color:var(--ink-400)}
+  .hours-grid{
+    margin: clamp(56px,8vw,96px) auto 0;
+    max-width:880px;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+    background:hsla(var(--h),18%,40%,.35);
+    border:1px solid hsla(var(--h),18%,40%,.35);
+  }
+  .hcell{
+    background:var(--ink-1000);
+    padding:40px 24px;
+    text-align:center;
+  }
+  .hcell .label{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-400)}
+  .hcell .time{
+    font-family:var(--serif);font-size:24px;color:var(--bone);
+    margin-top:18px;letter-spacing:.02em;
+  }
+  .hcell .note{font-size:12px;color:var(--ink-400);margin-top:10px;letter-spacing:.08em}
+  .hours-foot{
+    margin-top:56px;
+    display:flex;justify-content:center;gap:40px;flex-wrap:wrap;
+    font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-300);
+  }
+  .hours-foot a{border-bottom:1px solid var(--ink-400);padding-bottom:4px}
+  .hours-foot a:hover{color:var(--bone);border-color:var(--bone)}
+  @media (max-width: 700px){
+    .hours-grid{grid-template-columns:1fr}
+  }
+
+  /* ---------- INSTAGRAM BAR ---------- */
+  .ig{
+    padding: clamp(72px,10vw,120px) 0;
+    background:var(--bone);
+  }
+  .ig-head{
+    display:flex;justify-content:space-between;align-items:end;
+    border-bottom:1px solid var(--rule);padding-bottom:28px;margin-bottom:40px;
+    gap:24px;flex-wrap:wrap;
+  }
+  .ig-head h3{
+    font-family:var(--serif);font-size:clamp(28px,3.5vw,44px);color:var(--ink-1000);
+    letter-spacing:-.005em;
+  }
+  .ig-head h3 em{font-style:italic;color:var(--ink-700)}
+  .ig-head a{
+    font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-800);
+    border-bottom:1px solid var(--ink-1000);padding-bottom:4px;
+  }
+  .ig-grid{
+    display:grid;grid-template-columns:repeat(6,1fr);gap:8px;
+  }
+  .ig-tile{
+    aspect-ratio:1/1;background:var(--ink-200);position:relative;overflow:hidden;
+  }
+  .ig-tile::after{
+    content:"";position:absolute;inset:0;
+    background: hsla(var(--h),40%,18%,.45);
+    mix-blend-mode: color;
+  }
+  .ig-tile::before{
+    content:"";position:absolute;inset:0;z-index:1;
+    background:linear-gradient(180deg, transparent 60%, hsla(var(--h),50%,8%,.45));
+  }
+  .ig-tile img{
+    width:100%;height:100%;object-fit:cover;
+    filter:grayscale(1) contrast(1.05) brightness(.85);
+    transition: transform .8s ease;
+  }
+  .ig-tile:hover img{transform:scale(1.06)}
+  @media (max-width: 900px){
+    .ig-grid{grid-template-columns:repeat(3,1fr)}
+  }
+
+  /* ---------- FOOTER ---------- */
+  .foot{
+    background:var(--ink-1000);color:var(--ink-300);
+    padding: clamp(72px,10vw,120px) 0 48px;
+  }
+  .foot-top{
+    display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;
+    padding-bottom:64px;border-bottom:1px solid hsla(var(--h),18%,40%,.3);
+  }
+  .foot-brand{
+    font-family:var(--serif);font-size:42px;color:var(--bone);letter-spacing:-.005em;line-height:1.05;
+  }
+  .foot-brand em{font-style:italic;color:var(--ink-400)}
+  .foot-tag{margin-top:18px;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-400)}
+  .foot h4{
+    font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-400);
+    margin-bottom:22px;font-weight:500;
+  }
+  .foot ul{list-style:none;padding:0;margin:0}
+  .foot ul li{margin-bottom:14px}
+  .foot ul li a{font-size:14px;color:var(--ink-200);font-family:var(--serif);letter-spacing:.01em}
+  .foot ul li a:hover{color:var(--bone)}
+  .foot-bottom{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-top:32px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-500);
+    flex-wrap:wrap;gap:16px;
+  }
+  @media (max-width: 900px){
+    .foot-top{grid-template-columns:1fr 1fr;gap:40px}
+  }
+  @media (max-width: 600px){
+    .foot-top{grid-template-columns:1fr}
+  }
+
+  /* ---------- utility ---------- */
+  .rule{height:1px;background:var(--rule);width:100%}
+  .center{text-align:center}
+
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/">
+      <span class="brand-mark">L</span>
+      <span>
+        <div class="brand-name">La Placita</div>
+        <div class="brand-sub">Rooftop &middot; Brooklyn</div>
+      </span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="menu.html">Menu</a>
+      <a href="events.html">Events</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="#hours">Visit</a>
+    </nav>
+
+    <button class="nav-cta" type="button" onclick="window.location='events.html#reserve'">Reserve</button>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile" id="mobile">
+    <a href="#about">About</a>
+    <a href="menu.html">Menu</a>
+    <a href="events.html">Events</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="#hours">Visit</a>
+    <a href="events.html#reserve" class="m-cta">Reserve a Table</a>
+  </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="eyebrow hero-eyebrow"><span class="dot"></span>Est. Brooklyn &middot; Latin Rooftop</div>
+        <h1>
+          Brooklyn <em>meets</em><br>
+          the <em>Island</em>,<br>
+          <span class="amp">&amp;</span> the night <em>opens.</em>
+        </h1>
+        <p class="hero-sub">
+          A quiet, luminous rooftop above Bushwick. Slow Puerto Rican
+          cooking, hand-stirred rum, and a sky that holds the city soft.
+          Few tables. Long evenings. Always low light.
+        </p>
+        <div class="hero-actions">
+          <button class="btn-solid" onclick="window.location='events.html#reserve'">Reserve a table</button>
+          <a class="btn-ghost" href="menu.html">View the menu &nbsp;&rsaquo;</a>
+        </div>
+      </div>
+
+      <figure class="hero-media">
+        <img src="hero-bg.jpg" alt="La Placita Rooftop at dusk" />
+        <figcaption class="hero-caption"><span class="line"></span>Vol. I &middot; Brooklyn, NY</figcaption>
+      </figure>
+    </div>
+
+    <div class="hero-meta">
+      <div>Neighborhood<strong>Bushwick</strong></div>
+      <div>Cuisine<strong>Latin / Boricua</strong></div>
+      <div>Setting<strong>Open Rooftop</strong></div>
+      <div>Reservations<strong>Suggested</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ABOUT ========== -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span>The House</div>
+      <h2 style="margin-top:28px">
+        A small <em>terrace</em><br>that remembers<br>the island.
+      </h2>
+    </div>
+    <div class="about-body">
+      <p>
+        La Placita is a slow room held above the borough &mdash; warm
+        lamplight, ceramic bowls, the hush of a record turning.
+        We cook the food we grew up on, plated with care: lechon
+        glazed dark and patient, sofrito built each morning, plantains
+        crackled to lace.
+      </p>
+      <p>
+        Our bar program is single-minded in the best way. Rum done right.
+        A handful of clarified classics. A short, considered list of
+        Caribbean wine. Nothing here is loud. Everything is intentional.
+      </p>
+      <div class="about-sig">
+        <span class="line"></span>
+        <span>From the kitchen &middot; Chef R. Vega</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== COCKTAILS BAND (duotone) ========== -->
+<section class="cocktails" aria-label="The bar">
+  <div class="photo" aria-hidden="true"></div>
+  <div class="cocktails-inner">
+    <div class="eyebrow"><span class="dot"></span>The Bar</div>
+    <h2>Rum, <em>slow</em>.<br>Citrus, <em>cold</em>.<br>Conversation, <em>longer</em>.</h2>
+    <p>
+      Twelve cocktails. Aged Puerto Rican rum, house tinctures pressed from
+      hibiscus and tamarind, mezcales kept under the bar. The list shifts
+      with the season &mdash; the temperament does not.
+    </p>
+    <a href="menu.html" class="btn-line">Explore the list &nbsp;&rsaquo;</a>
+  </div>
+</section>
+
+<!-- ========== FEATURES ========== -->
+<section class="features">
+  <div class="wrap">
+    <div class="features-head">
+      <h2>A <em>simple</em> idea,<br>quietly upheld.</h2>
+      <p>Three things we hold above all else. They are not innovations &mdash; they are habits, refined nightly, the way a house should be kept.</p>
+    </div>
+
+    <div class="features-grid">
+      <article class="feature">
+        <div class="num">01 &middot;</div>
+        <div class="icon" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8l-1 7a4 4 0 0 1-3 4 4 4 0 0 1-3-4Z"/><path d="M12 13v8"/><path d="M8 21h8"/></svg>
+        </div>
+        <h3>Hand-stirred bar</h3>
+        <p>Every drink built one at a time. No batch, no shortcut. The rum gets the attention it has earned.</p>
+      </article>
+
+      <article class="feature">
+        <div class="num">02 &middot;</div>
+        <div class="icon" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18"/><path d="M3 6h18"/><path d="M3 18h18"/><circle cx="7" cy="6" r="1.2"/><circle cx="13" cy="12" r="1.2"/><circle cx="9" cy="18" r="1.2"/></svg>
+        </div>
+        <h3>Short, seasonal menu</h3>
+        <p>Twelve plates at a time. The kitchen cooks what it has chosen well, and lets the rest go.</p>
+      </article>
+
+      <article class="feature">
+        <div class="num">03 &middot;</div>
+        <div class="icon" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M10 21v-6h4v6"/></svg>
+        </div>
+        <h3>One open rooftop</h3>
+        <p>Forty seats under the Brooklyn sky. Heaters when it&rsquo;s cold. Blankets if you ask. The room stays calm.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TERRACE BAND ========== -->
+<section class="terrace">
+  <div class="terrace-media">
+    <img src="terrace.jpg" alt="La Placita rooftop terrace at dusk" />
+  </div>
+  <div class="terrace-body">
+    <div class="eyebrow"><span class="dot"></span>The Terrace</div>
+    <h2>Forty seats.<br><em>One sky.</em></h2>
+    <p>
+      Twelve tables, a long bar against the rail, and the cityline behind it.
+      Heated for winter. Curtained from the wind. Private bookings welcome
+      after ten &mdash; for the room, or for the whole roof.
+    </p>
+    <ul class="terrace-list">
+      <li><span>Capacity</span><b>40 seated &middot; 70 standing</b></li>
+      <li><span>Buyouts</span><b>From $4,800</b></li>
+      <li><span>Last seating</span><b>11:30 pm</b></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== HOURS ========== -->
+<section class="hours" id="hours">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span>The House Is Open</div>
+    <h2>We <em>keep</em> hours.</h2>
+
+    <div class="hours-grid">
+      <div class="hcell">
+        <div class="label">Thu &middot; Fri</div>
+        <div class="time">6&nbsp;&mdash;&nbsp;1</div>
+        <div class="note">dinner &amp; bar</div>
+      </div>
+      <div class="hcell">
+        <div class="label">Saturday</div>
+        <div class="time">5&nbsp;&mdash;&nbsp;2</div>
+        <div class="note">late kitchen</div>
+      </div>
+      <div class="hcell">
+        <div class="label">Sunday</div>
+        <div class="time">3&nbsp;&mdash;&nbsp;11</div>
+        <div class="note">sobremesa</div>
+      </div>
+    </div>
+
+    <div class="hours-foot">
+      <span>1187 Wyckoff Ave &middot; Brooklyn, NY</span>
+      <a href="tel:+17185550199">(718) 555-0199</a>
+      <a href="mailto:hello@laplacitarooftop.com">hello@laplacitarooftop.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== INSTAGRAM ========== -->
+<section class="ig">
+  <div class="wrap">
+    <div class="ig-head">
+      <h3>From the <em>roof</em> &mdash; <a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener">@laplacita.rooftop</a></h3>
+      <a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener">Follow us &nbsp;&rsaquo;</a>
+    </div>
+    <div class="ig-grid">
+      <a class="ig-tile" href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener"><img src="cocktails.jpg" alt="Cocktail post"></a>
+      <a class="ig-tile" href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener"><img src="terrace.jpg" alt="Terrace post"></a>
+      <a class="ig-tile" href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener"><img src="rooftop-aerial.jpg" alt="Rooftop aerial"></a>
+      <a class="ig-tile" href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener"><img src="hero-bg.jpg" alt="Hero post"></a>
+      <a class="ig-tile" href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener"><img src="cocktails.jpg" alt="Cocktail post 2"></a>
+      <a class="ig-tile" href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener"><img src="terrace.jpg" alt="Terrace post 2"></a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand">La <em>Placita</em><br>Rooftop.</div>
+        <div class="foot-tag">Brooklyn meets the island.</div>
+      </div>
+
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li><a href="#hours">Hours</a></li>
+          <li><a href="events.html#reserve">Reservations</a></li>
+          <li><a href="events.html">Private events</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>The House</h4>
+        <ul>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Find Us</h4>
+        <ul>
+          <li><a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="tel:+17185550199">(718) 555-0199</a></li>
+          <li><a href="mailto:hello@laplacitarooftop.com">hello@laplacitarooftop.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>&copy; 2026 La Placita Rooftop &middot; Brooklyn, NY</span>
+      <span>Designed slow, kept simple.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const btn = document.getElementById('menuBtn');
+  const mob = document.getElementById('mobile');
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('open');
+    mob.classList.toggle('open');
+  });
+  mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    btn.classList.remove('open');
+    mob.classList.remove('open');
+  }));
+</script>
+
+</body>
+</html>

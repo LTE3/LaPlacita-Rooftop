@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Placita Rooftop // CYBER_TROPIC.exe</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="description" content="La Placita Rooftop — Brooklyn meets the island. Synthwave rooftop bar, Latin & PR cocktails.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Space+Grotesk:wght@300;400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#06010f;
+  --bg2:#0d0220;
+  --teal:#00fff0;
+  --magenta:#ff2bd6;
+  --lime:#c8ff2d;
+  --violet:#8a2bff;
+  --ink:#eafcff;
+  --dim:#7e7aa3;
+}
+body{
+  font-family:'Space Grotesk',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  overflow-x:hidden;
+  line-height:1.55;
+  position:relative;
+}
+
+/* Background: deep purple horizon glow */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 75%, rgba(255,43,214,.22), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 50% 95%, rgba(0,255,240,.18), transparent 70%),
+    linear-gradient(180deg, #06010f 0%, #0d0220 45%, #1a0533 70%, #2a0a40 100%);
+}
+/* CRT scanlines */
+body::after{
+  content:'';position:fixed;inset:0;z-index:999;pointer-events:none;
+  background:repeating-linear-gradient(0deg,
+    rgba(0,0,0,.18) 0px,
+    rgba(0,0,0,.18) 1px,
+    transparent 1px,
+    transparent 3px);
+  mix-blend-mode:multiply;
+  opacity:.6;
+}
+
+/* utilities */
+.glow-teal{color:var(--teal);text-shadow:0 0 6px var(--teal),0 0 18px rgba(0,255,240,.6),0 0 36px rgba(0,255,240,.3)}
+.glow-mag{color:var(--magenta);text-shadow:0 0 6px var(--magenta),0 0 18px rgba(255,43,214,.6),0 0 36px rgba(255,43,214,.3)}
+.glow-lime{color:var(--lime);text-shadow:0 0 6px var(--lime),0 0 18px rgba(200,255,45,.5)}
+.mono{font-family:'VT323',monospace;letter-spacing:.05em}
+.disp{font-family:'Audiowide',cursive;letter-spacing:.08em}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem 4vw;
+  background:rgba(6,1,15,.72);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(0,255,240,.25);
+  box-shadow:0 0 30px rgba(255,43,214,.15);
+}
+.logo-wrap{display:flex;align-items:center;gap:.8rem;text-decoration:none}
+.logo-wrap img{
+  width:44px;height:44px;border-radius:6px;
+  border:1px solid var(--teal);
+  box-shadow:0 0 12px var(--teal), inset 0 0 8px rgba(0,255,240,.3);
+  filter:saturate(1.2) contrast(1.05);
+}
+.logo-wrap .brand{
+  font-family:'Audiowide',cursive;font-size:1.05rem;
+  color:var(--teal);text-shadow:0 0 8px var(--teal),0 0 18px rgba(0,255,240,.5);
+  letter-spacing:.12em;
+}
+.logo-wrap .brand b{color:var(--magenta);text-shadow:0 0 8px var(--magenta),0 0 18px rgba(255,43,214,.5)}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{
+  color:var(--ink);text-decoration:none;font-size:.78rem;
+  font-family:'VT323',monospace;font-size:1.05rem;
+  letter-spacing:.2em;text-transform:uppercase;
+  position:relative;transition:color .25s;
+}
+.nav-links a::before{content:'> ';color:var(--lime);opacity:0;transition:opacity .25s}
+.nav-links a:hover{color:var(--lime);text-shadow:0 0 8px var(--lime)}
+.nav-links a:hover::before{opacity:1}
+.nav-cta{
+  padding:.55rem 1.2rem;
+  background:linear-gradient(90deg,var(--magenta),var(--violet));
+  color:#fff;text-decoration:none;
+  font-family:'Audiowide',cursive;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;
+  border:1px solid var(--magenta);
+  box-shadow:0 0 14px rgba(255,43,214,.55),inset 0 0 8px rgba(255,255,255,.15);
+  clip-path:polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  transition:all .25s;
+}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 0 22px var(--magenta),0 0 40px rgba(255,43,214,.5)}
+.burger{display:none;background:none;border:1px solid var(--teal);color:var(--teal);padding:.4rem .6rem;cursor:pointer;font-family:'VT323',monospace;font-size:1.1rem;box-shadow:0 0 10px rgba(0,255,240,.4)}
+
+/* HERO */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:7rem 4vw 4rem;
+  overflow:hidden;
+  z-index:1;
+}
+.hero-img{
+  position:absolute;inset:0;
+  background:url('hero-bg.jpg') center/cover;
+  filter:hue-rotate(280deg) saturate(1.4) contrast(1.05) brightness(.55);
+  opacity:.45;
+  z-index:0;
+}
+.hero-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(6,1,15,.4) 0%, rgba(6,1,15,.1) 40%, rgba(42,10,64,.85) 100%);
+}
+/* perspective grid horizon */
+.grid-floor{
+  position:absolute;left:0;right:0;bottom:0;height:55%;
+  perspective:600px;perspective-origin:50% 0%;
+  z-index:0;pointer-events:none;
+  mask-image:linear-gradient(180deg, transparent 0%, #000 25%, #000 100%);
+}
+.grid-floor::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(0,255,240,.6) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,43,214,.55) 1px, transparent 1px);
+  background-size: 60px 60px;
+  transform:rotateX(70deg);
+  transform-origin:50% 100%;
+  box-shadow:0 -30px 80px rgba(255,43,214,.25);
+  animation:grid 4s linear infinite;
+}
+@keyframes grid{
+  0%{background-position:0 0,0 0}
+  100%{background-position:0 60px,60px 0}
+}
+/* sun */
+.cyber-sun{
+  position:absolute;left:50%;top:32%;transform:translate(-50%,-50%);
+  width:340px;height:340px;border-radius:50%;
+  background:
+    repeating-linear-gradient(180deg, transparent 0 22px, rgba(6,1,15,.95) 22px 26px),
+    linear-gradient(180deg,#ffe14d 0%,#ff8a3c 45%,#ff2bd6 100%);
+  box-shadow:0 0 80px rgba(255,43,214,.6),0 0 160px rgba(255,138,60,.35);
+  z-index:0;
+}
+/* palm silhouettes */
+.palm{position:absolute;bottom:0;z-index:1;opacity:.85;filter:drop-shadow(0 0 8px rgba(0,255,240,.4))}
+.palm.l{left:2vw;width:180px}
+.palm.r{right:2vw;width:200px;transform:scaleX(-1)}
+
+.hero-content{position:relative;z-index:2;max-width:1100px}
+.hero-tag{
+  display:inline-block;
+  font-family:'VT323',monospace;font-size:1.1rem;
+  color:var(--lime);
+  border:1px solid var(--lime);
+  padding:.3rem 1rem;
+  margin-bottom:1.5rem;
+  text-shadow:0 0 6px var(--lime);
+  box-shadow:0 0 12px rgba(200,255,45,.3),inset 0 0 8px rgba(200,255,45,.1);
+  letter-spacing:.25em;
+}
+.hero h1{
+  font-family:'Audiowide',cursive;
+  font-size:clamp(3rem,9vw,7.5rem);
+  line-height:.95;
+  letter-spacing:.04em;
+  margin-bottom:1.2rem;
+}
+.hero h1 .l1{
+  display:block;
+  color:var(--teal);
+  text-shadow:
+    -2px 0 var(--magenta),
+    2px 0 var(--teal),
+    0 0 18px rgba(0,255,240,.7),
+    0 0 38px rgba(0,255,240,.4);
+}
+.hero h1 .l2{
+  display:block;
+  color:var(--magenta);
+  text-shadow:
+    -2px 0 var(--teal),
+    2px 0 var(--magenta),
+    0 0 18px rgba(255,43,214,.7),
+    0 0 38px rgba(255,43,214,.4);
+}
+.hero p.sub{
+  font-family:'VT323',monospace;font-size:1.6rem;
+  color:var(--ink);max-width:640px;margin:0 auto 2.2rem;
+  letter-spacing:.04em;
+}
+.hero p.sub .cur{display:inline-block;width:.7ch;background:var(--lime);height:1.1em;vertical-align:-2px;animation:blink 1s steps(2) infinite;margin-left:2px;box-shadow:0 0 8px var(--lime)}
+@keyframes blink{50%{opacity:0}}
+
+.cta-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{
+  position:relative;display:inline-block;padding:1rem 2.2rem;
+  font-family:'Audiowide',cursive;font-size:.9rem;letter-spacing:.18em;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;border:none;
+  clip-path:polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  transition:transform .25s, box-shadow .25s;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--magenta),var(--violet));
+  color:#fff;
+  box-shadow:0 0 18px var(--magenta),0 0 40px rgba(255,43,214,.4),inset 0 0 12px rgba(255,255,255,.15);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 28px var(--magenta),0 0 60px rgba(255,43,214,.6)}
+.btn-ghost{
+  background:rgba(0,255,240,.06);
+  color:var(--teal);
+  border:1px solid var(--teal);
+  text-shadow:0 0 6px var(--teal);
+  box-shadow:0 0 14px rgba(0,255,240,.35),inset 0 0 10px rgba(0,255,240,.08);
+}
+.btn-ghost:hover{transform:translateY(-2px);background:rgba(0,255,240,.14);box-shadow:0 0 24px var(--teal)}
+
+/* MARQUEE */
+.marquee{
+  position:relative;z-index:2;
+  margin-top:3rem;width:100%;
+  border-top:1px solid rgba(0,255,240,.4);
+  border-bottom:1px solid rgba(255,43,214,.4);
+  background:rgba(6,1,15,.55);
+  overflow:hidden;
+  box-shadow:0 0 30px rgba(0,255,240,.2);
+}
+.marquee-track{
+  display:flex;gap:3rem;white-space:nowrap;
+  padding:.85rem 0;
+  animation:slide 32s linear infinite;
+  font-family:'Audiowide',cursive;font-size:1.1rem;letter-spacing:.25em;text-transform:uppercase;
+}
+.marquee-track span{display:inline-flex;align-items:center;gap:1rem}
+.marquee-track .a{color:var(--teal);text-shadow:0 0 8px var(--teal)}
+.marquee-track .b{color:var(--magenta);text-shadow:0 0 8px var(--magenta)}
+.marquee-track .c{color:var(--lime);text-shadow:0 0 8px var(--lime)}
+.marquee-track svg{width:18px;height:18px}
+@keyframes slide{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* SECTIONS */
+section{position:relative;z-index:2;padding:6rem 4vw}
+.sec-tag{
+  display:inline-block;font-family:'VT323',monospace;font-size:1.1rem;
+  color:var(--lime);letter-spacing:.3em;text-transform:uppercase;
+  border:1px solid var(--lime);padding:.2rem .8rem;margin-bottom:1.2rem;
+  text-shadow:0 0 6px var(--lime);
+}
+.sec-title{
+  font-family:'Audiowide',cursive;
+  font-size:clamp(2.2rem,5vw,3.8rem);
+  line-height:1.05;letter-spacing:.04em;margin-bottom:1.3rem;
+}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:1.1fr 1fr;gap:5rem;align-items:center;max-width:1300px;margin:0 auto}
+.about-text p{color:var(--ink);font-size:1.05rem;margin-bottom:1.1rem;opacity:.92}
+.about-text .lead{font-size:1.2rem;color:var(--teal);text-shadow:0 0 4px rgba(0,255,240,.4)}
+.about-visual{position:relative;aspect-ratio:1/1;border:1px solid var(--magenta);box-shadow:0 0 30px rgba(255,43,214,.4),inset 0 0 30px rgba(255,43,214,.1);clip-path:polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px)}
+.about-visual img{width:100%;height:100%;object-fit:cover;filter:hue-rotate(280deg) saturate(1.4) contrast(1.1)}
+.about-visual::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg, rgba(0,255,240,.15) 0%, transparent 40%, rgba(255,43,214,.25) 100%);
+  pointer-events:none;
+}
+.about-visual .corner{
+  position:absolute;font-family:'VT323',monospace;color:var(--lime);font-size:.95rem;
+  text-shadow:0 0 6px var(--lime);letter-spacing:.15em;
+}
+.about-visual .corner.tl{top:.6rem;left:.8rem}
+.about-visual .corner.br{bottom:.6rem;right:.8rem}
+
+/* COCKTAILS BAND */
+.cocktails-band{
+  margin:5rem 0;padding:0;height:60vh;min-height:480px;
+  position:relative;display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+  border-top:1px solid var(--teal);border-bottom:1px solid var(--magenta);
+}
+.cocktails-band .bg{
+  position:absolute;inset:0;
+  background:url('cocktails.jpg') center/cover;
+  filter:hue-rotate(280deg) saturate(1.5) contrast(1.1) brightness(.55);
+}
+.cocktails-band .bg::after{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(90deg, rgba(255,43,214,.45) 0%, transparent 35%, transparent 65%, rgba(0,255,240,.45) 100%),
+    linear-gradient(180deg, rgba(6,1,15,.5) 0%, rgba(42,10,64,.7) 100%);
+}
+.cocktails-band .inner{position:relative;z-index:1;text-align:center;max-width:900px;padding:0 2rem}
+.cocktails-band h2{
+  font-family:'Audiowide',cursive;
+  font-size:clamp(2.5rem,7vw,5rem);
+  letter-spacing:.05em;margin-bottom:1rem;
+  color:var(--lime);
+  text-shadow:-2px 0 var(--magenta),2px 0 var(--teal),0 0 22px rgba(200,255,45,.7);
+}
+.cocktails-band p{font-family:'VT323',monospace;font-size:1.4rem;color:var(--ink);max-width:600px;margin:0 auto 2rem;letter-spacing:.04em}
+
+/* FEATURES */
+.features-wrap{max-width:1300px;margin:0 auto;text-align:center}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:3rem}
+.feat{
+  position:relative;
+  background:linear-gradient(180deg, rgba(13,2,32,.7), rgba(6,1,15,.6));
+  border:1px solid rgba(0,255,240,.3);
+  padding:2.4rem 1.8rem;
+  clip-path:polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+  transition:transform .3s, box-shadow .3s, border-color .3s;
+  text-align:left;
+}
+.feat:hover{transform:translateY(-4px);border-color:var(--magenta);box-shadow:0 0 30px rgba(255,43,214,.35)}
+.feat .num{
+  font-family:'VT323',monospace;font-size:1rem;color:var(--lime);
+  text-shadow:0 0 6px var(--lime);letter-spacing:.2em;margin-bottom:1rem;display:block;
+}
+.feat .ico{
+  width:54px;height:54px;display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--teal);margin-bottom:1.2rem;
+  box-shadow:0 0 14px rgba(0,255,240,.35),inset 0 0 10px rgba(0,255,240,.08);
+  color:var(--teal);
+}
+.feat:nth-child(2) .ico{border-color:var(--magenta);color:var(--magenta);box-shadow:0 0 14px rgba(255,43,214,.4),inset 0 0 10px rgba(255,43,214,.1)}
+.feat:nth-child(3) .ico{border-color:var(--lime);color:var(--lime);box-shadow:0 0 14px rgba(200,255,45,.35),inset 0 0 10px rgba(200,255,45,.08)}
+.feat h3{font-family:'Audiowide',cursive;font-size:1.25rem;letter-spacing:.06em;margin-bottom:.7rem;color:var(--ink)}
+.feat p{color:var(--dim);font-size:.95rem;line-height:1.55}
+
+/* TERRACE BAND */
+.terrace{
+  margin:6rem 0 4rem;padding:0;height:75vh;min-height:520px;
+  position:relative;display:flex;align-items:center;
+  overflow:hidden;
+}
+.terrace .bg{
+  position:absolute;inset:0;
+  background:url('terrace.jpg') center/cover;
+  filter:hue-rotate(265deg) saturate(1.5) contrast(1.05) brightness(.5);
+}
+.terrace .bg::after{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(90deg, rgba(6,1,15,.95) 0%, rgba(6,1,15,.55) 45%, transparent 80%),
+    repeating-linear-gradient(0deg, transparent 0 28px, rgba(0,255,240,.05) 28px 30px);
+}
+.terrace-content{position:relative;z-index:1;max-width:580px;margin-left:8vw;padding:2rem 0}
+.terrace-content h2{
+  font-family:'Audiowide',cursive;font-size:clamp(2.2rem,5vw,3.6rem);
+  letter-spacing:.04em;margin-bottom:1.2rem;
+  color:var(--teal);
+  text-shadow:-2px 0 var(--magenta),2px 0 var(--teal),0 0 18px rgba(0,255,240,.6);
+}
+.terrace-content p{color:var(--ink);font-size:1.05rem;margin-bottom:1.4rem;opacity:.9}
+
+/* HOURS */
+.hours-wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.hours-card{
+  background:linear-gradient(180deg, rgba(13,2,32,.85), rgba(6,1,15,.7));
+  border:1px solid var(--teal);
+  padding:2.4rem;
+  clip-path:polygon(18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%, 0 18px);
+  box-shadow:0 0 30px rgba(0,255,240,.25),inset 0 0 20px rgba(0,255,240,.04);
+}
+.hours-card h3{font-family:'Audiowide',cursive;font-size:1.4rem;letter-spacing:.08em;margin-bottom:1.5rem;color:var(--magenta);text-shadow:0 0 10px rgba(255,43,214,.6)}
+.hours-list{list-style:none;font-family:'VT323',monospace;font-size:1.25rem}
+.hours-list li{display:flex;justify-content:space-between;padding:.55rem 0;border-bottom:1px dashed rgba(0,255,240,.2);letter-spacing:.05em}
+.hours-list li:last-child{border-bottom:none}
+.hours-list .day{color:var(--teal);text-shadow:0 0 4px rgba(0,255,240,.4)}
+.hours-list .time{color:var(--lime);text-shadow:0 0 4px rgba(200,255,45,.4)}
+.hours-info p{color:var(--ink);margin-bottom:1.2rem;opacity:.9}
+.hours-info .addr{font-family:'VT323',monospace;font-size:1.3rem;color:var(--magenta);text-shadow:0 0 6px rgba(255,43,214,.5);letter-spacing:.05em}
+
+/* INSTAGRAM BAR */
+.ig-bar{
+  margin:5rem 0 0;padding:3rem 4vw;
+  background:linear-gradient(90deg, rgba(255,43,214,.2), rgba(138,43,255,.2), rgba(0,255,240,.2));
+  border-top:1px solid var(--magenta);border-bottom:1px solid var(--teal);
+  text-align:center;
+}
+.ig-bar h3{font-family:'Audiowide',cursive;font-size:1.8rem;letter-spacing:.08em;margin-bottom:.4rem}
+.ig-bar h3 a{color:var(--lime);text-decoration:none;text-shadow:0 0 10px var(--lime),0 0 24px rgba(200,255,45,.5)}
+.ig-bar p{font-family:'VT323',monospace;font-size:1.3rem;color:var(--ink);letter-spacing:.04em;opacity:.9}
+.ig-hearts{margin-top:1.2rem;display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.ig-hearts svg{width:22px;height:22px;color:var(--magenta);filter:drop-shadow(0 0 6px var(--magenta))}
+.ig-hearts svg:nth-child(2){color:var(--teal);filter:drop-shadow(0 0 6px var(--teal))}
+.ig-hearts svg:nth-child(3){color:var(--lime);filter:drop-shadow(0 0 6px var(--lime))}
+.ig-hearts svg:nth-child(4){color:var(--magenta);filter:drop-shadow(0 0 6px var(--magenta))}
+.ig-hearts svg:nth-child(5){color:var(--teal);filter:drop-shadow(0 0 6px var(--teal))}
+
+/* FOOTER */
+footer{
+  position:relative;z-index:2;
+  padding:3.5rem 4vw 2rem;
+  border-top:1px solid rgba(0,255,240,.3);
+  background:rgba(6,1,15,.7);
+}
+.foot-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem}
+.foot-grid h4{font-family:'Audiowide',cursive;font-size:.9rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem;text-shadow:0 0 6px rgba(0,255,240,.5)}
+.foot-grid p, .foot-grid a{font-family:'VT323',monospace;font-size:1.1rem;color:var(--ink);text-decoration:none;display:block;margin-bottom:.4rem;letter-spacing:.04em;opacity:.88}
+.foot-grid a:hover{color:var(--lime);text-shadow:0 0 6px var(--lime)}
+.foot-bot{max-width:1300px;margin:2.5rem auto 0;padding-top:1.4rem;border-top:1px dashed rgba(0,255,240,.2);text-align:center;font-family:'VT323',monospace;font-size:1rem;color:var(--dim);letter-spacing:.1em}
+.foot-bot .heart{color:var(--magenta);text-shadow:0 0 6px var(--magenta)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .nav-links{
+    display:none;position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;gap:0;padding:1rem 0;
+    background:rgba(6,1,15,.95);border-bottom:1px solid var(--teal);
+  }
+  .nav-links.open{display:flex}
+  .nav-links li{padding:.8rem 4vw;border-bottom:1px dashed rgba(0,255,240,.15)}
+  .nav-cta{display:none}
+  .burger{display:block}
+  .about{grid-template-columns:1fr;gap:3rem}
+  .features{grid-template-columns:1fr}
+  .hours-wrap{grid-template-columns:1fr;gap:2rem}
+  .foot-grid{grid-template-columns:1fr;gap:2rem}
+  .palm.l{width:110px;opacity:.6}
+  .palm.r{width:120px;opacity:.6}
+  .cyber-sun{width:240px;height:240px;top:28%}
+  .terrace-content{margin-left:4vw;margin-right:4vw}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo-wrap">
+    <img src="logo.jpg" alt="La Placita Rooftop logo">
+    <span class="brand">LA_PLACITA<b>//</b>ROOFTOP</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">// about</a></li>
+    <li><a href="menu.html">// menu</a></li>
+    <li><a href="events.html">// events</a></li>
+    <li><a href="gallery.html">// gallery</a></li>
+    <li><a href="#hours">// visit</a></li>
+    <li><a class="nav-cta" href="events.html">Book_Now</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="menu">[MENU]</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="cyber-sun"></div>
+  <div class="grid-floor"></div>
+
+  <!-- left palm -->
+  <svg class="palm l" viewBox="0 0 100 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50 200 Q48 140 52 80" stroke="#0a0418" stroke-width="6" fill="none"/>
+    <path d="M50 200 Q48 140 52 80" stroke="#00fff0" stroke-width="1.5" fill="none" opacity=".7"/>
+    <g fill="#0a0418" stroke="#ff2bd6" stroke-width="1.2">
+      <path d="M52 80 Q20 60 5 70 Q25 65 52 78z"/>
+      <path d="M52 80 Q80 55 98 60 Q75 65 52 78z"/>
+      <path d="M52 80 Q15 90 0 105 Q22 92 52 82z"/>
+      <path d="M52 80 Q90 90 100 110 Q80 92 52 82z"/>
+      <path d="M52 80 Q35 50 30 30 Q45 55 54 78z"/>
+      <path d="M52 80 Q70 50 78 35 Q60 55 52 78z"/>
+    </g>
+  </svg>
+  <!-- right palm -->
+  <svg class="palm r" viewBox="0 0 100 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50 200 Q48 140 52 80" stroke="#0a0418" stroke-width="6" fill="none"/>
+    <path d="M50 200 Q48 140 52 80" stroke="#00fff0" stroke-width="1.5" fill="none" opacity=".7"/>
+    <g fill="#0a0418" stroke="#00fff0" stroke-width="1.2">
+      <path d="M52 80 Q20 60 5 70 Q25 65 52 78z"/>
+      <path d="M52 80 Q80 55 98 60 Q75 65 52 78z"/>
+      <path d="M52 80 Q15 90 0 105 Q22 92 52 82z"/>
+      <path d="M52 80 Q90 90 100 110 Q80 92 52 82z"/>
+      <path d="M52 80 Q35 50 30 30 Q45 55 54 78z"/>
+      <path d="M52 80 Q70 50 78 35 Q60 55 52 78z"/>
+    </g>
+  </svg>
+
+  <div class="hero-content">
+    <span class="hero-tag">&gt; LOADING_ROOFTOP.exe</span>
+    <h1>
+      <span class="l1">BROOKLYN</span>
+      <span class="l2">MEETS_ISLAND</span>
+    </h1>
+    <p class="sub">PR + Latin cocktails. Skyline horizon. Synth-tropical nights on the rooftop.<span class="cur"></span></p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="events.html">RESERVE&nbsp;TABLE</a>
+      <a class="btn btn-ghost" href="menu.html">VIEW&nbsp;MENU</a>
+    </div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span class="a">// LIVE_DJ_FRI_SAT
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19V5l12-2v14"/><circle cx="6" cy="19" r="3"/><circle cx="18" cy="17" r="3"/></svg>
+      </span>
+      <span class="b">// MOJITO_HAPPY_HOUR_5-7
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h18l-9 11zM12 16v5M8 21h8"/></svg>
+      </span>
+      <span class="c">// BROOKLYN_PR_VIBES
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.5-7-11a4 4 0 017-2.6A4 4 0 0119 10c0 6.5-7 11-7 11z"/></svg>
+      </span>
+      <span class="a">// SKYLINE_TERRACE_OPEN
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg>
+      </span>
+      <span class="b">// LIVE_DJ_FRI_SAT
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19V5l12-2v14"/><circle cx="6" cy="19" r="3"/><circle cx="18" cy="17" r="3"/></svg>
+      </span>
+      <span class="c">// MOJITO_HAPPY_HOUR_5-7
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h18l-9 11zM12 16v5M8 21h8"/></svg>
+      </span>
+      <span class="a">// BROOKLYN_PR_VIBES
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.5-7-11a4 4 0 017-2.6A4 4 0 0119 10c0 6.5-7 11-7 11z"/></svg>
+      </span>
+      <span class="b">// SKYLINE_TERRACE_OPEN
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about">
+    <div class="about-text">
+      <span class="sec-tag">// 001_about</span>
+      <h2 class="sec-title"><span class="glow-teal">The_Rooftop</span><br><span class="glow-mag">Reboot.</span></h2>
+      <p class="lead">A Latin tropical rooftop, rebooted in synthwave. Brooklyn skyline, San Juan soul.</p>
+      <p>La Placita Rooftop is a love letter to Puerto Rican summers — projected onto the Brooklyn night. Mojitos under magenta light, salsa baselines through retro speakers, and a horizon grid that doesn't quit until last call.</p>
+      <p>Order a piña, plug in, ascend.</p>
+    </div>
+    <div class="about-visual">
+      <span class="corner tl">[ROOFTOP_AERIAL.jpg]</span>
+      <img src="rooftop-aerial.jpg" alt="La Placita Rooftop aerial">
+      <span class="corner br">// 40.7N_-73.9W</span>
+    </div>
+  </div>
+</section>
+
+<!-- COCKTAILS BAND -->
+<section class="cocktails-band">
+  <div class="bg"></div>
+  <div class="inner">
+    <span class="sec-tag">// 002_cocktails</span>
+    <h2>NEON_MOJITOS</h2>
+    <p>Hand-shaken classics in glowing glassware. Piña coladas, pisco sours, Don Q rum flights — all served under the synth-sun.</p>
+    <a class="btn btn-ghost" href="menu.html">OPEN&nbsp;THE&nbsp;MENU</a>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section>
+  <div class="features-wrap">
+    <span class="sec-tag">// 003_features</span>
+    <h2 class="sec-title"><span class="glow-mag">Three_Reasons</span> <span class="glow-teal">to_Ascend</span></h2>
+    <div class="features">
+      <div class="feat">
+        <span class="num">[01]</span>
+        <div class="ico">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </div>
+        <h3>Skyline_Horizon</h3>
+        <p>360-degree views of the Brooklyn grid. Watch the city pixel-render itself at sunset, every night.</p>
+      </div>
+      <div class="feat">
+        <span class="num">[02]</span>
+        <div class="ico">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3h14l-7 9zM12 12v7M8 19h8"/></svg>
+        </div>
+        <h3>PR_Cocktail_Lab</h3>
+        <p>Latin classics meet Brooklyn craft. Coquito on tap, tamarind margaritas, mezcal flights — all glowing.</p>
+      </div>
+      <div class="feat">
+        <span class="num">[03]</span>
+        <div class="ico">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19V5l12-2v14"/><circle cx="6" cy="19" r="3"/><circle cx="18" cy="17" r="3"/></svg>
+        </div>
+        <h3>Synth_Salsa_Nights</h3>
+        <p>Live DJs spinning bachata-vapor, reggaetón-wave, and old-school salsa. Friday + Saturday until 2 AM.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TERRACE BAND -->
+<section class="terrace">
+  <div class="bg"></div>
+  <div class="terrace-content">
+    <span class="sec-tag">// 004_terrace</span>
+    <h2>The_Open_Sky_Deck</h2>
+    <p>Heated in winter, breezy in summer, magenta-lit always. Bring the crew — birthdays, after-work, full buyouts. The terrace is yours.</p>
+    <a class="btn btn-primary" href="events.html">BOOK&nbsp;THE&nbsp;DECK</a>
+  </div>
+</section>
+
+<!-- HOURS -->
+<section id="hours">
+  <div class="hours-wrap">
+    <div class="hours-card">
+      <h3>// HOURS.cfg</h3>
+      <ul class="hours-list">
+        <li><span class="day">MON</span><span class="time">--:-- CLOSED</span></li>
+        <li><span class="day">TUE</span><span class="time">17:00 - 23:00</span></li>
+        <li><span class="day">WED</span><span class="time">17:00 - 23:00</span></li>
+        <li><span class="day">THU</span><span class="time">17:00 - 00:00</span></li>
+        <li><span class="day">FRI</span><span class="time">16:00 - 02:00</span></li>
+        <li><span class="day">SAT</span><span class="time">14:00 - 02:00</span></li>
+        <li><span class="day">SUN</span><span class="time">14:00 - 22:00</span></li>
+      </ul>
+    </div>
+    <div class="hours-info">
+      <span class="sec-tag">// 005_visit</span>
+      <h2 class="sec-title"><span class="glow-lime">Find_Us</span></h2>
+      <p class="addr">// Brooklyn, NY</p>
+      <p>Rooftop access via the alley entrance. Look for the magenta neon palm. Reservations strongly recommended Friday + Saturday.</p>
+      <a class="btn btn-ghost" href="events.html">RESERVE&nbsp;NOW</a>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM BAR -->
+<section class="ig-bar">
+  <h3>// FOLLOW <a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener">@laplacita.rooftop</a></h3>
+  <p>Tag us. Get reposted. Live the synthwave summer.</p>
+  <div class="ig-hearts">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h4v4h-4zM8 8h4v4h-4zM12 4h4v4h-4zM16 8h4v4h-4zM12 12h4v4h-4zM8 12h4v4h-4zM10 16h4v4h-4z" shape-rendering="crispEdges"/></svg>
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h4v4h-4zM8 8h4v4h-4zM12 4h4v4h-4zM16 8h4v4h-4zM12 12h4v4h-4zM8 12h4v4h-4zM10 16h4v4h-4z" shape-rendering="crispEdges"/></svg>
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h4v4h-4zM8 8h4v4h-4zM12 4h4v4h-4zM16 8h4v4h-4zM12 12h4v4h-4zM8 12h4v4h-4zM10 16h4v4h-4z" shape-rendering="crispEdges"/></svg>
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h4v4h-4zM8 8h4v4h-4zM12 4h4v4h-4zM16 8h4v4h-4zM12 12h4v4h-4zM8 12h4v4h-4zM10 16h4v4h-4z" shape-rendering="crispEdges"/></svg>
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h4v4h-4zM8 8h4v4h-4zM12 4h4v4h-4zM16 8h4v4h-4zM12 12h4v4h-4zM8 12h4v4h-4zM10 16h4v4h-4z" shape-rendering="crispEdges"/></svg>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-grid">
+    <div>
+      <h4>// LA_PLACITA_ROOFTOP</h4>
+      <p>Brooklyn meets the island. A synthwave rooftop bar serving Latin + PR cocktails under the city horizon.</p>
+    </div>
+    <div>
+      <h4>// NAVIGATE</h4>
+      <a href="index.html">&gt; home</a>
+      <a href="menu.html">&gt; menu</a>
+      <a href="events.html">&gt; events</a>
+      <a href="gallery.html">&gt; gallery</a>
+    </div>
+    <div>
+      <h4>// CONNECT</h4>
+      <a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener">&gt; @laplacita.rooftop</a>
+      <a href="events.html">&gt; reservations</a>
+      <a href="events.html">&gt; private events</a>
+      <p style="opacity:.6">&gt; Brooklyn, NY</p>
+    </div>
+  </div>
+  <div class="foot-bot">
+    &copy; <span id="yr"></span> LA_PLACITA_ROOFTOP // BUILT_WITH <span class="heart">&lt;3</span> IN BROOKLYN
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const burger = document.getElementById('burger');
+  const links = document.getElementById('navLinks');
+  burger.addEventListener('click', () => links.classList.toggle('open'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+</script>
+</body>
+</html>

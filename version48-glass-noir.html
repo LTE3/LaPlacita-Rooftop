@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>La Placita Rooftop — Brooklyn Meets the Island</title>
+<meta name="description" content="La Placita Rooftop — a cinematic Latin nightcap above Brooklyn. Tropical cocktails, slow records, terrace skies." />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display&family=Tenor+Sans&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#080a0d;
+    --ink-2:#0d1117;
+    --ink-3:#11161d;
+    --ash:#1a2230;
+    --mist:#cfd6df;
+    --paper:#eef1f5;
+    --gold:#c6a25a;
+    --gold-soft:#8a7444;
+    --amber:#e3a86b;
+    --hair:rgba(198,162,90,.32);
+    --hair-faint:rgba(198,162,90,.16);
+    --glass:rgba(18,28,42,.42);
+    --glass-2:rgba(22,34,52,.55);
+    --glass-edge:rgba(255,255,255,.08);
+    --serif:"Cormorant Garamond", serif;
+    --display:"DM Serif Display", serif;
+    --sans-d:"Tenor Sans", sans-serif;
+    --sans:"Inter", system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--ink);color:var(--paper);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body{font-weight:300;line-height:1.55;letter-spacing:.01em}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--gold);color:var(--ink)}
+
+  /* film grain + vignette overlay */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:2;
+    background:
+      radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.55) 100%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .07 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode:overlay;opacity:.55;
+  }
+
+  /* type */
+  .eyebrow{font-family:var(--sans-d);font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);}
+  h1,h2,h3{font-family:var(--display);font-weight:400;color:var(--paper);letter-spacing:.005em}
+  h1{font-size:clamp(2.6rem,6.6vw,5.6rem);line-height:1.02}
+  h2{font-size:clamp(2rem,4.2vw,3.4rem);line-height:1.08}
+  h3{font-size:1.35rem;line-height:1.2}
+  .italic{font-family:var(--serif);font-style:italic;font-weight:300;color:var(--mist)}
+  p{color:rgba(238,241,245,.78);font-size:15px}
+  .lede{font-family:var(--serif);font-size:clamp(1.05rem,1.55vw,1.25rem);line-height:1.6;color:rgba(238,241,245,.86);font-weight:300}
+
+  /* hairlines */
+  .hair{height:1px;background:linear-gradient(90deg,transparent,var(--hair),transparent);width:100%}
+  .hair-v{width:1px;background:linear-gradient(180deg,transparent,var(--hair),transparent)}
+  .dot{width:5px;height:5px;border:1px solid var(--gold);transform:rotate(45deg);display:inline-block;vertical-align:middle;margin:0 14px}
+
+  /* letterbox container */
+  .wrap{max-width:1280px;margin:0 auto;padding:0 32px;position:relative;z-index:3}
+  @media (max-width:720px){.wrap{padding:0 20px}}
+
+  /* nav */
+  nav.bar{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(8,10,13,.55);
+    -webkit-backdrop-filter:blur(14px) saturate(120%);
+    backdrop-filter:blur(14px) saturate(120%);
+    border-bottom:1px solid var(--hair-faint);
+  }
+  .bar .inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .brand .mark{width:34px;height:34px;border-radius:50%;border:1px solid var(--hair);overflow:hidden;background:var(--ink-3)}
+  .brand .mark img{width:100%;height:100%;object-fit:cover;opacity:.92}
+  .brand .name{font-family:var(--sans-d);letter-spacing:.32em;font-size:12px;color:var(--paper);text-transform:uppercase}
+  .brand .name em{font-family:var(--serif);font-style:italic;letter-spacing:.02em;text-transform:none;color:var(--gold);margin-left:6px;font-size:13px}
+  .links{display:flex;align-items:center;gap:34px}
+  .links a{font-family:var(--sans-d);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:rgba(238,241,245,.78);transition:color .3s}
+  .links a:hover{color:var(--gold)}
+  .reserve{
+    border:1px solid var(--gold);color:var(--gold);
+    padding:10px 20px;font-family:var(--sans-d);font-size:10.5px;letter-spacing:.36em;text-transform:uppercase;
+    transition:all .35s ease;background:transparent;cursor:pointer;
+  }
+  .reserve:hover{background:var(--gold);color:var(--ink)}
+  .burger{display:none;background:none;border:0;color:var(--paper);cursor:pointer;padding:8px}
+  .burger svg{width:22px;height:22px}
+  @media(max-width:880px){
+    .links{display:none;position:absolute;top:72px;left:0;right:0;flex-direction:column;background:rgba(8,10,13,.96);backdrop-filter:blur(20px);padding:24px 32px;gap:22px;border-bottom:1px solid var(--hair-faint)}
+    .links.open{display:flex}
+    .burger{display:inline-flex}
+    .reserve{align-self:flex-start}
+  }
+
+  /* hero */
+  .hero{
+    position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;
+    padding:120px 0 60px;overflow:hidden;isolation:isolate;
+  }
+  .hero .bg{
+    position:absolute;inset:0;z-index:-2;
+    background:url("hero-bg.jpg") center/cover no-repeat;
+    filter:brightness(.42) saturate(.7) contrast(1.05);
+    transform:scale(1.05);
+  }
+  .hero .veil{
+    position:absolute;inset:0;z-index:-1;
+    background:
+      linear-gradient(180deg, rgba(8,10,13,.55) 0%, rgba(8,10,13,.2) 35%, rgba(8,10,13,.85) 100%),
+      radial-gradient(ellipse at 30% 20%, rgba(40,60,90,.35), transparent 60%);
+  }
+  .letterbox-top,.letterbox-bot{position:absolute;left:0;right:0;height:46px;background:linear-gradient(180deg,var(--ink),transparent);z-index:1;pointer-events:none}
+  .letterbox-top{top:0}
+  .letterbox-bot{bottom:0;transform:scaleY(-1)}
+
+  .hero-card{
+    position:relative;z-index:3;width:min(720px,92%);
+    background:var(--glass);
+    -webkit-backdrop-filter:blur(22px) saturate(130%);
+    backdrop-filter:blur(22px) saturate(130%);
+    border:1px solid var(--glass-edge);
+    border-top:1px solid rgba(198,162,90,.3);
+    padding:56px clamp(28px,5vw,60px);
+    text-align:center;
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.05);
+    animation:fadeUp 1.4s ease both;
+  }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+  .hero-card .crest{width:64px;height:64px;border:1px solid var(--hair);border-radius:50%;margin:0 auto 22px;overflow:hidden;background:var(--ink-2)}
+  .hero-card .crest img{width:100%;height:100%;object-fit:cover;opacity:.95}
+  .hero-card .hair{margin:18px auto}
+  .hero h1{margin:14px 0 8px}
+  .hero h1 .row1{display:block;font-family:var(--sans-d);font-size:clamp(11px,1.2vw,13px);letter-spacing:.5em;color:var(--gold);text-transform:uppercase;margin-bottom:18px}
+  .hero h1 .row2{display:block;font-family:var(--display);color:var(--paper)}
+  .hero h1 .row3{display:block;font-family:var(--serif);font-style:italic;font-weight:300;color:var(--mist);font-size:.55em;margin-top:10px;letter-spacing:.02em}
+  .hero .meta{margin-top:24px;font-family:var(--sans-d);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:rgba(238,241,245,.7)}
+  .hero .cta{margin-top:34px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{
+    font-family:var(--sans-d);font-size:11px;letter-spacing:.36em;text-transform:uppercase;
+    padding:14px 28px;border:1px solid var(--gold);color:var(--gold);background:transparent;
+    transition:all .35s ease;cursor:pointer;display:inline-flex;align-items:center;gap:10px
+  }
+  .btn:hover{background:var(--gold);color:var(--ink)}
+  .btn.solid{background:var(--gold);color:var(--ink)}
+  .btn.solid:hover{background:transparent;color:var(--gold)}
+  .btn .arrow{width:14px;height:1px;background:currentColor;position:relative}
+  .btn .arrow::after{content:"";position:absolute;right:0;top:-3px;width:7px;height:7px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
+
+  .scroll-cue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:4;font-family:var(--sans-d);font-size:10px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;opacity:.7}
+  .scroll-cue::after{content:"";display:block;width:1px;height:42px;background:linear-gradient(180deg,var(--gold),transparent);margin:10px auto 0}
+
+  /* section base */
+  section{position:relative;padding:120px 0;background:var(--ink)}
+  .section-head{text-align:center;margin-bottom:64px}
+  .section-head .eyebrow{display:inline-block;margin-bottom:18px}
+  .section-head h2{margin-bottom:14px}
+  .section-head .italic{font-size:1.1rem}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity 1.4s ease,transform 1.4s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* about */
+  .about{background:linear-gradient(180deg,var(--ink),var(--ink-2) 60%,var(--ink))}
+  .about-card{
+    background:var(--glass-2);
+    -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+    border:1px solid var(--glass-edge);
+    padding:clamp(40px,5vw,72px);
+    display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
+    box-shadow:0 24px 60px -20px rgba(0,0,0,.6);
+  }
+  .about-card .col p + p{margin-top:18px}
+  .about-card .stat-row{margin-top:32px;display:flex;gap:28px;flex-wrap:wrap}
+  .stat{flex:1;min-width:120px}
+  .stat .n{font-family:var(--display);color:var(--gold);font-size:2rem;line-height:1}
+  .stat .l{font-family:var(--sans-d);font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:rgba(238,241,245,.65);margin-top:8px}
+  @media(max-width:880px){.about-card{grid-template-columns:1fr;gap:32px;padding:40px 28px}}
+
+  /* cocktail band */
+  .band{padding:0;background:var(--ink)}
+  .band-grid{display:grid;grid-template-columns:1fr 1fr;min-height:78vh}
+  .band-photo{position:relative;overflow:hidden}
+  .band-photo img{width:100%;height:100%;object-fit:cover;filter:brightness(.55) saturate(.75) contrast(1.05);transition:transform 2s ease}
+  .band-photo:hover img{transform:scale(1.04)}
+  .band-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,var(--ink));pointer-events:none}
+  .band-copy{display:flex;align-items:center;padding:clamp(40px,6vw,96px)}
+  .band-copy .inner{max-width:480px}
+  .band-copy h2{margin:14px 0 20px}
+  .band-copy ul{list-style:none;margin-top:28px;border-top:1px solid var(--hair-faint)}
+  .band-copy li{padding:18px 0;border-bottom:1px solid var(--hair-faint);display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+  .band-copy li .nm{font-family:var(--serif);font-size:1.15rem;color:var(--paper)}
+  .band-copy li .nm em{font-style:italic;color:var(--gold-soft);font-size:.85em;margin-left:8px}
+  .band-copy li .pr{font-family:var(--sans-d);font-size:11px;letter-spacing:.3em;color:var(--gold)}
+  @media(max-width:880px){.band-grid{grid-template-columns:1fr}.band-photo{min-height:60vh}.band-photo::after{background:linear-gradient(180deg,transparent 60%,var(--ink))}}
+
+  /* features */
+  .features{background:var(--ink)}
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .feat{
+    background:var(--glass);
+    -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+    border:1px solid var(--glass-edge);
+    padding:44px 32px;
+    position:relative;overflow:hidden;
+    transition:transform .6s ease, border-color .6s ease;
+  }
+  .feat:hover{transform:translateY(-4px);border-color:rgba(198,162,90,.35)}
+  .feat::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.5}
+  .feat .ic{width:46px;height:46px;border:1px solid var(--hair);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);margin-bottom:24px}
+  .feat .ic svg{width:22px;height:22px;stroke:currentColor;stroke-width:1;fill:none}
+  .feat h3{font-family:var(--display);font-size:1.5rem;margin-bottom:10px}
+  .feat .italic{font-size:.95rem;display:block;margin-bottom:14px;color:var(--gold-soft)}
+  @media(max-width:880px){.feat-grid{grid-template-columns:1fr}}
+
+  /* terrace band */
+  .terrace{position:relative;min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 0;overflow:hidden;background:var(--ink)}
+  .terrace .bg{position:absolute;inset:0;background:url("terrace.jpg") center/cover no-repeat;filter:brightness(.4) saturate(.6) contrast(1.05);z-index:0}
+  .terrace::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--ink) 0%,transparent 25%,transparent 75%,var(--ink) 100%);z-index:1}
+  .terrace .wrap{position:relative;z-index:2}
+  .terrace h2{max-width:880px;margin:18px auto 22px}
+  .terrace .lede{max-width:640px;margin:0 auto}
+  .terrace .cta{margin-top:38px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  /* hours */
+  .hours{background:var(--ink-2)}
+  .hours-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:start}
+  .hours-list{border-top:1px solid var(--hair)}
+  .hours-list .row{padding:20px 0;border-bottom:1px solid var(--hair-faint);display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+  .hours-list .row:last-child{border-bottom:1px solid var(--hair)}
+  .hours-list .day{font-family:var(--sans-d);font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:rgba(238,241,245,.8)}
+  .hours-list .time{font-family:var(--serif);font-size:1.1rem;color:var(--paper)}
+  .hours-list .time em{color:var(--gold-soft);font-style:italic;font-size:.85em;margin-left:8px}
+  .hours-list .closed{color:rgba(238,241,245,.4);font-style:italic}
+  .hours-aside .block{padding:24px 0;border-bottom:1px solid var(--hair-faint)}
+  .hours-aside .block:first-child{border-top:1px solid var(--hair)}
+  .hours-aside .label{font-family:var(--sans-d);font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+  .hours-aside .val{font-family:var(--serif);font-size:1.1rem;color:var(--paper);line-height:1.45}
+  .hours-aside .val a:hover{color:var(--gold)}
+  @media(max-width:880px){.hours-grid{grid-template-columns:1fr;gap:40px}}
+
+  /* instagram bar */
+  .ig{background:var(--ink);padding:80px 0;border-top:1px solid var(--hair-faint);border-bottom:1px solid var(--hair-faint)}
+  .ig-head{text-align:center;margin-bottom:36px}
+  .ig-head a{color:var(--gold);font-family:var(--sans-d);font-size:11px;letter-spacing:.34em;text-transform:uppercase}
+  .ig-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+  .ig-grid .cell{aspect-ratio:1/1;overflow:hidden;position:relative;border:1px solid var(--hair-faint)}
+  .ig-grid .cell img{width:100%;height:100%;object-fit:cover;filter:brightness(.55) saturate(.7);transition:filter .6s ease, transform .8s ease}
+  .ig-grid .cell:hover img{filter:brightness(.9) saturate(.9);transform:scale(1.06)}
+  @media(max-width:880px){.ig-grid{grid-template-columns:repeat(3,1fr)}}
+
+  /* footer */
+  footer{background:var(--ink);padding:80px 0 36px;color:rgba(238,241,245,.55)}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+  .foot-grid h4{font-family:var(--sans-d);font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+  .foot-grid p,.foot-grid li{font-family:var(--serif);font-size:1rem;color:rgba(238,241,245,.7);line-height:1.7}
+  .foot-grid li{list-style:none}
+  .foot-grid li a:hover{color:var(--gold)}
+  .foot-brand .name{font-family:var(--display);font-size:1.8rem;color:var(--paper);margin-bottom:8px}
+  .foot-brand .tag{font-family:var(--serif);font-style:italic;color:var(--gold-soft);font-size:1.05rem}
+  .foot-bot{padding-top:24px;border-top:1px solid var(--hair-faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-family:var(--sans-d);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(238,241,245,.45)}
+  @media(max-width:880px){.foot-grid{grid-template-columns:1fr 1fr;gap:32px}}
+  @media(max-width:560px){.foot-grid{grid-template-columns:1fr}}
+
+  /* utility */
+  .center{text-align:center}
+  .gold{color:var(--gold)}
+  .small{font-size:13px}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="bar">
+  <div class="wrap inner">
+    <a href="#" class="brand">
+      <span class="mark"><img src="logo.jpg" alt="La Placita logo" /></span>
+      <span class="name">La Placita <em>Rooftop</em></span>
+    </a>
+    <div class="links" id="links">
+      <a href="#about">About</a>
+      <a href="menu.html">Menu</a>
+      <a href="events.html">Events</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="#hours">Visit</a>
+      <a class="reserve" href="events.html">Reserve</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="bg"></div>
+  <div class="veil"></div>
+  <div class="letterbox-top"></div>
+  <div class="letterbox-bot"></div>
+
+  <div class="hero-card reveal in">
+    <div class="crest"><img src="logo.jpg" alt="" /></div>
+    <div class="hair"></div>
+    <h1>
+      <span class="row1">Est. Brooklyn &middot; Rooftop &middot; Latin Nightcap</span>
+      <span class="row2">La Placita Rooftop</span>
+      <span class="row3">Brooklyn meets the island, under a low Atlantic sky.</span>
+    </h1>
+    <div class="hair"></div>
+    <p class="meta">Bushwick<span class="dot"></span>Open Tonight<span class="dot"></span>Til Late</p>
+    <div class="cta">
+      <a class="btn solid" href="events.html">Reserve a Table <span class="arrow"></span></a>
+      <a class="btn" href="menu.html">View the Menu <span class="arrow"></span></a>
+    </div>
+  </div>
+
+  <div class="scroll-cue">Scroll</div>
+</header>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Place</span>
+      <h2>A slow tropical hour, four flights up.</h2>
+      <p class="italic">Where the F train hum meets a Caribbean breeze.</p>
+    </div>
+
+    <div class="about-card reveal">
+      <div class="col">
+        <p class="lede">La Placita is a candlelit corner of Bushwick that remembers San Juan after midnight &mdash; rum on the rocks, a slow bolero, and a skyline that pretends it's the coast.</p>
+        <p>Our rooftop is half garden, half cinema. Hurricane lamps, hanging palms, a horizon split by water towers and the soft red of the Williamsburg Bank. Inside the bar, dark wood, antique brass, and a record player that refuses to play anything fast.</p>
+        <p>Come for the cocktails. Stay because no one asked you to leave.</p>
+      </div>
+      <div class="col">
+        <div class="stat-row">
+          <div class="stat"><div class="n">4F</div><div class="l">Above Wyckoff</div></div>
+          <div class="stat"><div class="n">12</div><div class="l">House Cocktails</div></div>
+          <div class="stat"><div class="n">'til 2</div><div class="l">Late Service</div></div>
+        </div>
+        <div class="hair" style="margin:32px 0"></div>
+        <p class="italic" style="font-size:1.1rem;line-height:1.7">&ldquo;The kind of rooftop that ruins other rooftops. Lights low, drinks honest, the city just blurry enough.&rdquo;</p>
+        <p class="small" style="margin-top:10px;font-family:var(--sans-d);letter-spacing:.3em;text-transform:uppercase;color:var(--gold-soft)">&mdash; Time Out, 2025</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COCKTAIL BAND -->
+<section class="band">
+  <div class="band-grid">
+    <div class="band-photo reveal">
+      <img src="cocktails.jpg" alt="House cocktails at La Placita" />
+    </div>
+    <div class="band-copy reveal">
+      <div class="inner">
+        <span class="eyebrow">The Bar</span>
+        <h2>Cocteles de la casa.</h2>
+        <p class="lede">Old rums, fresh sugar cane, a little smoke. Drinks built like short films &mdash; quiet beginnings, warm endings.</p>
+        <ul>
+          <li><span class="nm">El Coquí <em>aged rum, lime, coconut</em></span><span class="pr">17</span></li>
+          <li><span class="nm">Bushwick Bolero <em>mezcal, hibiscus, oleo</em></span><span class="pr">18</span></li>
+          <li><span class="nm">Medianoche <em>cold brew, dark rum, cacao</em></span><span class="pr">17</span></li>
+          <li><span class="nm">Placita Spritz <em>cava, guava, basil</em></span><span class="pr">15</span></li>
+        </ul>
+        <div class="cta" style="margin-top:32px">
+          <a class="btn" href="menu.html">Full Menu <span class="arrow"></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Evening</span>
+      <h2>Three reasons to climb the stairs.</h2>
+      <p class="italic">Nothing loud. Everything intentional.</p>
+    </div>
+
+    <div class="feat-grid">
+      <div class="feat reveal">
+        <div class="ic">
+          <svg viewBox="0 0 24 24"><path d="M5 4h14l-7 9zM12 13v7M8 20h8"/></svg>
+        </div>
+        <h3>The Cocktail Room</h3>
+        <span class="italic">Aged rums, smoke &amp; sugar cane.</span>
+        <p>A short, edited list. Each drink built around a single old spirit and the fruit that grew next to it. House syrups, real ice, no shortcuts.</p>
+      </div>
+
+      <div class="feat reveal">
+        <div class="ic">
+          <svg viewBox="0 0 24 24"><path d="M9 18V6l11-2v12M9 14a3 3 0 1 1-3 3M20 12a3 3 0 1 1-3 3"/></svg>
+        </div>
+        <h3>Vinyl Nights</h3>
+        <span class="italic">Bolero, son, slow salsa &mdash; Fridays.</span>
+        <p>Records spin from 9 'til close. Hector, Celia, La Lupe. A standing rule: nothing on the turntable that you couldn't slow-dance to.</p>
+      </div>
+
+      <div class="feat reveal">
+        <div class="ic">
+          <svg viewBox="0 0 24 24"><path d="M12 2v3M4.2 4.2l2.1 2.1M2 12h3M4.2 19.8l2.1-2.1M12 19v3M19.8 19.8l-2.1-2.1M22 12h-3M19.8 4.2l-2.1 2.1M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg>
+        </div>
+        <h3>Sunset Terrace</h3>
+        <span class="italic">Skyline, palms, candle-glow.</span>
+        <p>The roof opens at six. Hurricane lamps come on when the sun touches the water towers. Tables are first-come after eight.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TERRACE BAND -->
+<section class="terrace">
+  <div class="bg"></div>
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">The Roof</span>
+      <h2>Four stories up. <span class="italic">Half a world away.</span></h2>
+      <p class="lede">When the light goes low, the city flattens into a postcard. We light the lamps, drop the needle, and the evening agrees to slow down.</p>
+      <div class="cta">
+        <a class="btn solid" href="events.html">Reserve the Terrace <span class="arrow"></span></a>
+        <a class="btn" href="gallery.html">See the Roof <span class="arrow"></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS -->
+<section class="hours" id="hours">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Visit</span>
+      <h2>Hours &amp; door.</h2>
+      <p class="italic">Walk-ins welcome. Tables hold for fifteen.</p>
+    </div>
+
+    <div class="hours-grid">
+      <div class="hours-list reveal">
+        <div class="row"><span class="day">Monday</span><span class="time closed">Closed</span></div>
+        <div class="row"><span class="day">Tuesday</span><span class="time">5pm <em>til midnight</em></span></div>
+        <div class="row"><span class="day">Wednesday</span><span class="time">5pm <em>til midnight</em></span></div>
+        <div class="row"><span class="day">Thursday</span><span class="time">5pm <em>til 1am</em></span></div>
+        <div class="row"><span class="day">Friday &mdash; Vinyl</span><span class="time">5pm <em>til 2am</em></span></div>
+        <div class="row"><span class="day">Saturday</span><span class="time">3pm <em>til 2am</em></span></div>
+        <div class="row"><span class="day">Sunday Sundown</span><span class="time">3pm <em>til midnight</em></span></div>
+      </div>
+
+      <div class="hours-aside reveal">
+        <div class="block">
+          <div class="label">Address</div>
+          <div class="val">Bushwick &mdash; 4F<br/>Brooklyn, NY</div>
+        </div>
+        <div class="block">
+          <div class="label">Reservations</div>
+          <div class="val"><a href="events.html">events.html</a><br/>or walk-in after 5</div>
+        </div>
+        <div class="block">
+          <div class="label">Dress</div>
+          <div class="val italic">Wear something the rain wouldn't ruin.</div>
+        </div>
+        <div class="block">
+          <div class="label">Instagram</div>
+          <div class="val"><a href="https://instagram.com/laplacita.rooftop">@laplacita.rooftop</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section class="ig">
+  <div class="wrap">
+    <div class="ig-head reveal">
+      <span class="eyebrow" style="display:block;margin-bottom:12px">Latest</span>
+      <h2 style="margin-bottom:14px">From the Rooftop</h2>
+      <a href="https://instagram.com/laplacita.rooftop">@laplacita.rooftop &nbsp;&rarr;</a>
+    </div>
+    <div class="ig-grid">
+      <a class="cell" href="https://instagram.com/laplacita.rooftop"><img src="cocktails.jpg" alt="" /></a>
+      <a class="cell" href="https://instagram.com/laplacita.rooftop"><img src="terrace.jpg" alt="" /></a>
+      <a class="cell" href="https://instagram.com/laplacita.rooftop"><img src="rooftop-aerial.jpg" alt="" /></a>
+      <a class="cell" href="https://instagram.com/laplacita.rooftop"><img src="hero-bg.jpg" alt="" /></a>
+      <a class="cell" href="https://instagram.com/laplacita.rooftop"><img src="cocktails.jpg" alt="" /></a>
+      <a class="cell" href="https://instagram.com/laplacita.rooftop"><img src="terrace.jpg" alt="" /></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="name">La Placita Rooftop</div>
+        <div class="tag">Brooklyn meets the island.</div>
+        <p style="margin-top:18px">A small Latin bar on a rooftop in Bushwick. Open most nights, candlelit, slow on purpose.</p>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li>Bushwick, 4F</li>
+          <li>Brooklyn, NY</li>
+          <li><a href="#hours">Hours</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <ul>
+          <li><a href="https://instagram.com/laplacita.rooftop">Instagram</a></li>
+          <li><a href="events.html">Reserve</a></li>
+          <li><a href="mailto:hola@laplacita.rooftop">hola@laplacita</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>&copy; La Placita Rooftop &middot; Bushwick</span>
+      <span>Crafted slowly, served cold.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // mobile menu
+  const burger=document.getElementById('burger');
+  const links=document.getElementById('links');
+  burger.addEventListener('click',()=>links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+
+  // reveal on scroll
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

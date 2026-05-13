@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Placita Rooftop — Bauhaus Bar / Brooklyn x Puerto Rico</title>
+<meta name="description" content="La Placita Rooftop — tropical cocktails, Latin plates, skyline sunsets in Brooklyn. Bauhaus edition.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;600;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --paper:#F4EDE0;
+  --paper-2:#ECE3D0;
+  --ink:#0E0E0E;
+  --red:#E63329;
+  --yellow:#F5C518;
+  --blue:#1F4FD6;
+  --off:#FAF7EF;
+  --rule:2px solid var(--ink);
+  --rule-thick:6px solid var(--ink);
+}
+
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter','Space Grotesk',sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  letter-spacing:-0.01em;
+}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* ─── grid paper overlay ─── */
+body::before{
+  content:"";
+  position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(14,14,14,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(14,14,14,.04) 1px,transparent 1px);
+  background-size:48px 48px;
+  pointer-events:none;
+  z-index:1;
+}
+
+/* ─── NAV ─── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:var(--off);
+  border-bottom:var(--rule-thick);
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:stretch;
+}
+.nav-logo{
+  display:flex;align-items:center;gap:14px;
+  padding:20px 28px;
+  border-right:var(--rule);
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;
+  font-size:1.05rem;
+  letter-spacing:-0.02em;
+  text-transform:uppercase;
+}
+.nav-logo .mark{
+  width:34px;height:34px;
+  background:var(--red);
+  position:relative;
+  flex-shrink:0;
+}
+.nav-logo .mark::before{
+  content:"";position:absolute;
+  inset:6px 6px auto auto;
+  width:14px;height:14px;border-radius:50%;
+  background:var(--yellow);
+}
+.nav-logo .mark::after{
+  content:"";position:absolute;
+  left:0;bottom:0;
+  width:0;height:0;
+  border-left:10px solid transparent;
+  border-right:10px solid transparent;
+  border-bottom:14px solid var(--blue);
+}
+.nav-links{
+  list-style:none;
+  display:flex;align-items:center;justify-content:center;
+  gap:0;
+}
+.nav-links li{height:100%}
+.nav-links a{
+  display:flex;align-items:center;
+  height:100%;padding:0 22px;
+  font-size:.78rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  border-right:var(--rule);
+  transition:background .2s,color .2s;
+}
+.nav-links li:first-child a{border-left:var(--rule)}
+.nav-links a:hover{background:var(--ink);color:var(--yellow)}
+.nav-cta{
+  display:flex;align-items:center;
+  padding:0 28px;
+  background:var(--ink);color:var(--off);
+  font-size:.78rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;
+  transition:background .2s;
+}
+.nav-cta:hover{background:var(--red)}
+.nav-burger{
+  display:none;
+  width:64px;background:var(--ink);color:var(--off);
+  align-items:center;justify-content:center;
+  font-size:1.4rem;
+}
+
+/* ─── HERO ─── */
+.hero{
+  position:relative;z-index:2;
+  margin-top:78px;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  grid-template-rows:auto auto;
+  min-height:calc(100vh - 78px);
+  border-bottom:var(--rule-thick);
+}
+.hero-text{
+  grid-column:1;grid-row:1 / span 2;
+  background:var(--paper);
+  padding:64px 56px 48px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  border-right:var(--rule-thick);
+  position:relative;
+  overflow:hidden;
+}
+.hero-text::after{
+  content:"";position:absolute;
+  right:-110px;bottom:-110px;
+  width:280px;height:280px;border-radius:50%;
+  background:var(--yellow);
+  z-index:0;
+}
+.hero-eyebrow{
+  font-family:'DM Mono',monospace;
+  font-size:.78rem;
+  letter-spacing:.22em;text-transform:uppercase;
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:32px;
+  position:relative;z-index:1;
+}
+.hero-eyebrow::before{
+  content:"";width:36px;height:6px;background:var(--red);
+}
+.hero h1{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(3rem,8vw,7rem);
+  line-height:.92;
+  font-weight:700;
+  letter-spacing:-0.035em;
+  text-transform:uppercase;
+  margin-bottom:36px;
+  position:relative;z-index:1;
+}
+.hero h1 .stack{display:block}
+.hero h1 .accent{
+  display:inline-block;
+  background:var(--red);color:var(--off);
+  padding:0 .18em .08em;
+}
+.hero h1 .underline{
+  display:inline-block;
+  border-bottom:8px solid var(--blue);
+  padding-bottom:.05em;
+}
+.hero-sub{
+  font-size:1.1rem;line-height:1.55;
+  max-width:46ch;font-weight:400;
+  margin-bottom:40px;
+  position:relative;z-index:1;
+}
+.hero-actions{
+  display:flex;gap:0;
+  position:relative;z-index:1;
+  border:var(--rule);
+  width:fit-content;
+  background:var(--off);
+}
+.btn{
+  padding:18px 32px;
+  font-size:.82rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:10px;
+  border-right:var(--rule);
+  transition:background .2s,color .2s;
+}
+.btn:last-child{border-right:none}
+.btn.primary{background:var(--ink);color:var(--off)}
+.btn.primary:hover{background:var(--red)}
+.btn.ghost:hover{background:var(--yellow)}
+.btn svg{width:14px;height:14px}
+
+.hero-img{
+  grid-column:2;grid-row:1;
+  position:relative;
+  background:var(--blue);
+  overflow:hidden;
+  border-bottom:var(--rule-thick);
+}
+.hero-img img{
+  width:100%;height:100%;object-fit:cover;
+  filter:contrast(1.05) saturate(1.1);
+}
+.hero-img::after{
+  content:"";position:absolute;
+  left:-50px;bottom:-50px;
+  width:140px;height:140px;
+  background:var(--red);
+  border:var(--rule);
+  transform:rotate(45deg);
+}
+.hero-meta{
+  grid-column:2;grid-row:2;
+  display:grid;grid-template-columns:1fr 1fr;
+}
+.hero-meta .cell{
+  padding:28px 24px;
+  border-right:var(--rule);
+  background:var(--off);
+}
+.hero-meta .cell:last-child{border-right:none;background:var(--yellow)}
+.hero-meta .k{
+  font-family:'DM Mono',monospace;
+  font-size:.7rem;letter-spacing:.2em;
+  text-transform:uppercase;
+  opacity:.7;margin-bottom:6px;
+}
+.hero-meta .v{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;font-size:1.05rem;
+  letter-spacing:-0.01em;
+}
+
+/* ─── SECTION TAG (poster label) ─── */
+.tag{
+  display:inline-block;
+  background:var(--ink);color:var(--off);
+  padding:8px 14px;
+  font-family:'DM Mono',monospace;
+  font-size:.72rem;letter-spacing:.22em;
+  text-transform:uppercase;
+  margin-bottom:24px;
+}
+.tag.red{background:var(--red)}
+.tag.blue{background:var(--blue)}
+.tag.yellow{background:var(--yellow);color:var(--ink)}
+
+h2.title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(2.4rem,5.5vw,4.5rem);
+  line-height:.95;
+  font-weight:700;
+  letter-spacing:-0.03em;
+  text-transform:uppercase;
+}
+
+/* ─── ABOUT ─── */
+.about{
+  position:relative;z-index:2;
+  background:var(--off);
+  border-bottom:var(--rule-thick);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+.about-shapes{
+  position:relative;
+  border-right:var(--rule-thick);
+  background:var(--paper-2);
+  min-height:520px;
+  overflow:hidden;
+}
+.shape{position:absolute;border:var(--rule)}
+.shape.circle-red{
+  width:300px;height:300px;border-radius:50%;
+  background:var(--red);
+  top:60px;left:60px;
+}
+.shape.square-blue{
+  width:180px;height:180px;
+  background:var(--blue);
+  bottom:80px;left:200px;
+}
+.shape.tri-yellow{
+  width:0;height:0;border:none;
+  border-left:120px solid transparent;
+  border-right:120px solid transparent;
+  border-bottom:200px solid var(--yellow);
+  top:140px;right:60px;
+  filter:drop-shadow(2px 0 0 var(--ink)) drop-shadow(-2px 0 0 var(--ink)) drop-shadow(0 2px 0 var(--ink));
+}
+.shape.bar-ink{
+  width:80px;height:240px;
+  background:var(--ink);
+  bottom:40px;right:120px;
+}
+.about-text{
+  padding:80px 64px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.about-text p{
+  font-size:1.15rem;line-height:1.7;
+  margin-top:28px;max-width:52ch;
+}
+.about-text p strong{
+  background:var(--yellow);
+  padding:1px 6px;
+  font-weight:700;
+}
+
+/* ─── COCKTAILS BAND ─── */
+.cocktails{
+  position:relative;z-index:2;
+  display:grid;
+  grid-template-columns:1fr 1.2fr;
+  border-bottom:var(--rule-thick);
+  background:var(--red);
+  color:var(--off);
+}
+.cocktails-text{
+  padding:80px 64px;
+  border-right:var(--rule-thick);
+}
+.cocktails-text .tag{background:var(--off);color:var(--ink)}
+.cocktails-text h2{color:var(--off)}
+.cocktails-text p{
+  font-size:1.1rem;line-height:1.65;
+  margin-top:28px;max-width:46ch;
+}
+.cocktails-list{
+  list-style:none;margin-top:36px;
+  display:grid;gap:0;
+  border:var(--rule);
+  border-color:var(--off);
+}
+.cocktails-list li{
+  display:grid;grid-template-columns:auto 1fr auto;
+  align-items:center;gap:16px;
+  padding:18px 22px;
+  border-bottom:2px solid var(--off);
+  font-family:'DM Mono',monospace;
+  font-size:.85rem;letter-spacing:.04em;
+}
+.cocktails-list li:last-child{border-bottom:none}
+.cocktails-list .num{
+  font-weight:700;opacity:.7;
+}
+.cocktails-list .name{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;font-size:1rem;
+  letter-spacing:-0.01em;
+  text-transform:uppercase;
+}
+.cocktails-list .price{font-weight:700}
+.cocktails-img{
+  position:relative;overflow:hidden;
+  min-height:560px;
+}
+.cocktails-img img{
+  width:100%;height:100%;object-fit:cover;
+  filter:contrast(1.08) saturate(1.15);
+}
+.cocktails-img::before{
+  content:"";position:absolute;
+  top:40px;right:40px;
+  width:120px;height:120px;border-radius:50%;
+  background:var(--yellow);
+  border:var(--rule);
+  z-index:1;
+}
+.cocktails-img::after{
+  content:"02";
+  position:absolute;
+  bottom:40px;left:40px;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:8rem;font-weight:700;
+  color:var(--off);
+  line-height:1;
+  letter-spacing:-0.05em;
+  z-index:1;
+}
+
+/* ─── FEATURES ─── */
+.features{
+  position:relative;z-index:2;
+  background:var(--off);
+  border-bottom:var(--rule-thick);
+}
+.features-head{
+  padding:72px 64px 48px;
+  display:grid;grid-template-columns:1fr auto;
+  align-items:end;gap:32px;
+  border-bottom:var(--rule);
+}
+.features-head p{
+  font-size:1.05rem;line-height:1.55;
+  max-width:38ch;
+  font-family:'DM Mono',monospace;
+  font-size:.85rem;
+  letter-spacing:.02em;
+}
+.features-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+}
+.feature{
+  padding:48px 40px 56px;
+  border-right:var(--rule);
+  position:relative;
+  min-height:340px;
+  display:flex;flex-direction:column;
+  transition:background .25s;
+}
+.feature:last-child{border-right:none}
+.feature .icon{
+  width:64px;height:64px;
+  border:var(--rule);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:28px;
+  background:var(--off);
+  transition:background .25s;
+}
+.feature:nth-child(1){background:var(--yellow)}
+.feature:nth-child(2){background:var(--paper)}
+.feature:nth-child(3){background:var(--blue);color:var(--off)}
+.feature:nth-child(3) .icon{background:var(--off);color:var(--ink)}
+.feature .num-tag{
+  position:absolute;top:0;right:0;
+  background:var(--ink);color:var(--off);
+  font-family:'DM Mono',monospace;
+  font-size:.72rem;letter-spacing:.2em;
+  padding:8px 14px;
+}
+.feature h3{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.6rem;font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:-0.02em;
+  line-height:1;margin-bottom:18px;
+}
+.feature p{
+  font-size:.95rem;line-height:1.55;
+}
+
+/* ─── TERRACE BAND ─── */
+.terrace{
+  position:relative;z-index:2;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  border-bottom:var(--rule-thick);
+  background:var(--yellow);
+}
+.terrace-img{
+  position:relative;overflow:hidden;
+  min-height:560px;
+  border-right:var(--rule-thick);
+}
+.terrace-img img{
+  width:100%;height:100%;object-fit:cover;
+  filter:contrast(1.05) saturate(1.1);
+}
+.terrace-img::before{
+  content:"";position:absolute;
+  bottom:0;left:0;right:0;height:60%;
+  background:linear-gradient(180deg,transparent,rgba(14,14,14,.4));
+}
+.terrace-img .stamp{
+  position:absolute;top:32px;left:32px;
+  width:140px;height:140px;border-radius:50%;
+  background:var(--red);color:var(--off);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;text-transform:uppercase;
+  font-size:.78rem;letter-spacing:.12em;
+  text-align:center;line-height:1.15;
+  border:var(--rule);
+  padding:14px;
+}
+.terrace-text{
+  padding:80px 64px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.terrace-text h2{color:var(--ink)}
+.terrace-text p{
+  font-size:1.1rem;line-height:1.7;
+  margin-top:28px;max-width:46ch;
+}
+.terrace-list{
+  list-style:none;margin-top:32px;
+  display:grid;gap:14px;
+}
+.terrace-list li{
+  display:flex;align-items:center;gap:14px;
+  font-family:'DM Mono',monospace;
+  font-size:.85rem;letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.terrace-list li::before{
+  content:"";width:16px;height:16px;
+  background:var(--ink);
+  flex-shrink:0;
+}
+.terrace-list li:nth-child(2)::before{
+  background:var(--red);border-radius:50%;
+}
+.terrace-list li:nth-child(3)::before{
+  background:transparent;
+  width:0;height:0;
+  border-left:9px solid transparent;
+  border-right:9px solid transparent;
+  border-bottom:16px solid var(--blue);
+}
+
+/* ─── HOURS ─── */
+.hours{
+  position:relative;z-index:2;
+  background:var(--ink);color:var(--off);
+  border-bottom:var(--rule-thick);
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+}
+.hours-side{
+  padding:72px 56px;
+  border-right:var(--rule-thick);
+  border-right-color:var(--off);
+  position:relative;
+  overflow:hidden;
+}
+.hours-side::after{
+  content:"";position:absolute;
+  bottom:-80px;left:-80px;
+  width:240px;height:240px;border-radius:50%;
+  background:var(--red);
+}
+.hours-side .tag{background:var(--yellow);color:var(--ink);position:relative;z-index:1}
+.hours-side h2{position:relative;z-index:1;color:var(--off)}
+.hours-side p{
+  position:relative;z-index:1;
+  margin-top:24px;font-size:1rem;line-height:1.6;
+  max-width:30ch;
+}
+.hours-table{
+  padding:0;display:flex;flex-direction:column;
+}
+.hours-row{
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  padding:24px 56px;
+  border-bottom:2px solid rgba(250,247,239,.18);
+  font-family:'DM Mono',monospace;
+  font-size:.9rem;letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.hours-row:last-child{border-bottom:none}
+.hours-row .day{font-weight:500}
+.hours-row .time{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;color:var(--yellow);
+  font-size:1rem;
+}
+.hours-row.closed .time{color:var(--red)}
+
+/* ─── INSTAGRAM BAR ─── */
+.ig{
+  position:relative;z-index:2;
+  background:var(--blue);color:var(--off);
+  padding:48px 64px;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;gap:48px;
+  border-bottom:var(--rule-thick);
+}
+.ig-mark{
+  width:80px;height:80px;
+  background:var(--yellow);
+  border:var(--rule);
+  display:flex;align-items:center;justify-content:center;
+}
+.ig-mark svg{width:40px;height:40px;color:var(--ink)}
+.ig-text h3{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:2rem;font-weight:700;
+  letter-spacing:-0.02em;text-transform:uppercase;
+  line-height:1;margin-bottom:8px;
+}
+.ig-text p{
+  font-family:'DM Mono',monospace;
+  font-size:.85rem;letter-spacing:.08em;
+}
+.ig a.btn{
+  background:var(--off);color:var(--ink);
+  border:var(--rule);
+}
+.ig a.btn:hover{background:var(--yellow)}
+
+/* ─── FOOTER ─── */
+footer{
+  position:relative;z-index:2;
+  background:var(--off);
+  padding:64px 64px 32px;
+}
+.foot-grid{
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr 1fr;
+  gap:48px;
+  padding-bottom:48px;
+  border-bottom:var(--rule);
+}
+.foot-brand{
+  display:flex;flex-direction:column;gap:18px;
+}
+.foot-brand .nav-logo{
+  padding:0;border:none;
+}
+.foot-brand p{
+  font-size:.95rem;line-height:1.6;
+  max-width:34ch;
+}
+.foot-col h4{
+  font-family:'DM Mono',monospace;
+  font-size:.75rem;letter-spacing:.2em;
+  text-transform:uppercase;
+  margin-bottom:18px;
+  padding-bottom:10px;
+  border-bottom:var(--rule);
+}
+.foot-col ul{list-style:none;display:grid;gap:10px}
+.foot-col a{
+  font-size:.92rem;font-weight:500;
+  transition:color .2s;
+}
+.foot-col a:hover{color:var(--red)}
+.foot-bottom{
+  padding-top:24px;
+  display:flex;justify-content:space-between;
+  align-items:center;
+  font-family:'DM Mono',monospace;
+  font-size:.72rem;letter-spacing:.2em;
+  text-transform:uppercase;
+  flex-wrap:wrap;gap:16px;
+}
+.foot-bottom .dots{display:flex;gap:6px}
+.foot-bottom .dot{
+  width:14px;height:14px;border:var(--rule);
+}
+.foot-bottom .dot:nth-child(1){background:var(--red);border-radius:50%}
+.foot-bottom .dot:nth-child(2){background:var(--yellow)}
+.foot-bottom .dot:nth-child(3){
+  background:transparent;border:none;
+  width:0;height:0;
+  border-left:8px solid transparent;
+  border-right:8px solid transparent;
+  border-bottom:14px solid var(--blue);
+}
+
+/* ─── MOBILE ─── */
+@media (max-width:960px){
+  .nav{grid-template-columns:auto 1fr auto}
+  .nav-links{
+    position:fixed;top:62px;left:0;right:0;
+    background:var(--off);
+    flex-direction:column;
+    border-bottom:var(--rule-thick);
+    transform:translateY(-120%);
+    transition:transform .35s ease;
+  }
+  .nav-links.open{transform:translateY(0)}
+  .nav-links li{width:100%;height:auto}
+  .nav-links a{
+    width:100%;padding:18px 24px;
+    border-right:none;border-left:none !important;
+    border-bottom:var(--rule);
+  }
+  .nav-cta{display:none}
+  .nav-burger{display:flex}
+  .nav-logo{padding:14px 18px;font-size:.95rem}
+
+  .hero{
+    grid-template-columns:1fr;
+    grid-template-rows:auto auto auto;
+    min-height:auto;
+  }
+  .hero-text{
+    grid-column:1;grid-row:1;
+    border-right:none;
+    border-bottom:var(--rule-thick);
+    padding:40px 24px;
+  }
+  .hero-img{
+    grid-column:1;grid-row:2;
+    min-height:60vw;
+    border-bottom:var(--rule-thick);
+  }
+  .hero-meta{grid-column:1;grid-row:3}
+  .hero-meta .cell{padding:20px}
+
+  .about,.cocktails,.terrace,.hours{
+    grid-template-columns:1fr;
+  }
+  .about-shapes{
+    border-right:none;border-bottom:var(--rule-thick);
+    min-height:340px;
+  }
+  .about-text,.cocktails-text,.terrace-text,.hours-side{
+    padding:48px 24px;
+  }
+  .cocktails-text{
+    border-right:none;
+    border-bottom:var(--rule-thick);
+    border-bottom-color:var(--off);
+  }
+  .cocktails-img{min-height:60vw}
+  .terrace-img{
+    border-right:none;border-bottom:var(--rule-thick);
+    min-height:60vw;
+  }
+  .hours-side{
+    border-right:none;
+    border-bottom:var(--rule-thick);
+    border-bottom-color:var(--off);
+  }
+  .hours-row{padding:20px 24px}
+
+  .features-head{padding:48px 24px 32px;grid-template-columns:1fr}
+  .features-grid{grid-template-columns:1fr}
+  .feature{
+    border-right:none;
+    border-bottom:var(--rule);
+    min-height:auto;
+    padding:36px 24px 40px;
+  }
+  .feature:last-child{border-bottom:none}
+
+  .ig{
+    grid-template-columns:1fr;
+    text-align:center;
+    padding:36px 24px;
+    gap:20px;
+  }
+  .ig-mark{margin:0 auto}
+  .ig a.btn{justify-self:center}
+
+  footer{padding:48px 24px 24px}
+  .foot-grid{grid-template-columns:1fr;gap:32px}
+  .foot-bottom{flex-direction:column;text-align:center}
+}
+
+/* ─── REVEAL ─── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="mark" aria-hidden="true"></span>
+    <span>La Placita<br><small style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.2em;font-weight:500;">Rooftop · BK</small></span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+  </ul>
+  <a href="events.html" class="nav-cta">Reserve →</a>
+  <button class="nav-burger" id="burger" aria-label="Menu">≡</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div>
+      <p class="hero-eyebrow">No. 039 · Bauhaus Edition · Brooklyn NY</p>
+      <h1 class="reveal">
+        <span class="stack">Brooklyn</span>
+        <span class="stack">Meets <span class="accent">The</span></span>
+        <span class="stack"><span class="underline">Island.</span></span>
+      </h1>
+      <p class="hero-sub reveal">Tropical cocktails, Latin plates, and skyline sunsets — engineered for warmth and built on the soul of Puerto Rico. A rooftop, a corner, a placita above the city.</p>
+    </div>
+    <div class="hero-actions reveal">
+      <a href="menu.html" class="btn primary">View Menu
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="events.html" class="btn ghost">Reserve</a>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="hero-bg.jpg" alt="La Placita Rooftop at sunset">
+  </div>
+  <div class="hero-meta">
+    <div class="cell">
+      <div class="k">Location</div>
+      <div class="v">Brooklyn, NY</div>
+    </div>
+    <div class="cell">
+      <div class="k">Open Tonight</div>
+      <div class="v">5PM — Late</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-shapes" aria-hidden="true">
+    <div class="shape circle-red"></div>
+    <div class="shape square-blue"></div>
+    <div class="shape tri-yellow"></div>
+    <div class="shape bar-ink"></div>
+  </div>
+  <div class="about-text">
+    <span class="tag red">§ 01 — The Place</span>
+    <h2 class="title reveal">A Corner Of<br>The Caribbean,<br>Five Stories Up.</h2>
+    <p class="reveal">La Placita is more than a rooftop. It's a <strong>placita</strong> — a town square — lifted above Brooklyn and tuned to the rhythm of San Juan. Salsa on the speakers, ron in the glass, plantains crackling in the kitchen.</p>
+    <p class="reveal">We build everything around three primary forms: <strong>warmth</strong>, <strong>soul</strong>, and <strong>sunset</strong>. Come for the view. Stay for the people.</p>
+  </div>
+</section>
+
+<!-- COCKTAILS BAND -->
+<section class="cocktails">
+  <div class="cocktails-text">
+    <span class="tag">§ 02 — The Bar</span>
+    <h2 class="title reveal">Cocktails,<br>Composed.</h2>
+    <p class="reveal">Rum-forward, citrus-bright, and built like a poster — every drink follows a clear formula. Tropical fundamentals, modern construction, the island's heart.</p>
+    <ol class="cocktails-list reveal">
+      <li><span class="num">01</span><span><span class="name">Piña del Sol</span></span><span class="price">$15</span></li>
+      <li><span class="num">02</span><span><span class="name">Coquito Old Fashioned</span></span><span class="price">$17</span></li>
+      <li><span class="num">03</span><span><span class="name">Guava Margarita</span></span><span class="price">$16</span></li>
+      <li><span class="num">04</span><span><span class="name">Mojito Habanero</span></span><span class="price">$15</span></li>
+      <li><span class="num">05</span><span><span class="name">Ron de Brooklyn</span></span><span class="price">$18</span></li>
+    </ol>
+  </div>
+  <div class="cocktails-img">
+    <img src="cocktails.jpg" alt="Tropical cocktails on the rooftop bar">
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="features-head">
+    <h2 class="title reveal">Three<br>Primary Forms.</h2>
+    <p>Like Bauhaus reduced design to circle, square, and triangle — we reduce hospitality to three things we do better than anyone in Brooklyn.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature reveal">
+      <span class="num-tag">F / 01</span>
+      <div class="icon">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square">
+          <circle cx="16" cy="16" r="12"/>
+          <path d="M16 4v24M4 16h24"/>
+        </svg>
+      </div>
+      <h3>Tropical<br>Cocktails</h3>
+      <p>Caribbean rums, fresh citrus, market fruits. Each drink is engineered for the rooftop, then poured for the moment.</p>
+    </div>
+    <div class="feature reveal">
+      <span class="num-tag">F / 02</span>
+      <div class="icon">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square">
+          <rect x="4" y="4" width="24" height="24"/>
+          <path d="M4 4l24 24M28 4L4 28"/>
+        </svg>
+      </div>
+      <h3>Latin<br>Plates</h3>
+      <p>Mofongo, tostones, pernil sliders, ceviche. The full island playbook, shareable and built for the rooftop wind.</p>
+    </div>
+    <div class="feature reveal">
+      <span class="num-tag">F / 03</span>
+      <div class="icon">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="miter">
+          <path d="M16 4l12 22H4z"/>
+          <circle cx="16" cy="20" r="3" fill="currentColor"/>
+        </svg>
+      </div>
+      <h3>Skyline<br>Sunsets</h3>
+      <p>Manhattan to the west, the bridges below, a Caribbean horizon overhead. We open the roof at 5 — sunset starts at 7.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TERRACE BAND -->
+<section class="terrace">
+  <div class="terrace-img">
+    <img src="terrace.jpg" alt="The open-air terrace">
+    <div class="stamp">Open<br>Air<br>Terrace</div>
+  </div>
+  <div class="terrace-text">
+    <span class="tag blue">§ 04 — The Terrace</span>
+    <h2 class="title reveal">Five Stories<br>Above<br>The Borough.</h2>
+    <p class="reveal">An open-air terrace shaped like a grid and warmed like a kitchen in Old San Juan. Hand-painted tiles, tropical plants, salsa nights, and the long Brooklyn skyline.</p>
+    <ul class="terrace-list reveal">
+      <li>Live DJs Thu – Sun</li>
+      <li>Group Reservations 8+</li>
+      <li>Sunset Hour · 6 – 8 pm</li>
+    </ul>
+  </div>
+</section>
+
+<!-- HOURS -->
+<section class="hours">
+  <div class="hours-side">
+    <span class="tag yellow">§ 05 — Schedule</span>
+    <h2 class="title reveal">Hours<br>&amp; Hospitality.</h2>
+    <p class="reveal">Kitchen closes one hour before last call. Weather-permitting service on the open terrace; covered bar runs year-round.</p>
+  </div>
+  <div class="hours-table">
+    <div class="hours-row"><span class="day">Monday</span><span class="time closed-time" style="color:var(--red)">Closed</span></div>
+    <div class="hours-row"><span class="day">Tuesday — Thursday</span><span class="time">5 PM — 12 AM</span></div>
+    <div class="hours-row"><span class="day">Friday</span><span class="time">5 PM — 2 AM</span></div>
+    <div class="hours-row"><span class="day">Saturday</span><span class="time">2 PM — 2 AM</span></div>
+    <div class="hours-row"><span class="day">Sunday</span><span class="time">2 PM — 11 PM</span></div>
+  </div>
+</section>
+
+<!-- INSTAGRAM BAR -->
+<section class="ig">
+  <div class="ig-mark" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+      <rect x="3" y="3" width="18" height="18" rx="0"/>
+      <circle cx="12" cy="12" r="4"/>
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+    </svg>
+  </div>
+  <div class="ig-text">
+    <h3>Follow The Roof.</h3>
+    <p>@laplacita.rooftop · Tag #laplacitabrooklyn</p>
+  </div>
+  <a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener" class="btn">Open Instagram
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <a href="index.html" class="nav-logo">
+        <span class="mark" aria-hidden="true"></span>
+        <span>La Placita</span>
+      </a>
+      <p>A Brooklyn rooftop tuned to the rhythm of Puerto Rico. Tropical cocktails, Latin plates, skyline sunsets.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Visit</h4>
+      <ul>
+        <li>Brooklyn, NY</li>
+        <li>Rooftop · 5F</li>
+        <li>Reservations</li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Social</h4>
+      <ul>
+        <li><a href="https://instagram.com/laplacita.rooftop" target="_blank" rel="noopener">@laplacita.rooftop</a></li>
+        <li><a href="mailto:hello@laplacita.com">hello@laplacita.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 La Placita Rooftop · Bauhaus Edition</span>
+    <div class="dots" aria-hidden="true">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+    <span>v.039 — Brooklyn × San Juan</span>
+  </div>
+</footer>
+
+<script>
+  // mobile menu
+  const burger = document.getElementById('burger');
+  const nav = document.getElementById('navLinks');
+  burger.addEventListener('click', () => nav.classList.toggle('open'));
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+  // reveal on scroll
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
