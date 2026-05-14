@@ -94,7 +94,7 @@
 
   /* AERIAL BREAK */
   .aerial-break{
-    position:relative;width:100vw;height:60vh;min-height:420px;
+    position:relative;width:100vw;height:40vh;min-height:300px;
     overflow:hidden;margin-left:calc(-50vw + 50%);
   }
   .aerial-break-img{
@@ -118,7 +118,7 @@
     font-size:.65rem;letter-spacing:4px;text-transform:uppercase;
     margin-bottom:.5rem;opacity:.85;
   }
-  @media(max-width:768px){.aerial-break{height:45vh;min-height:320px}.aerial-break-caption{left:1.5rem;bottom:1.5rem;font-size:.95rem}}
+  @media(max-width:768px){.aerial-break{height:32vh;min-height:240px}.aerial-break-caption{left:1.5rem;bottom:1.5rem;font-size:.95rem}}
   .hero-overlay{
     position:absolute;inset:0;z-index:2;
     background:linear-gradient(180deg, rgba(15,36,25,.15) 0%, transparent 35%, transparent 60%, rgba(15,36,25,.55) 100%);
@@ -162,15 +162,6 @@
   .btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7)}
   .btn-ghost:hover{background:#fff;color:var(--pink)}
   @keyframes fadeUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
-  .scroll-cue{
-    position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
-    z-index:5;color:#fff;font-size:.65rem;letter-spacing:4px;
-    text-transform:uppercase;opacity:.85;
-  }
-  .scroll-cue::after{
-    content:'';display:block;width:1px;height:40px;background:#fff;
-    margin:.7rem auto 0;opacity:.5;
-  }
 
   /* SECTION SHARED */
   section{padding:7rem 2rem}
@@ -181,48 +172,23 @@
     color:var(--coral);font-weight:500;margin-bottom:1.5rem;
   }
 
-  /* MANIFESTO */
-  .manifesto{background:var(--cream);text-align:center;padding:8rem 2rem}
-  .manifesto-inner{max-width:900px;margin:0 auto}
-  .manifesto-text{
-    font-family:var(--serif);
-    font-size:clamp(1.7rem, 3.5vw, 2.8rem);
-    line-height:1.35;color:var(--pink);
-    font-weight:300;letter-spacing:-.3px;
+  /* ACTION BAR */
+  .action-bar{background:var(--paper);padding:4rem 2rem;text-align:center}
+  .action-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:800px;margin:0 auto}
+  .action-card{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:2.5rem 1.5rem;background:#fff;border:1px solid rgba(212,114,92,.2);
+    transition:all .35s;cursor:pointer;
   }
-  .manifesto-text em{font-style:italic;color:var(--coral)}
-
-  /* RULE */
-  .h-rule{width:60px;height:1px;background:var(--coral);margin:0 auto 2.5rem}
-
-  /* EXPERIENCE GRID */
-  .experience{background:var(--cream)}
-  .exp-grid{
-    display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
-    max-width:1300px;margin:0 auto;
-  }
-  .exp-image{position:relative;height:620px;overflow:hidden}
-  .exp-image img{width:100%;height:100%;object-fit:cover;transition:transform 1.5s ease}
-  .exp-image:hover img{transform:scale(1.05)}
-  .exp-content h2{
-    font-family:var(--serif);font-weight:400;
-    font-size:clamp(2.3rem, 4.5vw, 3.6rem);
-    line-height:1.05;margin-bottom:1.8rem;
-    color:var(--pink);letter-spacing:-.5px;
-  }
-  .exp-content h2 em{font-style:italic;color:var(--coral)}
-  .exp-content p{
-    font-size:1rem;line-height:1.85;color:#3a4a3e;
-    margin-bottom:1.3rem;font-weight:300;
-  }
-  .exp-content .btn{margin-top:1.5rem}
-  .experience.alt{background:var(--paper)}
-  @media(max-width:900px){.exp-grid{grid-template-columns:1fr;gap:3rem}.exp-image{height:440px}}
+  .action-card:hover{transform:translateY(-4px);box-shadow:0 12px 35px rgba(212,114,92,.15);border-color:var(--coral)}
+  .action-icon{font-size:2rem;margin-bottom:.8rem;color:var(--pink)}
+  .action-label{font-size:.75rem;letter-spacing:3px;text-transform:uppercase;font-weight:500;color:var(--ink)}
+  @media(max-width:600px){.action-grid{grid-template-columns:1fr;max-width:320px}}
 
   /* HOURS */
   .hours{
     background:var(--pink);color:var(--cream);
-    text-align:center;padding:8rem 2rem;
+    text-align:center;padding:5rem 2rem;
   }
   .hours .section-label{color:var(--gold)}
   .hours h2{
@@ -240,22 +206,6 @@
   .hours-day{font-family:var(--serif);font-size:1.3rem;font-style:italic;font-weight:400}
   .hours-time{font-size:.85rem;letter-spacing:2px;color:var(--gold);font-weight:400}
   .hours-note{margin-top:2.5rem;font-size:.85rem;color:rgba(250,243,235,.6);letter-spacing:.5px}
-
-  /* RESERVE BLOCK */
-  .reserve{
-    background:var(--cream);text-align:center;padding:8rem 2rem;
-  }
-  .reserve h2{
-    font-family:var(--serif);font-weight:300;
-    font-size:clamp(2.5rem, 6vw, 5rem);
-    line-height:1;margin-bottom:1.5rem;color:var(--pink);
-    letter-spacing:-1px;
-  }
-  .reserve h2 em{font-style:italic;color:var(--coral)}
-  .reserve p{
-    max-width:540px;margin:0 auto 2.5rem;font-size:1.05rem;
-    line-height:1.7;color:#3a4a3e;
-  }
 
   /* FOOTER */
   footer{
@@ -315,47 +265,9 @@
     <h1 class="hero-title">La Placita <em>Rooftop</em></h1>
     <p class="hero-sub">A taste of Puerto Rico above the Brooklyn skyline.</p>
     <div class="hero-cta-row">
-      <a href="https://instagram.com/laplacita.rooftop" target="_blank" class="btn btn-primary">Reserve a Table</a>
+      <a href="https://instagram.com/laplacita.rooftop" target="_blank" class="btn btn-primary">Reservations</a>
       <a href="menu.html" class="btn btn-ghost">View Menu</a>
-    </div>
-  </div>
-  <div class="scroll-cue">Scroll</div>
-</section>
-
-<section class="manifesto">
-  <div class="manifesto-inner reveal">
-    <div class="h-rule"></div>
-    <span class="section-label">Our Story</span>
-    <p class="manifesto-text">A sliver of San Juan tucked above the Brooklyn skyline. We pour <em>island spirits</em>, plate small bites kissed by sofrito, and chase the sun until the moon takes its turn.</p>
-  </div>
-</section>
-
-<section class="experience">
-  <div class="exp-grid">
-    <div class="exp-image reveal">
-      <img src="terrace.jpg" alt="The terrace" />
-    </div>
-    <div class="exp-content reveal">
-      <span class="section-label">The Space</span>
-      <h2>Open sky, <em>open arms.</em></h2>
-      <p>Twelve stories above Brooklyn, our terrace is wrapped in market-string lights, terracotta tile, and the kind of breeze that makes you forget which borough you're in.</p>
-      <p>By day, brunch under the umbrellas. By night, the skyline becomes the wallpaper.</p>
-      <a href="events.html" class="btn btn-primary">Discover</a>
-    </div>
-  </div>
-</section>
-
-<section class="experience alt">
-  <div class="exp-grid">
-    <div class="exp-content reveal" style="order:1">
-      <span class="section-label">The Pour</span>
-      <h2>Liquid <em>Caribbean.</em></h2>
-      <p>Our bar program is anchored in Puerto Rican rum — aged, white, spiced, and the small-batch stuff our bartender smuggled back in his suitcase.</p>
-      <p>Every cocktail is a postcard. Non-drinkers get the same love — our zero-proof menu is just as fearless.</p>
-      <a href="menu.html" class="btn btn-primary">See Cocktails</a>
-    </div>
-    <div class="exp-image reveal" style="order:2">
-      <img src="cocktails.jpg" alt="Signature cocktails" />
+      <a href="tel:+17181234567" class="btn btn-ghost">Call Us</a>
     </div>
   </div>
 </section>
@@ -365,6 +277,25 @@
   <div class="aerial-break-overlay"></div>
   <div class="aerial-break-caption"><span>From above</span>Twelve floors of Brooklyn, in one breath.</div>
 </div>
+
+<section class="action-bar">
+  <div class="container">
+    <div class="action-grid">
+      <a href="tel:+17181234567" class="action-card">
+        <span class="action-icon">&#9743;</span>
+        <span class="action-label">Call Us</span>
+      </a>
+      <a href="https://instagram.com/laplacita.rooftop" target="_blank" class="action-card">
+        <span class="action-icon">&#9733;</span>
+        <span class="action-label">Reservations</span>
+      </a>
+      <a href="menu.html" class="action-card">
+        <span class="action-icon">&#9749;</span>
+        <span class="action-label">View Menu</span>
+      </a>
+    </div>
+  </div>
+</section>
 
 <section class="hours" id="hours">
   <div class="container reveal">
@@ -376,15 +307,6 @@
       <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time">12 PM — 10 PM</span></div>
     </div>
     <p class="hours-note">Walk-ins welcome at the bar. Tables and cabanas by reservation.</p>
-  </div>
-</section>
-
-<section class="reserve">
-  <div class="container reveal">
-    <span class="section-label">Reservations</span>
-    <h2>Reserve <em>your evening.</em></h2>
-    <p>Tables, cabanas and private bookings via Instagram DM. Walk-ins welcome at the bar from open.</p>
-    <a href="https://instagram.com/laplacita.rooftop" target="_blank" class="btn btn-primary">DM @laplacita.rooftop</a>
   </div>
 </section>
 
